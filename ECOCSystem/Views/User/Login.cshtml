@@ -19,6 +19,16 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="~/FrontEnd/dist/css/adminlte.min.css">
 </head>
+<style>
+    .input-style {
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #ddd;
+
+    }
+
+</style>
 <body class="login-page" style="min-height: 496.781px;">
     <div class="login-box">
         <div class="login-logo">
@@ -30,19 +40,17 @@
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form action="../../index3.html" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control input-style" placeholder="Email">
                         <div class="input-group-append">
-                            <div class="input-group-text">
+                            @*<div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control input-style" placeholder="Password">
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -74,9 +82,9 @@
                 <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
-                <p class="mb-0">
+                @*<p class="mb-0">
                     <a href="register.html" class="text-center">Register a new membership</a>
-                </p>
+                </p>*@
             </div>
 
         </div>
