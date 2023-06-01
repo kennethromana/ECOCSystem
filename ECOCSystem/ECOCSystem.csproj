@@ -172,6 +172,10 @@
     <Content Include="Content\Images\VESPALOGO.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="FrontEnd\Additional\bootstrap-toggle\css\bootstrap4-toggle.css" />
+    <Content Include="FrontEnd\Additional\bootstrap-toggle\css\bootstrap4-toggle.min.css" />
+    <Content Include="FrontEnd\Additional\bootstrap-toggle\js\bootstrap4-toggle.js" />
+    <Content Include="FrontEnd\Additional\bootstrap-toggle\js\bootstrap4-toggle.min.js" />
     <Content Include="FrontEnd\build\config\postcss.config.js" />
     <Content Include="FrontEnd\build\config\rollup.config.js" />
     <Content Include="FrontEnd\build\js\AdminLTE.js" />
@@ -2361,6 +2365,7 @@
     <Content Include="Model\ECOC.edmx.diagram">
       <DependentUpon>ECOC.edmx</DependentUpon>
     </Content>
+    <Content Include="FrontEnd\Additional\bootstrap-toggle\js\bootstrap4-toggle.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECOCSystem.Model
 {
@@ -22,6 +24,8 @@ namespace ECOCSystem.Model
         public string CRContentType { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<int> CompanyBranchID { get; set; }
+        [DisplayName("Registration Type: New or Renewal")]
+        public bool isRenewal { get; set; }
 
     }
 }

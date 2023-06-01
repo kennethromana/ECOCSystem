@@ -12,33 +12,51 @@
         <div class="card-header">
             <h3 class="card-title"><h4>New CPTL Application</h4></h3>
         </div>
-        <div class="fab" type="button" name="btnSubmit" data-toggle="tooltip" title="" onclick="location.href='/Customer/Customer'" data-original-title="Create New"> + </div>
         <div class="card-body">
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
                     <div class="col-sm-12">
                          @using (Html.BeginForm("VerificationBy", "MV", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
-            {
-                @Html.HiddenFor(o =>o.CPTLID, new { Value = "CSR" })
-                <section class="row mt-4 pb-4">
-                    <div class="form-group col-lg-4">
-                        @Html.LabelFor(o => o.COCNumber)
-                        <div class="input-group">@Html.TextBoxFor(o => o.COCNumber, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
-                        @Html.ValidationMessageFor(o => o.COCNumber)
-                    </div>
-                    <div class="form-group col-lg-4">
-                        @Html.LabelFor(o => o.PolicyNumber)
-                        <div class="input-group">@Html.TextBoxFor(o => o.PolicyNumber, new { @class = "form-control input-style", placeholder = "Engine Number" })</div>
-                        @Html.ValidationMessageFor(o => o.PolicyNumber)
-                    </div>
-                    <div class="form-group col-lg-4">
-                        @Html.LabelFor(o => o.AuthenticatedNumber)
-                        <div class="input-group">@Html.TextBoxFor(o => o.AuthenticatedNumber, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
-                        @Html.ValidationMessageFor(o => o.AuthenticatedNumber)
-                    </div>
-                </section>
-                <div id="btm_csr_btn_container" class="row" style="justify-content:center;"></div>
-            }
+                            {
+                                @Html.HiddenFor(o =>o.CPTLID, new { Value = "CPTLID" })
+                                <section class="row mt-4 pb-4">
+                                      <div class="form-group col-lg-4">
+                                        @Html.LabelFor(o => o.isRenewal)
+                                        <div class="input-group">
+                                            @Html.CheckBoxFor(o => o.isRenewal, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = ""
+                                       })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.isRenewal)
+                                    </div>
+                                </section>
+                                 <section class="row mt-4 pb-4">
+                                    <div class="form-group col-lg-3">
+                                        @Html.LabelFor(o => o.COCNumber)
+                                        <div class="input-group">@Html.TextBoxFor(o => o.COCNumber, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
+                                        @Html.ValidationMessageFor(o => o.COCNumber)
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        @Html.LabelFor(o => o.PolicyNumber)
+                                        <div class="input-group">@Html.TextBoxFor(o => o.PolicyNumber, new { @class = "form-control input-style", placeholder = "Engine Number" })</div>
+                                        @Html.ValidationMessageFor(o => o.PolicyNumber)
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        @Html.LabelFor(o => o.AuthenticatedNumber)
+                                        <div class="input-group">@Html.TextBoxFor(o => o.AuthenticatedNumber, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
+                                        @Html.ValidationMessageFor(o => o.AuthenticatedNumber)
+                                    </div>
+                                     <div class="form-group col-lg-3">
+                                        @Html.LabelFor(o => o.COCNumber)
+                                        <div class="input-group">@Html.TextBoxFor(o => o.COCNumber, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
+                                        @Html.ValidationMessageFor(o => o.COCNumber)
+                                    </div>
+                                </section>
+                                
+                                <div id="btm_csr_btn_container" class="row" style="justify-content:center;"></div>
+                            }
                     </div>
                 </div>
             </div>
@@ -50,5 +68,23 @@
     $(document).ready(function () {
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
+
+        $('#isRenewal').bootstrapToggle({
+            toggle: "toggle",
+            on: "Renewal",
+            off: "New",
+            onstyle: "outline-info",
+            offstyle: "outline-primary",
+            width: "100%",
+            height: "100%",
+        });
+
+ /*       HPGType($("#MVCC_IsSBR").is(":checked"));*/
+
+        $("#isRenewal").on("change", function () {
+           /* HPGType($(this).is(":checked"));*/
+        });
     });
+
+
 </script>
