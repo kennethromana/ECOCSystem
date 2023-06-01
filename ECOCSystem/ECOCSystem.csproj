@@ -152,6 +152,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ECOC.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

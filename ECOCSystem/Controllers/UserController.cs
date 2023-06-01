@@ -21,6 +21,7 @@ namespace ECOCSystem.Controllers
         public ActionResult Login()
         {
             var acc = db.Account.Where(o => o.Active == true).ToList();
+            var acc2 = db.UserType.Where(o => o.Active == true).ToList();
             return View();
         }
     }

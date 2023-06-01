@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2e3b1ee87c214af7a51c1a36a4d98193" Name="Diagram1">
         <EntityTypeShape EntityType="ECOCModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECOCModel.UserType" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

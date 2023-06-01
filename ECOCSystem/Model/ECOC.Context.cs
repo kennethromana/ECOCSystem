@@ -26,5 +26,6 @@ namespace ECOCSystem.Model
         }
     
         public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<UserType> UserType { get; set; }
     }
 }
