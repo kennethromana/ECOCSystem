@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using ECOCSystem.Model;
 
+
+
 namespace ECOCSystem.Controllers
 {
     public class UserController : Controller
@@ -12,10 +14,23 @@ namespace ECOCSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
-            //List<Account> Accounts = new List<Account>();
+            List<vwUserListModel> userlist = new List<vwUserListModel>();
 
-            var Accounts = db.Account.Where(o => o.Active == true).ToList();
-            return View(Accounts);
+            userlist = (from a in db.Account.Where(a => a.Active == true)
+                        from b in db.UserType.Where(b => b.ID == a.UserTypeID && b.Active == true).DefaultIfEmpty()
+                        select new vwUserListModel
+                        {
+                            UserID = a.ID,
+                            FirstName = a.FirstName,
+                            MiddleName = a.MiddleName,
+                            LastName = a.LastName,
+                            Email = a.Email,
+                            UserTypeID = a.UserTypeID,
+                            UserType = b.Name
+                        }
+                        ).ToList();
+
+            return View(userlist);
         }
 
         public ActionResult Login()

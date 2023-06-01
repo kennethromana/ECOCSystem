@@ -1,5 +1,5 @@
 ﻿@using ECOCSystem.Model
-@model List<Account>
+@model List<vwUserListModel>
 @{
     ViewBag.Title = "UserList";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,6 +27,7 @@
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">First name</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Last  name</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
+                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">User Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,7 @@
                                     <td style="max-width:12%" id="User_LName">@item.FirstName</td>
                                     <td style="max-width:12%" id="User_LName">@item.LastName</td>
                                     <td style="max-width:12%" id="User_LName">@item.Email</td>
+                                     <td style="max-width:12%" id="User_LName">@item.UserType</td>
                                 </tr>
                             }
 
