@@ -5,15 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section>
+<section class="content">
     <div class="card-header">
-        <h3 class="card-title">Users</h3>
+        <h3 class="card-title"><h4>User List</h4></h3>
     </div>
+    <div class="fab" type="button" name="btnSubmit" data-toggle="tooltip" title="" onclick="location.href='/Customer/Customer'" data-original-title="Create New"> + </div>
     <div class="card-body">
         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
                 <div class="col-sm-12">
-                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" style="cursor:pointer" aria-describedby="example2_info" t>
+                    <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
                         <thead>
                             @*<tr>
                                 <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
@@ -36,33 +37,35 @@
                                     <td>1.5</td>
                                     <td>A</td>
                                 </tr>*@
-                            @foreach (var item in Model) 
+                            @foreach (var item in Model)
                             {
-                            <tr>
-                                <td style="max-width:12%" id="User_LName">@item.FirstName</td>
-                                <td style="max-width:12%" id="User_LName">@item.LastName</td>
-                                <td style="max-width:12%" id="User_LName">@item.Email</td>
-                            </tr>
+                                <tr>
+                                    <td style="max-width:12%" id="User_LName">@item.FirstName</td>
+                                    <td style="max-width:12%" id="User_LName">@item.LastName</td>
+                                    <td style="max-width:12%" id="User_LName">@item.Email</td>
+                                </tr>
                             }
-     
+
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th rowspan="1" colspan="1">First name</th>
-                                <th rowspan="1" colspan="1">Last name</th>
-                                <th rowspan="1" colspan="1">Email</th>
-                            </tr>
-                        </tfoot>
+                        @*<tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">First name</th>
+                                    <th rowspan="1" colspan="1">Last name</th>
+                                    <th rowspan="1" colspan="1">Email</th>
+                                </tr>
+                            </tfoot>*@
                     </table>
                 </div>
-          
+            </div>
         </div>
     </div>
 </section>
 
 <script>
     jQuery(document).ready(function () {
-        var vehicle_table = jQuery("#example2").DataTable();
+        var vehicle_table = jQuery("#example2").DataTable({
+            display: "row-border"
+        });
     });
 </script>
 

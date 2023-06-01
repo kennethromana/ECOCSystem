@@ -97,14 +97,40 @@
         }
 
         .navbar-white {
-            /* background-color: #dbe0e5; */
+    /*        background-color: #1977cc;*/
             color: #f8f9fa;
-            background-image: linear-gradient(45deg, #343a40, #000000f5);
+             background-image: linear-gradient(45deg, #343a40, #000000f5);
         }
 
         .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
             color: white;
         }
+
+
+        /* ADD FLOATING BUTTON */
+        div.fab {
+            z-index: 1;
+            width: 56px;
+            height: 56px;
+            background-color: green;
+            border-radius: 50%;
+            box-shadow: 0 6px 10px 0 #666;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 56px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            transition: all 0.1s ease-in-out;
+        }
+            div.fab:hover {
+                box-shadow: 0 6px 14px 0 #666;
+                transform: scale(1.05);
+            }
+
+
     </style>
 </head>
 <body class="">
@@ -911,13 +937,13 @@
             </aside>
 
 
-            <footer class="main-footer">
+            @*<footer class="main-footer">
                 <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
                 All rights reserved.
                 <div class="float-right d-none d-sm-inline-block">
                     <b>Version</b> 3.2.0
                 </div>
-            </footer>
+            </footer>*@
             <div id="sidebar-overlay"></div>
         </div>
 
