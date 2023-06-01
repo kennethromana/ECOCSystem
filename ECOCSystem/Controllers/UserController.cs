@@ -12,8 +12,10 @@ namespace ECOCSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
-          
-            return View();
+            //List<Account> Accounts = new List<Account>();
+
+            var Accounts = db.Account.Where(o => o.Active == true).ToList();
+            return View(Accounts);
         }
 
         public ActionResult Login()

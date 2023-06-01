@@ -47,6 +47,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Dashboard</title>
 
+    <link href="~/favicon.ico" rel="icon">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @RenderSection("scripts", required: false)
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -66,6 +72,8 @@
     <link rel="stylesheet" href="~/FrontEnd/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/FrontEnd/plugins/summernote/summernote-bs4.min.css">
+
+    <link rel="stylesheet" href="~/FrontEnd/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <style>
         html, body {
             margin: 0;
@@ -111,11 +119,11 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link"> <h5><b>Paramount</b></h5>  </a>
+                        <a href="@Url.Action("Dashboard", "Home")" class="nav-link"> <h5><b>Paramount</b></h5>  </a>
                     </li>
                     @*<li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link"> <h5><b>Databridge Asia Inc</b></h5> </a>
-                    </li>*@
+                            <a href="#" class="nav-link"> <h5><b>Databridge Asia Inc</b></h5> </a>
+                        </li>*@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -892,7 +900,7 @@
 
             <div class="content-wrapper" style="min-height: 1302.12px;">
 
-              @RenderBody()
+                @RenderBody()
 
             </div>
 
@@ -943,11 +951,19 @@
     <script src="~/FrontEnd/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/FrontEnd/dist/js/adminlte.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="~/FrontEnd/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @*//DATATABLES*@
+
+    <script src="~/FrontEnd/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/FrontEnd/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/FrontEnd/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     @*<script src="~/FrontEnd/dist/js/demo.js"></script>*@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     @*<script src="~/FrontEnd/dist/js/pages/dashboard.js"></script>*@
 
-    @RenderSection("scripts", required: false)
 </body>
 </html>
