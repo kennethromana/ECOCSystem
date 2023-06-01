@@ -1,4 +1,5 @@
-﻿
+﻿@using ECOCSystem.Model
+@model CPTLModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +17,28 @@
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
                     <div class="col-sm-12">
-          
+                         @using (Html.BeginForm("VerificationBy", "MV", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
+            {
+                @Html.HiddenFor(o =>o.CPTLID, new { Value = "CSR" })
+                <section class="row mt-4 pb-4">
+                    <div class="form-group col-lg-4">
+                        @Html.LabelFor(o => o.COCNumber)
+                        <div class="input-group">@Html.TextBoxFor(o => o.COCNumber, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
+                        @Html.ValidationMessageFor(o => o.COCNumber)
+                    </div>
+                    <div class="form-group col-lg-4">
+                        @Html.LabelFor(o => o.PolicyNumber)
+                        <div class="input-group">@Html.TextBoxFor(o => o.PolicyNumber, new { @class = "form-control input-style", placeholder = "Engine Number" })</div>
+                        @Html.ValidationMessageFor(o => o.PolicyNumber)
+                    </div>
+                    <div class="form-group col-lg-4">
+                        @Html.LabelFor(o => o.AuthenticatedNumber)
+                        <div class="input-group">@Html.TextBoxFor(o => o.AuthenticatedNumber, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
+                        @Html.ValidationMessageFor(o => o.AuthenticatedNumber)
+                    </div>
+                </section>
+                <div id="btm_csr_btn_container" class="row" style="justify-content:center;"></div>
+            }
                     </div>
                 </div>
             </div>
@@ -24,3 +46,9 @@
     </div>
 </section>
 
+<script>
+    $(document).ready(function () {
+        $("#btm_csr_btn_container").html('' +
+            '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
+    });
+</script>
