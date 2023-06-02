@@ -14,11 +14,13 @@ namespace ECOCSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
-            List<vwUserListModel> userlist = new List<vwUserListModel>();
+            UserModel User = new UserModel();
+
+            List<UserList> userlist = new List<UserList>();
 
             userlist = (from a in db.Account.Where(a => a.Active == true)
                         from b in db.UserType.Where(b => b.ID == a.UserTypeID && b.Active == true).DefaultIfEmpty()
-                        select new vwUserListModel
+                        select new UserList
                         {
                             UserID = a.ID,
                             FirstName = a.FirstName,
@@ -29,8 +31,9 @@ namespace ECOCSystem.Controllers
                             UserType = b.Name
                         }
                         ).ToList();
+            User.UserList = userlist;
 
-            return View(userlist);
+            return View(User);
         }
 
         public ActionResult Login()

@@ -154,6 +154,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ECOC.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\vwUserListModel.cs" />
     <Compile Include="Model\UserType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
