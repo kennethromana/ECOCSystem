@@ -87,87 +87,91 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body @*overlay*@">
-                    <section class="row mt-4 pb-4">
-                        @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                        <div class="form-group col-lg-4">
-                            @Html.LabelFor(o => o.FirstName)
-                            <div class="input-group">@Html.TextBoxFor(o => o.FirstName, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
-                            @Html.ValidationMessageFor(o => o.FirstName)
-                        </div>
-                        <div class="form-group col-lg-4">
-                            @Html.LabelFor(o => o.LastName)
-                            <div class="input-group">@Html.TextBoxFor(o => o.LastName, new { @class = "form-control input-style", placeholder = "Last name" })</div>
-                            @Html.ValidationMessageFor(o => o.LastName)
-                        </div>
-                        <div class="form-group col-lg-4">
-                            @Html.LabelFor(o => o.MiddleName)
-                            <div class="input-group">@Html.TextBoxFor(o => o.MiddleName, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
-                            @Html.ValidationMessageFor(o => o.MiddleName)
-                        </div>
-                    </section>
-                    <section class="row pb-4">
-                        @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                        <div class="form-group col-lg-4">
-                            @Html.LabelFor(o => o.Email)
-                            <div class="input-group">@Html.TextBoxFor(o => o.Email, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
-                            @Html.ValidationMessageFor(o => o.Email)
-                        </div>
-                        <div class="form-group col-lg-4">
-                            @Html.LabelFor(o => o.Password)
-                            <div class="input-group">@Html.TextBoxFor(o => o.Password, new { @class = "form-control input-style Password", placeholder = "Password" })</div>
-                            @Html.ValidationMessageFor(o => o.Password)
-                        </div>
-                    </section>
-                    <section class="row pb-4">
-                        <div class="col-12 col-sm-4" data-select2-id="55">
-                            <div class="form-group" data-select2-id="54">
-                                <h6 class=""><b>User Type</b></h6>
-                                <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
-                                    <option selected="selected" data-select2-id="14">Administrator</option>
-                                    <option data-select2-id="56">Lorem D. Janeth - Individual</option>
-                                    <option data-select2-id="57">Mark C. Eddie - Individual</option>
-                                    <option data-select2-id="58">Denmark Lee - Individual</option>
-                                    <option data-select2-id="59">Nickie - Individual</option>
-                                    <option data-select2-id="60">Motor Inc - Corporate</option>
-                                    <option data-select2-id="61">Moa Inc - Corporate</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4" data-select2-id="55">
-                            <div class="form-group" data-select2-id="54">
-                                <h6 class=""><b>Company</b></h6>
-                                <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
-                                    <option selected="selected" data-select2-id="14">Databridge Asia inc</option>
-                                    <option data-select2-id="56">Lorem D. Janeth - Individual</option>
-                                    <option data-select2-id="57">Mark C. Eddie - Individual</option>
-                                    <option data-select2-id="58">Denmark Lee - Individual</option>
-                                    <option data-select2-id="59">Nickie - Individual</option>
-                                    <option data-select2-id="60">Motor Inc - Corporate</option>
-                                    <option data-select2-id="61">Moa Inc - Corporate</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4" data-select2-id="55">
-                            <div class="form-group" data-select2-id="54">
-                                <h6 class=""><b>Branch</b></h6>
-                                <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
-                                    <option selected="selected" data-select2-id="14">Main Branch</option>
-                                    <option data-select2-id="56">Lorem D. Janeth - Individual</option>
-                                    <option data-select2-id="57">Mark C. Eddie - Individual</option>
-                                    <option data-select2-id="58">Denmark Lee - Individual</option>
-                                    <option data-select2-id="59">Nickie - Individual</option>
-                                    <option data-select2-id="60">Motor Inc - Corporate</option>
-                                    <option data-select2-id="61">Moa Inc - Corporate</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+               @using (Html.BeginForm("Index", "User", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
+               {
+
+                    <div class="modal-body @*overlay*@">                 
+                            <section class="row mt-4 pb-4">
+                                @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                                <div class="form-group col-lg-4">
+                                    @Html.LabelFor(o => o.FirstName)
+                                    <div class="input-group">@Html.TextBoxFor(o => o.FirstName, new { @class = "form-control input-style", placeholder = "CSR Number" })</div>
+                                    @Html.ValidationMessageFor(o => o.FirstName)
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    @Html.LabelFor(o => o.LastName)
+                                    <div class="input-group">@Html.TextBoxFor(o => o.LastName, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                                    @Html.ValidationMessageFor(o => o.LastName)
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    @Html.LabelFor(o => o.MiddleName)
+                                    <div class="input-group">@Html.TextBoxFor(o => o.MiddleName, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
+                                    @Html.ValidationMessageFor(o => o.MiddleName)
+                                </div>
+                            </section>
+                            <section class="row pb-4">
+                                @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                                <div class="form-group col-lg-4">
+                                    @Html.LabelFor(o => o.Email)
+                                    <div class="input-group">@Html.TextBoxFor(o => o.Email, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
+                                    @Html.ValidationMessageFor(o => o.Email)
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    @Html.LabelFor(o => o.Password)
+                                    <div class="input-group">@Html.TextBoxFor(o => o.Password, new { @class = "form-control input-style Password", placeholder = "Password" })</div>
+                                    @Html.ValidationMessageFor(o => o.Password)
+                                </div>
+                            </section>
+                            <section class="row pb-4">
+                                <div class="col-12 col-sm-4" data-select2-id="55">
+                                    <div class="form-group" data-select2-id="54">
+                                        <h6 class=""><b>User Type</b></h6>
+                                        <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected" data-select2-id="14">Administrator</option>
+                                            <option data-select2-id="56">Lorem D. Janeth - Individual</option>
+                                            <option data-select2-id="57">Mark C. Eddie - Individual</option>
+                                            <option data-select2-id="58">Denmark Lee - Individual</option>
+                                            <option data-select2-id="59">Nickie - Individual</option>
+                                            <option data-select2-id="60">Motor Inc - Corporate</option>
+                                            <option data-select2-id="61">Moa Inc - Corporate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4" data-select2-id="55">
+                                    <div class="form-group" data-select2-id="54">
+                                        <h6 class=""><b>Company</b></h6>
+                                        <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected" data-select2-id="14">Databridge Asia inc</option>
+                                            <option data-select2-id="56">Lorem D. Janeth - Individual</option>
+                                            <option data-select2-id="57">Mark C. Eddie - Individual</option>
+                                            <option data-select2-id="58">Denmark Lee - Individual</option>
+                                            <option data-select2-id="59">Nickie - Individual</option>
+                                            <option data-select2-id="60">Motor Inc - Corporate</option>
+                                            <option data-select2-id="61">Moa Inc - Corporate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4" data-select2-id="55">
+                                    <div class="form-group" data-select2-id="54">
+                                        <h6 class=""><b>Branch</b></h6>
+                                        <select class="form-control select2 select2-danger select2-hidden-accessible" data-dropdown-css-class="select2-danger" style="width: 100%;" data-select2-id="12" tabindex="-1" aria-hidden="true">
+                                            <option selected="selected" data-select2-id="14">Main Branch</option>
+                                            <option data-select2-id="56">Lorem D. Janeth - Individual</option>
+                                            <option data-select2-id="57">Mark C. Eddie - Individual</option>
+                                            <option data-select2-id="58">Denmark Lee - Individual</option>
+                                            <option data-select2-id="59">Nickie - Individual</option>
+                                            <option data-select2-id="60">Motor Inc - Corporate</option>
+                                            <option data-select2-id="61">Moa Inc - Corporate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </section>
+                    </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save </button>
+                    <button type="submit" class="btn btn-success">Save </button>
                 </div>
+               }
             </div>
 
         </div>
