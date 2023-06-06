@@ -24,7 +24,7 @@ namespace ECOCSystem.Model
         public string CRContentType { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<int> CompanyBranchID { get; set; }
-        [DisplayName("Registration Type: New or Renewal")]
+        [DisplayName("New Registration or Renewal")]
         public bool isRenewal { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
