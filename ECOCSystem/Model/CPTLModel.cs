@@ -12,7 +12,11 @@ namespace ECOCSystem.Model
         public CPTLModel() 
         {
             ApplicationSummary = new ApplicationSummary();
+            Client = new ClientModel();
+            ClientAddress = new ClientAddressModel();
         }
+        public ClientAddressModel ClientAddress { get; set; }
+        public ClientModel Client { get; set; }
         public ApplicationSummary ApplicationSummary { get; set; }
         public int CPTLID { get; set; }
         public string COCNumber { get; set; }
@@ -56,5 +60,54 @@ namespace ECOCSystem.Model
         public string AddressType { get; set; }
         public string ClientType { get; set; }
       
+    }
+    public class ClientModel
+    {
+        public int ClientID { get; set; }
+        public Nullable<int> TitleID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string CorpName { get; set; }
+        public string SexCode { get; set; }
+        public string CivilStatusCode { get; set; }
+        public string Citizenship { get; set; }
+        public string Height { get; set; }
+        public string Weight { get; set; }
+        public Nullable<System.DateTime> BirthDate { get; set; }
+        public string TelephoneNo { get; set; }
+        public string MobileNo { get; set; }
+        public string OrganizationName { get; set; }
+        public string OrgarnizationAddress { get; set; }
+        public string OrgarnizationTIN { get; set; }
+        public string ContactPerson { get; set; }
+        public string ContactPersonNo { get; set; }
+        public Nullable<int> CompanyID { get; set; }
+        public Nullable<int> BranchID { get; set; }
+        public Nullable<bool> Active { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+    }
+    public class ClientAddressModel 
+    {
+        public int ClientAddressID { get; set; }
+        public Nullable<int> ClientID { get; set; }
+        public Nullable<int> AddressTypeID { get; set; }
+        public string HouseBldgNo { get; set; }
+        public string StreetSubdivision { get; set; }
+        public string Barangay { get; set; }
+        public string ZipCode { get; set; }
+        public string TelephoneNo { get; set; }
+        public string MobileNo { get; set; }
+        public Nullable<int> BarangayID { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public Nullable<int> ProvinceID { get; set; }
+        public Nullable<bool> Active { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ECOCSystem.Model;
 
 namespace ECOCSystem.Controllers
 {
@@ -11,7 +12,8 @@ namespace ECOCSystem.Controllers
         // GET: CPTL
         public ActionResult Index()
         {
-            return View();
+            CPTLModel Model = new CPTLModel();
+            return View(Model);
         }
         public ActionResult CPTLList()
         {

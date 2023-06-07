@@ -2423,9 +2423,11 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\ClientRegistrationForm.cshtml" />
     <Content Include="Views\CPTL\CPTLList.cshtml" />
+    <Content Include="Views\CPTL\_Client.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PartialView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
