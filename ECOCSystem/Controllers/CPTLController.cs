@@ -13,5 +13,9 @@ namespace ECOCSystem.Controllers
         {
             return View();
         }
+        public ActionResult CPTLList()
+        {
+            return View();
+        }
     }
 }

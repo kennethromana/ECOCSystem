@@ -2404,6 +2404,7 @@
     <Content Include="Views\CPTL\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\ClientRegistrationForm.cshtml" />
+    <Content Include="Views\CPTL\CPTLList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
