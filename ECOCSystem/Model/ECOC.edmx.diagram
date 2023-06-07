@@ -7,6 +7,12 @@
       <Diagram DiagramId="2e3b1ee87c214af7a51c1a36a4d98193" Name="Diagram1">
         <EntityTypeShape EntityType="ECOCModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ECOCModel.UserType" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ECOCModel.Client" Width="1.5" PointX="3.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ECOCModel.ClientAddress" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ECOCModel.Company" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ECOCModel.CompanyBranch" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ECOCModel.Title" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ECOCModel.TitleType" Width="1.5" PointX="7.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

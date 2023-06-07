@@ -139,6 +139,18 @@
     <Compile Include="Model\Account.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Client.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ClientAddress.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Company.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CompanyBranch.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CPTLModel.cs" />
     <Compile Include="Model\ECOC.Context.cs">
       <AutoGen>True</AutoGen>
@@ -154,6 +166,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ECOC.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Title.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TitleType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\vwUserListModel.cs" />

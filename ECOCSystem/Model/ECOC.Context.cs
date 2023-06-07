@@ -27,5 +27,11 @@ namespace ECOCSystem.Model
     
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<ClientAddress> ClientAddress { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<CompanyBranch> CompanyBranch { get; set; }
+        public virtual DbSet<Title> Title { get; set; }
+        public virtual DbSet<TitleType> TitleType { get; set; }
     }
 }
