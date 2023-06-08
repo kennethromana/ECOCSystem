@@ -1,4 +1,5 @@
 ﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
 @model ClientModel
 
 @using (Html.BeginForm("Client", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
@@ -21,7 +22,7 @@
                     @Html.ValidationMessageFor(m => m.TitleID, "", new { @class = "" })
                 </div>
             </section>
-            <section class="row pb-4">
+            <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                 @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
                 <div class="form-group col-lg-12">
                     @Html.LabelFor(o => o.CorpName)
@@ -29,7 +30,7 @@
                     @Html.ValidationMessageFor(o => o.CorpName)
                 </div>
             </section>
-            <section class="row pb-4">
+            <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                 @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
                 <div class="form-group col-lg-4">
                     @Html.LabelFor(o => o.FirstName)
@@ -57,16 +58,30 @@
 
 <script>
 
-   /* console.log($("CPTL_Client_TitleID").val())*/
    
     $(document).ready(function () {
         $("#Client_TitleID").on('change', function () {
             var ID = $(this).val();
-            console.log(ID);
+            switchUi(ID);
       
         });
     });
-   /* console.log('asdasdasd');*/
+
+    function switchUi(selection) {
+        if (selection == 3) {
+            $('section.TitleType').filter('[data-attribute2="' + selection + '"]').show();
+            $('section.TitleType').not('[data-attribute2="' + selection + '"]').hide();
+
+        }
+        else
+        {
+            $('section.TitleType').filter('[data-attribute="' + selection + '"]').show();
+            $('section.TitleType').not('[data-attribute="' + selection + '"]').hide();
+        }
+
+       
+        console.log(selection)
+    }
 </script>
 
 
