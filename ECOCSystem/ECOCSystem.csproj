@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CPTLController.cs" />
+    <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2427,6 +2428,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GetData\" />
     <Folder Include="Views\PartialView\" />
   </ItemGroup>
   <ItemGroup>

@@ -130,7 +130,7 @@ svg:hover .tooltip {
 
 
     .btn-edit-1 span i {
-        font-size:18px;
+        font-size:23px;
     }
 
 
@@ -193,10 +193,10 @@ svg:hover .tooltip {
                                                     <div class="col-sm-1 uiverse btn-edit-1">
                                                         <span class="tooltip" style="white-space:nowrap;">Edit client</span>
                                                         <span type="button" data-toggle="modal" data-target="#modal-client">
-                                                            <i class="fa fa-edit btn-sm"></i>
-                                                            
+                                                            <i class="fa fa-user-edit btn-sm"></i>
+
                                                         </span>
-                                                    </div>                                                
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,12 +225,12 @@ svg:hover .tooltip {
                                             <option data-select2-id="60">Motor Inc - Corporate</option>
                                             <option data-select2-id="61">Moa Inc - Corporate</option>
                                         </select>-->
-                                        @*<span class="select2 select2-container select2-container--default select2-container--below select2-container--open select2-container--focus" dir="ltr" data-select2-id="13" style="width: 100%;">
-                        <span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-disabled="false" aria-labelledby="select2-og9r-container" aria-owns="select2-og9r-results" aria-activedescendant="select2-og9r-result-cgri-Alaska">
-                            <span class="select2-selection__rendered" id="select2-og9r-container" role="textbox" aria-readonly="true" title="Alaska">Alaska</span>
-                            <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span>
-                        </span>*@
-                                    <!--</div>
+                            @*<span class="select2 select2-container select2-container--default select2-container--below select2-container--open select2-container--focus" dir="ltr" data-select2-id="13" style="width: 100%;">
+                                <span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="true" tabindex="0" aria-disabled="false" aria-labelledby="select2-og9r-container" aria-owns="select2-og9r-results" aria-activedescendant="select2-og9r-result-cgri-Alaska">
+                                    <span class="select2-selection__rendered" id="select2-og9r-container" role="textbox" aria-readonly="true" title="Alaska">Alaska</span>
+                                    <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span>
+                                </span>*@
+                            <!--</div>
 
                                 </div>
 
@@ -265,30 +265,30 @@ svg:hover .tooltip {
                                                         </thead>
                                                         <tbody>
                                                             @*<tr class="odd">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Mozilla 1.5</td>
-                                                <td class="">Win 95+ / OSX.1+</td>
-                                                <td>1.5</td>
-                                                <td>A</td>
-                                            </tr>*@
+                                                                    <td class="sorting_1 dtr-control">Gecko</td>
+                                                                    <td>Mozilla 1.5</td>
+                                                                    <td class="">Win 95+ / OSX.1+</td>
+                                                                    <td>1.5</td>
+                                                                    <td>A</td>
+                                                                </tr>*@
                                                             @*@foreach (var item in Model)
-                                            {
-                                                <tr>
-                                                    <td style="max-width:12%" id="User_LName">@item.FirstName</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.LastName</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.Email</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.UserType</td>
-                                                </tr>
-                                            }*@
+                                                                {
+                                                                    <tr>
+                                                                        <td style="max-width:12%" id="User_LName">@item.FirstName</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.LastName</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.Email</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.UserType</td>
+                                                                    </tr>
+                                                                }*@
 
                                                         </tbody>
                                                         @*<tfoot>
-                                            <tr>
-                                                <th rowspan="1" colspan="1">First name</th>
-                                                <th rowspan="1" colspan="1">Last name</th>
-                                                <th rowspan="1" colspan="1">Email</th>
-                                            </tr>
-                                        </tfoot>*@
+                                                                <tr>
+                                                                    <th rowspan="1" colspan="1">First name</th>
+                                                                    <th rowspan="1" colspan="1">Last name</th>
+                                                                    <th rowspan="1" colspan="1">Email</th>
+                                                                </tr>
+                                                            </tfoot>*@
                                                     </table>
                                                 </div>
                                             </div>
@@ -314,12 +314,12 @@ svg:hover .tooltip {
                                                     <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
                                                         <thead>
                                                             @*<tr>
-                                            <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
-                                            </tr>*@
+                                                                <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
+                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
+                                                                </tr>*@
                                                             <tr>
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Engine</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Chassis</th>
@@ -330,30 +330,30 @@ svg:hover .tooltip {
                                                         </thead>
                                                         <tbody>
                                                             @*<tr class="odd">
-                                                <td class="sorting_1 dtr-control">Gecko</td>
-                                                <td>Mozilla 1.5</td>
-                                                <td class="">Win 95+ / OSX.1+</td>
-                                                <td>1.5</td>
-                                                <td>A</td>
-                                            </tr>*@
+                                                                    <td class="sorting_1 dtr-control">Gecko</td>
+                                                                    <td>Mozilla 1.5</td>
+                                                                    <td class="">Win 95+ / OSX.1+</td>
+                                                                    <td>1.5</td>
+                                                                    <td>A</td>
+                                                                </tr>*@
                                                             @*@foreach (var item in Model)
-                                            {
-                                                <tr>
-                                                    <td style="max-width:12%" id="User_LName">@item.FirstName</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.LastName</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.Email</td>
-                                                    <td style="max-width:12%" id="User_LName">@item.UserType</td>
-                                                </tr>
-                                            }*@
+                                                                {
+                                                                    <tr>
+                                                                        <td style="max-width:12%" id="User_LName">@item.FirstName</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.LastName</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.Email</td>
+                                                                        <td style="max-width:12%" id="User_LName">@item.UserType</td>
+                                                                    </tr>
+                                                                }*@
 
                                                         </tbody>
                                                         @*<tfoot>
-                                            <tr>
-                                                <th rowspan="1" colspan="1">First name</th>
-                                                <th rowspan="1" colspan="1">Last name</th>
-                                                <th rowspan="1" colspan="1">Email</th>
-                                            </tr>
-                                        </tfoot>*@
+                                                                <tr>
+                                                                    <th rowspan="1" colspan="1">First name</th>
+                                                                    <th rowspan="1" colspan="1">Last name</th>
+                                                                    <th rowspan="1" colspan="1">Email</th>
+                                                                </tr>
+                                                            </tfoot>*@
                                                     </table>
                                                 </div>
                                             </div>
@@ -370,23 +370,13 @@ svg:hover .tooltip {
             </div>
         </div>
     </div>
-
+  
     <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Client Information</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fa" fa></i>×</span>
-                    </button>
-                </div>
-                <div class="modal-body @*overlay*@">
-                    @{
-                        Html.RenderPartial("_Client", Model.Client, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Client" } });
-                    }
-                </div>
-            </div>
 
+            @{
+                Html.RenderPartial("_Client", Model.Client, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Client" } });
+            }
         </div>
 
     </div>

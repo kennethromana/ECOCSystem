@@ -1114,13 +1114,102 @@
 
 
 
-    //$(".select2").select2({
-    //    theme: 'bootstrap4'
-    //});
-    //$(".select2-group").select2({
-    //    theme: 'bootstrap4',
-    //    matcher: matchCustomGroupSelect2
-    //});
+    $(".select2").select2({
+        theme: 'bootstrap4'
+    });
+    $(".select2-group").select2({
+        theme: 'bootstrap4',
+        matcher: matchCustomGroupSelect2
+    });
+
+    initializeSelect2Ajax();
+
+    function initializeSelect2Ajax() {
+        try {
+            $(".select2Ajax").on('select2:open', function () {
+                $(".select2-results").find("li:gt(0)").remove();
+            });
+            $('.select2Ajax').select2({
+                theme: 'bootstrap4',
+                ajax: {
+                    url: function (url) {
+                        return $(this).attr("select2Ajax-url");
+                    },
+                    type: "GET",
+                    cache: true,
+                    delay: 250,
+                    data: function (params) {
+                        var queryParams = {
+                            search: params.term,
+                            page: params.page || 1,
+                            pageSize: params.pageSize || 25,
+                        };
+
+                        var stringObj = $(this).attr("select2Ajax-parameter");
+
+                        if (!(typeof stringObj === "undefined")) {
+                            //Convert string to object
+                            var newParams = JSON.parse(stringObj);
+
+                            //Merge 2 params
+                            $.extend(queryParams, newParams);
+                        }
+                        return queryParams;
+                    },
+                    processResults: function (params) {
+                        return {
+                            results: params.items,
+                            pagination: {
+                                more: (params.page * params.pageSize) < params.total_count
+                            }
+                        };
+                    },
+                }
+            });
+        }
+        catch (ex) {
+            jQuery(".select2Ajax").on('select2:open', function () {
+                $(".select2-results").find("li:gt(0)").remove();
+            });
+            jQuery('.select2Ajax').select2({
+                theme: 'bootstrap4',
+                ajax: {
+                    url: function (url) {
+                        return $(this).attr("select2Ajax-url");
+                    },
+                    type: "GET",
+                    cache: true,
+                    delay: 250,
+                    data: function (params) {
+                        var queryParams = {
+                            search: params.term,
+                            page: params.page || 1,
+                            pageSize: params.pageSize || 25,
+                        };
+
+                        var stringObj = $(this).attr("select2Ajax-parameter");
+
+                        if (!(typeof stringObj === "undefined")) {
+                            //Convert string to object
+                            var newParams = JSON.parse(stringObj);
+
+                            //Merge 2 params
+                            $.extend(queryParams, newParams);
+                        }
+                        return queryParams;
+                    },
+                    processResults: function (params) {
+                        return {
+                            results: params.items,
+                            pagination: {
+                                more: (params.page * params.pageSize) < params.total_count
+                            }
+                        };
+                    },
+                }
+            });
+        }
+    }
 
     function matchCustomGroupSelect2(params, data) {
         // If there are no search terms, return all of the data
@@ -1155,4 +1244,9 @@
         // Return `null` if the term should not be displayed
         return null;
     }
+
+    $(".select2").on("change", function () {
+        $(".select2").trigger("click");
+    });
+
 </script>
