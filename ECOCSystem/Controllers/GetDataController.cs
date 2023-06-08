@@ -30,10 +30,11 @@ namespace ECOCSystem.Controllers
 
 
                 var itemList = (from a in db.Title
+                                from b in db.TitleType.Where(o => o.ID == a.TitleTypeID).DefaultIfEmpty()
                                 where a.Active == true
                                 select new
                                 {
-                                    id = a.ID,
+                                    id =  b.ID,
                                     text = a.Name
                                 }).ToList();
                                       
