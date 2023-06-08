@@ -78,6 +78,8 @@
     <link rel="stylesheet" href="~/FrontEnd/Additional/bootstrap-toggle/css/bootstrap4-toggle.min.css">
 
     <link rel="stylesheet" href="~/FrontEnd/plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="~/FrontEnd/plugins/select2/css/select2.css">
+    <link rel="stylesheet" href="~/FrontEnd/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <style>
         html, body {
             margin: 0;
@@ -163,7 +165,7 @@
             border: 0;
             border-bottom: 1px solid #dee2e6;
             border-radius: 0;
-    /*        color:black;*/
+            /*        color:black;*/
         }
 
         .field-validation-error {
@@ -194,7 +196,13 @@
             background-color: #218838;
             border-color: #218838;
         }
- 
+
+
+        .select2-container--bootstrap4 .select2-selection--single {
+            border: 0;
+            border-bottom: 1px solid #dee2e6;
+            border-radius: 0;
+        }
     </style>
 </head>
 <body class="">
@@ -1122,6 +1130,7 @@
         matcher: matchCustomGroupSelect2
     });
 
+    $('.dropdown-toggle').dropdown();
     initializeSelect2Ajax();
 
     function initializeSelect2Ajax() {

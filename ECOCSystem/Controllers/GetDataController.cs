@@ -24,40 +24,48 @@ namespace ECOCSystem.Controllers
         {
             using (var db = new ECOCEntities())
             {
+                //int skip = page > 1 ? Convert.ToInt32(start) + 5 : 0;
+                //int recordsTotal = 0;
+                //bool more = true;
 
-                //var itemList = db.vwMAIVehicleMake
-                //    .Where(o =>
-                //    o.MAIID == CurrentUser.Details.SubReferenceID &&
-                //    o.Active == true &&
-                //    o.VehicleMakeName != null).Select(o => new
-                //    {
-                //        id = o.VehicleMakeID,
-                //        text = o.VehicleMakeName
-                //    }).OrderBy(o => o.text).ToList();
+
+                var itemList = (from a in db.Title
+                                where a.Active == true
+                                select new
+                                {
+                                    id = a.ID,
+                                    text = a.Name
+                                }).ToList();
+                                      
+
+                //var itemList = (from a in db.Customer
+                //                join b in db.Title on a.TitleID equals b.TitleID into temp
+                //                where
+                //                a.Active == true &&
+                //                a.DealerID == CurrentUser.Details.ReferenceID
+                //                from temptbl in temp.DefaultIfEmpty()
+                //                select new
+                //                {
+                //                    id = a.CustomerID,
+                //                    text = temptbl.TitleTypeID == 1 ? a.LastName + ", " + a.FirstName + " " + a.MiddleName : a.CorpName,
+                //                    a.CreatedDate
+                //                }).OrderByDescending(o => o.CreatedDate).ToList();
 
                 //Search itemList
-                //if (!string.IsNullOrWhiteSpace(search))
-                //{
-                //    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
-                //}
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
 
-                ////Total size of itemList
-                //var itemsTotal = itemList.Count();
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
 
-                ////check next page itemList
-                //itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
 
-
-                //}
-                //else
-                //{
-
-                //    return Json("", JsonRequestBehavior.AllowGet);  
-                //}
-
-
-                return Json("", JsonRequestBehavior.AllowGet);
-
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
             }
         }
     }

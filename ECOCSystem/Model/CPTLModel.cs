@@ -63,6 +63,10 @@ namespace ECOCSystem.Model
     }
     public class ClientModel
     {
+        public ClientModel() 
+        {
+            Titles = new List<TitleList>();
+        }
         public int ClientID { get; set; }
         public Nullable<int> TitleID { get; set; }
         public string FirstName { get; set; }
@@ -89,6 +93,12 @@ namespace ECOCSystem.Model
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public List<TitleList> Titles { get; set; }
+    }
+    public class TitleList
+    {
+        public int TitleID { get; set; }
+        public string Title { get; set; }
     }
     public class ClientAddressModel 
     {
