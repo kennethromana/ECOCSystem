@@ -148,7 +148,7 @@ svg:hover .tooltip {
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
                     <div class="col-sm-12">
-                        @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
+                        @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CPTL_Form" }))
                         {
                             @Html.HiddenFor(o => o.CPTLID, new { Value = "CPTLID" })
                             <section class="row mt-4 pb-4 justify-content-center">
@@ -382,6 +382,62 @@ svg:hover .tooltip {
 </section>
 
 <script>
+
+     function submitForm(submitType) {
+        var form = jQuery("#CPTL_Form");
+        if (form.valid()) {
+            var formData = new FormData(form[0]);
+            formData.append("submitType", submitType);
+            $.ajax({
+                url: '@Url.Action("CPTL", "CPTL")',
+                type: "POST",
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                async: true,
+                data: addAntiForgeryToken(formData),
+                beforeSend: function () {
+                    toastr.clear();
+                    $('#loadingScreen').show();
+                },
+                success: function (response) {
+                    switch (response.Status) {
+                        case "Success":
+                            //$("#" + submitType).html(response.Data);
+                            //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
+
+                            //if (response.MVID > 0) {
+                            //    history.pushState("", "MV Information", "?id=" + response.MVID);
+                            //    $("#MVID").val(response.MVID);
+                            //}
+
+               /*             changeStatus();*/
+            /*                LoadImage(response.MVID);*/
+                            toastr.success(response.Message);
+                            break;
+                        case "Warning":
+                            toastr.warning(response.Message);
+                            break;
+                        case "Info":
+                            toastr.info(response.Message);
+                            break;
+                        default:
+                            toastr.error(response.Message);
+                            break;
+                    }
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                    $(".modal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $('#loadingScreen').hide();
+                },
+            });
+        }
+/*        $(".tab-content").height("auto");*/
+    }
     $(document).ready(function () {
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
