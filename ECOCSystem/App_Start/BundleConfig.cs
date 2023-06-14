@@ -39,13 +39,16 @@ namespace ECOCSystem
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js"
+                      "~/Scripts/bootstrap.min.js",
+                       "~/FrontEnd/plugins/toastr/toastr.min.js"
                       ));
 
             bundles.Add(new Bundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
+                      "~/FrontEnd/plugins/toastr/toastr.min.css",
                       "~/Content/site.css"));
+
         }
     }
 }

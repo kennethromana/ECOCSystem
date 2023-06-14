@@ -17,12 +17,12 @@ namespace ECOCSystem.Controllers
             return View(Model);
         }
         [HttpPost]
-        public ActionResult CPTL(CPTLModel model, string submitType)
+        public ActionResult CPTL(CPTLModel model, string submit)
         {
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
-            int MVID = model.CPTLID;
+            int CPTLID = model.CPTLID;
             int? VehicleBodyTypeID = 0;
             int? VehicleTypeID = 0;
 
@@ -32,7 +32,7 @@ namespace ECOCSystem.Controllers
 
                 try
                 {
-                    switch (submitType) 
+                    switch (submit) 
                     {
                         case "CLIENT":
                             {
@@ -53,7 +53,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, MVID });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID});
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }
