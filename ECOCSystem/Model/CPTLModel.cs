@@ -68,10 +68,15 @@ namespace ECOCSystem.Model
             Titles = new List<TitleList>();
         }
         public int ClientID { get; set; }
+        [DisplayName("Title")]
         public Nullable<int> TitleID { get; set; }
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
+        [DisplayName("Middle Name")]
         public string MiddleName { get; set; }
+        [DisplayName("Corporate Name")]
         public string CorpName { get; set; }
         public string SexCode { get; set; }
         public string CivilStatusCode { get; set; }

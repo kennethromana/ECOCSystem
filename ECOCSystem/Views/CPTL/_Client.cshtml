@@ -4,7 +4,7 @@
 
 @using (Html.BeginForm("Client", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
 {
-
+     @Html.HiddenFor(m => m.ClientID)
     <div class="modal-content">
         <div class="modal-header">
             <h4 class="modal-title">Client Information</h4>
