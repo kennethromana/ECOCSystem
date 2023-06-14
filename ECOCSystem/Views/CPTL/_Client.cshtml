@@ -2,64 +2,64 @@
 @using ECOCSystem.Tools
 @model ClientModel
 
-@using (Html.BeginForm("Client", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
-{
-     @Html.HiddenFor(m => m.ClientID)
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Client Information</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"><i class="fa" fa></i>×</span>
-            </button>
-        </div>
-        <div class="modal-body @*overlay*@" style="padding:2rem;">
-            <section class="row mt-4 pb-4">
-                <div class="form-group col-lg-12">
-                    @Html.LabelFor(m => m.TitleID)
-                    <div class="input-group">
-                        @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "TitleID", "Title"), "Select Client Title", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClientTitle", "GetData") })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.TitleID, "", new { @class = "" })
-                </div>
-            </section>
-            <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
-                @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                <div class="form-group col-lg-12">
-                    @Html.LabelFor(o => o.CorpName)
-                    <div class="input-group">@Html.TextBoxFor(o => o.CorpName, new { @class = "form-control input-style", placeholder = "Corporate Name" })</div>
-                    @Html.ValidationMessageFor(o => o.CorpName)
-                </div>
-            </section>
-            <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
-                @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                <div class="form-group col-lg-4">
-                    @Html.LabelFor(o => o.FirstName)
-                    <div class="input-group">@Html.TextBoxFor(o => o.FirstName, new { @class = "form-control input-style", placeholder = "First Name" })</div>
-                    @Html.ValidationMessageFor(o => o.FirstName)
-                </div>
-                <div class="form-group col-lg-4">
-                    @Html.LabelFor(o => o.LastName)
-                    <div class="input-group">@Html.TextBoxFor(o => o.LastName, new { @class = "form-control input-style", placeholder = "Last name" })</div>
-                    @Html.ValidationMessageFor(o => o.LastName)
-                </div>
-                <div class="form-group col-lg-4">
-                    @Html.LabelFor(o => o.MiddleName)
-                    <div class="input-group">@Html.TextBoxFor(o => o.MiddleName, new { @class = "form-control input-style", placeholder = "Middle Name" })</div>
-                    @Html.ValidationMessageFor(o => o.MiddleName)
-                </div>
-            </section>
-        </div>
-          <div class="modal-footer justify-content-between submit-btn">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-info">Save </button>
-            </div>
+
+    @Html.HiddenFor(m => m.ClientID)
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Client Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
     </div>
-}
+    <div class="modal-body @*overlay*@" style="padding:2rem;">
+        <section class="row mt-4 pb-4">
+            <div class="form-group col-lg-12">
+                @Html.LabelFor(m => m.TitleID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "TitleID", "Title"), "Select Client Title", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClientTitle", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.TitleID, "", new { @class = "" })
+            </div>
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-12">
+                @Html.LabelFor(o => o.CorpName)
+                <div class="input-group">@Html.TextBoxFor(o => o.CorpName, new { @class = "form-control input-style", placeholder = "Corporate Name" })</div>
+                @Html.ValidationMessageFor(o => o.CorpName)
+            </div>
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.FirstName)
+                <div class="input-group">@Html.TextBoxFor(o => o.FirstName, new { @class = "form-control input-style", placeholder = "First Name" })</div>
+                @Html.ValidationMessageFor(o => o.FirstName)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.LastName)
+                <div class="input-group">@Html.TextBoxFor(o => o.LastName, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.LastName)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.MiddleName)
+                <div class="input-group">@Html.TextBoxFor(o => o.MiddleName, new { @class = "form-control input-style", placeholder = "Middle Name" })</div>
+                @Html.ValidationMessageFor(o => o.MiddleName)
+            </div>
+        </section>
+    </div>
+        <div class="modal-footer justify-content-between submit-btn">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-info">Save </button>
+        </div>
+</div>
+
 
 <script>
 
    
     $(document).ready(function () {
+       /* $('#loadingScreen').show();*/
         $("#Client_TitleID").on('change', function () {
             var ID = $(this).val();
             switchUi(ID);

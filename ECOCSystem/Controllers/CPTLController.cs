@@ -15,7 +15,7 @@ namespace ECOCSystem.Controllers
             CPTLModel Model = new CPTLModel();
             return View(Model);
         }
-        public ActionResult Client(ClientModel model)
+        public ActionResult CPTL(CPTLModel model)
         {
 
             //return PartialView("_Client", model);
