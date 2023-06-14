@@ -14,7 +14,10 @@ namespace ECOCSystem.Model
             ApplicationSummary = new ApplicationSummary();
             Client = new ClientModel();
             ClientAddress = new ClientAddressModel();
+            Clients = new List<ClientList>();
         }
+        [DisplayName("Client")]
+        public int ClientID { get; set; }
         public ClientAddressModel ClientAddress { get; set; }
         public ClientModel Client { get; set; }
         public ApplicationSummary ApplicationSummary { get; set; }
@@ -38,6 +41,7 @@ namespace ECOCSystem.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
+        public List<ClientList> Clients { get; set; }
 
 
     }
@@ -124,5 +128,10 @@ namespace ECOCSystem.Model
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+    }
+    public class ClientList
+    {
+        public int ClientID { get; set; }
+        public string ClientInfo { get; set; }
     }
 }

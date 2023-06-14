@@ -16,7 +16,7 @@
             <div class="form-group col-lg-12">
                 @Html.LabelFor(m => m.TitleID)
                 <div class="input-group">
-                    @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "TitleID", "Title"), "Select Client Title", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClientTitle", "GetData") })
+                    @Html.DropDownListFor(m => m.TitleID, new SelectList(Model.Titles, "TitleID", "Title"), " Select title  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClientTitle", "GetData") })
                 </div>
                 @Html.ValidationMessageFor(m => m.TitleID, "", new { @class = "" })
             </div>
@@ -74,6 +74,7 @@
         $("#Client_TitleID").on('change', function () {
             var ID = $(this).val();
             switchUi(ID);
+
          
         });
     });
