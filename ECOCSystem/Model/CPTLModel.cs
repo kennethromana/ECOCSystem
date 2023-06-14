@@ -16,6 +16,7 @@ namespace ECOCSystem.Model
             ClientAddress = new ClientAddressModel();
             Clients = new List<ClientList>();
         }
+        [Required]
         [DisplayName("Client")]
         public int ClientID { get; set; }
         public ClientAddressModel ClientAddress { get; set; }

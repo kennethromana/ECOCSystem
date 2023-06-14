@@ -29,16 +29,24 @@ namespace ECOCSystem.Controllers
             using (var db = new ECOCEntities())
             using (var dbTransaction = db.Database.BeginTransaction())
             {
-
                 try
                 {
                     switch (submit) 
                     {
-                        case "CLIENT":
+                        case "ADDCLIENT":
                             {
                                 var clientModel = model.Client;
 
                                 Message = "Message: There's something wrong. Please contact Databridge support.";
+                                TempData["InfoMessage"] = "Vehicle Info is already exist in MAI and automatic assigned to your inventory!";
+                            }
+                            break;
+                        case "EDITCLIENT":
+                            {
+                                var clientModel = model.Client;
+
+                                Message = "Message: There's something wrong. Please contact Databridge support.";
+                                TempData["SuccessMessage"] = "Vehicle Info is already exist in MAI and automatic assigned to your inventory!";
                             }
                             break;
                         default:
@@ -53,9 +61,11 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID});
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
+            //var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID});
+            //jsonResult.MaxJsonLength = int.MaxValue;
+            //return jsonResult;
+            //return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult CPTLList()

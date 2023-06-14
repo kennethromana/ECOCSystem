@@ -122,7 +122,7 @@ svg:hover .tooltip {
 
 
     .btn-edit-1 {
-        margin-top: 25px;
+    /*    margin-top: 25px;*/
         background-color: white;
         color: green;
         border-radius: 10px;
@@ -183,13 +183,12 @@ svg:hover .tooltip {
                                             <div class="row">
                                                 <div class="col-sm-12" style="display:flex;align-items:center;">
                                                     <div class="form-group col-sm-11">
-                                                        @Html.LabelFor(m => m.ClientID)
                                                         <div class="input-group">
                                                             @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.Clients, "ClientID", "ClientInfo"), "Select client", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClients", "GetData") })
                                                         </div>
                                                         @Html.ValidationMessageFor(m => m.ClientID, "", new { @class = "" })
                                                     </div>
-                                                    <div class="col-sm-1 uiverse btn-edit-1 add-button">
+                                                    <div class="col-sm-1  uiverse btn-edit-1 add-button">
                                                         <span class="tooltip" style="white-space:nowrap;">Edit client</span>
                                                         <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
                                                             <i class="fa fa-user-edit btn-sm"></i>
