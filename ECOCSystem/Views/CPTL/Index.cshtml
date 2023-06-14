@@ -171,7 +171,7 @@ svg:hover .tooltip {
                                         <label>Select Client</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new client</span>
-                                            <span type="button" data-toggle="modal" data-target="#modal-client">
+                                            <span type="button" id="addClient" class="newclient"  data-toggle="modal" data-target="#modal-client">
                                                 @*<i class="fa fa-plus btn-sm"></i>*@
                                                 +
                                             </span>
@@ -190,9 +190,9 @@ svg:hover .tooltip {
                                                         <option data-select2-id="60">Motor Inc - Corporate</option>
                                                         <option data-select2-id="61">Moa Inc - Corporate</option>
                                                     </select>
-                                                    <div class="col-sm-1 uiverse btn-edit-1">
+                                                    <div class="col-sm-1 uiverse btn-edit-1 ">
                                                         <span class="tooltip" style="white-space:nowrap;">Edit client</span>
-                                                        <span type="button" data-toggle="modal" data-target="#modal-client">
+                                                        <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
                                                             <i class="fa fa-user-edit btn-sm"></i>
 
                                                         </span>
@@ -452,9 +452,10 @@ svg:hover .tooltip {
             height: "100%",
         });
 
-        toastr.success("Submitted Success");
+        
+    /*    toastr.success("Submitted Success   ");*/
 
- /*       HPGType($("#MVCC_IsSBR").is(":checked"));*/
+    
 
         $("#isRenewal").on("change", function () {
            /* HPGType($(this).is(":checked"));*/
