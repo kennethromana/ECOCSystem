@@ -19,13 +19,18 @@ namespace ECOCSystem.Controllers
         [HttpPost]
         public ActionResult CPTL(CPTLModel model, string submit)
         {
-            ModelState.Remove("ClientID");
-            var Status = "Error";
-            var PartialViewDataString = "";
-            var Message = "";
-            int CPTLID = model.CPTLID;
-            int? VehicleBodyTypeID = 0;
-            int? VehicleTypeID = 0;
+
+            //var Status = "Error";
+            //var PartialViewDataString = "";
+            //var Message = "";
+            //int CPTLID = model.CPTLID;
+            //int? VehicleBodyTypeID = 0;
+            //int? VehicleTypeID = 0;
+
+            int Individual = 1;
+            int Corporate = 2;
+            int CorporateWithAssignee = 3;
+
 
             using (var db = new ECOCEntities())
             using (var dbTransaction = db.Database.BeginTransaction())
@@ -36,13 +41,37 @@ namespace ECOCSystem.Controllers
                     {
                         case "ADDCLIENT":
                             {
-                                
-                                var clientModel = model.Client;
+
+                                var NewClient = new Client();
+                                if (model.Client.TitleID == Individual)
+                                {
+                                    NewClient.FirstName = model.Client.FirstName.Trim();
+                                    NewClient.LastName = model.Client.LastName.Trim();
+                                    NewClient.MiddleName = model.Client.MiddleName.Trim();
+                                   
+                                }
+                                else if (model.Client.TitleID == Corporate)
+                                {
+                                    NewClient.CorpName = model.Client.CorpName.Trim();
+                                }
+                                else if (model.Client.TitleID == CorporateWithAssignee)
+                                {
+                                    NewClient.CorpName = model.Client.CorpName.Trim();
+                                    NewClient.FirstName = model.Client.FirstName.Trim();
+                                    NewClient.LastName = model.Client.LastName.Trim();
+                                    NewClient.MiddleName = model.Client.MiddleName.Trim();
+                                }
+
+                                NewClient.TitleID = model.Client.TitleID;
+                                NewClient.Active = true;
+                                NewClient.CreatedBy = 1;
+                                NewClient.CreatedDate = DateTime.Now;
 
 
-
+                                db.Client.Add(NewClient);               
+                                db.SaveChanges();
+                                dbTransaction.Commit();
                                 TempData["SuccessMessage"] = "Success! New client Added.";
-
                             }
                             break;
                         case "EDITCLIENT":
