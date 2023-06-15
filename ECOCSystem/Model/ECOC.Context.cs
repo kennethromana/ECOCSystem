@@ -33,5 +33,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<CompanyBranch> CompanyBranch { get; set; }
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<TitleType> TitleType { get; set; }
+        public virtual DbSet<AddressType> AddressType { get; set; }
     }
 }

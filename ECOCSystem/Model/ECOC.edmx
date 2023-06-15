@@ -24,6 +24,13 @@
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="AddressType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID" />
@@ -76,6 +83,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -155,6 +163,7 @@
         </EntityType>
         <EntityContainer Name="ECOCModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientAddress" EntityType="Self.ClientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -195,6 +204,7 @@
           <EntitySet Name="CompanyBranch" EntityType="ECOCModel.CompanyBranch" />
           <EntitySet Name="Title" EntityType="ECOCModel.Title" />
           <EntitySet Name="TitleType" EntityType="ECOCModel.TitleType" />
+          <EntitySet Name="AddressType" EntityType="ECOCModel.AddressType" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -260,6 +270,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -324,6 +335,13 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AddressType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -399,6 +417,7 @@
           <EntitySetMapping Name="ClientAddress">
             <EntityTypeMapping TypeName="ECOCModel.ClientAddress">
               <MappingFragment StoreEntitySet="ClientAddress">
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -482,6 +501,14 @@
             <EntityTypeMapping TypeName="ECOCModel.TitleType">
               <MappingFragment StoreEntitySet="TitleType">
                 <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressType">
+            <EntityTypeMapping TypeName="ECOCModel.AddressType">
+              <MappingFragment StoreEntitySet="AddressType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
