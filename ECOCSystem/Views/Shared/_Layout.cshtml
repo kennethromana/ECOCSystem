@@ -1344,4 +1344,20 @@
         $(".select2").trigger("click");
     });
 
+     $(function(){
+         var infomsg = "@(TempData["InfoMessage"] as string)";
+         var successmsg = "@(TempData["SuccessMessage"] as string)";
+         var errormsg = "@(TempData["ErrorMessage"] as string)";
+
+         if (infomsg !== "") {
+             toastr.info(infomsg);
+         }
+         if (successmsg !== "") {
+             toastr.success(successmsg);
+         }
+         if (errormsg !== "") {
+             toastr.error(errormsg);
+         }
+  });
+
 </script>

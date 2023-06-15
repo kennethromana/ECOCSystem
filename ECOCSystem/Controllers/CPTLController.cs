@@ -19,6 +19,7 @@ namespace ECOCSystem.Controllers
         [HttpPost]
         public ActionResult CPTL(CPTLModel model, string submit)
         {
+            ModelState.Remove("ClientID");
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
@@ -35,29 +36,34 @@ namespace ECOCSystem.Controllers
                     {
                         case "ADDCLIENT":
                             {
+                                
                                 var clientModel = model.Client;
 
-                                Message = "Message: There's something wrong. Please contact Databridge support.";
-                                TempData["InfoMessage"] = "Vehicle Info is already exist in MAI and automatic assigned to your inventory!";
+
+
+                                TempData["SuccessMessage"] = "Success! New client Added.";
+
                             }
                             break;
                         case "EDITCLIENT":
                             {
                                 var clientModel = model.Client;
 
-                                Message = "Message: There's something wrong. Please contact Databridge support.";
-                                TempData["SuccessMessage"] = "Vehicle Info is already exist in MAI and automatic assigned to your inventory!";
+
+
+                                TempData["SuccessMessage"] = "Success! Client Updated.";
+
                             }
                             break;
                         default:
-                            Message = "Message: ErrorThere's something error. Please try again later";
+                            TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                             break;
                     }
                 }
                 catch (Exception) 
                 {
                     dbTransaction.Rollback();
-                    Message = "Message: There's something wrong. Please contact Databridge support.";
+                    TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                 }
             }
 
