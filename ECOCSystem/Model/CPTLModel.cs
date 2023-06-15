@@ -73,13 +73,18 @@ namespace ECOCSystem.Model
         }
         public int ClientID { get; set; }
         [DisplayName("Title")]
+        [Required]
         public Nullable<int> TitleID { get; set; }
+        [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
+        [Required]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
+        [Required]
         [DisplayName("Middle Name")]
         public string MiddleName { get; set; }
+        [Required]
         [DisplayName("Corporate Name")]
         public string CorpName { get; set; }
         public string SexCode { get; set; }

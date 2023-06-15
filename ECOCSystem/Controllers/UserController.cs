@@ -20,6 +20,8 @@ namespace ECOCSystem.Controllers
 
             userlist = (from a in db.Account.Where(a => a.Active == true)
                         from b in db.UserType.Where(b => b.ID == a.UserTypeID && b.Active == true).DefaultIfEmpty()
+                        from c in db.Company.Where(c => c.ID == a.CompanyID && b.Active == true).DefaultIfEmpty()
+                        from d in db.CompanyBranch.Where(d => d.ID == a.CompanyBranchID && b.Active == true).DefaultIfEmpty()
                         select new UserList
                         {
                             UserID = a.ID,
@@ -28,7 +30,9 @@ namespace ECOCSystem.Controllers
                             LastName = a.LastName,
                             Email = a.Email,
                             UserTypeID = a.UserTypeID,
-                            UserType = b.Name
+                            UserType = b.Name,
+                            Company = c.Name,
+                            CompanyBranch = d.Name
                         }
                         ).ToList();
             User.UserList = userlist;

@@ -33,6 +33,10 @@ namespace ECOCSystem.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
+
+        public string Company { get; set; }
+        public string CompanyBranch { get; set; }
+
         public Nullable<int> UserTypeID { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<int> CompanyBranchID { get; set; }
