@@ -16,7 +16,7 @@
             <div class="form-group col-lg-12">
                 @Html.LabelFor(m => m.AddressTypeID)
                 <div class="input-group">
-                    @Html.DropDownListFor(m => m.AddressTypeID, new SelectList(Model.AddressTypeList, "AddressTypeID", "AddressTypeInfo"), "Select Address Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetAddressTypes", "GetData") })
+                    @Html.DropDownListFor(m => m.AddressTypeID, new SelectList(Model.AddressTypeList, "ID", "AddressTypeInfo"), "Select Address Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetAddressTypes", "GetData") })
                 </div>
                 @Html.ValidationMessageFor(m => m.AddressTypeID, "", new { @class = "" })
             </div>

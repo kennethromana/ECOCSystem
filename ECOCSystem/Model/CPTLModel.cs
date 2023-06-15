@@ -148,7 +148,7 @@ namespace ECOCSystem.Model
     }
     public class AddressTypeList
     {
-        public int AddressTypeID { get; set; }
+        public int ID { get; set; }
         public string AddressTypeInfo { get; set; }
     }
 }
