@@ -1,0 +1,78 @@
+﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
+@model ClientAddressModel
+
+
+@Html.HiddenFor(m => m.ClientAddressID)
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Address Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body @*overlay*@" style="padding:2rem;">
+        <section class="row mt-4 pb-4">
+            <div class="form-group col-lg-12">
+                @Html.LabelFor(m => m.AddressTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.AddressTypeID, new SelectList(Model.AddressTypeList, "AddressTypeID", "AddressTypeInfo"), "Select Address Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClientTitle", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.AddressTypeID, "", new { @class = "" })
+            </div>
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.HouseBldgNo)
+                <div class="input-group">@Html.TextBoxFor(o => o.HouseBldgNo, new { @class = "form-control input-style", placeholder = "Corporate Name" })</div>
+                @Html.ValidationMessageFor(o => o.HouseBldgNo)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.StreetSubdivision)
+                <div class="input-group">@Html.TextBoxFor(o => o.StreetSubdivision, new { @class = "form-control input-style", placeholder = "First Name" })</div>
+                @Html.ValidationMessageFor(o => o.StreetSubdivision)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.Barangay)
+                <div class="input-group">@Html.TextBoxFor(o => o.Barangay, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.Barangay)
+            </div>
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.ZipCode)
+                <div class="input-group">@Html.TextBoxFor(o => o.ZipCode, new { @class = "form-control input-style", placeholder = "Middle Name" })</div>
+                @Html.ValidationMessageFor(o => o.ZipCode)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.MobileNo)
+                <div class="input-group">@Html.TextBoxFor(o => o.MobileNo, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.MobileNo)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.TelephoneNo)
+                <div class="input-group">@Html.TextBoxFor(o => o.TelephoneNo, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.TelephoneNo)
+            </div>
+        </section>
+         <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.CityID)
+                <div class="input-group">@Html.TextBoxFor(o => o.CityID, new { @class = "form-control input-style", placeholder = "Middle Name" })</div>
+                @Html.ValidationMessageFor(o => o.CityID)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.ProvinceID)
+                <div class="input-group">@Html.TextBoxFor(o => o.ProvinceID, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.ProvinceID)
+            </div>
+        </section>
+    </div>
+    <div id="clientOption" class="modal-footer justify-content-between submit-btn">
+    </div>
+</div>

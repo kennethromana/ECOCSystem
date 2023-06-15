@@ -111,6 +111,10 @@ namespace ECOCSystem.Model
     }
     public class ClientAddressModel 
     {
+        public ClientAddressModel() 
+        {
+            AddressTypeList = new List<AddressType>();
+        }
         public int ClientAddressID { get; set; }
         public Nullable<int> ClientID { get; set; }
         public Nullable<int> AddressTypeID { get; set; }
@@ -128,10 +132,17 @@ namespace ECOCSystem.Model
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public List<AddressType> AddressTypeList { get; set; }
+
     }
     public class ClientList
     {
         public int ClientID { get; set; }
         public string ClientInfo { get; set; }
+    }
+    public class AddressType 
+    {
+        public int AddressTypeID { get; set; }
+        public string AddressTypeInfo { get; set; }
     }
 }

@@ -69,8 +69,8 @@ namespace ECOCSystem.Controllers
 
 
                                 db.Client.Add(NewClient);               
-                                db.SaveChanges();
-                                dbTransaction.Commit();
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
                                 TempData["SuccessMessage"] = "Success! New client Added.";
                             }
                             break;

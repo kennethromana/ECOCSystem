@@ -2426,6 +2426,7 @@
     <Content Include="Views\Client\ClientRegistrationForm.cshtml" />
     <Content Include="Views\CPTL\CPTLList.cshtml" />
     <Content Include="Views\CPTL\_Client.cshtml" />
+    <Content Include="Views\CPTL\_Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

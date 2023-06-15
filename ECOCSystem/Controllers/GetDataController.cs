@@ -91,7 +91,7 @@ namespace ECOCSystem.Controllers
                                     id = a.ID,
                                     text = c.ID == Individual ? a.FirstName+" "+a.LastName+" "+a.MiddleName+" - "+c.Name 
                                           :c.ID == Corporate ? a.CorpName+" "+c.Name 
-                                          :c.ID == CorporateWithAssignee ? a.CorpName + " " + a.FirstName + " " + a.LastName + " " + a.MiddleName + " - " + c.Name 
+                                          :c.ID == CorporateWithAssignee ? a.FirstName + " " + a.LastName + " " + a.MiddleName +" " +a.CorpName+ " - " + c.Name 
                                           : "-"
                                 }).ToList();
 

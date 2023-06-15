@@ -173,7 +173,7 @@ svg:hover .tooltip {
                                         <label>Select Client</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new client</span>
-                                            <span type="button" id="addClient" class="newclient"  data-toggle="modal" data-target="#modal-client">
+                                            <span type="button" id="addClient" class="newclient" data-toggle="modal" data-target="#modal-client">
                                                 @*<i class="fa fa-plus btn-sm"></i>*@
                                                 +
                                             </span>
@@ -185,7 +185,7 @@ svg:hover .tooltip {
                                                 <div class="col-sm-12" style="display:flex;align-items:center;">
                                                     <div class="form-group col-sm-11">
                                                         <div class="input-group">
-                                                            @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.Clients, "ClientID", "ClientInfo"), "Select client", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClients", "GetData") })
+                                                            @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.Clients, "ClientID", "ClientInfo"), "Select Client", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClients", "GetData") })
                                                         </div>
                                                         @Html.ValidationMessageFor(m => m.ClientID, "", new { @class = "" })
                                                     </div>
@@ -239,7 +239,7 @@ svg:hover .tooltip {
                                         <label>Address List</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new address</span>
-                                            <span>
+                                            <span type="button" id="addAddress" class="newaddress" data-toggle="modal" data-target="#modal-client-address">
                                                 @*<i class="fa fa-edit btn-sm"></i>*@
                                                 +
                                             </span>
@@ -366,6 +366,15 @@ svg:hover .tooltip {
 
                                     @{
                                         Html.RenderPartial("_Client", Model.Client, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Client" } });
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="modal fade" id="modal-client-address" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    @{
+                                        Html.RenderPartial("_Address", Model.ClientAddress, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Address" } });
                                     }
                                 </div>
 
