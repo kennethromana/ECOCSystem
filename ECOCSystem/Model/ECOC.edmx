@@ -31,6 +31,27 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="ProvinceID" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceID" Type="int" Nullable="false" />
+          <Property Name="CityNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID" />
@@ -127,6 +148,54 @@
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.Province' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceID" />
+            <PropertyRef Name="RegionID" />
+            <PropertyRef Name="ProvinceName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="ProvinceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="ProvinceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProvinceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+            <PropertyRef Name="RegionNumber" />
+            <PropertyRef Name="RegionName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegistrationType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Title">
           <Key>
             <PropertyRef Name="ID" />
@@ -168,9 +237,48 @@
           <EntitySet Name="ClientAddress" EntityType="Self.ClientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyBranch" EntityType="Self.CompanyBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationType" EntityType="Self.RegistrationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleType" EntityType="Self.TitleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [City].[CityID] AS [CityID], 
+    [City].[ProvinceID] AS [ProvinceID], 
+    [City].[CityNumber] AS [CityNumber], 
+    [City].[CityName] AS [CityName], 
+    [City].[CreatedBy] AS [CreatedBy], 
+    [City].[CreatedDate] AS [CreatedDate], 
+    [City].[Active] AS [Active], 
+    [City].[UpdatedBy] AS [UpdatedBy], 
+    [City].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[City] AS [City]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Province" EntityType="Self.Province" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Province].[ProvinceID] AS [ProvinceID], 
+    [Province].[RegionID] AS [RegionID], 
+    [Province].[ProvinceNumber] AS [ProvinceNumber], 
+    [Province].[ProvinceName] AS [ProvinceName], 
+    [Province].[CreatedBy] AS [CreatedBy], 
+    [Province].[CreatedDate] AS [CreatedDate], 
+    [Province].[Active] AS [Active], 
+    [Province].[UpdatedBy] AS [UpdatedBy], 
+    [Province].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[Province] AS [Province]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Region" EntityType="Self.Region" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Region].[RegionID] AS [RegionID], 
+    [Region].[RegionNumber] AS [RegionNumber], 
+    [Region].[RegionName] AS [RegionName], 
+    [Region].[CreatedBy] AS [CreatedBy], 
+    [Region].[CreatedDate] AS [CreatedDate], 
+    [Region].[Active] AS [Active], 
+    [Region].[UpdatedBy] AS [UpdatedBy], 
+    [Region].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[Region] AS [Region]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -205,6 +313,10 @@
           <EntitySet Name="Title" EntityType="ECOCModel.Title" />
           <EntitySet Name="TitleType" EntityType="ECOCModel.TitleType" />
           <EntitySet Name="AddressType" EntityType="ECOCModel.AddressType" />
+          <EntitySet Name="RegistrationType" EntityType="ECOCModel.RegistrationType" />
+          <EntitySet Name="City" EntityType="ECOCModel.City" />
+          <EntitySet Name="Province" EntityType="ECOCModel.Province" />
+          <EntitySet Name="Region" EntityType="ECOCModel.Region" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -342,6 +454,69 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RegistrationType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+            <PropertyRef Name="ProvinceID" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+          <Property Name="CityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="ProvinceID" />
+            <PropertyRef Name="RegionID" />
+            <PropertyRef Name="ProvinceName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="ProvinceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="ProvinceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+            <PropertyRef Name="RegionNumber" />
+            <PropertyRef Name="RegionName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -511,6 +686,58 @@
               <MappingFragment StoreEntitySet="AddressType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationType">
+            <EntityTypeMapping TypeName="ECOCModel.RegistrationType">
+              <MappingFragment StoreEntitySet="RegistrationType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="ECOCModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityNumber" ColumnName="CityNumber" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Province">
+            <EntityTypeMapping TypeName="ECOCModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="ProvinceNumber" ColumnName="ProvinceNumber" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="ECOCModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="RegionNumber" ColumnName="RegionNumber" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

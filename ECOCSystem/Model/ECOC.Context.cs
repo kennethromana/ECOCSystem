@@ -34,5 +34,9 @@ namespace ECOCSystem.Model
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<TitleType> TitleType { get; set; }
         public virtual DbSet<AddressType> AddressType { get; set; }
+        public virtual DbSet<RegistrationType> RegistrationType { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Province> Province { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
     }
 }

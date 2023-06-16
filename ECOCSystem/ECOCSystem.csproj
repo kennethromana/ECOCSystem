@@ -143,6 +143,9 @@
     <Compile Include="Model\AddressType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\City.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Client.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
@@ -170,6 +173,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ECOC.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Province.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Region.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RegistrationType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Title.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
