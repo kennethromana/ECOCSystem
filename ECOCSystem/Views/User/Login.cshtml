@@ -34,13 +34,19 @@
 </head>
 <style>
     .container-login100 {
-        background: linear-gradient(-135deg, #212529, #007bff);
+        /* background: linear-gradient(-135deg, #212529, #007bff);*/
+        background: radial-gradient(#305e8c, #007bff);
     }
-/*    .login100-form-btn {
+    .login100-form-btn {
 
         background: #007bff;
 
-    }*/
+    }
+
+        .login100-form span img {
+            max-width: 207px;
+        }
+    
 </style>
 <body>
         
@@ -52,8 +58,10 @@
                 </div>
 
                 <form class="login100-form validate-form">
-                    <span class="login100-form-title">
-                         Login
+                    <span class="login100-form-title js-tilt">
+              
+
+                        <img src="~/Images/DataBridgeLogo.png" alt="IMG">
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">

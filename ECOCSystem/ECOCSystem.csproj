@@ -2177,6 +2177,7 @@
     <Content Include="FrontEnd\plugins\uplot\uPlot.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\DataBridgeLogo.png" />
     <Content Include="Model\ECOC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ECOC.Context.cs</LastGenOutput>
