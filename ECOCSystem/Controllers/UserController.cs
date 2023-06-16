@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ECOCSystem.Model;
+using ECOCSystem.Tools;
 
 
 
@@ -42,8 +43,20 @@ namespace ECOCSystem.Controllers
 
         public ActionResult Login()
         {
-   
+
+            if (CurrentUser.Details != null)
+                return RedirectToAction("Dashboard", "Home");
             return View();
+        }
+        public ActionResult Logout()
+        {
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+            Session.Abandon();
+            Session.Clear();
+            return RedirectToAction("Login");
         }
         public ActionResult LoginUser(UserModel User)
         {
@@ -55,9 +68,24 @@ namespace ECOCSystem.Controllers
                     {
                         var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Active == true).FirstOrDefault();
 
-                        if (LoggedUser != null) 
+                        if (LoggedUser != null)
                         {
+                            CurrentUser.Details = LoggedUser;
+                            if (Session["RedirectFromLogin"] != null)
+                            {
+                                string RedirectURL = Session["RedirectFromLogin"].ToString();
+                                Session.Remove("RedirectFromLogin");
+                                return new RedirectResult(RedirectURL);
 
+
+                            }
+                            else
+                                return RedirectToAction("Dashboard", "Home");
+
+                        }
+                        else 
+                        {
+                            TempData["ErrorMessage"] = "Username and Password does not match.";
                         }
                     }
                 }
@@ -67,7 +95,7 @@ namespace ECOCSystem.Controllers
                 TempData["ErrorMessage"] = "Login Failed.";
                 return RedirectToAction("Login");
             }
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("login");
    
 
         }
