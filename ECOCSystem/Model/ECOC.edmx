@@ -36,11 +36,11 @@ warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
-            <PropertyRef Name="ProvinceID" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
+            
+            
+            
+            
+            
           </Key>
           <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProvinceID" Type="int" Nullable="false" />
@@ -153,11 +153,11 @@ warning 6002: The table/view 'ECOC.dbo.Province' does not have a primary key def
         <EntityType Name="Province">
           <Key>
             <PropertyRef Name="ProvinceID" />
-            <PropertyRef Name="RegionID" />
-            <PropertyRef Name="ProvinceName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
+            
+            
+            
+            
+            
           </Key>
           <Property Name="ProvinceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegionID" Type="int" Nullable="false" />
@@ -174,11 +174,11 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="RegionID" />
-            <PropertyRef Name="RegionNumber" />
-            <PropertyRef Name="RegionName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
+            
+            
+            
+            
+            
           </Key>
           <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegionNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -465,11 +465,6 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
-            <PropertyRef Name="ProvinceID" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
           </Key>
           <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProvinceID" Type="Int32" Nullable="false" />
@@ -484,11 +479,6 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
         <EntityType Name="Province">
           <Key>
             <PropertyRef Name="ProvinceID" />
-            <PropertyRef Name="RegionID" />
-            <PropertyRef Name="ProvinceName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
           </Key>
           <Property Name="ProvinceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RegionID" Type="Int32" Nullable="false" />
@@ -503,11 +493,6 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="RegionID" />
-            <PropertyRef Name="RegionNumber" />
-            <PropertyRef Name="RegionName" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="Active" />
           </Key>
           <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RegionNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
