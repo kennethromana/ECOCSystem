@@ -42,9 +42,34 @@ namespace ECOCSystem.Controllers
 
         public ActionResult Login()
         {
-            var acc = db.Account.Where(o => o.Active == true).ToList();
-            var acc2 = db.UserType.Where(o => o.Active == true).ToList();
+   
             return View();
+        }
+        public ActionResult LoginUser(UserModel User)
+        {
+            try
+            {
+                if (User.Password.Trim() != string.Empty)
+                {
+                    using (db = new ECOCEntities())
+                    {
+                        var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Active == true).FirstOrDefault();
+
+                        if (LoggedUser != null) 
+                        {
+
+                        }
+                    }
+                }
+            }
+            catch (Exception) 
+            {
+                TempData["ErrorMessage"] = "Login Failed.";
+                return RedirectToAction("Login");
+            }
+            return RedirectToAction("Dashboard", "Home");
+   
+
         }
     }
 }
