@@ -88,10 +88,32 @@
 </div>
 <script>
 
-    $('#addAddress').on('click', function () {
+   
+    $(document).ready(function () {
 
-        $('#addressOption').empty();
-        $('#addressOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="submit" name="submit" value="ADDADDRESS" class="btn btn-success">Save </button>  `)
+        $('#addAddress').on('click', function () {
+            $('#addressOption').empty();
+            $('#addressOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" id="submit_Address" class="btn btn-success">Save </button>  `)
+
+            test();
+        });
+
+
+      
+
+
     });
+
+
+    function test() {
+        $('#submit_Address').on('click', function () {
+            submitForm("ADDADDRESS");
+            console.log("sdsd");
+        });
+    }
+   
+
+
+
 </script>
