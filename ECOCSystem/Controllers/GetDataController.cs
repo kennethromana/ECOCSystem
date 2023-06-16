@@ -131,12 +131,45 @@ namespace ECOCSystem.Controllers
         {
             using (var db = new ECOCEntities())
             {
+
+
+                var itemList = (from a in db.AddressType
+                                select new
+                                {
+                                    id = a.ID,
+                                    text = a.Name
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+        [HttpGet]
+        public ActionResult GetRegistrationTypes(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
                 //int skip = page > 1 ? Convert.ToInt32(start) + 5 : 0;
                 //int recordsTotal = 0;
                 //bool more = true;
 
 
-                var itemList = (from a in db.AddressType
+                var itemList = (from a in db.RegistrationType
                                 select new
                                 {
                                     id = a.ID,

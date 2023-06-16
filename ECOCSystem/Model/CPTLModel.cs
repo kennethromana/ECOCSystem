@@ -15,9 +15,11 @@ namespace ECOCSystem.Model
             Client = new ClientModel();
             ClientAddress = new ClientAddressModel();
             Clients = new List<ClientList>();
+            RegistrationTypes = new List<RegistrationTypeList>();
         }
         [DisplayName("Client")]
         public int ClientID { get; set; }
+        public int SelectedRegistrationTypeID { get; set; }
         public ClientAddressModel ClientAddress { get; set; }
         public ClientModel Client { get; set; }
         public ApplicationSummary ApplicationSummary { get; set; }
@@ -42,6 +44,8 @@ namespace ECOCSystem.Model
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public List<ClientList> Clients { get; set; }
+
+        public List<RegistrationTypeList> RegistrationTypes { get; set; }
 
 
     }
@@ -150,5 +154,10 @@ namespace ECOCSystem.Model
     {
         public int ID { get; set; }
         public string AddressTypeInfo { get; set; }
+    }
+    public class RegistrationTypeList
+    {
+        public int ID { get; set; }
+        public string RegistrationTypeInfo { get; set; }
     }
 }

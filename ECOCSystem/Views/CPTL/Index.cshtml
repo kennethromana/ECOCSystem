@@ -139,13 +139,16 @@ svg:hover .tooltip {
     #select-client .form-group {
         margin:0;
     }
+    .card {
+        margin-bottom:0;
+    }
    
 </style>
 <section class="content">
     <div class="card">
 
 
-        <div class="card-header">
+        <div class="card-header" style="display:flex;justify-content:flex-end;">
             <h3 class="card-title"><h4>CPTL Application</h4></h3>
         </div>
         <div class="card-body">
@@ -160,23 +163,18 @@ svg:hover .tooltip {
 
                                 </div>
                             </section>*@
-                            <section class="row mt-4 pb-4 ">
+                            <section class="row pb-4 ">
                                 <div class="col-12 col-sm-12 card">
                                     @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
-                                    <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        @Html.LabelFor(o => o.isRenewal)
+                                    <div class="cptl-title-header card-header">
+                                        <label>Registration Type</label>
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group col-lg-12">
-                                           
+                                        <div class="form-group col-sm-11">
                                             <div class="input-group">
-                                                @Html.CheckBoxFor(o => o.isRenewal, new
-                                           {
-                                               @class = "form-control",
-                                               placeholder = ""
-                                           })
+                                                @Html.DropDownListFor(m => m.SelectedRegistrationTypeID, new SelectList(Model.RegistrationTypes, "ID", "RegistrationTypeInfo"), "Select Registration Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetRegistrationTypes", "GetData") })
                                             </div>
-                                            @Html.ValidationMessageFor(m => m.isRenewal)
+                                            @Html.ValidationMessageFor(m => m.SelectedRegistrationTypeID, "", new { @class = "" })
                                         </div>
                                     </div>
 
@@ -383,8 +381,8 @@ svg:hover .tooltip {
             toggle: "toggle",
             on: "Renewal",
             off: "New Registration",
-            onstyle: "success",
-            offstyle: "outline-success",
+            onstyle: "outline-success",
+            offstyle: "outline-success  ",
             width: "100%",
             height: "100%",
         });
