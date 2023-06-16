@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ECOCSystem.Model;
+using ECOCSystem.Tools;
 
 namespace ECOCSystem.Controllers
 {
@@ -64,14 +65,14 @@ namespace ECOCSystem.Controllers
 
                                 NewClient.TitleID = model.Client.TitleID;
                                 NewClient.Active = true;
-                                NewClient.CreatedBy = 1;
+                                NewClient.CreatedBy = CurrentUser.Details.ID;
                                 NewClient.CreatedDate = DateTime.Now;
 
 
-                                db.Client.Add(NewClient);               
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
-                                TempData["SuccessMessage"] = "Success! New client Added.";
+                                db.Client.Add(NewClient);
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+                                TempData["SuccessMessage"] = "New client Added Successfully!";
                             }
                             break;
                         case "EDITCLIENT":
@@ -83,6 +84,12 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDADDRESS":
                             {
+                                if (model.ClientID == 0) 
+                                {
+                                    TempData["InfoMessage"] = "Message: Select Client First ";
+                                    return RedirectToAction("Index");
+
+                                }
                                 var newAddress = new ClientAddress();
 
                                 newAddress.AddressTypeID = model.ClientAddress.AddressTypeID;
@@ -94,16 +101,18 @@ namespace ECOCSystem.Controllers
                                 newAddress.EmailAddress = model.ClientAddress.EmailAddress;
                                 newAddress.TelephoneNo = model.ClientAddress.TelephoneNo;
                                 newAddress.MobileNo = model.ClientAddress.MobileNo;
+                                newAddress.CityID = model.ClientAddress.CityID;
+                                newAddress.ProvinceID = model.ClientAddress.ProvinceID;
 
                                 newAddress.Active = true;
-                                newAddress.CreatedBy = 1;
+                                newAddress.CreatedBy = CurrentUser.Details.ID;
                                 newAddress.CreatedDate = DateTime.Now;
 
 
                                 db.ClientAddress.Add(newAddress);
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
-                                TempData["SuccessMessage"] = "Success! New Address added.";
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+                                TempData["SuccessMessage"] = "New Address added Successfully!";
 
                             }
                             break;

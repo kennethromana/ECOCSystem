@@ -123,19 +123,36 @@ namespace ECOCSystem.Model
         public ClientAddressModel() 
         {
             AddressTypeList = new List<AddressTypeList>();
+            ProvinceList = new List<ProvinceList>();
+            CityList = new List<CityList>();
         }
         public int ClientAddressID { get; set; }
         public Nullable<int> ClientID { get; set; }
+        [Required]
+        [DisplayName("Address Type")]
         public Nullable<int> AddressTypeID { get; set; }
+        [Required]
+        [DisplayName("House Bldg No.")]
         public string HouseBldgNo { get; set; }
+        [Required]
+        [DisplayName("Street Subdivision")]
         public string StreetSubdivision { get; set; }
+        [Required]
+        [DisplayName("Barangay")]
         public string Barangay { get; set; }
+        [Required]
+        [DisplayName("Zip Code")]
         public string ZipCode { get; set; }
+        [DisplayName("Email Address")]
         public string EmailAddress { get; set; }
+        [DisplayName("Telephone No.")]
         public string TelephoneNo { get; set; }
+        [DisplayName("Mobile No.")]
         public string MobileNo { get; set; }
         public Nullable<int> BarangayID { get; set; }
+        [DisplayName("City")]
         public Nullable<int> CityID { get; set; }
+        [DisplayName("Province")]
         public Nullable<int> ProvinceID { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<int> CreatedBy { get; set; }
@@ -143,6 +160,8 @@ namespace ECOCSystem.Model
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public List<AddressTypeList> AddressTypeList { get; set; }
+        public List<CityList> CityList { get; set; }
+        public List<ProvinceList> ProvinceList { get; set; }
 
     }
     public class ClientList
@@ -159,5 +178,15 @@ namespace ECOCSystem.Model
     {
         public int ID { get; set; }
         public string RegistrationTypeInfo { get; set; }
+    }
+    public class CityList
+    {
+        public int ID { get; set; }
+        public string CityInfo { get; set; }
+    }
+    public class ProvinceList
+    {
+        public int ID { get; set; }
+        public string ProvinceInfo { get; set; }
     }
 }
