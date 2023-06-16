@@ -155,17 +155,31 @@ svg:hover .tooltip {
                         @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CPTL_Form" }))
                         {
                             @Html.HiddenFor(o => o.CPTLID, new { Value = "CPTLID" })
-                            <section class="row mt-4 pb-4 justify-content-center">
+                            @*<section class="row mt-4 pb-4 justify-content-center">
                                 <div class="form-group col-lg-4">
-                                    @Html.LabelFor(o => o.isRenewal)
-                                    <div class="input-group">
-                                        @Html.CheckBoxFor(o => o.isRenewal, new
-                                   {
-                                       @class = "form-control",
-                                       placeholder = ""
-                                   })
+
+                                </div>
+                            </section>*@
+                            <section class="row mt-4 pb-4 ">
+                                <div class="col-12 col-sm-12 card">
+                                    @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
+                                    <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                        @Html.LabelFor(o => o.isRenewal)
                                     </div>
-                                    @Html.ValidationMessageFor(m => m.isRenewal)
+                                    <div class="card-body">
+                                        <div class="form-group col-lg-12">
+                                           
+                                            <div class="input-group">
+                                                @Html.CheckBoxFor(o => o.isRenewal, new
+                                           {
+                                               @class = "form-control",
+                                               placeholder = ""
+                                           })
+                                            </div>
+                                            @Html.ValidationMessageFor(m => m.isRenewal)
+                                        </div>
+                                    </div>
+
                                 </div>
                             </section>
                             <section class="row pb-4">
@@ -204,7 +218,7 @@ svg:hover .tooltip {
                                     </div>
 
                                 </div>
-                            </section>                       
+                            </section>
                             <section class="row pb-4">
                                 <div class="col-12 col-sm-12 card">
                                     <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
@@ -230,7 +244,7 @@ svg:hover .tooltip {
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Type</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>                                                      
+                                                        <tbody>
                                                     </table>
                                                 </div>
                                             </div>
@@ -254,7 +268,7 @@ svg:hover .tooltip {
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
-                                                        <thead>                                                         
+                                                        <thead>
                                                             <tr>
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Engine</th>
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Chassis</th>
@@ -263,8 +277,8 @@ svg:hover .tooltip {
                                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Vehicle Type</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>                                                   
-                                                        </tbody>                                                   
+                                                        <tbody>
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
@@ -370,7 +384,7 @@ svg:hover .tooltip {
             on: "Renewal",
             off: "New Registration",
             onstyle: "success",
-            offstyle: "success",
+            offstyle: "outline-success",
             width: "100%",
             height: "100%",
         });
