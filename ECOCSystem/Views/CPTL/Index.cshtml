@@ -157,12 +157,8 @@ svg:hover .tooltip {
                     <div class="col-sm-12">
                         @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CPTL_Form" }))
                         {
+                            @Html.AntiForgeryToken()
                             @Html.HiddenFor(o => o.CPTLID, new { Value = "CPTLID" })
-                            @*<section class="row mt-4 pb-4 justify-content-center">
-                                <div class="form-group col-lg-4">
-
-                                </div>
-                            </section>*@
                             <section class="row pb-4 ">
                                 <div class="col-12 col-sm-12 card">
                                     @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
@@ -323,7 +319,7 @@ svg:hover .tooltip {
         return data;
     };
 
-     function submitForm(submitType) {
+    function submitForm(submitType) {
         var form = jQuery("#CPTL_Form");
         if (form.valid()) {
             var formData = new FormData(form[0]);

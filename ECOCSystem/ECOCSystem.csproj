@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\CurrentUser.cs" />
+    <Compile Include="Tools\Extensions.cs" />
     <Compile Include="Tools\PublicEnum.cs" />
     <Compile Include="Tools\SessionExpireAttribute .cs" />
   </ItemGroup>

@@ -18,13 +18,13 @@ namespace ECOCSystem.Controllers
             return View(Model);
         }
         [HttpPost]
-        public ActionResult CPTL(CPTLModel model, string submit)
+        public ActionResult CPTL(CPTLModel model, string submitType)
         {
 
-            //var Status = "Error";
-            //var PartialViewDataString = "";
-            //var Message = "";
-            //int CPTLID = model.CPTLID;
+            var Status = "Error";
+            var PartialViewDataString = "";
+            var Message = "";
+            int CPTLID = model.CPTLID;
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
@@ -38,7 +38,7 @@ namespace ECOCSystem.Controllers
             {
                 try
                 {
-                    switch (submit) 
+                    switch (submitType) 
                     {
                         case "ADDCLIENT":
                             {
@@ -70,69 +70,86 @@ namespace ECOCSystem.Controllers
 
 
                                 db.Client.Add(NewClient);
-                                db.SaveChanges();
-                                dbTransaction.Commit();
-                                TempData["SuccessMessage"] = "New client Added Successfully!";
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
+
+                                Status = "Success";
+                                Message = "New client Added Successfully!";
                             }
                             break;
                         case "EDITCLIENT":
                             {
                                 var clientModel = model.Client;
-                                TempData["SuccessMessage"] = "Success! Client Updated.";
+                                Status = "Success";
+                                Message = "Client Updated Successfully!";
 
                             }
                             break;
                         case "ADDADDRESS":
                             {
-                                if (model.ClientID == 0) 
+                                if (model.ClientID == 0)
                                 {
-                                    TempData["InfoMessage"] = "Message: Select Client First ";
-                                    return RedirectToAction("Index");
+
+                                    Status = "Warning";
+                                    Message = "Message: Select Client first!";
+                                    ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //return RedirectToAction("Index");
 
                                 }
-                                var newAddress = new ClientAddress();
+                                else 
+                                {
+                                    var newAddress = new ClientAddress();
 
-                                newAddress.AddressTypeID = model.ClientAddress.AddressTypeID;
-                                newAddress.ClientID = model.ClientID;
-                                newAddress.HouseBldgNo = model.ClientAddress.HouseBldgNo;
-                                newAddress.StreetSubdivision = model.ClientAddress.StreetSubdivision;
-                                newAddress.Barangay = model.ClientAddress.Barangay;
-                                newAddress.ZipCode = model.ClientAddress.ZipCode;
-                                newAddress.EmailAddress = model.ClientAddress.EmailAddress;
-                                newAddress.TelephoneNo = model.ClientAddress.TelephoneNo;
-                                newAddress.MobileNo = model.ClientAddress.MobileNo;
-                                newAddress.CityID = model.ClientAddress.CityID;
-                                newAddress.ProvinceID = model.ClientAddress.ProvinceID;
+                                    newAddress.AddressTypeID = model.ClientAddress.AddressTypeID;
+                                    newAddress.ClientID = model.ClientID;
+                                    newAddress.HouseBldgNo = model.ClientAddress.HouseBldgNo;
+                                    newAddress.StreetSubdivision = model.ClientAddress.StreetSubdivision;
+                                    newAddress.Barangay = model.ClientAddress.Barangay;
+                                    newAddress.ZipCode = model.ClientAddress.ZipCode;
+                                    newAddress.EmailAddress = model.ClientAddress.EmailAddress;
+                                    newAddress.TelephoneNo = model.ClientAddress.TelephoneNo;
+                                    newAddress.MobileNo = model.ClientAddress.MobileNo;
+                                    newAddress.CityID = model.ClientAddress.CityID;
+                                    newAddress.ProvinceID = model.ClientAddress.ProvinceID;
 
-                                newAddress.Active = true;
-                                newAddress.CreatedBy = CurrentUser.Details.ID;
-                                newAddress.CreatedDate = DateTime.Now;
+                                    newAddress.Active = true;
+                                    newAddress.CreatedBy = CurrentUser.Details.ID;
+                                    newAddress.CreatedDate = DateTime.Now;
 
 
-                                db.ClientAddress.Add(newAddress);
-                                db.SaveChanges();
-                                dbTransaction.Commit();
-                                TempData["SuccessMessage"] = "New Address added Successfully!";
+                                    db.ClientAddress.Add(newAddress);
+                                    //db.SaveChanges();
+                                    //dbTransaction.Commit();
+
+                                    Status = "Success";
+                                    Message = "New Address added Successfully!";
+                                }
+                                
 
                             }
                             break;
                         default:
-                            TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                            //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                            Status = "Warning";
+                            Message = "Message: ErrorThere's something error. Please try again later.";
                             break;
                     }
                 }
                 catch (Exception) 
                 {
                     dbTransaction.Rollback();
-                    TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                    //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                    Status = "Warning";
+                    Message = "Agent Code is missing. Please contact Databridge support to assist you.";
                 }
             }
 
-            //var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID});
-            //jsonResult.MaxJsonLength = int.MaxValue;
-            //return jsonResult;
-            //return View();
-            return RedirectToAction("Index");
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID });
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+
+
         }
 
         public ActionResult CPTLList()

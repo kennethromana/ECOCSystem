@@ -150,8 +150,10 @@ namespace ECOCSystem.Model
         [DisplayName("Mobile No.")]
         public string MobileNo { get; set; }
         public Nullable<int> BarangayID { get; set; }
+        [Required]
         [DisplayName("City")]
         public Nullable<int> CityID { get; set; }
+        [Required]
         [DisplayName("Province")]
         public Nullable<int> ProvinceID { get; set; }
         public Nullable<bool> Active { get; set; }
