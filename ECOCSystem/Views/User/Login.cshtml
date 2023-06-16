@@ -32,8 +32,18 @@
     <link rel="stylesheet" type="text/css" href="/FrontEnd/login/css/main.css">
     <!--===============================================================================================-->
 </head>
-<body>
+<style>
+    .container-login100 {
+        background: linear-gradient(-135deg, #212529, #007bff);
+    }
+/*    .login100-form-btn {
 
+        background: #007bff;
+
+    }*/
+</style>
+<body>
+        
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -43,7 +53,7 @@
 
                 <form class="login100-form validate-form">
                     <span class="login100-form-title">
-                        Member Login
+                         Login
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -63,7 +73,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button  class="login100-form-btn" onclick="location.href='@Url.Action("Dashboard", "Home")'">
                             Login
                         </button>
                     </div>
@@ -78,10 +88,10 @@
                     </div>
 
                     <div class="text-center p-t-136">
-                        <a class="txt2" href="#">
+                        @*<a class="txt2" href="#">
                             Create your Account
                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                        </a>
+                        </a>*@
                     </div>
                 </form>
             </div>
@@ -112,7 +122,7 @@
         })
     </script>
     <!--===============================================================================================-->
-    @*<script src="js/main.js"></script>*@
+    <script src="~/FrontEnd/login/js/main.js"></script>
 
 
 </body>

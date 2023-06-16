@@ -59,7 +59,7 @@
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        background-color: green;
+        background-color: #007bff;
         color: white;
         font-size: 17px;
         font-weight: lighter;
@@ -105,13 +105,13 @@ svg:hover .tooltip {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 }
 
-.uiverse:hover,
-.uiverse:hover .tooltip,
-.uiverse:hover .tooltip::before {
- /* background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));*/
-  color: #ffffff;
-  background-color:green;
-}
+    .uiverse:hover,
+    .uiverse:hover .tooltip,
+    .uiverse:hover .tooltip::before {
+        /* background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));*/
+        color: #ffffff;
+        background-color: #007bff;
+    }
     /*addnew button*/
 
 
@@ -123,9 +123,9 @@ svg:hover .tooltip {
 
 
     .btn-edit-1 {
-    /*    margin-top: 25px;*/
+        /*    margin-top: 25px;*/
         background-color: white;
-        color: green;
+        color: #007bff;
         border-radius: 10px;
         box-shadow: 0px 0px 0px 0px gray !important;
     }
@@ -273,7 +273,7 @@ svg:hover .tooltip {
                                 </div>
                             </section>
                             <section class="row mt-4 pb-4 submit-btn">
-                                <button class="btn btn-info" style="height: 45px; ">Submit Application</button>
+                                <button class="btn btn-primary" style="height: 45px; ">Submit Application</button>
                             </section>
 
                             <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
@@ -369,8 +369,8 @@ svg:hover .tooltip {
             toggle: "toggle",
             on: "Renewal",
             off: "New Registration",
-            onstyle: "success",
-            offstyle: "success",
+            onstyle: "primary",
+            offstyle: "primary",
             width: "100%",
             height: "100%",
         });
