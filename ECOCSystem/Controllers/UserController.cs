@@ -11,7 +11,8 @@ using ECOCSystem.Tools;
 namespace ECOCSystem.Controllers
 {
     public class UserController : Controller
-    {   ECOCEntities db = new ECOCEntities();
+    {
+        ECOCEntities db = new ECOCEntities();
         // GET: User
         public ActionResult Index()
         {
@@ -58,7 +59,7 @@ namespace ECOCSystem.Controllers
             Session.Clear();
             return RedirectToAction("Login");
         }
-        public ActionResult LoginUser(UserModel User)
+        public ActionResult LoginUser(LoginModel User)
         {
             try
             {
@@ -83,20 +84,70 @@ namespace ECOCSystem.Controllers
                                 return RedirectToAction("Dashboard", "Home");
 
                         }
-                        else 
+                        else
                         {
                             TempData["ErrorMessage"] = "Username and Password does not match.";
                         }
                     }
                 }
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 TempData["ErrorMessage"] = "Login Failed.";
                 return RedirectToAction("Login");
             }
             return RedirectToAction("login");
-   
+
+
+        }
+        public new ActionResult User(UserModel model, string submit)
+        {
+            try
+            {
+
+                switch (submit) 
+                {
+                    case "ADDUSER":
+                        {
+                            var newAccount = new Account();
+
+                            newAccount.FirstName = model.FirstName.Trim();
+                            newAccount.LastName = model.LastName.Trim();
+                            newAccount.MiddleName = model.MiddleName == null ? "" : model.MiddleName.Trim();
+                            newAccount.Email = model.Email.Trim();
+                            newAccount.Password = model.Password.Encrypt(model.Email);
+                            newAccount.UserTypeID = model.SelectedUserTypeID;
+                            newAccount.CompanyID = model.SelectedCompanyID;
+                            newAccount.CompanyBranchID = model.SelectedCompanyBranchID;
+
+                            newAccount.Active = true;
+                            newAccount.CreatedBy = CurrentUser.Details.ID;
+                            newAccount.CreatedDate = DateTime.Now;
+
+
+                            db.Account.Add(newAccount);
+                            db.SaveChanges();
+
+                            TempData["SuccessMessage"] = "New User added Succesfully!";
+
+
+                        }
+                        break;
+                    default:
+                        //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                        //Status = "Warning";
+                        //Message = "Message: ErrorThere's something error. Please try again later.";
+                        break;
+
+                }
+            }
+            catch (Exception)
+            {
+                TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+
+            }
+            return View();
+
 
         }
     }

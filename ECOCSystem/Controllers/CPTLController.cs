@@ -141,7 +141,7 @@ namespace ECOCSystem.Controllers
                     dbTransaction.Rollback();
                     //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                     Status = "Warning";
-                    Message = "Agent Code is missing. Please contact Databridge support to assist you.";
+                    Message = "Error. Please contact Databridge support to assist you.";
                 }
             }
 

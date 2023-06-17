@@ -18,7 +18,7 @@ namespace ECOCSystem.Model
         }
         [Required]
         [DisplayName("User Type")]
-        public int SelectedUserType { get; set; }
+        public int SelectedUserTypeID { get; set; }
         [Required]
         [DisplayName("Company")]
         public int SelectedCompanyID { get; set; }
@@ -80,6 +80,16 @@ namespace ECOCSystem.Model
     {
         public int ID { get; set; }
         public string Info { get; set; }
+
+    }
+    public class LoginModel
+    {
+        [Required]
+        [DisplayName("Email Address")]
+        public string Email { get; set; }
+        [Required]
+        [DisplayName("Password")]
+        public string Password { get; set; }
 
     }
 }

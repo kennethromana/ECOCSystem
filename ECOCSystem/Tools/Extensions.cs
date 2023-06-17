@@ -48,5 +48,20 @@ namespace ECOCSystem.Tools
 
             return sb.ToString();
         }
+        public static string Encrypt(this string input, string privateKey)
+        {
+            using (var algorithm = SHA256.Create())
+            {
+                var inputBytes = Encoding.UTF8.GetBytes(input);
+                var saltedInput = new Byte[privateKey.Length + inputBytes.Length];
+
+                Encoding.UTF8.GetBytes(privateKey).CopyTo(saltedInput, 0);
+                inputBytes.CopyTo(saltedInput, privateKey.Length);
+
+                var hashedBytes = algorithm.ComputeHash(saltedInput);
+
+                return BitConverter.ToString(hashedBytes).Replace("-", "");
+            }
+        }
     }
 }
