@@ -67,7 +67,8 @@ namespace ECOCSystem.Controllers
                 {
                     using (db = new ECOCEntities())
                     {
-                        var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Active == true).FirstOrDefault();
+                        var EncryptedPassword = User.Password.Encrypt(User.Email);
+                        var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Password == EncryptedPassword && o.Active == true).FirstOrDefault();
 
                         if (LoggedUser != null)
                         {
@@ -134,7 +135,7 @@ namespace ECOCSystem.Controllers
                         }
                         break;
                     default:
-                        //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                        TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                         //Status = "Warning";
                         //Message = "Message: ErrorThere's something error. Please try again later.";
                         break;
