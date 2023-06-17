@@ -147,6 +147,15 @@ svg:hover .tooltip {
         background-color: darkgreen;
         border-color: darkgreen;
     }
+
+    .row {
+
+        margin: 0;
+    }
+
+
+
+
 </style>
 <section class="content">
     <div class="card">
@@ -235,7 +244,7 @@ svg:hover .tooltip {
                                                     <table id="tbl_Address" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
                                                         <thead>
                                                             <tr>
-                                                                <th>Select</th>
+                                                                <th><center>Select</center></th>
                                                                 <th>House Bldg No</th>
                                                                 <th>Street Subdivision</th>
                                                                 <th>Barangay</th>
@@ -396,6 +405,8 @@ svg:hover .tooltip {
 /*        $(".tab-content").height("auto");*/
     }
     $(document).ready(function () {
+
+       
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
 
@@ -409,9 +420,14 @@ svg:hover .tooltip {
             height: "100%",
         });
 
-        $("#isRenewal").on("change", function () {
+
+        getAddressList(0)
+    
+
+        $('#ClientID').on('change', function () {
+            getAddressList($(this).val())
+            console.log()
         });
-        getAddressList(4)
     });
 
 
@@ -425,9 +441,7 @@ svg:hover .tooltip {
             "scrollX": true,
             "scrollY": true,
             "destroy": true,
-            "info": true,
-            "lengthChange": false,
-         
+
             "order": [],
             "dom":
                 "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
@@ -469,5 +483,6 @@ svg:hover .tooltip {
                 { "className": "AddressType", "data": "AddressType", "name": "AddressType", "autoWidth": true },             
             ]
         });
+        $('#tbl_Address_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
     }
 </script>
