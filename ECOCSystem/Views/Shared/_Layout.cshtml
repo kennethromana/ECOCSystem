@@ -1202,7 +1202,22 @@
 </body>
 </html>
 <script>
-    var all_table = $(".table").DataTable();
+    /*    var all_table = $(".table").DataTable();*/
+
+    var pageLength = 4;
+    var all_table = $(".table").DataTable({
+        "scrollX": true,
+        "scrollY": true,
+        "info": true,
+        "lengthChange": false,
+        "destroy": true,
+        "pageLength": pageLength,
+        "order": [],
+        "dom":
+            "<'row'<'col-sm-12 col-md-6'l<'alltbl_title'>><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+    });
 
 
 

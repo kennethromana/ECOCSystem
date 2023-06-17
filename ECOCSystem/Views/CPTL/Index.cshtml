@@ -142,7 +142,11 @@ svg:hover .tooltip {
     .card {
         margin-bottom:0;
     }
-   
+
+    .icheck-success > input:first-child:checked + input[type=hidden] + label::before, .icheck-success > input:first-child:checked + label::before {
+        background-color: darkgreen;
+        border-color: darkgreen;
+    }
 </style>
 <section class="content">
     <div class="card">
@@ -228,18 +232,32 @@ svg:hover .tooltip {
                                         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
+                                                    <table id="tbl_Address" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
                                                         <thead>
                                                             <tr>
-                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Select</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Street Name</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Barangay</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">City</th>
-                                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Type</th>
+                                                                <th>Select</th>
+                                                                <th>House Bldg No</th>
+                                                                <th>Street Subdivision</th>
+                                                                <th>Barangay</th>
+                                                                <th>Zip Code</th>
+                                                                <th>City</th>
+                                                                <th>Province</th>
+                                                                <th>Address Type</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
                                                     </table>
+                                                    @*<table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Select</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Street Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Barangay</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">City</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                    </table>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -284,6 +302,7 @@ svg:hover .tooltip {
                                 <button class="btn btn-success" style="height: 45px; ">Submit Application</button>
                             </section>
 
+
                             <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
 
@@ -293,6 +312,8 @@ svg:hover .tooltip {
                                 </div>
 
                             </div>
+
+                            
 
                             <div class="modal fade" id="modal-client-address" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
@@ -388,15 +409,65 @@ svg:hover .tooltip {
             height: "100%",
         });
 
-        
-    /*    toastr.success("Submitted Success   ");*/
-
-    
-
         $("#isRenewal").on("change", function () {
-           /* HPGType($(this).is(":checked"));*/
         });
+        getAddressList(4)
     });
 
 
+    function getAddressList(ClientID) {
+        var cntRow = 0;
+        vehicle_table = $("#tbl_Address").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+            "info": true,
+            "lengthChange": false,
+         
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetClientAddressList", "CPTL")',
+                "type": "POST",
+                "datatype": "json",
+                "data": function (o) {
+                    o.ClientID = ClientID;
+                },
+                "beforeSend": function () {
+            
+                },
+                "complete": function (row, data, dataIndex) {
+         
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+             
+            },
+            "columns": [
+                {
+                    "className": "td_Action", "data": "AddressID", "name": "AddressID",
+                    render: function (data, type, row) {
+                        return `                            <center><div class="icheck-success d-inline">
+    <input type="checkbox" id="checkboxSuccess2">
+    <label for="checkboxSuccess2">
+    </label>
+</div></center>`
+                    }, "autoWidth": true  },
+                { "className": "HouseBldgNo", "data": "HouseBldgNo", "name": "HouseBldgNo", "autoWidth": true },
+                { "className": "StreetName", "data": "StreetName", "name": "StreetName", "autoWidth": true },
+                { "className": "Barangay", "data": "Barangay", "name": "Barangay", "autoWidth": true },
+                { "className": "ZipCode", "data": "ZipCode", "name": "ZipCode", "autoWidth": true },
+                { "className": "City", "data": "City", "name": "City", "autoWidth": true },
+                { "className": "Province", "data": "Province", "name": "Province", "autoWidth": true },
+                { "className": "AddressType", "data": "AddressType", "name": "AddressType", "autoWidth": true },             
+            ]
+        });
+    }
 </script>
