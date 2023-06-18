@@ -245,13 +245,13 @@ svg:hover .tooltip {
                                                         <thead>
                                                             <tr>
                                                                 <th><center>Select</center></th>
+                                                                <th>Address Type</th>
                                                                 <th>House Bldg No</th>
                                                                 <th>Street Subdivision</th>
                                                                 <th>Barangay</th>
                                                                 <th>Zip Code</th>
                                                                 <th>City</th>
                                                                 <th>Province</th>
-                                                                <th>Address Type</th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -405,7 +405,7 @@ svg:hover .tooltip {
     }
     $(document).ready(function () {
 
-       
+    
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
 
@@ -421,15 +421,18 @@ svg:hover .tooltip {
 
 
         getAddressList(0)
-    
+
+
 
         $('#ClientID').on('change', function () {
             getAddressList($(this).val())
             console.log()
         });
+
+       
     });
 
-
+    let cntRow = 0;
     function getAddressList(ClientID) {
         var cntRow = 0;
         vehicle_table = $("#tbl_Address").DataTable({
@@ -454,34 +457,79 @@ svg:hover .tooltip {
                     o.ClientID = ClientID;
                 },
                 "beforeSend": function () {
-            
+
+                    cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-         
+
                 }
             },
             "createdRow": function (row, data, dataIndex) {
-             
+
             },
             "columns": [
                 {
                     "className": "td_Action", "data": "AddressID", "name": "AddressID",
                     render: function (data, type, row) {
-                        return `                            <center><div class="icheck-success d-inline">
-    <input type="checkbox" id="checkboxSuccess2">
-    <label for="checkboxSuccess2">
-    </label>
-</div></center>`
-                    }, "autoWidth": true  },
+                        return `<center>
+                                  <div class="icheck-success d-inline">
+                                    <input class="chk" name="check" type="checkbox" id="`+ data +`">
+                                        <label for="`+ data +`">
+                                    </label>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "AddressType", "data": "AddressType", "name": "AddressType", "autoWidth": true },
                 { "className": "HouseBldgNo", "data": "HouseBldgNo", "name": "HouseBldgNo", "autoWidth": true },
                 { "className": "StreetName", "data": "StreetName", "name": "StreetName", "autoWidth": true },
                 { "className": "Barangay", "data": "Barangay", "name": "Barangay", "autoWidth": true },
                 { "className": "ZipCode", "data": "ZipCode", "name": "ZipCode", "autoWidth": true },
                 { "className": "City", "data": "City", "name": "City", "autoWidth": true },
                 { "className": "Province", "data": "Province", "name": "Province", "autoWidth": true },
-                { "className": "AddressType", "data": "AddressType", "name": "AddressType", "autoWidth": true },             
+
             ]
         });
         $('#tbl_Address_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
-    }
+
+
+
+        $(document).on("change", "input[name='check']", function () {
+            $('input.chk').not(this).prop('checked', false);
+           
+            console.log($(this).attr('id'))
+        });
+
+
+  
+
+        $('input.chk').on('change', function () {
+            console.log("check")
+      
+
+            //let AddressID = $('input.chk:checked').attr('AddressID')
+            //let InvoiceID = $('#SI_InvoiceID').val()
+
+            @*if (AddressID != undefined) {
+
+                $.ajax({
+                    url: '@Url.Action("UpdateOwnerAddress","MV")',
+                    type: 'POST',
+                    dataType: "JSON",
+                    cache: false,
+                    data: { "DealerInvoiceID": InvoiceID, "SelectedOwnerAdddressID": AddressID },
+                    success: function (response) {
+                        if (response.isSuccess) {
+                            toastr.success(response.Message);
+                        }
+                        else
+                            toastr.info(response.Message);
+                    }
+
+                })
+            }*@
+
+        });
+    };
+
 </script>
