@@ -112,24 +112,34 @@ namespace ECOCSystem.Controllers
                         {
                             var newAccount = new Account();
 
-                            newAccount.FirstName = model.FirstName.Trim();
-                            newAccount.LastName = model.LastName.Trim();
-                            newAccount.MiddleName = model.MiddleName == null ? "" : model.MiddleName.Trim();
-                            newAccount.Email = model.Email.Trim();
-                            newAccount.Password = model.Password.Encrypt(model.Email);
-                            newAccount.UserTypeID = model.SelectedUserTypeID;
-                            newAccount.CompanyID = model.SelectedCompanyID;
-                            newAccount.CompanyBranchID = model.SelectedCompanyBranchID;
+                            var validateUser = db.Account.Where(o => o.Email == model.Email).FirstOrDefault();
 
-                            newAccount.Active = true;
-                            newAccount.CreatedBy = CurrentUser.Details.ID;
-                            newAccount.CreatedDate = DateTime.Now;
+                            if (validateUser == null)
+                            {
+                                newAccount.FirstName = model.FirstName.Trim();
+                                newAccount.LastName = model.LastName.Trim();
+                                newAccount.MiddleName = model.MiddleName == null ? "" : model.MiddleName.Trim();
+                                newAccount.Email = model.Email.Trim();
+                                newAccount.Password = model.Password.Encrypt(model.Email);
+                                newAccount.UserTypeID = model.SelectedUserTypeID;
+                                newAccount.CompanyID = model.SelectedCompanyID;
+                                newAccount.CompanyBranchID = model.SelectedCompanyBranchID;
+
+                                newAccount.Active = true;
+                                newAccount.CreatedBy = CurrentUser.Details.ID;
+                                newAccount.CreatedDate = DateTime.Now;
 
 
-                            db.Account.Add(newAccount);
-                            //db.SaveChanges();
+                                db.Account.Add(newAccount);
+                                //db.SaveChanges();
 
-                            TempData["SuccessMessage"] = "New User added Succesfully!";
+                                TempData["SuccessMessage"] = "New User added Succesfully!";
+                            }
+                            else
+                                TempData["InfoMessage"] = "User Email already registered!";
+
+
+
 
 
                         }
