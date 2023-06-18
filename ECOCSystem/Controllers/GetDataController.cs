@@ -84,14 +84,14 @@ namespace ECOCSystem.Controllers
 
                 var itemList = (from a in db.Client
                                 from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
-                                from c in db.TitleType.Where(o => o.ID == b.ID).DefaultIfEmpty()
+                                from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
                                 where a.Active == true
                                 select new
                                 {
                                     id = a.ID,
-                                    text = c.ID == Individual ? a.FirstName+" "+a.LastName+" "+a.MiddleName+" - "+c.Name 
-                                          :c.ID == Corporate ? a.CorpName+" "+c.Name 
-                                          :c.ID == CorporateWithAssignee ? a.FirstName + " " + a.LastName + " " + a.MiddleName +" " +a.CorpName+ " - " + c.Name 
+                                    text = c.ID == Individual ? a.FirstName+" "+a.LastName+" "+a.MiddleName
+                                          :c.ID == Corporate ? a.CorpName
+                                          :c.ID == CorporateWithAssignee ? a.FirstName + " " + a.LastName + " " + a.MiddleName +" - " +a.CorpName
                                           : "-"
                                 }).ToList();
 
