@@ -154,14 +154,17 @@ svg:hover .tooltip {
     }
 
 
+    .card-body {
 
+        padding: 2.25rem;
+    }
 
 </style>
 <section class="content">
-    <div class="card">
+    <div class="card card-success card-outline">
 
 
-        <div class="card-header" style="display:flex;justify-content:flex-end;">
+        <div class="card-header" >
             <h3 class="card-title"><h4>CPTL Application</h4></h3>
         </div>
         <div class="card-body">
@@ -474,7 +477,7 @@ svg:hover .tooltip {
                         return `<center>
                                   <div class="icheck-success d-inline">
                                     <input class="chk" name="check" type="checkbox" id="`+ data.AddressID +`">
-                                        <label for="`+ data.AddressID+`">
+                                        <label for="`+ data.AddressID``+`">
                                     </label>
                                  </div>
                               </center>`
