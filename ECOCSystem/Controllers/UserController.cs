@@ -131,7 +131,7 @@ namespace ECOCSystem.Controllers
 
 
                                 db.Account.Add(newAccount);
-                                //db.SaveChanges();
+                                db.SaveChanges();
 
                                 TempData["SuccessMessage"] = "New User added Succesfully!";
                             }

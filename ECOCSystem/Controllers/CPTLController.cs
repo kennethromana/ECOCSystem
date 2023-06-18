@@ -122,8 +122,8 @@ namespace ECOCSystem.Controllers
 
 
                                     db.ClientAddress.Add(newAddress);
-                                    //db.SaveChanges();
-                                    //dbTransaction.Commit();
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
 
                                     Status = "Success";
                                     Message = "New Address added Successfully!";

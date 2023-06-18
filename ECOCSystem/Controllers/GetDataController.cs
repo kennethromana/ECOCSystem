@@ -35,7 +35,7 @@ namespace ECOCSystem.Controllers
                                 where a.Active == true
                                 select new
                                 {
-                                    id =  b.ID,
+                                    id =  a.ID,
                                     text = a.Name
                                 }).ToList();
                                       
@@ -356,6 +356,23 @@ namespace ECOCSystem.Controllers
                 jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
             }
+        }
+        [HttpGet]
+        public JsonResult GetTitleTypeID(int TitleID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                var TitletTypeID = (from a in db.Title.Where(o => o.ID == TitleID)
+                                    from b in db.TitleType.Where(o => o.ID == a.TitleTypeID).DefaultIfEmpty()
+                                    where a.Active == true
+                                    select new
+                                    {
+                                        b.ID
+                                    }).FirstOrDefault();
+
+                return Json(TitletTypeID, JsonRequestBehavior.AllowGet);
+            }
+                      
         }
     }
 }

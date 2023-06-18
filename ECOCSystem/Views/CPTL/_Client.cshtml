@@ -76,14 +76,25 @@
     });
 
 
-   
+
     $(document).ready(function () {
        /* $('#loadingScreen').show();*/
         $("#Client_TitleID").on('change', function () {
             var ID = $(this).val();
-            switchUi(ID);
 
-         
+            $.ajax({
+                url: '@Url.Action("GetTitleTypeID","GetData")',
+                type: "GET",
+                cache: false,
+                dataType: "JSON",
+                async: false,
+                data: { "TitleID": ID },
+                success: function (response) {
+                    switchUi(response.ID);
+                }
+            });
+
+           
         });
     });
 
@@ -98,9 +109,6 @@
             $('section.TitleType').filter('[data-attribute="' + selection + '"]').show();
             $('section.TitleType').not('[data-attribute="' + selection + '"]').hide();
         }
-
-       
-        console.log(selection)
     }
 </script>
 
