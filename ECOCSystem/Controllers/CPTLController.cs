@@ -25,7 +25,7 @@ namespace ECOCSystem.Controllers
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
-            int CPTLID = model.CPTLID;
+            int ClientID = model.ClientID;
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
@@ -45,18 +45,27 @@ namespace ECOCSystem.Controllers
                             {
 
                                 var NewClient = new Client();
-                                if (model.Client.TitleID == Individual)
+
+                                int TitletType =   (from a in db.Title.Where(o => o.ID == model.Client.TitleID)
+                                                    from b in db.TitleType.Where(o => o.ID == a.TitleTypeID).DefaultIfEmpty()
+                                                    where a.Active == true
+                                                    select new
+                                                    {
+                                                        b.ID
+                                                    }).FirstOrDefault().ID;
+
+                                if (TitletType == Individual)
                                 {
                                     NewClient.FirstName = model.Client.FirstName.Trim();
                                     NewClient.LastName = model.Client.LastName.Trim();
                                     NewClient.MiddleName = model.Client.MiddleName.Trim();
                                    
                                 }
-                                else if (model.Client.TitleID == Corporate)
+                                else if (TitletType == Corporate)
                                 {
                                     NewClient.CorpName = model.Client.CorpName.Trim();
                                 }
-                                else if (model.Client.TitleID == CorporateWithAssignee)
+                                else if (TitletType == CorporateWithAssignee)
                                 {
                                     NewClient.CorpName = model.Client.CorpName.Trim();
                                     NewClient.FirstName = model.Client.FirstName.Trim();
@@ -73,8 +82,8 @@ namespace ECOCSystem.Controllers
 
 
                                 db.Client.Add(NewClient);
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
+                                db.SaveChanges();
+                                dbTransaction.Commit();
 
                                 Status = "Success";
                                 Message = "New client Added Successfully!";
@@ -93,7 +102,7 @@ namespace ECOCSystem.Controllers
                                 if (model.ClientID == 0)
                                 {
 
-                                    Status = "Warning";
+                                    Status = "Info";
                                     Message = "Message: Select Client first!";
                                     ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
                                     PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
@@ -134,7 +143,7 @@ namespace ECOCSystem.Controllers
                             break;
                         default:
                             //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
-                            Status = "Warning";
+                            Status = "Error";
                             Message = "Message: ErrorThere's something error. Please try again later.";
                             break;
                     }
@@ -148,7 +157,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, CPTLID });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 

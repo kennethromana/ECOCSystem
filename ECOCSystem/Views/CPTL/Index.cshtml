@@ -372,10 +372,9 @@ svg:hover .tooltip {
                             //$("#" + submitType).html(response.Data);
                             //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
 
-                            //if (response.MVID > 0) {
-                            //    history.pushState("", "MV Information", "?id=" + response.MVID);
-                            //    $("#MVID").val(response.MVID);
-                            //}
+                            if (response.ClientID > 0) {
+                                getAddressList(response.ClientID)
+                            }
 
                /*             changeStatus();*/
             /*                LoadImage(response.MVID);*/
