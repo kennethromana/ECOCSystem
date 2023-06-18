@@ -112,7 +112,7 @@ namespace ECOCSystem.Controllers
                         {
                             var newAccount = new Account();
 
-                            var validateUser = db.Account.Where(o => o.Email == model.Email).FirstOrDefault();
+                            var validateUser = db.Account.Where(o => o.Email == model.Email.Trim()).FirstOrDefault();
 
                             if (validateUser == null)
                             {
