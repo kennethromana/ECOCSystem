@@ -469,12 +469,12 @@ svg:hover .tooltip {
             },
             "columns": [
                 {
-                    "className": "td_Action", "data": "AddressID", "name": "AddressID",
+                    "className": "td_Action", "data": null, "name": "AddressID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-success d-inline">
-                                    <input class="chk" name="check" type="checkbox" id="`+ data +`">
-                                        <label for="`+ data +`">
+                                    <input class="chk" name="check" type="checkbox" id="`+ data.AddressID +`">
+                                        <label for="`+ data.AddressID+`">
                                     </label>
                                  </div>
                               </center>`
@@ -500,36 +500,7 @@ svg:hover .tooltip {
             console.log($(this).attr('id'))
         });
 
-
-  
-
-        $('input.chk').on('change', function () {
-            console.log("check")
-      
-
-            //let AddressID = $('input.chk:checked').attr('AddressID')
-            //let InvoiceID = $('#SI_InvoiceID').val()
-
-            @*if (AddressID != undefined) {
-
-                $.ajax({
-                    url: '@Url.Action("UpdateOwnerAddress","MV")',
-                    type: 'POST',
-                    dataType: "JSON",
-                    cache: false,
-                    data: { "DealerInvoiceID": InvoiceID, "SelectedOwnerAdddressID": AddressID },
-                    success: function (response) {
-                        if (response.isSuccess) {
-                            toastr.success(response.Message);
-                        }
-                        else
-                            toastr.info(response.Message);
-                    }
-
-                })
-            }*@
-
-        });
+    
     };
 
 </script>
