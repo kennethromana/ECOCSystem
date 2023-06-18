@@ -152,6 +152,7 @@
     <Compile Include="Model\ClientAddress.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ClientModel.cs" />
     <Compile Include="Model\Company.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>

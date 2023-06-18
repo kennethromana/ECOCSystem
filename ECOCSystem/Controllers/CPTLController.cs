@@ -20,7 +20,8 @@ namespace ECOCSystem.Controllers
         [HttpPost]
         public ActionResult CPTL(CPTLModel model, string submitType)
         {
-
+            int currentCompany = (int)CurrentUser.Details.CompanyID;
+            int currentBranch = (int)CurrentUser.Details.CompanyBranchID;
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
@@ -63,6 +64,8 @@ namespace ECOCSystem.Controllers
                                     NewClient.MiddleName = model.Client.MiddleName.Trim();
                                 }
 
+                                NewClient.CompanyID = currentCompany;
+                                NewClient.BranchID = currentBranch;
                                 NewClient.TitleID = model.Client.TitleID;
                                 NewClient.Active = true;
                                 NewClient.CreatedBy = CurrentUser.Details.ID;

@@ -1,4 +1,5 @@
-﻿
+﻿@using ECOCSystem.Model
+@model ClientModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,26 +27,32 @@
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
                                     </tr>*@
                                 <tr>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Client ID</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Client Type</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Client Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Title</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Client</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Count</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Vehicle Count</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total CPTL</th>
-
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Branch</th>
+                                    @*<th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">TotalAddress</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total </th>*@
                                 </tr>
                             </thead>
                             <tbody>
-                                @*<tr class="odd">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Mozilla 1.5</td>
-                                        <td class="">Win 95+ / OSX.1+</td>
-                                        <td>1.5</td>
-                                        <td>A</td>
-                                    </tr>*@
-
-
+                                @for (int i = 0; i < Model.ClientViewList.Count(); i++)
+                                {
+                                    <tr>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.ClientViewList[i].Title)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.ClientViewList[i].Client)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.ClientViewList[i].Company)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.ClientViewList[i].Branch)
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                             @*<tfoot>
                                     <tr>

@@ -127,7 +127,7 @@ namespace ECOCSystem.Controllers
 
 
                             db.Account.Add(newAccount);
-                            db.SaveChanges();
+                            //db.SaveChanges();
 
                             TempData["SuccessMessage"] = "New User added Succesfully!";
 
@@ -147,7 +147,7 @@ namespace ECOCSystem.Controllers
                 TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
 
             }
-            return View();
+            return RedirectToAction("Index");
 
 
         }
