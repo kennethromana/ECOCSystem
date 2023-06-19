@@ -20,6 +20,8 @@ namespace ECOCSystem.Model
         }
         [DisplayName("Client")]
         public int ClientID { get; set; }
+        public int AddressID { get; set; }
+        public int VehicleID { get; set; }
         public int SelectedRegistrationTypeID { get; set; }
         public ClientAddressModel ClientAddress { get; set; }
         public ClientModel Client { get; set; }

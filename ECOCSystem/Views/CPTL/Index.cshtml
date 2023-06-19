@@ -170,6 +170,8 @@ svg:hover .tooltip {
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(o => o.CPTLID, new { Value = "CPTLID" })
+                            @Html.HiddenFor(m => m.AddressID)
+                            @Html.HiddenFor(m => m.VehicleID)
                             <section class="row pb-4 ">
                                 <div class="col-12 col-sm-12 card">
                                     @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
@@ -518,7 +520,9 @@ svg:hover .tooltip {
         $(document).on("change", "input[name='checkAddress']", function () {
             $('input.chk').not(this).prop('checked', false);
 
-            console.log($(this).attr('AddressID'))
+            let AddressID = $(this).attr('AddressID');
+            $('#AddressID').val(AddressID);
+
         });
     };
 
@@ -585,7 +589,8 @@ svg:hover .tooltip {
         $(document).on("change", "input[name='checkVehicle']", function () {
             $('input.chk2').not(this).prop('checked', false);
 
-            console.log($(this).attr('VehicleID'))
+            let VehicleID = $(this).attr('VehicleID');
+            $('#VehicleID').val(VehicleID);
         });
     };
 </script>

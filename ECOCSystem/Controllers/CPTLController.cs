@@ -29,9 +29,9 @@ namespace ECOCSystem.Controllers
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
-            int Individual = 1;
-            int Corporate = 2;
-            int CorporateWithAssignee = 3;
+            int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
+            int Corporate = Convert.ToInt32(TitleTypeEnum.Corporate);
+            int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
 
 
             using (var db = new ECOCEntities())
