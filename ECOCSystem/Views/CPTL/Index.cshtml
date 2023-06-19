@@ -519,7 +519,7 @@ svg:hover .tooltip {
     };
 
 
-    function getAddressList(ClientID) {
+    function getVehicleList(ClientID) {
         let cntRow = 0;
         vehicle_table = $("#tbl_Vehicle").DataTable({
             "processing": true, // for show progress bar
@@ -535,8 +535,8 @@ svg:hover .tooltip {
                 "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
-            "ajax": {
-                "url": '@Url.Action("GetClientAddressList", "CPTL")',
+            "ajax": {   
+                "url": '@Url.Action("GetClientVehicleList", "CPTL")',
                 "type": "POST",
                 "datatype": "json",
                 "data": function (o) {
@@ -555,31 +555,31 @@ svg:hover .tooltip {
             },
             "columns": [
                 {
-                    "className": "td_Action", "data": null, "name": "AddressID",
+                    "className": "td_Action", "data": null, "name": "VehicleID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-success d-inline">
-                                    <input class="chk" name="checkAddress" type="checkbox" id="`+ data.AddressID +`">
-                                        <label for="`+ data.AddressID+`">
+                                    <input class="chk2" name="checkVehicle" type="checkbox" id="`+ data.VehicleID +`">
+                                        <label for="`+ data.VehicleID+`">
                                     </label>
                                  </div>
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "AddressType", "data": "AddressType", "name": "AddressType", "autoWidth": true },
-                { "className": "HouseBldgNo", "data": "HouseBldgNo", "name": "HouseBldgNo", "autoWidth": true },
-                { "className": "StreetName", "data": "StreetName", "name": "StreetName", "autoWidth": true },
-                { "className": "Barangay", "data": "Barangay", "name": "Barangay", "autoWidth": true },
-                { "className": "ZipCode", "data": "ZipCode", "name": "ZipCode", "autoWidth": true },
-                { "className": "City", "data": "City", "name": "City", "autoWidth": true },
-                { "className": "Province", "data": "Province", "name": "Province", "autoWidth": true },
+                { "className": "VehicleType", "data": "VehicleType", "name": "VehicleType", "autoWidth": true },
+                { "className": "Chassis", "data": "Chassis", "name": "Chassis", "autoWidth": true },
+                { "className": "PlateNo", "data": "PlateNo", "name": "PlateNo", "autoWidth": true },
+                { "className": "Year", "data": "Year", "name": "Year", "autoWidth": true },
+                { "className": "VehicleMake", "data": "VehicleMake", "name": "VehicleMake", "autoWidth": true },
+                { "className": "VehicleBody", "data": "VehicleBody", "name": "VehicleBody", "autoWidth": true },
+                { "className": "VehicleSeries", "data": "VehicleSeries", "name": "VehicleSeries", "autoWidth": true },
 
             ]
         });
-        $('#tbl_Address_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+        $('#tbl_Vehicle_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
-        $(document).on("change", "input[name='checkAddress']", function () {
-            $('input.chk').not(this).prop('checked', false);
+        $(document).on("change", "input[name='checkVehicle']", function () {
+            $('input.chk2').not(this).prop('checked', false);
 
             console.log($(this).attr('id'))
         });
