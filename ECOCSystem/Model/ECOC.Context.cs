@@ -42,5 +42,11 @@ namespace ECOCSystem.Model
         public virtual DbSet<MVPremium> MVPremium { get; set; }
         public virtual DbSet<MVType> MVType { get; set; }
         public virtual DbSet<PremiumType> PremiumType { get; set; }
+        public virtual DbSet<VehicleSeries> VehicleSeries { get; set; }
+        public virtual DbSet<VehicleType> VehicleType { get; set; }
+        public virtual DbSet<VehicleBodyType> VehicleBodyType { get; set; }
+        public virtual DbSet<VehicleColor> VehicleColor { get; set; }
+        public virtual DbSet<VehicleFuelType> VehicleFuelType { get; set; }
+        public virtual DbSet<VehicleMake> VehicleMake { get; set; }
     }
 }

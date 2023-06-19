@@ -200,7 +200,25 @@
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\VehicleBodyType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleColor.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleFuelType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\VehicleInfo.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleMake.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleSeries.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vwUserListModel.cs" />
