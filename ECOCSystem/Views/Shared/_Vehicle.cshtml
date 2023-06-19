@@ -1,0 +1,97 @@
+﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
+@model VehicleModel
+
+
+@Html.HiddenFor(m => m.VehicleID)
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Address Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body @*overlay*@" style="padding:2rem;">
+        <section class="row mt-4 pb-4">
+            <div class="form-group col-lg-12">
+                @Html.LabelFor(m => m.SelectedVehicleTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedVehicleTypeID, new SelectList(Model.VehicleTypes, "ID", "Info"), "Select Vehicle Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetAddressTypes", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedVehicleTypeID, "", new { @class = "" })
+            </div>
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.EngineNumber)
+                <div class="input-group">@Html.TextBoxFor(o => o.EngineNumber, new { @class = "form-control input-style", placeholder = "Engine Number" })</div>
+                @Html.ValidationMessageFor(o => o.EngineNumber)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.ChassisNumber)
+                <div class="input-group">@Html.TextBoxFor(o => o.ChassisNumber, new { @class = "form-control input-style", placeholder = "Chassis Number" })</div>
+                @Html.ValidationMessageFor(o => o.ChassisNumber)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.MVFileNumber)
+                <div class="input-group">@Html.TextBoxFor(o => o.MVFileNumber, new { @class = "form-control input-style", placeholder = "MVFileNumber" })</div>
+                @Html.ValidationMessageFor(o => o.MVFileNumber)
+            </div>
+
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.PlateNumber)
+                <div class="input-group">@Html.TextBoxFor(o => o.PlateNumber, new { @class = "form-control input-style", placeholder = "Plate Number" })</div>
+                @Html.ValidationMessageFor(o => o.PlateNumber)
+            </div>
+
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.Year)
+                <div class="input-group">@Html.TextBoxFor(o => o.Year, new { @class = "form-control input-style", placeholder = "Year" })</div>
+                @Html.ValidationMessageFor(o => o.Year)
+            </div>
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedMakeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedMakeID, new SelectList(Model.VehicleMakeList, "ID", "Info"), "Select Make", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCitylist", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedMakeID, "", new { @class = "" })
+            </div>
+
+        </section>
+        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedBodyTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCitylist", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedColorID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedColorID, new SelectList(Model.VehicleColors, "ID", "Info"), "Select Color", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCitylist", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedColorID, "", new { @class = "" })
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedSeriesID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedSeriesID, new SelectList(Model.VehicleSeriesList, "ID", "Info"), "Select Series", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCitylist", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedSeriesID, "", new { @class = "" })
+            </div>
+        </section>
+    </div>
+    <div id="addressOption" class="modal-footer justify-content-between submit-btn">
+    </div>
+</div>

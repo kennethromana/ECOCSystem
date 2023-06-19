@@ -215,6 +215,7 @@
     <Compile Include="Model\VehicleMake.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\VehicleModel.cs" />
     <Compile Include="Model\VehicleSeries.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
@@ -2582,6 +2583,7 @@
     <Content Include="Views\CPTL\CPTLList.cshtml" />
     <Content Include="Views\CPTL\_Client.cshtml" />
     <Content Include="Views\CPTL\_Address.cshtml" />
+    <Content Include="Views\Shared\_Vehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -276,7 +276,7 @@ svg:hover .tooltip {
                                         <label>Vehicle List</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new vehicle</span>
-                                            <span>
+                                            <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-client-vehicle">
                                                 +
                                             </span>
                                         </div>
@@ -319,12 +319,21 @@ svg:hover .tooltip {
 
                             </div>
 
-                            
+
 
                             <div class="modal fade" id="modal-client-address" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     @{
                                         Html.RenderPartial("_Address", Model.ClientAddress, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ClientAddress" } });
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="modal fade" id="modal-client-vehicle" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    @{
+                                        Html.RenderPartial("_Vehicle", Model.ClientVehicle, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ClientVehicle" } });
                                     }
                                 </div>
 
