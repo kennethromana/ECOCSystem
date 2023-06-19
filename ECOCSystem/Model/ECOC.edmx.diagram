@@ -18,6 +18,10 @@
         <EntityTypeShape EntityType="ECOCModel.City" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="ECOCModel.Province" Width="1.5" PointX="10.75" PointY="3.75" />
         <EntityTypeShape EntityType="ECOCModel.Region" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ECOCModel.VehicleInfo" Width="1.5" PointX="8.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ECOCModel.MVPremium" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ECOCModel.MVType" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="ECOCModel.PremiumType" Width="1.5" PointX="5.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

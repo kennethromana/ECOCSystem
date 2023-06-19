@@ -38,5 +38,9 @@ namespace ECOCSystem.Model
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<VehicleInfo> VehicleInfo { get; set; }
+        public virtual DbSet<MVPremium> MVPremium { get; set; }
+        public virtual DbSet<MVType> MVType { get; set; }
+        public virtual DbSet<PremiumType> PremiumType { get; set; }
     }
 }

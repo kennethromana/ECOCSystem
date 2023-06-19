@@ -149,6 +149,53 @@ warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MVPremium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MVTypeCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PremiumCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.MVType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MVType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MVTypeCode" Type="varchar" MaxLength="10" />
+          <Property Name="MVTypeName" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.PremiumType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PremiumType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PremiumTypeCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PremiumTypeName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PremiumTypeAmount" Type="varchar" MaxLength="150" />
+          <Property Name="PremiumTypeYear" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.Province' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Province">
           <Key>
@@ -230,6 +277,27 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="VehicleInfo">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EngineNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChassisNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="PlateNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="MVFileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MVTypeID" Type="int" />
+          <Property Name="MakeID" Type="int" />
+          <Property Name="SeriesID" Type="int" />
+          <Property Name="BodyTypeID" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <EntityContainer Name="ECOCModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
@@ -241,6 +309,7 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleType" EntityType="Self.TitleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleInfo" EntityType="Self.VehicleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [City].[CityID] AS [CityID], 
@@ -253,6 +322,44 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
     [City].[UpdatedBy] AS [UpdatedBy], 
     [City].[UpdatedDate] AS [UpdatedDate]
     FROM [dbo].[City] AS [City]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MVPremium" EntityType="Self.MVPremium" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MVPremium].[ID] AS [ID], 
+    [MVPremium].[MVTypeCode] AS [MVTypeCode], 
+    [MVPremium].[PremiumCode] AS [PremiumCode], 
+    [MVPremium].[IsActive] AS [IsActive], 
+    [MVPremium].[CreatedBy] AS [CreatedBy], 
+    [MVPremium].[CreatedDate] AS [CreatedDate], 
+    [MVPremium].[UpdatedBy] AS [UpdatedBy], 
+    [MVPremium].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[MVPremium] AS [MVPremium]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MVType" EntityType="Self.MVType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MVType].[ID] AS [ID], 
+    [MVType].[MVTypeCode] AS [MVTypeCode], 
+    [MVType].[MVTypeName] AS [MVTypeName], 
+    [MVType].[IsActive] AS [IsActive], 
+    [MVType].[CreatedBy] AS [CreatedBy], 
+    [MVType].[CreatedDate] AS [CreatedDate], 
+    [MVType].[UpdatedBy] AS [UpdatedBy], 
+    [MVType].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[MVType] AS [MVType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PremiumType" EntityType="Self.PremiumType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PremiumType].[ID] AS [ID], 
+    [PremiumType].[PremiumTypeCode] AS [PremiumTypeCode], 
+    [PremiumType].[PremiumTypeName] AS [PremiumTypeName], 
+    [PremiumType].[PremiumTypeAmount] AS [PremiumTypeAmount], 
+    [PremiumType].[PremiumTypeYear] AS [PremiumTypeYear], 
+    [PremiumType].[IsActive] AS [IsActive], 
+    [PremiumType].[CreatedBy] AS [CreatedBy], 
+    [PremiumType].[CreatedDate] AS [CreatedDate], 
+    [PremiumType].[UpdatedBy] AS [UpdatedBy], 
+    [PremiumType].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[PremiumType] AS [PremiumType]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Province" EntityType="Self.Province" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -317,6 +424,10 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
           <EntitySet Name="City" EntityType="ECOCModel.City" />
           <EntitySet Name="Province" EntityType="ECOCModel.Province" />
           <EntitySet Name="Region" EntityType="ECOCModel.Region" />
+          <EntitySet Name="VehicleInfo" EntityType="ECOCModel.VehicleInfo" />
+          <EntitySet Name="MVPremium" EntityType="ECOCModel.MVPremium" />
+          <EntitySet Name="MVType" EntityType="ECOCModel.MVType" />
+          <EntitySet Name="PremiumType" EntityType="ECOCModel.PremiumType" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -501,6 +612,68 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VehicleInfo">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EngineNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ChassisNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MVFileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MVTypeID" Type="Int32" />
+          <Property Name="MakeID" Type="Int32" />
+          <Property Name="SeriesID" Type="Int32" />
+          <Property Name="BodyTypeID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MVPremium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MVTypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MVType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MVTypeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MVTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PremiumType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PremiumTypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumTypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumTypeAmount" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumTypeYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
@@ -723,6 +896,72 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="RegionNumber" ColumnName="RegionNumber" />
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleInfo">
+            <EntityTypeMapping TypeName="ECOCModel.VehicleInfo">
+              <MappingFragment StoreEntitySet="VehicleInfo">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="BodyTypeID" ColumnName="BodyTypeID" />
+                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+                <ScalarProperty Name="MakeID" ColumnName="MakeID" />
+                <ScalarProperty Name="MVTypeID" ColumnName="MVTypeID" />
+                <ScalarProperty Name="MVFileNumber" ColumnName="MVFileNumber" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+                <ScalarProperty Name="ChassisNumber" ColumnName="ChassisNumber" />
+                <ScalarProperty Name="EngineNumber" ColumnName="EngineNumber" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MVPremium">
+            <EntityTypeMapping TypeName="ECOCModel.MVPremium">
+              <MappingFragment StoreEntitySet="MVPremium">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PremiumCode" ColumnName="PremiumCode" />
+                <ScalarProperty Name="MVTypeCode" ColumnName="MVTypeCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MVType">
+            <EntityTypeMapping TypeName="ECOCModel.MVType">
+              <MappingFragment StoreEntitySet="MVType">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MVTypeName" ColumnName="MVTypeName" />
+                <ScalarProperty Name="MVTypeCode" ColumnName="MVTypeCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PremiumType">
+            <EntityTypeMapping TypeName="ECOCModel.PremiumType">
+              <MappingFragment StoreEntitySet="PremiumType">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PremiumTypeYear" ColumnName="PremiumTypeYear" />
+                <ScalarProperty Name="PremiumTypeAmount" ColumnName="PremiumTypeAmount" />
+                <ScalarProperty Name="PremiumTypeName" ColumnName="PremiumTypeName" />
+                <ScalarProperty Name="PremiumTypeCode" ColumnName="PremiumTypeCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
