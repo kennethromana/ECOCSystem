@@ -104,8 +104,8 @@ namespace ECOCSystem.Controllers
 
                                     Status = "Info";
                                     Message = "Message: Select Client first!";
-                                    ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
-                                    PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    //PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
                                     //return RedirectToAction("Index");
 
                                 }
@@ -143,9 +143,46 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDVEHICLE":
                             {
-                                var clientModel = model.Client;
-                                Status = "Success";
-                                Message = "New Vehicle added Successfully!";
+                                if (model.ClientID == 0)
+                                {
+
+                                    Status = "Info";
+                                    Message = "Message: Select Client first!";
+                                    //ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    //PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //return RedirectToAction("Index");
+
+                                }
+                                else
+                                {
+                                    var newVehicle = new VehicleInfo();
+
+                                    newVehicle.EngineNumber = model.ClientVehicle.EngineNumber;
+                                    newVehicle.ChassisNumber = model.ClientVehicle.ChassisNumber;
+                                    newVehicle.PlateNumber = model.ClientVehicle.PlateNumber;
+                                    newVehicle.Year = model.ClientVehicle.Year;
+                                    newVehicle.MVFileNumber = model.ClientVehicle.MVFileNumber;
+
+                                    newVehicle.VehicleTypeID = model.ClientVehicle.SelectedVehicleTypeID;
+                                    newVehicle.VehicleColorID = model.ClientVehicle.SelectedColorID;
+                                    newVehicle.MakeID = model.ClientVehicle.SelectedMakeID;
+                                    newVehicle.BodyTypeID = model.ClientVehicle.SelectedBodyTypeID;
+                                    newVehicle.SeriesID = model.ClientVehicle.SelectedSeriesID;
+
+                                    newVehicle.ClientID = model.ClientID;
+                                    newVehicle.Active = true;
+                                    newVehicle.CreatedBy = CurrentUser.Details.ID;
+                                    newVehicle.CreatedDate = DateTime.Now;
+
+
+                                    db.VehicleInfo.Add(newVehicle);
+
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
+
+                                    Status = "Success";
+                                    Message = "New Address added Successfully!";
+                                }
 
                             }
                             break;
