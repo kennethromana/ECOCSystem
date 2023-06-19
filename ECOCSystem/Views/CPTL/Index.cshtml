@@ -382,6 +382,7 @@ svg:hover .tooltip {
 
                             if (response.ClientID > 0) {
                                 getAddressList(response.ClientID)
+                                getVehicleList(response.ClientID)
                             }
 
                /*             changeStatus();*/
@@ -440,11 +441,14 @@ svg:hover .tooltip {
 
 
         getAddressList(0)
+        getVehicleList(0)
 
 
 
         $('#ClientID').on('change', function () {
-            getAddressList($(this).val())
+            let ID = $(this).val();
+            getAddressList(ID)
+            getVehicleList(ID)
             console.log()
         });
 
@@ -488,12 +492,12 @@ svg:hover .tooltip {
             },
             "columns": [
                 {
-                    "className": "td_Action", "data": null, "name": "AddressID",
+                    "className": "AddressID", "data": null, "name": "AddressID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-success d-inline">
-                                    <input class="chk" name="checkAddress" type="checkbox" id="`+ data.AddressID +`">
-                                        <label for="`+ data.AddressID+`">
+                                    <input class="chk" name="checkAddress" type="checkbox" AddressID="`+ data.AddressID +`" id="address`+ data.AddressID +`">
+                                        <label for="address`+ data.AddressID+`">
                                     </label>
                                  </div>
                               </center>`
@@ -514,7 +518,7 @@ svg:hover .tooltip {
         $(document).on("change", "input[name='checkAddress']", function () {
             $('input.chk').not(this).prop('checked', false);
 
-            console.log($(this).attr('id'))
+            console.log($(this).attr('AddressID'))
         });
     };
 
@@ -555,12 +559,12 @@ svg:hover .tooltip {
             },
             "columns": [
                 {
-                    "className": "td_Action", "data": null, "name": "VehicleID",
+                    "className": "VehicleID", "data": null, "name": "VehicleID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-success d-inline">
-                                    <input class="chk2" name="checkVehicle" type="checkbox" id="`+ data.VehicleID +`">
-                                        <label for="`+ data.VehicleID+`">
+                                    <input class="chk2" name="checkVehicle" type="checkbox" VehicleID="`+ data.VehicleID+`" id="vehicle`+ data.VehicleID +`">
+                                        <label for="vehicle`+ data.VehicleID+`">
                                     </label>
                                  </div>
                               </center>`
@@ -581,7 +585,7 @@ svg:hover .tooltip {
         $(document).on("change", "input[name='checkVehicle']", function () {
             $('input.chk2').not(this).prop('checked', false);
 
-            console.log($(this).attr('id'))
+            console.log($(this).attr('VehicleID'))
         });
     };
 </script>
