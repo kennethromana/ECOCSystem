@@ -374,5 +374,168 @@ namespace ECOCSystem.Controllers
             }
                       
         }
+        public ActionResult GetVehicleTypes(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleType
+                                select new
+                                {
+                                    id = a.VehicleTypeID,
+                                    text = a.Name
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+        public ActionResult GetVehicleMakeList(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleMake
+                                select new
+                                {
+                                    id = a.VehicleMakeID,
+                                    text = a.VehicleMakeName
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+        
+        public ActionResult GetVehicleBodyList(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleBodyType
+                                select new
+                                {
+                                    id = a.VehicleBodyTypeID,
+                                    text = a.VehicleBodyTypeName
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+       
+        public ActionResult GetVehicleColors(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleColor
+                                select new
+                                {
+                                    id = a.VehicleColorID,
+                                    text = a.VehicleColorName
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+        
+        public ActionResult GetVehicleSeries(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleSeries
+                                select new
+                                {
+                                    id = a.VehicleSeriesID,
+                                    text = a.Name
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
     }
 }
