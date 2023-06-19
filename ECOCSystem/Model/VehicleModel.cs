@@ -31,7 +31,7 @@ namespace ECOCSystem.Model
         [Required]
         [DisplayName("Color")]
         public int SelectedColorID { get; set; }
-        [Required]
+        //[Required]
         [DisplayName("Series")]
         public int SelectedSeriesID { get; set; }
         [Required]

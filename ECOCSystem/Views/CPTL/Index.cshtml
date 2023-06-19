@@ -140,7 +140,8 @@ svg:hover .tooltip {
         margin:0;
     }
     .card {
-        margin-bottom:0;
+        margin-bottom: 0;
+        box-shadow: 0 0 3px rgba(0,0,0,.125), 0 1px 5px rgba(0,0,0,.2);
     }
 
     .icheck-success > input:first-child:checked + input[type=hidden] + label::before, .icheck-success > input:first-child:checked + label::before {
@@ -388,6 +389,9 @@ svg:hover .tooltip {
                             break;
                         case "Warning":
                             toastr.warning(response.Message);
+                            break;
+                        case "Error":
+                            toastr.error(response.Message);
                             break;
                         case "Info":
                             toastr.info(response.Message);

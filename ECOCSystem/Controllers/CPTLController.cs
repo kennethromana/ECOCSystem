@@ -141,6 +141,14 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "ADDVEHICLE":
+                            {
+                                var clientModel = model.Client;
+                                Status = "Success";
+                                Message = "New Vehicle added Successfully!";
+
+                            }
+                            break;
                         default:
                             //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                             Status = "Error";
@@ -160,7 +168,6 @@ namespace ECOCSystem.Controllers
             var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
-
 
         }
 
