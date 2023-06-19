@@ -292,6 +292,11 @@ warning 6002: The table/view 'ECOC.dbo.VehicleBodyType' does not have a primary 
         <EntityType Name="VehicleBodyType">
           <Key>
             <PropertyRef Name="VehicleBodyTypeID" />
+            
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleBodyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleBodyTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -307,6 +312,10 @@ warning 6002: The table/view 'ECOC.dbo.VehicleColor' does not have a primary key
         <EntityType Name="VehicleColor">
           <Key>
             <PropertyRef Name="VehicleColorID" />
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleColorName" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -321,6 +330,10 @@ warning 6002: The table/view 'ECOC.dbo.VehicleFuelType' does not have a primary 
         <EntityType Name="VehicleFuelType">
           <Key>
             <PropertyRef Name="VehicleFuelTypeID" />
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleFuelTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleFuelTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -350,12 +363,19 @@ warning 6002: The table/view 'ECOC.dbo.VehicleFuelType' does not have a primary 
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="VehicleColorID" Type="int" />
+          <Property Name="VehicleTypeID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VehicleMake">
           <Key>
             <PropertyRef Name="VehicleMakeID" />
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleMakeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleMakeName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -781,6 +801,9 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="VehicleColorID" Type="Int32" />
+          <Property Name="VehicleTypeID" Type="Int32" />
         </EntityType>
         <EntityType Name="MVPremium">
           <Key>
@@ -1125,6 +1148,9 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <EntitySetMapping Name="VehicleInfo">
             <EntityTypeMapping TypeName="ECOCModel.VehicleInfo">
               <MappingFragment StoreEntitySet="VehicleInfo">
+                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+                <ScalarProperty Name="VehicleColorID" ColumnName="VehicleColorID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
