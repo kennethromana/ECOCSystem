@@ -24,6 +24,30 @@ namespace ECOCSystem.Controllers
 
             return View(model);
         }
+        public ActionResult Branch()
+        {
+            var model = new BranchModel();
+
+            model.BranchList = (from a in db.CompanyBranch
+                                from b in db.Company.Where(o => o.ID == a.CompanyID)
+                                where a.Active == true
+                                select new BranchList
+                                {
+                                    BranchID = a.ID,
+                                    CompanyName = b.Name,
+                                    BranchName = a.Name,
+                                    Address = a.Address,
+                                    EmailAddress = a.EmailAddress,
+                                    BusinessPhone = a.BusinessPhone,
+                                    MobilePhone = a.MobilePhone,
+                                    FaxNumber = a.FaxNumber,
+                                    AccreditationNumber = a.AccreditationNumber,
+                                    TIN = a.TIN,
+                                }
+                                ).ToList();
+
+            return View(model);
+        }
         public ActionResult CompanyInfo(Company model)
         {
             var newCompany = new Company();

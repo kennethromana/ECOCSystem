@@ -1,0 +1,174 @@
+﻿@using ECOCSystem.Model
+@model BranchModel
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="card">
+
+
+        <div class="card-header">
+            <h3 class="card-title"><h4>Branch List</h4></h3>
+        </div>
+        <div class="fab" type="button" data-toggle="modal" data-target="#modal-lg" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
+                            <thead>
+                                @*<tr>
+                                    <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
+                                    </tr>*@
+                                <tr>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Branch Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email Address</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Business Phone</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Mobile Phone</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Accreditation Number</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Fax No.</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">TIN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*<tr class="odd">
+                                        <td class="sorting_1 dtr-control">Gecko</td>
+                                        <td>Mozilla 1.5</td>
+                                        <td class="">Win 95+ / OSX.1+</td>
+                                        <td>1.5</td>
+                                        <td>A</td>
+                                    </tr>*@
+                                @for (int i = 0; i < Model.BranchList.Count(); i++)
+                                {
+                                    <tr>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].CompanyName)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].BranchName)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].Address)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].EmailAddress)
+                                        </td>
+                                        
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].BusinessPhone)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].MobilePhone)
+                                        </td>
+                                          <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].AccreditationNumber)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].FaxNumber)
+                                        </td>
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.BranchList[i].TIN)
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                            @*<tfoot>
+                                    <tr>
+                                        <th rowspan="1" colspan="1">First name</th>
+                                        <th rowspan="1" colspan="1">Last name</th>
+                                        <th rowspan="1" colspan="1">Email</th>
+                                    </tr>
+                                </tfoot>*@
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Branch Information</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("CompanyInfo", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
+                {
+
+                    <div class="modal-body @*overlay*@">
+                        <section class="row mt-4 pb-4">
+                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                            <div class="form-group col-lg-12">
+                                @Html.LabelFor(o => o.Name)
+                                <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Company Name" })</div>
+                                @Html.ValidationMessageFor(o => o.Name)
+                            </div>
+
+                        </section>
+                        <section class="row pb-4">
+                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                            <div class="form-group col-lg-12">
+                                @Html.LabelFor(o => o.Address)
+                                <div class="input-group">@Html.TextBoxFor(o => o.Address, new { @class = "form-control input-style", placeholder = "Address" })</div>
+                                @Html.ValidationMessageFor(o => o.Address)
+                            </div>
+
+                        </section>
+                        <section class="row pb-4">
+                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.EmailAddress)
+                                <div class="input-group">@Html.TextBoxFor(o => o.EmailAddress, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
+                                @Html.ValidationMessageFor(o => o.EmailAddress)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.BusinessPhone)
+                                <div class="input-group">@Html.TextBoxFor(o => o.BusinessPhone, new { @class = "form-control input-style", placeholder = "Business Phone" })</div>
+                                @Html.ValidationMessageFor(o => o.BusinessPhone)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.MobilePhone)
+                                <div class="input-group">@Html.TextBoxFor(o => o.MobilePhone, new { @class = "form-control input-style", placeholder = "Mobile Phone" })</div>
+                                @Html.ValidationMessageFor(o => o.MobilePhone)
+                            </div>
+
+                        </section>
+                        <section class="row pb-4">
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.FaxNumber)
+                                <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>
+                                @Html.ValidationMessageFor(o => o.FaxNumber)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.TIN)
+                                <div class="input-group">@Html.TextBoxFor(o => o.TIN, new { @class = "form-control input-style", placeholder = "TIN" })</div>
+                                @Html.ValidationMessageFor(o => o.TIN)
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer justify-content-between submit-btn">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="submit" value="ADDUSER" class="btn btn-success">Save </button>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+    </div>
+</section>

@@ -37,5 +37,41 @@ namespace ECOCSystem.Model
 
         public List<Company> CompanyListView { get; set; }
     }
+    public class BranchModel 
+    {
+        public BranchModel() 
+        {
+            BranchList = new List<BranchList>();
+        }
+        public int CompanyID { get; set; }
+        public int BranchID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string EmailAddress { get; set; }
+        public string BusinessPhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string FaxNumber { get; set; }
+        public string TIN { get; set; }
+        public string Website { get; set; }
+        public string ZipCode { get; set; }
+        public string AccreditationNumber { get; set; }
+        public List<BranchList> BranchList { get; set; }
+
+    }
+    public class BranchList 
+    {
+        public int BranchID { get; set; }
+        public string CompanyName { get; set; }
+        public string BranchName { get; set; }
+        public string Address { get; set; }
+        public string EmailAddress { get; set; }
+        public string BusinessPhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string FaxNumber { get; set; }
+        public string TIN { get; set; }
+        public string Website { get; set; }
+        public string ZipCode { get; set; }
+        public string AccreditationNumber { get; set; }
+    }
    
 }
