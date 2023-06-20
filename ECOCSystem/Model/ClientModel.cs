@@ -23,7 +23,6 @@ namespace ECOCSystem.Model
         [Required]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
-        [Required]
         [DisplayName("Middle Name")]
         public string MiddleName { get; set; }
         [Required]

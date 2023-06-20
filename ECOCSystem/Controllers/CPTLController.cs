@@ -58,7 +58,7 @@ namespace ECOCSystem.Controllers
                                 {
                                     NewClient.FirstName = model.Client.FirstName.Trim();
                                     NewClient.LastName = model.Client.LastName.Trim();
-                                    NewClient.MiddleName = model.Client.MiddleName.Trim();
+                                    NewClient.MiddleName = model.Client.MiddleName == null ? "": model.Client.MiddleName.Trim();
                                    
                                 }
                                 else if (TitletType == Corporate)
