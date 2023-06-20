@@ -1,0 +1,325 @@
+﻿@using ECOCSystem.Model
+@model CompanyInfo
+@{
+
+    DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+}
+<style>
+    .address-setting {
+        font-size: 15px;
+    }
+
+    .add-button {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addnew-button {
+        display: flex;
+        align-items: flex-end;
+    }
+
+
+    .cptl-title-header {
+        display: flex;
+        align-items: center;
+    }
+
+        .cptl-title-header label {
+            margin: 0;
+        }
+
+        .cptl-title-header .tooltip {
+            white-space: nowrap;
+        }
+    /*addnew button*/
+    .uiverse {
+        position: relative;
+        background: #ffffff;
+        color: #000;
+        /* padding: 15px; */
+        margin: 10px;
+        /* border-radius: 10px; */
+        width: 32px;
+        height: 33px;
+        font-size: 17px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        background-color: darkgreen;
+        color: white;
+        font-size: 17px;
+        font-weight: lighter;
+    }
+
+
+
+    .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+        .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: #ffffff;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+    .uiverse:hover .tooltip {
+        top: -45px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    svg:hover span,
+    svg:hover .tooltip {
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .uiverse:hover,
+    .uiverse:hover .tooltip,
+    .uiverse:hover .tooltip::before {
+        /* background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));*/
+        color: #ffffff;
+        background-color: darkgreen;
+    }
+    /*addnew button*/
+
+
+
+    .toggle-group {
+        font-family: 'Source Sans Pro';
+        color: #117a8b;
+    }
+
+
+    .btn-edit-1 {
+        /*    margin-top: 25px;*/
+        background-color: white;
+        color: darkgreen;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 0px gray !important;
+    }
+
+
+        .btn-edit-1 span i {
+            font-size: 23px;
+        }
+
+
+    #select-client .form-group {
+        margin: 0;
+    }
+
+    .card {
+        margin-bottom: 0;
+        box-shadow: 0 0 3px rgba(0,0,0,.125), 0 1px 5px rgba(0,0,0,.2);
+    }
+
+    .icheck-success > input:first-child:checked + input[type=hidden] + label::before, .icheck-success > input:first-child:checked + label::before {
+        background-color: darkgreen;
+        border-color: darkgreen;
+    }
+
+    .row {
+        margin: 0;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Address Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body @*overlay*@" style="padding:2rem;">
+        <section class="content">
+
+                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CPTL_Form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <section class="row pb-4 ">
+                                        <div class="col-12 col-sm-12 card">
+                                            @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
+                                            <div class="cptl-title-header card-header">
+                                                <label>Registration Type</label>
+                                            </div>
+                                            <div class="card-body">
+
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                    <section class="row pb-4">
+                                        <div class="col-12 col-sm-12 card">
+                                            @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
+                                            <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                                <label>Select Client</label>
+                                                <div class="uiverse ">
+                                                    <span class="tooltip">Add new client</span>
+                                                    <span type="button" id="addClient" class="newclient" data-toggle="modal" data-target="#modal-client">
+                                                        @*<i class="fa fa-plus btn-sm"></i>*@
+                                                        +
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="select-client" class="dataTables_wrapper dt-bootstrap4">
+                                                    <div class="row">
+                                                        <div class="col-sm-12" style="display:flex;align-items:center;">
+
+                                                            <div class="col-sm-1  uiverse btn-edit-1 add-button">
+                                                                <span class="tooltip" style="white-space:nowrap;">Edit client</span>
+                                                                <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
+                                                                    <i class="fa fa-user-edit btn-sm"></i>
+
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                    <section class="row pb-4">
+                                        <div class="col-12 col-sm-12 card">
+                                            <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                                <label>Address List</label>
+                                                <div class="uiverse ">
+                                                    <span class="tooltip">Add new address</span>
+                                                    <span type="button" id="addAddress" class="newaddress" data-toggle="modal" data-target="#modal-client-address">
+                                                        +
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            @*<table id="tbl_Address" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th><center>Select</center></th>
+                                                                        <th>Address Type</th>
+                                                                        <th>House Bldg No</th>
+                                                                        <th>Street Subdivision</th>
+                                                                        <th>Barangay</th>
+                                                                        <th>Zip Code</th>
+                                                                        <th>City</th>
+                                                                        <th>Province</th>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>*@
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="row pb-4">
+                                        <div class="col-12 col-sm-12 card">
+                                            <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                                <label>Vehicle List</label>
+                                                <div class="uiverse ">
+                                                    <span class="tooltip">Add new vehicle</span>
+                                                    <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-client-vehicle">
+                                                        +
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            @*<table id="tbl_Vehicle" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th><center>Select</center></th>
+                                                                        <th>Vehicle Type</th>
+                                                                        <th>Serial / Chassis</th>
+                                                                        <th>Plate No.</th>
+                                                                        <th>Year</th>
+                                                                        <th>Make</th>
+                                                                        <th>Body</th>
+                                                                        <th>Series</th>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="row mt-4 pb-4 submit-btn">
+                                        <button class="btn btn-success" style="height: 45px; ">Submit Application</button>
+                                    </section>
+
+
+                                    <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="modal fade" id="modal-client-address" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal fade" id="modal-client-vehicle" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+
+        </section>
+    </div>
+    <div id="addressOption" class="modal-footer justify-content-between submit-btn">
+    </div>
+</div>
+

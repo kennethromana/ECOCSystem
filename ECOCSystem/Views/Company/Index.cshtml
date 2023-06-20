@@ -12,20 +12,14 @@
         <div class="card-header">
             <h3 class="card-title">Company List</h3>
         </div>
-        <div class="fab" type="button" data-toggle="modal" data-target="#modal-lg" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" type="button" data-toggle="modal" data-target="#modal-companyInfo" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
-            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div id="" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
                     <div class="col-sm-12">
-                        <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
+                        <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="" t>
                             <thead>
-                                @*<tr>
-                                    <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
-                                    </tr>*@
+                              
                                 <tr>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
@@ -37,13 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @*<tr class="odd">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Mozilla 1.5</td>
-                                        <td class="">Win 95+ / OSX.1+</td>
-                                        <td>1.5</td>
-                                        <td>A</td>
-                                    </tr>*@
+                              
                                 @for (int i = 0; i < Model.CompanyListView.Count(); i++)
                                 {
                                     <tr>
@@ -74,13 +62,7 @@
                                 }
 
                             </tbody>
-                            @*<tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">First name</th>
-                                        <th rowspan="1" colspan="1">Last name</th>
-                                        <th rowspan="1" colspan="1">Email</th>
-                                    </tr>
-                                </tfoot>*@
+                          
                         </table>
                     </div>
                 </div>
@@ -160,6 +142,16 @@
                 }
             </div>
 
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="modal-companyInfo" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+
+            @{
+                Html.RenderPartial("_CompanyInfo", Model.CompanyInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyInfo" } });
+            }
         </div>
 
     </div>

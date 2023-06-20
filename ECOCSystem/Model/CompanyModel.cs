@@ -12,6 +12,7 @@ namespace ECOCSystem.Model
         public CompanyModel()
         {
             CompanyListView = new List<Company>();
+            CompanyInfo = new CompanyInfo();
         }
         public int CompanyID { get; set; }
         [Required]
@@ -36,6 +37,7 @@ namespace ECOCSystem.Model
         public string ZipCode { get; set; }
 
         public List<Company> CompanyListView { get; set; }
+        public CompanyInfo CompanyInfo { get; set; }
     }
     public class BranchModel 
     {
@@ -83,6 +85,34 @@ namespace ECOCSystem.Model
         public string Website { get; set; }
         public string ZipCode { get; set; }
         public string AccreditationNumber { get; set; }
+    }
+    public class CompanyInfo 
+    {
+        public CompanyInfo() 
+        {
+
+        }
+        public int CompanyID { get; set; }
+        [Required]
+        [DisplayName("Company Name")]
+        public string Name { get; set; }
+        [Required]
+        [DisplayName("Address")]
+        public string Address { get; set; }
+
+        [DisplayName("Email Address")]
+        public string EmailAddress { get; set; }
+
+        [DisplayName("Business Phone")]
+        public string BusinessPhone { get; set; }
+        [DisplayName("Mobile Phone")]
+        public string MobilePhone { get; set; }
+        [DisplayName("Fax Number")]
+        public string FaxNumber { get; set; }
+        [DisplayName("TIN")]
+        public string TIN { get; set; }
+        public string Website { get; set; }
+        public string ZipCode { get; set; }
     }
    
 }
