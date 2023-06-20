@@ -21,7 +21,7 @@
                 @Html.ValidationMessageFor(m => m.AddressTypeID, "", new { @class = "" })
             </div>
         </section>
-        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+        <section class="row pb-4 TitleType">
             @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
             <div class="form-group col-lg-4">
                 @Html.LabelFor(o => o.HouseBldgNo)
@@ -39,7 +39,7 @@
                 @Html.ValidationMessageFor(o => o.Barangay)
             </div>
         </section>
-        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+        <section class="row pb-4 TitleType">
             @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
 
             <div class="form-group col-lg-4">
@@ -63,7 +63,7 @@
             </div>
 
         </section>
-        <section class="row pb-4 TitleType" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
+        <section class="row pb-4 TitleType" >
             @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
 
             <div class="form-group col-lg-4">
