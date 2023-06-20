@@ -14,7 +14,11 @@ namespace ECOCSystem.Controllers
         // GET: Company
         public ActionResult Index()
         {
-            return View();
+            var model = new CompanyModel();
+
+            model.CompanyListView = db.Company.Where(o => o.Active == true).ToList();
+
+            return View(model);
         }
         public ActionResult Company()
         {
