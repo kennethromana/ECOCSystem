@@ -83,6 +83,7 @@ namespace ECOCSystem.Controllers
             newBranch.BusinessPhone = model.BusinessPhone;
             newBranch.MobilePhone = model.MobilePhone;
             newBranch.FaxNumber = model.FaxNumber;
+            newBranch.AccreditationNumber = model.AccreditationNumber;
             newBranch.TIN = model.TIN;
 
             newBranch.Active = true;
