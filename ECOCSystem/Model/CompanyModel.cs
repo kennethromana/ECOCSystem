@@ -42,10 +42,17 @@ namespace ECOCSystem.Model
         public BranchModel() 
         {
             BranchList = new List<BranchList>();
+            CompanyList = new List<CompanyList>();
         }
+        [Required]
+        [DisplayName("Company")]
         public int CompanyID { get; set; }
         public int BranchID { get; set; }
+        [Required]
+        [DisplayName("Branch Name")]
         public string Name { get; set; }
+        [Required]
+        [DisplayName("Address")]
         public string Address { get; set; }
         public string EmailAddress { get; set; }
         public string BusinessPhone { get; set; }
@@ -54,12 +61,16 @@ namespace ECOCSystem.Model
         public string TIN { get; set; }
         public string Website { get; set; }
         public string ZipCode { get; set; }
+        [Required]
+        [DisplayName("Accreditation Number")]
         public string AccreditationNumber { get; set; }
         public List<BranchList> BranchList { get; set; }
+        public List<CompanyList> CompanyList { get; set; }
 
     }
     public class BranchList 
     {
+      
         public int BranchID { get; set; }
         public string CompanyName { get; set; }
         public string BranchName { get; set; }

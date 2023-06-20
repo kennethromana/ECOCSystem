@@ -107,15 +107,27 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                @using (Html.BeginForm("CompanyInfo", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
+                @using (Html.BeginForm("BranchInfo", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
                 {
+                   
 
                     <div class="modal-body @*overlay*@">
                         <section class="row mt-4 pb-4">
                             @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
                             <div class="form-group col-lg-12">
+                                @Html.LabelFor(m => m.CompanyID)
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.CompanyID, new SelectList(Model.CompanyList, "ID", "Info"), " Select Company  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyList", "GetData") })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.CompanyID, "", new { @class = "" })
+                            </div>
+
+                        </section>
+                        <section class="row pb-4">
+                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+                            <div class="form-group col-lg-12">
                                 @Html.LabelFor(o => o.Name)
-                                <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Company Name" })</div>
+                                <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Branch Name" })</div>
                                 @Html.ValidationMessageFor(o => o.Name)
                             </div>
 
@@ -149,6 +161,11 @@
 
                         </section>
                         <section class="row pb-4">
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.AccreditationNumber)
+                                <div class="input-group">@Html.TextBoxFor(o => o.AccreditationNumber, new { @class = "form-control input-style", placeholder = "Accreditation Number" })</div>
+                                @Html.ValidationMessageFor(o => o.AccreditationNumber)
+                            </div>
                             <div class="form-group col-lg-4">
                                 @Html.LabelFor(o => o.FaxNumber)
                                 <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>

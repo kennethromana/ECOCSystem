@@ -71,5 +71,31 @@ namespace ECOCSystem.Controllers
 
             return RedirectToAction("Company");
         }
+
+        public ActionResult BranchInfo(BranchModel model)
+        {
+            var newBranch = new CompanyBranch();
+
+            newBranch.CompanyID = model.CompanyID;
+            newBranch.Name = model.Name;
+            newBranch.Address = model.Address;
+            newBranch.EmailAddress = model.EmailAddress;
+            newBranch.BusinessPhone = model.BusinessPhone;
+            newBranch.MobilePhone = model.MobilePhone;
+            newBranch.FaxNumber = model.FaxNumber;
+            newBranch.TIN = model.TIN;
+
+            newBranch.Active = true;
+            newBranch.CreatedBy = CurrentUser.Details.ID;
+            newBranch.CreatedDate = DateTime.Now;
+
+            db.CompanyBranch.Add(newBranch);
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = "New Company Branch added Succesfully!";
+
+
+            return RedirectToAction("Branch");
+        }
     }
 }
