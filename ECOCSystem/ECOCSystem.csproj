@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CPTLController.cs" />
     <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Model\CompanyBranch.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CompanyModel.cs" />
     <Compile Include="Model\CPTLModel.cs" />
     <Compile Include="Model\ECOC.Context.cs">
       <AutoGen>True</AutoGen>
@@ -2584,6 +2586,8 @@
     <Content Include="Views\CPTL\_Client.cshtml" />
     <Content Include="Views\CPTL\_Address.cshtml" />
     <Content Include="Views\Shared\_Vehicle.cshtml" />
+    <Content Include="Views\Company\Company.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
