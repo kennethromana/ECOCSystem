@@ -24,5 +24,28 @@ namespace ECOCSystem.Controllers
 
             return View(model);
         }
+        public ActionResult CompanyInfo(Company model)
+        {
+            var newCompany = new Company();
+            newCompany.Name = model.Name;
+            newCompany.Address = model.Address;
+            newCompany.EmailAddress = model.EmailAddress;
+            newCompany.BusinessPhone = model.BusinessPhone;
+            newCompany.MobilePhone = model.MobilePhone;
+            newCompany.FaxNumber = model.FaxNumber;
+            newCompany.TIN = model.TIN;
+
+            newCompany.Active = true;
+            newCompany.CreatedBy = CurrentUser.Details.ID;
+            newCompany.CreatedDate = DateTime.Now;
+
+            db.Company.Add(newCompany);
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = "New Company added Succesfully!";
+
+
+            return RedirectToAction("Company");
+        }
     }
 }
