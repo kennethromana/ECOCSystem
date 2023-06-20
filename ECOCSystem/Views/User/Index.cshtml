@@ -141,14 +141,14 @@
                                 <div class="form-group col-lg-4 col-sm-4">
                                     @Html.LabelFor(m => m.SelectedCompanyID)
                                     <div class="input-group">
-                                        @Html.DropDownListFor(m => m.SelectedCompanyID, new SelectList(Model.UserTypes, "ID", "Info"), " Select Company  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyList", "GetData") })
+                                        @Html.DropDownListFor(m => m.SelectedCompanyID, new SelectList(Model.CompanyList, "ID", "Info"), " Select Company  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyList", "GetData") })
                                     </div>
                                     @Html.ValidationMessageFor(m => m.SelectedCompanyID, "", new { @class = "" })
                                 </div>
                                 <div class="form-group col-lg-4 col-sm-4">
                                     @Html.LabelFor(m => m.SelectedCompanyBranchID)
                                     <div class="input-group">
-                                        @Html.DropDownListFor(m => m.SelectedCompanyBranchID, new SelectList(Model.UserTypes, "ID", "Info"), " Select Branch  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyBranchList", "GetData") })
+                                        @Html.DropDownListFor(m => m.SelectedCompanyBranchID, new SelectList(Model.CompanyBranchList, "ID", "Info"), " Select Branch  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyBranchList", "GetData") })
                                     </div>
                                     @Html.ValidationMessageFor(m => m.SelectedCompanyBranchID, "", new { @class = "" })
                                 </div>
