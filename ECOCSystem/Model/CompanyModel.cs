@@ -42,7 +42,7 @@ namespace ECOCSystem.Model
         public BranchModel() 
         {
             BranchList = new List<BranchList>();
-            CompanyList = new List<CompanyList>();
+            CompanyList = new List<DropdownModel>();
         }
         [Required]
         [DisplayName("Company")]
@@ -65,7 +65,7 @@ namespace ECOCSystem.Model
         [DisplayName("Accreditation Number")]
         public string AccreditationNumber { get; set; }
         public List<BranchList> BranchList { get; set; }
-        public List<CompanyList> CompanyList { get; set; }
+        public List<DropdownModel> CompanyList { get; set; }
 
     }
     public class BranchList 

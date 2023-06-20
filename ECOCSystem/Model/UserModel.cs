@@ -12,9 +12,9 @@ namespace ECOCSystem.Model
         public UserModel()
         {
             UserList = new List<UserList>();
-            UserTypes = new List<UserTypeList>();
-            CompanyList = new List<CompanyList>();
-            CompanyBranchList = new List<CompanyBranchList>();
+            UserTypes = new List<DropdownModel>();
+            CompanyList = new List<DropdownModel>();
+            CompanyBranchList = new List<DropdownModel>();
         }
         [Required]
         [DisplayName("User Type")]
@@ -40,9 +40,9 @@ namespace ECOCSystem.Model
         [DisplayName("Last Name")]
         public string LastName { get; set; }
         public string MiddleName { get; set; }
-        public List<UserTypeList> UserTypes { get; set; }
-        public List<CompanyList> CompanyList { get; set; }
-        public List<CompanyBranchList> CompanyBranchList { get; set; }
+        public List<DropdownModel> UserTypes { get; set; }
+        public List<DropdownModel> CompanyList { get; set; }
+        public List<DropdownModel> CompanyBranchList { get; set; }
 
     }
 
@@ -64,19 +64,7 @@ namespace ECOCSystem.Model
         public string UserType { get; set; }
 
     }
-    public class UserTypeList
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-
-    }
-    public class CompanyList
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-
-    }
-    public class CompanyBranchList
+    public class DropdownModel
     {
         public int ID { get; set; }
         public string Info { get; set; }
