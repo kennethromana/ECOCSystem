@@ -127,6 +127,7 @@
             //});
             getBatchList(CompanyID)
             getCompanyInfo(CompanyID)
+            getUserList(CompanyID)
 
 
         });
@@ -227,6 +228,73 @@
             ]
         });
            $('#tbl_Batches_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+        //$(document).on("change", "input[name='checkAddress']", function () {
+        //    $('input.chk').not(this).prop('checked', false);
+
+        //    let AddressID = $(this).attr('AddressID');
+        //    $('#AddressID').val(AddressID);
+
+        //});
+    };
+
+    function getUserList(CompanyID) {
+
+        let cntRow = 0;
+        batchList_table = $("#tbl_Users").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetCompanyUserList", "Company")',
+                "type": "POST",
+                "datatype": "json",
+                "data": function (o) {
+                    o.CompanyID = CompanyID;
+                },
+                "beforeSend": function () {
+
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "ID", "data": null, "name": "ID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="icheck-success d-inline">
+                                    <input class="chk" name="checkAddress" type="checkbox" AddressID="`+ data.ID + `" id="address` + data.ID +`">
+                                        <label for="address`+ data.ID+`">
+                                    </label>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "UserType", "data": "UserType", "name": "UserType", "autoWidth": true },            
+                { "className": "Fname", "data": "Fname", "name": "Fname", "autoWidth": true },
+                { "className": "Lname", "data": "Lname", "name": "Lname", "autoWidth": true },
+                { "className": "Mname", "data": "Mname", "name": "Mname", "autoWidth": true },
+                { "className": "Email", "data": "Email", "name": "Email", "autoWidth": true },
+
+            ]
+        });
+           $('#tbl_Users_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
         //$(document).on("change", "input[name='checkAddress']", function () {
         //    $('input.chk').not(this).prop('checked', false);

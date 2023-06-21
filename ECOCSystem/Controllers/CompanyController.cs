@@ -159,6 +159,39 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
+        [HttpPost]
+        public ActionResult GetCompanyUserList(int CompanyID)
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    var tableData = (from a in db.Account
+                                     from b in db.UserType.Where(o => o.ID == a.UserTypeID).DefaultIfEmpty()
+                                     where a.Active == true &&
+                                     a.CompanyID == CompanyID
+                                     select new
+                                     {
+                                         ID = a.ID,
+                                         Email = a.Email,
+                                         Fname = a.FirstName,
+                                         Lname = a.LastName,
+                                         Mname = a.MiddleName,
+                                         UserType = b.Name,
+                                     }
+                                     ).ToList();
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public JsonResult GetCompanyInfo(int CompanyID)
         {
