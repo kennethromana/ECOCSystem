@@ -166,7 +166,7 @@ svg:hover .tooltip {
         text-overflow: ellipsis;
         min-height: 30px;
         /* font-weight: bold; */
-        justify-content: center;
+/*        justify-content: center;*/
         font-weight: 500;
         margin-bottom: 20px;
     }
@@ -175,6 +175,13 @@ svg:hover .tooltip {
         font-size: smaller;
         letter-spacing: .5px;
         text-transform: uppercase;
+    /*    display: flex;
+        justify-content: center;*/
+    }
+
+    blockquote h1, blockquote h2, blockquote h3, blockquote h4, blockquote h5, blockquote h6 {
+        font-weight: 100;
+
     }
 </style>
 <section class="content">
@@ -379,29 +386,80 @@ svg:hover .tooltip {
                                                 <div class="row">
                                                     <div class="col-sm-12">
 
-                                                        <div class="row">
-                                                            <div class="form-group col-lg-4 info-container">
-                                                                <label class="info-label">Registration Type</label>
-                                                                <span class="input-group info-display" data-toggle="tooltip" id="CSR_Make">Renewal</span>
+
+                                                        <blockquote>
+             
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Registration Type</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType">Renewal</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </blockquote>
+
+                                                        <blockquote>
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 info-container">
+                                                                    <h6 class="">Client</h6>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 info-container">
+                                                                    @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
+                                                                    <label class="info-label">Corporate Name</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_ClientName">Databridge Asia Inc</span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
+                                                                    <label class="info-label">First Name</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_ClientName"></span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Last Name</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType"></span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Middle Name</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType"></span>
+                                                                </div>
+                                                            </div>
+                                                        </blockquote>
+
+                                                        <blockquote>
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 info-container">
+                                                                    <h6 class="">Address</h6>
+                                                                </div>
+                                                                
                                                             </div>
 
-                                                        </div>
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
+                                                                    <label class="info-label">House Blg No.</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_ClientName">Cor. Panal & Kangleon Street</span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Street Name</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType">Abgao, Maasin City</span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Barangay</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType">Southern Leyte</span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">City</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType">Abgao, Maasin City</span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Province</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_RegistrationType">Abgao, Maasin City</span>
+                                                                </div>
+                                                             </div>
+                                                        </blockquote>
 
-                                                        <div class="row">
-                                                            <div class="form-group col-lg-4 info-container">
-                                                                @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
-                                                                <label class="info-label">First Name</label>
-                                                                <span class="input-group info-display" data-toggle="tooltip" id="CSR_Make"></span>
-                                                            </div>
-                                                            <div class="form-group col-lg-4 info-container">
-                                                                <label class="info-label">First Name</label>
-                                                                <span class="input-group info-display" data-toggle="tooltip" id="CSR_Series"></span>
-                                                            </div>
-                                                            <div class="form-group col-lg-4 info-container">
-                                                                <label class="info-label">First Name</label>
-                                                                <span class="input-group info-display" data-toggle="tooltip" id="CSR_Color"></span>
-                                                            </div>
-                                                        </div>
 
                                                     </div>
 
