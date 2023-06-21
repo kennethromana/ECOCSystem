@@ -12,7 +12,7 @@
         <div class="card-header">
             <h3 class="card-title">Company List</h3>
         </div>
-        <div class="fab" type="button" data-toggle="modal" data-target="#modal-companyInfo" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" id="addCompany" type="button" data-toggle="modal" data-target="#modal-companyInfo" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
             <div id="" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
@@ -72,79 +72,6 @@
 
 
 
-    <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Company Information</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                @using (Html.BeginForm("CompanyInfo", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "MV_Form" }))
-                {
-
-                    <div class="modal-body @*overlay*@">
-                        <section class="row mt-4 pb-4">
-                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                            <div class="form-group col-lg-12">
-                                @Html.LabelFor(o => o.Name)
-                                <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Company Name" })</div>
-                                @Html.ValidationMessageFor(o => o.Name)
-                            </div>
-
-                        </section>
-                        <section class="row pb-4">
-                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                            <div class="form-group col-lg-12">
-                                @Html.LabelFor(o => o.Address)
-                                <div class="input-group">@Html.TextBoxFor(o => o.Address, new { @class = "form-control input-style", placeholder = "Address" })</div>
-                                @Html.ValidationMessageFor(o => o.Address)
-                            </div>
-
-                        </section>
-                        <section class="row pb-4">
-                            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(o => o.EmailAddress)
-                                <div class="input-group">@Html.TextBoxFor(o => o.EmailAddress, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
-                                @Html.ValidationMessageFor(o => o.EmailAddress)
-                            </div>
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(o => o.BusinessPhone)
-                                <div class="input-group">@Html.TextBoxFor(o => o.BusinessPhone, new { @class = "form-control input-style", placeholder = "Business Phone" })</div>
-                                @Html.ValidationMessageFor(o => o.BusinessPhone)
-                            </div>
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(o => o.MobilePhone)
-                                <div class="input-group">@Html.TextBoxFor(o => o.MobilePhone, new { @class = "form-control input-style", placeholder = "Mobile Phone" })</div>
-                                @Html.ValidationMessageFor(o => o.MobilePhone)
-                            </div>
-
-                        </section>
-                        <section class="row pb-4">
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(o => o.FaxNumber)
-                                <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>
-                                @Html.ValidationMessageFor(o => o.FaxNumber)
-                            </div>
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(o => o.TIN)
-                                <div class="input-group">@Html.TextBoxFor(o => o.TIN, new { @class = "form-control input-style", placeholder = "TIN" })</div>
-                                @Html.ValidationMessageFor(o => o.TIN)
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modal-footer justify-content-between submit-btn">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" name="submit" value="ADDUSER" class="btn btn-success">Save </button>
-                    </div>
-                }
-            </div>
-
-        </div>
-
-    </div>
 
     <div class="modal fade" id="modal-companyInfo" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -156,3 +83,18 @@
 
     </div>
 </section>
+<script>
+    $(document).ready(function () {
+
+        $('#addCompany').on('click', function () {
+            $('#companyOption').empty();
+            $('#companyOption').append(`<button class="btn btn-success">Save</button> `)
+
+            //$('#submit_Address').on('click', function () {
+            //    submitForm("ADDADDRESS");
+            //});
+        });
+
+
+    });
+</script>

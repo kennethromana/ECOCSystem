@@ -165,7 +165,7 @@
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CPTL_Form" }))
+                                @using (Html.BeginForm("CPTL", "CPTL", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompantInfo_Form" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <section class="row pb-4 ">
@@ -205,7 +205,10 @@
                                             @Html.ValidationMessageFor(o => o.TIN)
                                         </div>
                                     </section>
-                
+                                    <section id="companyOption" class="row mt-4 pb-4 submit-btn">
+                                        
+                                    </section>
+
                                     <section class="row pb-4">
                                         <div class="col-12 col-sm-12 card">
                                             <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
@@ -222,19 +225,19 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             @*<table id="tbl_Address" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><center>Select</center></th>
-                                                                        <th>Address Type</th>
-                                                                        <th>House Bldg No</th>
-                                                                        <th>Street Subdivision</th>
-                                                                        <th>Barangay</th>
-                                                                        <th>Zip Code</th>
-                                                                        <th>City</th>
-                                                                        <th>Province</th>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>*@
+                                        <thead>
+                                            <tr>
+                                                <th><center>Select</center></th>
+                                                <th>Address Type</th>
+                                                <th>House Bldg No</th>
+                                                <th>Street Subdivision</th>
+                                                <th>Barangay</th>
+                                                <th>Zip Code</th>
+                                                <th>City</th>
+                                                <th>Province</th>
+                                            </tr>
+                                        </thead>
+                                    </table>*@
 
                                                         </div>
                                                     </div>
@@ -258,28 +261,26 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             @*<table id="tbl_Vehicle" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><center>Select</center></th>
-                                                                        <th>Vehicle Type</th>
-                                                                        <th>Serial / Chassis</th>
-                                                                        <th>Plate No.</th>
-                                                                        <th>Year</th>
-                                                                        <th>Make</th>
-                                                                        <th>Body</th>
-                                                                        <th>Series</th>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>*@
+                                        <thead>
+                                            <tr>
+                                                <th><center>Select</center></th>
+                                                <th>Vehicle Type</th>
+                                                <th>Serial / Chassis</th>
+                                                <th>Plate No.</th>
+                                                <th>Year</th>
+                                                <th>Make</th>
+                                                <th>Body</th>
+                                                <th>Series</th>
+                                            </tr>
+                                        </thead>
+                                    </table>*@
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </section>
-                                    <section class="row mt-4 pb-4 submit-btn">
-                                        <button class="btn btn-success" style="height: 45px; ">Submit Application</button>
-                                    </section>
+
 
 
                                     <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
@@ -313,7 +314,12 @@
 
         </section>
     </div>
-    <div id="addressOption" class="modal-footer justify-content-between submit-btn">
-    </div>
+    @*<div id="addressOption" class="modal-footer justify-content-between submit-btn">
+    </div>*@
 </div>
 
+<script>
+
+   
+
+</script>
