@@ -148,7 +148,7 @@ namespace ECOCSystem.Controllers
                 using (var db = new ECOCEntities())
                 {
                    
-                    var tableData = db.CompanyBranch.Where(o => o.CompanyID != CompanyID).ToList();
+                    var tableData = db.CompanyBranch.Where(o => o.CompanyID == CompanyID).ToList();
 
                     //Returning Json Data    
                     return Json(new { data = tableData });
