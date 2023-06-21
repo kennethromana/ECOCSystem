@@ -558,7 +558,7 @@ svg:hover .tooltip {
                 data: addAntiForgeryToken(formData),
                 beforeSend: function () {
                     toastr.clear();
-                
+
                 },
                 success: function (response) {
                     switch (response.Status) {
@@ -625,7 +625,7 @@ svg:hover .tooltip {
             height: "100%",
         });
 
-
+        getAddressInfo(0)
         getAddressList(0)
         getVehicleList(0)
 
@@ -641,7 +641,12 @@ svg:hover .tooltip {
 
     });
 
+    $('#SelectedRegistrationTypeID').on('click', function () {
 
+        //for Application Summary
+        $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
+
+    })
     function getAddressList(ClientID) {
         let cntRow = 0;
         vehicle_table = $("#tbl_Address").DataTable({
@@ -727,7 +732,7 @@ svg:hover .tooltip {
                 "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
-            "ajax": {   
+            "ajax": {
                 "url": '@Url.Action("GetClientVehicleList", "CPTL")',
                 "type": "POST",
                 "datatype": "json",
@@ -776,5 +781,38 @@ svg:hover .tooltip {
             let VehicleID = $(this).attr('VehicleID');
             $('#VehicleID').val(VehicleID);
         });
+    };
+
+    let getAddressInfo = (AddressID) => {
+
+        $('#loadingScreen').show();
+        $.ajax({
+            url: '@Url.Action("GetAddressInfo", "GetData")',
+            type: "GET",
+            cache: false,
+            dataType: "JSON",
+            beforeSend: function () {
+                $('#loadingScreen').show();
+            },
+            async: false,
+            data: { "AddressID": AddressID },
+            success: function (response) {
+
+                $('#CompanyInfo_Name').val(response.Name)
+                $('#CompanyInfo_Address').val(response.Address)
+                $('#CompanyInfo_EmailAddress').val(response.EmailAddress)
+                $('#CompanyInfo_BusinessPhone').val(response.BusinessPhone)
+                $('#CompanyInfo_MobilePhone').val(response.MobilePhone)
+                $('#CompanyInfo_FaxNumber').val(response.FaxNumber)
+                $('#CompanyInfo_TIN').val(response.TIN)
+            },
+            error: function (xhr, status, error) {
+                toastr.error('An error has occured while processing, Please contact Databridge Support.');
+            },
+            complete: function () {
+                $('#loadingScreen').hide();
+            },
+        });
+
     };
 </script>

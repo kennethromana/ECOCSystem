@@ -537,5 +537,37 @@ namespace ECOCSystem.Controllers
                 return jsonResult;
             }
         }
+        public JsonResult GetAddressInfo(int AddressID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                var AddressInfo = (from a in db.ClientAddress
+                                   from b in db.Client.Where(o => o.ID == a.ClientID).DefaultIfEmpty()
+                                   from c in db.City.Where(o => o.CityID == a.CityID).DefaultIfEmpty()
+                                   from d in db.Province.Where(o => o.ProvinceID == a.ProvinceID).DefaultIfEmpty()
+                                   from e in db.AddressType.Where(o => o.ID == a.AddressTypeID).DefaultIfEmpty()
+                                   where
+                                   a.Active == true 
+                                   select new
+                                   {
+                                       AddressID = a.ID,
+                                       HouseBldgNo = a.HouseBldgNo,
+                                       StreetName = a.StreetSubdivision,
+                                       Barangay = a.Barangay,
+                                       ZipCode = a.ZipCode,
+                                       City = c.CityName,
+                                       Province = d.ProvinceName,
+                                       AddressType = e.Name,
+                                       EmailAddress = a.EmailAddress,
+                                       MobileNo = a.MobileNo,
+                                       TelephoneNo = a.TelephoneNo
+
+                                   }).FirstOrDefault();
+
+
+
+                return Json(AddressInfo, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
