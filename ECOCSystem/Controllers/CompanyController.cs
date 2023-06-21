@@ -28,6 +28,57 @@ namespace ECOCSystem.Controllers
 
             return View(model);
         }
+        public ActionResult CompanyForm(CompanyModel model,string submit)
+        {
+            using (var db = new ECOCEntities())
+            using (var dbTransaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    switch (submit)
+                    {
+                        case "ADDCOMPANY":
+                            {
+                                var newCompany = new Company();
+                                newCompany.Name = model.Name;
+                                newCompany.Address = model.Address;
+                                newCompany.EmailAddress = model.EmailAddress;
+                                newCompany.BusinessPhone = model.BusinessPhone;
+                                newCompany.MobilePhone = model.MobilePhone;
+                                newCompany.FaxNumber = model.FaxNumber;
+                                newCompany.TIN = model.TIN;
+
+                                newCompany.Active = true;
+                                newCompany.CreatedBy = CurrentUser.Details.ID;
+                                newCompany.CreatedDate = DateTime.Now;
+
+                                db.Company.Add(newCompany);
+
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
+
+                                TempData["SuccessMessage"] = "New Company added Succesfully!";
+
+                            }
+                            break;
+                        default:
+                            TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    dbTransaction.Rollback();
+                    TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+
+                }
+
+            }
+
+            return RedirectToAction("Index");
+
+        }
         public ActionResult Branch()
         {
             var model = new BranchModel();

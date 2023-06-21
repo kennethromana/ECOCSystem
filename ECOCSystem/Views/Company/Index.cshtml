@@ -7,88 +7,91 @@
 
 <section class="content">
     <div class="card card-success card-outline">
-
-
         <div class="card-header">
             <h3 class="card-title">Company List</h3>
         </div>
         <div class="fab" id="addCompany" type="button" data-toggle="modal" data-target="#modal-companyInfo" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
-            <div id="" class="dataTables_wrapper dt-bootstrap4">
-                <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
-                    <div class="col-sm-12">
-                        <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="" t>
-                            <thead>
-                              
-                                <tr>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Business Phone</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Mobile Phone</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Fax No.</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">TIN</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              
-                                @for (int i = 0; i < Model.CompanyListView.Count(); i++)
-                                {
+            @using (Html.BeginForm("CompanyForm", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            {
+                <div id="" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                        <div class="col-sm-12">
+                            <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="" t>
+                                <thead>
                                     <tr>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].Name)
-                                        </td>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].Address)
-                                        </td>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].EmailAddress)
-                                        </td>
-
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].BusinessPhone)
-                                        </td>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].MobilePhone)
-                                        </td>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].FaxNumber)
-                                        </td>
-                                        <td style="width: 14.28%;">
-                                            @Html.DisplayFor(o => Model.CompanyListView[i].TIN)
-                                        </td>
-
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Business Phone</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Mobile Phone</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Fax No.</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">TIN</th>
                                     </tr>
-                                }
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                          
-                        </table>
+                                    @for (int i = 0; i < Model.CompanyListView.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].Name)
+                                            </td>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].Address)
+                                            </td>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].EmailAddress)
+                                            </td>
+
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].BusinessPhone)
+                                            </td>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].MobilePhone)
+                                            </td>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].FaxNumber)
+                                            </td>
+                                            <td style="width: 14.28%;">
+                                                @Html.DisplayFor(o => Model.CompanyListView[i].TIN)
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
+                <div class="modal fade" id="modal-companyInfo" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
 
+                        @{
+                            Html.RenderPartial("_CompanyInfo", Model.CompanyInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyInfo" } });
+                        }
+                    </div>
 
-
-    <div class="modal fade" id="modal-companyInfo" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-
-            @{
-                Html.RenderPartial("_CompanyInfo", Model.CompanyInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyInfo" } });
+                </div>
             }
-        </div>
 
+        </div>
     </div>
+
+
+
+
+  
 </section>
 <script>
     $(document).ready(function () {
-
+        all_table.destroy();
         $('#addCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button class="btn btn-success">Save</button> `)
+            $('#companyOption').append(`<button type="submit" name="submit" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
 
             //$('#submit_Address').on('click', function () {
             //    submitForm("ADDADDRESS");
