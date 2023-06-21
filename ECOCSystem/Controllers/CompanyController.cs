@@ -139,6 +139,26 @@ namespace ECOCSystem.Controllers
 
             return RedirectToAction("Company");
         }
+        [HttpPost]
+        public ActionResult GetCompanyBatchList(int CompanyID)
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+                   
+                    var tableData = db.CompanyBranch.Where(o => o.CompanyID != CompanyID).ToList();
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public ActionResult BranchInfo(BranchModel model)
         {

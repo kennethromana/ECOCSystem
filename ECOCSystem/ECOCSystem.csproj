@@ -2590,6 +2590,7 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Branch.cshtml" />
     <Content Include="Views\Company\_CompanyInfo.cshtml" />
+    <Content Include="Views\Company\_BranchList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
