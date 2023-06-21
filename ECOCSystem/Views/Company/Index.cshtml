@@ -101,7 +101,7 @@
 <script>
     $(document).ready(function () {
 
-/*        all_table.destroy();*/
+
 
 
         $('#addCompany').on('click', function () {
@@ -111,12 +111,13 @@
             //$('#submit_Address').on('click', function () {
             //    submitForm("ADDADDRESS");
             //});
-     
+          
+
 
         });
         $('.editCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button type="submit" name="submit" value="EDITCOMPANY" class="btn btn-success">Save</button> `)
+            $('#companyOption').append(`<button type="submit" name="submit" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
 
             let CompanyID = $(this).attr('CompanyID');
 
@@ -125,12 +126,49 @@
             //    submitForm("ADDADDRESS");
             //});
             getBatchList(CompanyID)
+            getCompanyInfo(CompanyID)
 
 
         });
 
     });
-       function getBatchList(CompanyID) {
+
+    function getCompanyInfo(CompanyID)
+    {
+            $.ajax({
+                url: '@Url.Action("GetCompanyInfo", "Company")',
+                type: "GET",
+                cache: false,
+                dataType: "JSON",
+                beforeSend: function () {
+                    $('#loadingScreen').show();
+                },
+                async: false,
+                data: { "CompanyID": CompanyID },
+                success: function (response) {
+
+                    $('#CompanyInfo_Name').val(response.Name)
+                    $('#CompanyInfo_Address').val(response.Address)
+                    $('#CompanyInfo_EmailAddress').val(response.EmailAddress)
+                    $('#CompanyInfo_BusinessPhone').val(response.BusinessPhone)
+                    $('#CompanyInfo_MobilePhone').val(response.MobilePhone)
+                    $('#CompanyInfo_FaxNumber').val(response.FaxNumber)
+                    $('#CompanyInfo_TIN').val(response.TIN)
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                    $(".modal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $('#loadingScreen').hide();
+                },
+            });
+           
+       
+    };
+    function getBatchList(CompanyID) {
+    /*    all_table.clear();*/
         let cntRow = 0;
          batchList_table  = $("#tbl_Batches").DataTable({
             "processing": true, // for show progress bar

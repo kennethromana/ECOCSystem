@@ -40,7 +40,7 @@ namespace ECOCSystem.Controllers
                         case "ADDCOMPANY":
                             {
                                 var newCompany = new Company();
-                                newCompany.Name = model.CompanyInfo.Name;
+                                newCompany.Name = model.CompanyInfo.Name.Trim();
                                 newCompany.Address = model.CompanyInfo.Address;
                                 newCompany.EmailAddress = model.CompanyInfo.EmailAddress;
                                 newCompany.BusinessPhone = model.CompanyInfo.BusinessPhone;
@@ -157,6 +157,16 @@ namespace ECOCSystem.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public JsonResult GetCompanyInfo(int CompanyID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                var CompanyInfo = db.Company.Where(o => o.ID == CompanyID).FirstOrDefault();
+
+                return Json(CompanyInfo, JsonRequestBehavior.AllowGet);
             }
         }
 
