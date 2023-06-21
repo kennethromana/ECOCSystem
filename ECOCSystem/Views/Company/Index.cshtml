@@ -14,12 +14,15 @@
         <div class="card-body">
             @using (Html.BeginForm("CompanyForm", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
+
+                @Html.HiddenFor(m => m.CompanyID)
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
                         <div class="col-sm-12">
                             <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="" t>
                                 <thead>
                                     <tr>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"><center>Action Edit</center></th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
@@ -34,6 +37,15 @@
                                     @for (int i = 0; i < Model.CompanyListView.Count(); i++)
                                     {
                                         <tr>
+                                            <td style="width: 14.28%;">
+                                                <center>
+                                                    <div class="">
+                                                        <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" CompanyID ="@Model.CompanyListView[i].ID"> 
+                                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                                        </span>
+                                                    </div>
+                                                </center>
+                                            </td>
                                             <td style="width: 14.28%;">
                                                 @Html.DisplayFor(o => Model.CompanyListView[i].Name)
                                             </td>
@@ -102,6 +114,20 @@
      
 
         });
+        $('.editCompany').on('click', function () {
+            $('#companyOption').empty();
+            $('#companyOption').append(`<button type="submit" name="submit" value="EDITCOMPANY" class="btn btn-success">Save</button> `)
+
+            let CompanyID = $(this).attr('CompanyID');
+
+        /*    console.log(CompanyID)*/
+            //$('#submit_Address').on('click', function () {
+            //    submitForm("ADDADDRESS");
+            //});
+            getBatchList(CompanyID)
+
+
+        });
 
     });
        function getBatchList(CompanyID) {
@@ -162,7 +188,7 @@
 
             ]
         });
-        /*$('#tbl_Address_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');*/
+           $('#tbl_Batches_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
         //$(document).on("change", "input[name='checkAddress']", function () {
         //    $('input.chk').not(this).prop('checked', false);

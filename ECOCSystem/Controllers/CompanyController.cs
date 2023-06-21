@@ -58,7 +58,7 @@ namespace ECOCSystem.Controllers
                                 var newBranch = new CompanyBranch();
                                 newBranch.CompanyID = newCompany.ID;
                                 newBranch.Name = "Main Branch";
-                                newBranch.Address = model.Address;            
+                                newBranch.Address = model.CompanyInfo.Address;
 
                                 newBranch.Active = true;
                                 newBranch.CreatedBy = CurrentUser.Details.ID;
