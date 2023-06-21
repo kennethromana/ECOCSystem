@@ -8,11 +8,11 @@ namespace ECOCSystem.Tools
 {
     public class CurrentUser
     {
-        public static Account Details
+        public static AccountModel Details
         {
             get
             {
-                return (Account)HttpContext.Current.Session["VRCurrentUser"];
+                return (AccountModel)HttpContext.Current.Session["VRCurrentUser"];
             }
             set
             {

@@ -270,7 +270,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                            <a href="@Url.Action("Dashboard", "Home")" class="nav-link"> <h5>Main Branch</h5>  </a>
+                            <a href="@Url.Action("Dashboard", "Home")" class="nav-link"> <h5>@CurrentUser.Details.BranchName</h5>  </a>
                         </li>
                  
                 </ul>
@@ -291,7 +291,7 @@
 
                 <a href="index3.html" class="brand-link">
                     @*<img src="~/Content/Images/TOYOTALOGO.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
-                    <span class="brand-text font-weight-light"><b>Databridge Asia Inc</b></span>
+                    <span class="brand-text font-weight-light"><b>@CurrentUser.Details.CompanyName</b></span>
                 </a>
 
                 <div class="sidebar">
@@ -301,7 +301,7 @@
                                 <img src="~/Content/Images/ISUZULOGO.png" class="img-circle elevation-2" alt="User Image">
                             </div>*@
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="#" class="d-block">@CurrentUser.Details.FullName</a>
                         </div>
                     </div>
 

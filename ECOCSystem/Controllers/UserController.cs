@@ -68,7 +68,28 @@ namespace ECOCSystem.Controllers
                     using (db = new ECOCEntities())
                     {
                         var EncryptedPassword = User.Password.Encrypt(User.Email);
-                        var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Password == EncryptedPassword && o.Active == true).FirstOrDefault();
+                        //var LoggedUser = db.Account.Where(o => o.Email == User.Email.Trim() && o.Password == EncryptedPassword && o.Active == true).FirstOrDefault();
+                        var LoggedUser = (from a in db.Account
+                                            from b in db.Company.Where(o => o.ID == a.CompanyID).DefaultIfEmpty()
+                                            from c in db.CompanyBranch.Where(o => o.ID == a.CompanyBranchID).DefaultIfEmpty()
+                                            where a.Active == true &&
+                                            a.Email == User.Email.Trim() &&
+                                            a.Password == EncryptedPassword
+                                            select new AccountModel
+                                            {
+                                                ID = a.ID,
+                                                Email = a.Email,
+                                                FirstName = a.FirstName,
+                                                LastName = a.LastName,
+                                                MiddleName = a.LastName,
+                                                CompanyID = a.CompanyID,
+                                                CompanyBranchID = a.CompanyBranchID,
+                                                UserTypeID = a.UserTypeID,
+                                                CompanyName = b.Name,
+                                                BranchName = c.Name,
+                                                FullName = a.FirstName + " " + a.LastName + " " +a.MiddleName,
+                                            }
+                                            ).FirstOrDefault();
 
                         if (LoggedUser != null)
                         {
