@@ -11,4 +11,10 @@ namespace ECOCSystem.Tools
         Corporate = 2,
         CorporateWithAssignee = 3
     }
+    public enum UserTypeEnum
+    {
+        SuperAdmin = 1,
+        CompanyAdministrator = 2,
+        BranchUser = 3
+    }
 }
