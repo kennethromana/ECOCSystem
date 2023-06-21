@@ -136,6 +136,7 @@
 
     function getCompanyInfo(CompanyID)
     {
+        $('#loadingScreen').show();
             $.ajax({
                 url: '@Url.Action("GetCompanyInfo", "Company")',
                 type: "GET",
@@ -191,11 +192,11 @@
                     o.CompanyID = CompanyID;
                 },
                 "beforeSend": function () {
-
+                    $('#loadingScreen').show();
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-
+                    $('#loadingScreen').show();
                 }
             },
             "createdRow": function (row, data, dataIndex) {
@@ -237,7 +238,7 @@
     };
 
     function getUserList(CompanyID) {
-
+   
         let cntRow = 0;
         batchList_table = $("#tbl_Users").DataTable({
             "processing": true, // for show progress bar
@@ -261,11 +262,11 @@
                     o.CompanyID = CompanyID;
                 },
                 "beforeSend": function () {
-
+                    $('#loadingScreen').show();
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-
+                    $('#loadingScreen').hide();
                 }
             },
             "createdRow": function (row, data, dataIndex) {
