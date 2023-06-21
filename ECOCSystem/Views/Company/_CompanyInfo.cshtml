@@ -213,7 +213,7 @@
                                         <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
                                             <label>Branch List</label>
                                             <div class="uiverse ">
-                                                <span class="tooltip">Add new address</span>
+                                                <span class="tooltip">Add new Branch</span>
                                                 <span type="button" id="addAddress" class="newaddress" data-toggle="modal" data-target="#modal-client-address">
                                                     +
                                                 </span>
@@ -250,7 +250,7 @@
                                         <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
                                             <label>User List</label>
                                             <div class="uiverse ">
-                                                <span class="tooltip">Add new vehicle</span>
+                                                <span class="tooltip">Add new User</span>
                                                 <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-client-vehicle">
                                                     +
                                                 </span>
@@ -319,7 +319,8 @@
 <script>
     $(document).ready(function () {
 
-        getBatchList(3)
+        getBatchList(0);
+        getUserList(0);
 
     });
 

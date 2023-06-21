@@ -160,8 +160,6 @@
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
                 },
                 complete: function () {
-                    $(".modal").modal('hide');
-                    $('.modal-backdrop').remove();
                     $('#loadingScreen').hide();
                 },
             });
