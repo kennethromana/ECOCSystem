@@ -40,24 +40,37 @@ namespace ECOCSystem.Controllers
                         case "ADDCOMPANY":
                             {
                                 var newCompany = new Company();
-                                newCompany.Name = model.Name;
-                                newCompany.Address = model.Address;
-                                newCompany.EmailAddress = model.EmailAddress;
-                                newCompany.BusinessPhone = model.BusinessPhone;
-                                newCompany.MobilePhone = model.MobilePhone;
-                                newCompany.FaxNumber = model.FaxNumber;
-                                newCompany.TIN = model.TIN;
+                                newCompany.Name = model.CompanyInfo.Name;
+                                newCompany.Address = model.CompanyInfo.Address;
+                                newCompany.EmailAddress = model.CompanyInfo.EmailAddress;
+                                newCompany.BusinessPhone = model.CompanyInfo.BusinessPhone;
+                                newCompany.MobilePhone = model.CompanyInfo.MobilePhone;
+                                newCompany.FaxNumber = model.CompanyInfo.FaxNumber;
+                                newCompany.TIN = model.CompanyInfo.TIN;
 
                                 newCompany.Active = true;
                                 newCompany.CreatedBy = CurrentUser.Details.ID;
                                 newCompany.CreatedDate = DateTime.Now;
 
                                 db.Company.Add(newCompany);
+                                db.SaveChanges();
 
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
+                                var newBranch = new CompanyBranch();
+                                newBranch.CompanyID = newCompany.ID;
+                                newBranch.Name = "Main Branch";
+                                newBranch.Address = model.Address;            
 
-                                TempData["SuccessMessage"] = "New Company added Succesfully!";
+                                newBranch.Active = true;
+                                newBranch.CreatedBy = CurrentUser.Details.ID;
+                                newBranch.CreatedDate = DateTime.Now;
+
+                                db.CompanyBranch.Add(newBranch);
+
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                TempData["SuccessMessage"] = "New Company was created Succesfully!";
 
                             }
                             break;
