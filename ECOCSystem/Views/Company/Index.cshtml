@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .modal {
+        overflow: auto !important;
+    }
+</style>
 <section class="content">
     <div class="card card-success card-outline">
         <div class="card-header">
@@ -102,6 +107,11 @@
     $(document).ready(function () {
 
 
+        $('#modal-company-branch').on('hide.bs.modal', function (e) {
+            // do something…
+            $("#modal-companyInfo .overlay").addClass("d-none");
+          
+        });
 
 
         $('#addCompany').on('click', function () {
