@@ -9,6 +9,11 @@
     .modal {
         overflow: auto !important;
     }
+
+    .card .overlay, .info-box .overlay, .overlay-wrapper .overlay, .small-box .overlay {
+        background-color: rgb(52 58 64 / 59%);
+
+    }
 </style>
 <section class="content">
     <div class="card card-success card-outline">
@@ -144,6 +149,7 @@
         });
 
     });
+
     function closeModalBranch() {
         $('#modal-company-branch').modal('hide')
         $("#modal-companyInfo .overlay").addClass("d-none");
