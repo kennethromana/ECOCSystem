@@ -214,7 +214,7 @@
                                             <label>Branch List</label>
                                             <div class="uiverse ">
                                                 <span class="tooltip">Add new Branch</span>
-                                                <span type="button" id="addAddress" class="newaddress" data-toggle="modal" data-target="#modal-client-address">
+                                                <span type="button" id="addBranch" class="" data-toggle="modal" data-target="#modal-company-branch">
                                                     +
                                                 </span>
                                             </div>
@@ -251,7 +251,7 @@
                                             <label>User List</label>
                                             <div class="uiverse ">
                                                 <span class="tooltip">Add new User</span>
-                                                <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-client-vehicle">
+                                                <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-company-branch">
                                                     +
                                                 </span>
                                             </div>
@@ -281,16 +281,18 @@
 
 
 
-                                <div class="modal fade" id="modal-client" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-
+                                <div class="modal fade" id="modal-company-branch" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        @{
+                                            Html.RenderPartial("_Branch", Model.Branch, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Branch" } });
+                                        }
                                     </div>
 
                                 </div>
 
 
 
-                                <div class="modal fade" id="modal-client-address" style="display: none;" aria-hidden="true">
+                                <div class="modal fade" id="modal-company-user" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-xl">
 
                                     </div>
