@@ -28,14 +28,26 @@ namespace ECOCSystem.Controllers
 
             return View(model);
         }
-        public ActionResult CompanyForm(CompanyModel model,string submit)
+        public ActionResult CompanyForm(CompanyModel model, string submitType)
         {
+
+            int currentCompany = (int)CurrentUser.Details.CompanyID;
+            int currentBranch = (int)CurrentUser.Details.CompanyBranchID;
+            var Status = "Error";
+            var PartialViewDataString = "";
+            var Message = "";
+
+
+            int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
+            int Corporate = Convert.ToInt32(TitleTypeEnum.Corporate);
+            int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
+
             using (var db = new ECOCEntities())
             using (var dbTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    switch (submit)
+                    switch (submitType)
                     {
                         case "ADDCOMPANY":
                             {
@@ -70,12 +82,16 @@ namespace ECOCSystem.Controllers
                                 db.SaveChanges();
                                 dbTransaction.Commit();
 
-                                TempData["SuccessMessage"] = "New Company was created Succesfully!";
+                           
+                                Status = "Success";
+                                Message = "Error. Please contact Databridge support to assist you.";
 
                             }
                             break;
                         default:
-                            TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                            Status = "Error";
+      
+                            Message = "There's something error. Please try again later.";
 
                             break;
                     }
@@ -83,13 +99,16 @@ namespace ECOCSystem.Controllers
                 catch (Exception)
                 {
                     dbTransaction.Rollback();
-                    TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                    Status = "Error";
+                    Message = "Error. Please contact Databridge support to assist you.";
 
                 }
 
             }
 
-            return RedirectToAction("Index");
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString });
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
 
         }
         public ActionResult Branch()

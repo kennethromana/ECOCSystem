@@ -124,7 +124,7 @@
 
         $('#addCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button type="button" id="submit_addCompany" name="submit" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
+            $('#companyOption').append(`<button type="button" id="submit_addCompany" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
 
             $('#submit_addCompany').on('click', function () {
                 submitForm("ADDCOMPANY");
@@ -135,7 +135,7 @@
         });
         $('.editCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button type="button" name="submit" id = "submit_editCompany"value="EDITCOMPANY" class="btn btn-success">Update</button> `)
+            $('#companyOption').append(`<button type="button"  id = "submit_editCompany" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
 
 
 
@@ -183,10 +183,7 @@
                             //$("#" + submitType).html(response.Data);
                             //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
 
-                            if (response.ClientID > 0) {
-                                getAddressList(response.ClientID)
-                                getVehicleList(response.ClientID)
-                            }
+                          
 
                /*             changeStatus();*/
             /*                LoadImage(response.MVID);*/
@@ -210,8 +207,7 @@
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
                 },
                 complete: function () {
-                    $(".modal").modal('hide');
-                    $('.modal-backdrop').remove();
+
                     $('#loadingScreen').hide();
                 },
             });
