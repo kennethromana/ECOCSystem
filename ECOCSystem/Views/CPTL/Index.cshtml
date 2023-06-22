@@ -625,7 +625,6 @@ svg:hover .tooltip {
             height: "100%",
         });
 
-        getAddressInfo(0)
         getAddressList(0)
         getVehicleList(0)
 
@@ -711,6 +710,7 @@ svg:hover .tooltip {
 
             let AddressID = $(this).attr('AddressID');
             $('#AddressID').val(AddressID);
+            getAddressInfo(AddressID)
 
         });
     };
@@ -798,13 +798,11 @@ svg:hover .tooltip {
             data: { "AddressID": AddressID },
             success: function (response) {
 
-                $('#CompanyInfo_Name').val(response.Name)
-                $('#CompanyInfo_Address').val(response.Address)
-                $('#CompanyInfo_EmailAddress').val(response.EmailAddress)
-                $('#CompanyInfo_BusinessPhone').val(response.BusinessPhone)
-                $('#CompanyInfo_MobilePhone').val(response.MobilePhone)
-                $('#CompanyInfo_FaxNumber').val(response.FaxNumber)
-                $('#CompanyInfo_TIN').val(response.TIN)
+                $("#Application_HouseBldg").text(response.HouseBldgNo)
+                $("#Application_Street").text(response.StreetName)
+                $("#Application_Barangay").text(response.Barangay)
+                $("#Application_City").text(response.City)
+                $("#Application_Province").text(response.Province)
             },
             error: function (xhr, status, error) {
                 toastr.error('An error has occured while processing, Please contact Databridge Support.');
