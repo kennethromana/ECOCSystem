@@ -50,7 +50,7 @@
                                             <td style="width: 14.28%;">
                                                 <center>
                                                     <div class="">
-                                                        <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" CompanyID ="@Model.CompanyListView[i].ID"> 
+                                                        <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" CompanyID="@Model.CompanyListView[i].ID">
                                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                                         </span>
                                                     </div>
@@ -94,6 +94,15 @@
 
                         @{
                             Html.RenderPartial("_CompanyInfo", Model.CompanyInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyInfo" } });
+                        }
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-company-branch" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        @{
+                            Html.RenderPartial("_Branch", Model.CompanyBranch, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyBranch" } });
                         }
                     </div>
 

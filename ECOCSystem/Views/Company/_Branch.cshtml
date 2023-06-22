@@ -89,13 +89,13 @@
         $('#addBranch').on('click', function () {
             $('#branchOption').empty();
             $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
-            <button type="button" id="submit_Address" class="btn btn-success">Save </button>  `)
+            <button type="button" id="submit_addBranch" class="btn btn-success">Save </button>  `)
 
             $("#modal-companyInfo .overlay").removeClass("d-none");
 
-            //$('#submit_Address').on('click', function () {
-            //    submitForm("ADDADDRESS");
-            //});
+            $('#submit_addBranch').on('click', function () {
+                submitForm("ADDBRANCH");
+            });
         });
 
 

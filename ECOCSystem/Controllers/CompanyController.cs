@@ -88,6 +88,18 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "ADDBRANCH":
+                            {
+                               
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
+
+
+                                Status = "Success";
+                                Message = "Error. Please contact Databridge support to assist you.";
+
+                            }
+                            break;
                         default:
                             Status = "Error";
       
