@@ -16,7 +16,7 @@ namespace ECOCSystem.Model
             CompanyBranch = new BranchModel();
 
         }
-        public int CompanyID { get; set; }
+        public int SelectedCompanyID { get; set; }
         [Required]
         [DisplayName("Company Name")]
         public string Name { get; set; }

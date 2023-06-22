@@ -25,7 +25,7 @@
             @using (Html.BeginForm("CompanyForm", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
 
-                @Html.HiddenFor(m => m.CompanyID)
+                @Html.HiddenFor(m => m.SelectedCompanyID)
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
@@ -189,13 +189,8 @@
                 success: function (response) {
                     switch (response.Status) {
                         case "Success":
-                            //$("#" + submitType).html(response.Data);
-                            //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
-
-                          
-
-               /*             changeStatus();*/
-            /*                LoadImage(response.MVID);*/
+                            
+                            console.log(response.currentForm)
                             toastr.success(response.Message);
                             break;
                         case "Warning":
@@ -244,6 +239,7 @@
                 data: { "CompanyID": CompanyID },
                 success: function (response) {
 
+                    $('#SelectedCompanyID').val(response.ID)
                     $('#CompanyInfo_Name').val(response.Name)
                     $('#CompanyInfo_Address').val(response.Address)
                     $('#CompanyInfo_EmailAddress').val(response.EmailAddress)

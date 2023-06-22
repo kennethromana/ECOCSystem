@@ -36,6 +36,7 @@ namespace ECOCSystem.Controllers
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
+            var currentForm = "";
 
 
             int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
@@ -90,13 +91,28 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDBRANCH":
                             {
-                               
+                                var newBranch = new CompanyBranch();
+
+                                newBranch.CompanyID = model.SelectedCompanyID; ;
+                                newBranch.Name = model.CompanyBranch.Name;
+                                newBranch.Address = model.CompanyBranch.Address;
+                                newBranch.EmailAddress = model.CompanyBranch.EmailAddress;
+                                newBranch.BusinessPhone = model.CompanyBranch.BusinessPhone;
+                                newBranch.MobilePhone = model.CompanyBranch.MobilePhone;
+                                newBranch.FaxNumber = model.CompanyBranch.FaxNumber;
+                                newBranch.AccreditationNumber = model.CompanyBranch.AccreditationNumber;
+                                newBranch.TIN = model.CompanyBranch.TIN;
+
+                                newBranch.Active = true;
+                                newBranch.CreatedBy = CurrentUser.Details.ID;
+                                newBranch.CreatedDate = DateTime.Now;
                                 //db.SaveChanges();
                                 //dbTransaction.Commit();
 
-
+                                currentForm = "Branch";
                                 Status = "Success";
-                                Message = "Error. Please contact Databridge support to assist you.";
+                                Message = "New Branch was created successfully!";
+
 
                             }
                             break;
@@ -118,7 +134,7 @@ namespace ECOCSystem.Controllers
 
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString , currentForm });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 
