@@ -109,6 +109,8 @@
   
 </section>
 <script>
+
+
     $(document).ready(function () {
 
 
@@ -116,31 +118,34 @@
         $('#modal-company-branch').on('hide.bs.modal', function (e) {
             // do something…
             $("#modal-companyInfo .overlay").addClass("d-none");
-          
+
         });
 
 
         $('#addCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button type="submit" name="submit" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
+            $('#companyOption').append(`<button type="button" id="submit_addCompany" name="submit" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
 
-            //$('#submit_Address').on('click', function () {
-            //    submitForm("ADDADDRESS");
-            //});
-          
+            $('#submit_addCompany').on('click', function () {
+                submitForm("ADDCOMPANY");
+            });
+
 
 
         });
         $('.editCompany').on('click', function () {
             $('#companyOption').empty();
-            $('#companyOption').append(`<button type="submit" name="submit" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
+            $('#companyOption').append(`<button type="button" name="submit" id = "submit_editCompany"value="EDITCOMPANY" class="btn btn-success">Update</button> `)
+
+
+
+            $('#submit_editCompany').on('click', function () {
+                submitForm("EDITCOMPANY");
+            });
 
             let CompanyID = $(this).attr('CompanyID');
 
-        /*    console.log(CompanyID)*/
-            //$('#submit_Address').on('click', function () {
-            //    submitForm("ADDADDRESS");
-            //});
+
             getBatchList(CompanyID)
             getCompanyInfo(CompanyID)
             getUserList(CompanyID)
@@ -150,12 +155,76 @@
 
     });
 
+    var addAntiForgeryToken = function (data) {
+        data.__RequestVerificationToken = $("[name='__RequestVerificationToken']").val();
+        return data;
+    };
+
+    function submitForm(submitType) {
+        var form = jQuery("#CompanyInfo_Form");
+        if (form.valid()) {
+            var formData = new FormData(form[0]);
+            formData.append("submitType", submitType);
+            $.ajax({
+                url: '@Url.Action("CompanyForm", "Company")',
+                type: "POST",
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                async: true,
+                data: addAntiForgeryToken(formData),
+                beforeSend: function () {
+                    toastr.clear();
+
+                },
+                success: function (response) {
+                    switch (response.Status) {
+                        case "Success":
+                            //$("#" + submitType).html(response.Data);
+                            //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
+
+                            if (response.ClientID > 0) {
+                                getAddressList(response.ClientID)
+                                getVehicleList(response.ClientID)
+                            }
+
+               /*             changeStatus();*/
+            /*                LoadImage(response.MVID);*/
+                            toastr.success(response.Message);
+                            break;
+                        case "Warning":
+                            toastr.warning(response.Message);
+                            break;
+                        case "Error":
+                            toastr.error(response.Message);
+                            break;
+                        case "Info":
+                            toastr.info(response.Message);
+                            break;
+                        default:
+                            toastr.error(response.Message);
+                            break;
+                    }
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                    $(".modal").modal('hide');
+                    $('.modal-backdrop').remove();
+                    $('#loadingScreen').hide();
+                },
+            });
+        }
+    }
+
+
     function closeModalBranch() {
         $('#modal-company-branch').modal('hide')
         $("#modal-companyInfo .overlay").addClass("d-none");
     }
 
-   
+
     function getCompanyInfo(CompanyID)
     {
             $.ajax({
@@ -185,8 +254,8 @@
                     $('#loadingScreen').hide();
                 },
             });
-           
-       
+
+
     };
     function getBatchList(CompanyID) {
     /*    all_table.clear();*/
@@ -259,7 +328,7 @@
     };
 
     function getUserList(CompanyID) {
-   
+
         let cntRow = 0;
         batchList_table = $("#tbl_Users").DataTable({
             "processing": true, // for show progress bar
@@ -306,7 +375,7 @@
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "UserType", "data": "UserType", "name": "UserType", "autoWidth": true },            
+                { "className": "UserType", "data": "UserType", "name": "UserType", "autoWidth": true },
                 { "className": "Fname", "data": "Fname", "name": "Fname", "autoWidth": true },
                 { "className": "Lname", "data": "Lname", "name": "Lname", "autoWidth": true },
                 { "className": "Mname", "data": "Mname", "name": "Mname", "autoWidth": true },
