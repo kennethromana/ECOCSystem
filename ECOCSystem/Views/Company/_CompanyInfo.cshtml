@@ -152,170 +152,173 @@
         margin: 0;
     }
 </style>
-<div class="modal-content">
+<div class="modal-content ">
+    <div id="" class="overlay d-none">
+        @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+    </div>
     <div class="modal-header">
         <h4 class="modal-title">Company Modal</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true"><i class="fa" fa></i>×</span>
         </button>
     </div>
-    <div class="modal-body @*overlay*@" style="padding:2rem;">
-        <section class="content">
+    <div class="modal-body " style="padding:2rem;">
 
-                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12">
-                        
-                                @Html.AntiForgeryToken()
-                                <section class="row pb-4 ">
-                                    <div class="form-group col-lg-12">
-                                        @Html.LabelFor(o => o.Name)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Company Name" })</div>
-                                        @Html.ValidationMessageFor(o => o.Name)
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        @Html.LabelFor(o => o.Address)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.Address, new { @class = "form-control input-style", placeholder = "Address" })</div>
-                                        @Html.ValidationMessageFor(o => o.Address)
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        @Html.LabelFor(o => o.EmailAddress)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.EmailAddress, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
-                                        @Html.ValidationMessageFor(o => o.EmailAddress)
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        @Html.LabelFor(o => o.BusinessPhone)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.BusinessPhone, new { @class = "form-control input-style", placeholder = "Business Phone" })</div>
-                                        @Html.ValidationMessageFor(o => o.BusinessPhone)
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        @Html.LabelFor(o => o.MobilePhone)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.MobilePhone, new { @class = "form-control input-style", placeholder = "Mobile Phone" })</div>
-                                        @Html.ValidationMessageFor(o => o.MobilePhone)
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        @Html.LabelFor(o => o.FaxNumber)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>
-                                        @Html.ValidationMessageFor(o => o.FaxNumber)
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                        @Html.LabelFor(o => o.TIN)
-                                        <div class="input-group">@Html.TextBoxFor(o => o.TIN, new { @class = "form-control input-style", placeholder = "TIN" })</div>
-                                        @Html.ValidationMessageFor(o => o.TIN)
-                                    </div>
-                                </section>
-                                <section id="companyOption" class="row mt-4 pb-4 submit-btn">
-                                        
-                                </section>
+        <section class="content ">
 
-                                <section class="row pb-4">
-                                    <div class="col-12 col-sm-12 card">
-                                        <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                            <label>Branch List</label>
-                                            <div class="uiverse ">
-                                                <span class="tooltip">Add new Branch</span>
-                                                <span type="button" id="addBranch" class="" data-toggle="modal" data-target="#modal-company-branch">
-                                                    +
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <table id="tbl_Batches" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th><center>Action</center></th>
-                                                                    <th>Branch Name</th>
-                                                                    <th>Address</th>
-                                                                    <th>Accreditation</th>
-                                                                    <th>Email Address</th>
-                                                                    <th>Business Phone</th>
-                                                                    <th>Mobile Phone</th>
-                                                                    <th>Fax</th>
-                                                                    <th>TIN</th>
-                                                                </tr>
-                                                            </thead>
-                                                        </table>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                                <section class="row pb-4">
-                                    <div class="col-12 col-sm-12 card">
-                                        <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                            <label>User List</label>
-                                            <div class="uiverse ">
-                                                <span class="tooltip">Add new User</span>
-                                                <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-company-branch">
-                                                    +
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="" class="dataTables_wrapper dt-bootstrap4">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                         <table id="tbl_Users" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                             <thead>
-                                                                 <tr>
-                                                                     <th><center>Action</center></th>
-                                                                     <th>User Type</th>
-                                                                     <th>First name</th>
-                                                                     <th>Last name</th>
-                                                                     <th>Middle name</th>
-                                                                     <th>Email Address</th>
-                                                                 </tr>
-                                                             </thead>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-
-
-
-                                <div class="modal fade" id="modal-company-branch" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        @{
-                                            Html.RenderPartial("_Branch", Model.Branch, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Branch" } });
-                                        }
-                                    </div>
-
-                                </div>
-
-
-
-                                <div class="modal fade" id="modal-company-user" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-
-                                    </div>
-
-                                </div>
-
-                                <div class="modal fade" id="modal-client-vehicle" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-
-                                    </div>
-
-                                </div>
-                                
+                        @Html.AntiForgeryToken()
+                        <section class="row pb-4 ">
+                            <div class="form-group col-lg-12">
+                                @Html.LabelFor(o => o.Name)
+                                <div class="input-group">@Html.TextBoxFor(o => o.Name, new { @class = "form-control input-style", placeholder = "Company Name" })</div>
+                                @Html.ValidationMessageFor(o => o.Name)
                             </div>
+                            <div class="form-group col-lg-12">
+                                @Html.LabelFor(o => o.Address)
+                                <div class="input-group">@Html.TextBoxFor(o => o.Address, new { @class = "form-control input-style", placeholder = "Address" })</div>
+                                @Html.ValidationMessageFor(o => o.Address)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.EmailAddress)
+                                <div class="input-group">@Html.TextBoxFor(o => o.EmailAddress, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
+                                @Html.ValidationMessageFor(o => o.EmailAddress)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.BusinessPhone)
+                                <div class="input-group">@Html.TextBoxFor(o => o.BusinessPhone, new { @class = "form-control input-style", placeholder = "Business Phone" })</div>
+                                @Html.ValidationMessageFor(o => o.BusinessPhone)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.MobilePhone)
+                                <div class="input-group">@Html.TextBoxFor(o => o.MobilePhone, new { @class = "form-control input-style", placeholder = "Mobile Phone" })</div>
+                                @Html.ValidationMessageFor(o => o.MobilePhone)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.FaxNumber)
+                                <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>
+                                @Html.ValidationMessageFor(o => o.FaxNumber)
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(o => o.TIN)
+                                <div class="input-group">@Html.TextBoxFor(o => o.TIN, new { @class = "form-control input-style", placeholder = "TIN" })</div>
+                                @Html.ValidationMessageFor(o => o.TIN)
+                            </div>
+                        </section>
+                        <section id="companyOption" class="row mt-4 pb-4 submit-btn">
+                        </section>
+
+                        <section class="row pb-4">
+                            <div class="col-12 col-sm-12 card">
+                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                    <label>Branch List</label>
+                                    <div class="uiverse ">
+                                        <span class="tooltip">Add new Branch</span>
+                                        <span type="button" id="addBranch" class="" data-toggle="modal" data-target="#modal-company-branch">
+                                            +
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Batches" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>Action</center></th>
+                                                            <th>Branch Name</th>
+                                                            <th>Address</th>
+                                                            <th>Accreditation</th>
+                                                            <th>Email Address</th>
+                                                            <th>Business Phone</th>
+                                                            <th>Mobile Phone</th>
+                                                            <th>Fax</th>
+                                                            <th>TIN</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="row pb-4">
+                            <div class="col-12 col-sm-12 card">
+                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                    <label>User List</label>
+                                    <div class="uiverse ">
+                                        <span class="tooltip">Add new User</span>
+                                        <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-company-branch">
+                                            +
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Users" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>Action</center></th>
+                                                            <th>User Type</th>
+                                                            <th>First name</th>
+                                                            <th>Last name</th>
+                                                            <th>Middle name</th>
+                                                            <th>Email Address</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+
+                        <div class="modal fade" id="modal-company-branch" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                @{
+                                    Html.RenderPartial("_Branch", Model.Branch, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "Branch" } });
+                                }
+                            </div>
+
                         </div>
+
+
+
+                        <div class="modal fade" id="modal-company-user" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal fade" id="modal-client-vehicle" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+
+                            </div>
+
+                        </div>
+
                     </div>
+                </div>
+            </div>
 
 
 
         </section>
     </div>
     @*<div id="addressOption" class="modal-footer justify-content-between submit-btn">
-    </div>*@
+        </div>*@
 </div>
 
 <script>
