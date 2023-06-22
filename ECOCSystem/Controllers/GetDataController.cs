@@ -547,7 +547,8 @@ namespace ECOCSystem.Controllers
                                    from d in db.Province.Where(o => o.ProvinceID == a.ProvinceID).DefaultIfEmpty()
                                    from e in db.AddressType.Where(o => o.ID == a.AddressTypeID).DefaultIfEmpty()
                                    where
-                                   a.Active == true 
+                                   a.Active == true &&
+                                   a.ID == AddressID
                                    select new
                                    {
                                        AddressID = a.ID,
