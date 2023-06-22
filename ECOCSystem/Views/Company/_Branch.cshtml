@@ -7,7 +7,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <h4 class="modal-title">Branch Information</h4>
-        <button type="button" class="close" data-dismiss="modal-company-branch"  data-target="#modal-company-branch" aria-label="Close">
+        <button type="button" class="close" onclick="closeModalBranch()" aria-label="Close">
             <span aria-hidden="true"><i class="fa" fa></i>×</span>
         </button>
     </div>
@@ -24,7 +24,7 @@
 
         $('#addBranch').on('click', function () {
             $('#branchOption').empty();
-            $('#branchOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
             <button type="button" id="submit_Address" class="btn btn-success">Save </button>  `)
 
             $("#modal-companyInfo .overlay").removeClass("d-none");

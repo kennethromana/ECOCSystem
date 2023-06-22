@@ -107,6 +107,7 @@
     $(document).ready(function () {
 
 
+        //if the modal is close then remove the overlay effect
         $('#modal-company-branch').on('hide.bs.modal', function (e) {
             // do something…
             $("#modal-companyInfo .overlay").addClass("d-none");
@@ -143,7 +144,7 @@
         });
 
     });
-
+   
     function getCompanyInfo(CompanyID)
     {
         $('#loadingScreen').show();
