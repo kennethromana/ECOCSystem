@@ -152,7 +152,6 @@
    
     function getCompanyInfo(CompanyID)
     {
-        $('#loadingScreen').show();
             $.ajax({
                 url: '@Url.Action("GetCompanyInfo", "Company")',
                 type: "GET",
@@ -161,7 +160,7 @@
                 beforeSend: function () {
                     $('#loadingScreen').show();
                 },
-                async: false,
+               /* async: false,*/
                 data: { "CompanyID": CompanyID },
                 success: function (response) {
 
