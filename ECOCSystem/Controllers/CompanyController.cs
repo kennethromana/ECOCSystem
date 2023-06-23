@@ -122,30 +122,42 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDUSER":
                             {
-                                var newAccount = new Account();
 
-                                newAccount.FirstName = model.CompanyUser.FirstName.Trim();
-                                newAccount.LastName = model.CompanyUser.LastName.Trim();
-                                newAccount.MiddleName = model.CompanyUser.MiddleName == null ? "" : model.CompanyUser.MiddleName.Trim();
-                                newAccount.Email = model.CompanyUser.Email.Trim();
-                                newAccount.Password = model.CompanyUser.Password.Encrypt(model.CompanyUser.Email);
-                                newAccount.UserTypeID = model.CompanyUser.SelectedUserTypeID;
-                                newAccount.CompanyID = CompanyID;
-                                newAccount.CompanyBranchID = model.CompanyUser.SelectedCompanyBranchID;
+                                var checkifExisting = db.Account.Where(o => o.Email == model.CompanyUser.Email.Trim() && o.Active == true).FirstOrDefault();
 
-                                newAccount.Active = true;
-                                newAccount.CreatedBy = CurrentUser.Details.ID;
-                                newAccount.CreatedDate = DateTime.Now;
+                                if (checkifExisting == null)
+                                {
+                                    var newAccount = new Account();
+
+                                    newAccount.FirstName = model.CompanyUser.FirstName.Trim();
+                                    newAccount.LastName = model.CompanyUser.LastName.Trim();
+                                    newAccount.MiddleName = model.CompanyUser.MiddleName == null ? "" : model.CompanyUser.MiddleName.Trim();
+                                    newAccount.Email = model.CompanyUser.Email.Trim();
+                                    newAccount.Password = model.CompanyUser.Password.Encrypt(model.CompanyUser.Email);
+                                    newAccount.UserTypeID = model.CompanyUser.SelectedUserTypeID;
+                                    newAccount.CompanyID = CompanyID;
+                                    newAccount.CompanyBranchID = model.CompanyUser.SelectedCompanyBranchID;
+
+                                    newAccount.Active = true;
+                                    newAccount.CreatedBy = CurrentUser.Details.ID;
+                                    newAccount.CreatedDate = DateTime.Now;
 
 
-                                db.Account.Add(newAccount);
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
+                                    db.Account.Add(newAccount);
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
 
-                                currentForm = "User";
-                                Status = "Success";
-                                Message = "New User was created successfully!";
+                                    currentForm = "User";
+                                    Status = "Success";
+                                    Message = "New User was created successfully!";
 
+                                }
+                                else 
+                                {
+                                    currentForm = "User";
+                                    Status = "Info";
+                                    Message = "Email provided already registered.";
+                                }
 
                             }
                             break;
