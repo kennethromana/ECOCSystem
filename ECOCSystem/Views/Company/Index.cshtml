@@ -214,8 +214,12 @@
                                     $('#modal-company-branch').modal('hide')
                                     getBatchList(response.CompanyID)
                                     break;
+                                case "User":
+                                    $('#modal-company-user').modal('hide')
+                                    getUserList(response.CompanyID)
+                                    break;
                                 default:
-                                    toastr.success(response.Message);
+                                    toastr.info("There's something error. Please try again later.");
                                     break;
                             }
 

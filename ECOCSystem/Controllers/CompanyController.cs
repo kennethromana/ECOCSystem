@@ -95,7 +95,7 @@ namespace ECOCSystem.Controllers
                             {
                                 var newBranch = new CompanyBranch();
 
-                                newBranch.CompanyID = model.SelectedCompanyID;
+                                newBranch.CompanyID = CompanyID;
                                 newBranch.Name = model.CompanyBranch.Name;
                                 newBranch.Address = model.CompanyBranch.Address;
                                 newBranch.EmailAddress = model.CompanyBranch.EmailAddress;
@@ -116,6 +116,35 @@ namespace ECOCSystem.Controllers
                                 currentForm = "Branch";
                                 Status = "Success";
                                 Message = "New Branch was created successfully!";
+
+
+                            }
+                            break;
+                        case "ADDUSER":
+                            {
+                                var newAccount = new Account();
+
+                                newAccount.FirstName = model.CompanyUser.FirstName.Trim();
+                                newAccount.LastName = model.CompanyUser.LastName.Trim();
+                                newAccount.MiddleName = model.CompanyUser.MiddleName == null ? "" : model.CompanyUser.MiddleName.Trim();
+                                newAccount.Email = model.CompanyUser.Email.Trim();
+                                newAccount.Password = model.CompanyUser.Password.Encrypt(model.CompanyUser.Email);
+                                newAccount.UserTypeID = model.CompanyUser.SelectedUserTypeID;
+                                newAccount.CompanyID = CompanyID;
+                                newAccount.CompanyBranchID = model.CompanyUser.SelectedCompanyBranchID;
+
+                                newAccount.Active = true;
+                                newAccount.CreatedBy = CurrentUser.Details.ID;
+                                newAccount.CreatedDate = DateTime.Now;
+
+
+                                db.Account.Add(newAccount);
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                currentForm = "User";
+                                Status = "Success";
+                                Message = "New User was created successfully!";
 
 
                             }
