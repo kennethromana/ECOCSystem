@@ -14,6 +14,7 @@ namespace ECOCSystem.Model
             CompanyListView = new List<Company>();
             CompanyInfo = new CompanyInfo();
             CompanyBranch = new BranchModel();
+            CompanyUser = new UserModel();
 
         }
         public int SelectedCompanyID { get; set; }
@@ -41,6 +42,7 @@ namespace ECOCSystem.Model
         public List<Company> CompanyListView { get; set; }
         public CompanyInfo CompanyInfo { get; set; }
         public BranchModel CompanyBranch { get; set; }
+        public UserModel CompanyUser { get; set; }
 
     }
     public class BranchModel 

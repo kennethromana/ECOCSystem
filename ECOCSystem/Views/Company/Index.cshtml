@@ -108,6 +108,15 @@
                     </div>
 
                 </div>
+
+                <div class="modal fade" id="modal-company-user" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        @{
+                            Html.RenderPartial("_User", Model.CompanyUser, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "CompanyUser" } });
+                        }
+                    </div>
+
+                </div>
             }
 
         </div>
@@ -126,6 +135,12 @@
 
         //if the modal is close then remove the overlay effect
         $('#modal-company-branch').on('hide.bs.modal', function (e) {
+            // do something…
+            $("#modal-companyInfo .overlay").addClass("d-none");
+
+        });
+
+        $('#modal-company-user').on('hide.bs.modal', function (e) {
             // do something…
             $("#modal-companyInfo .overlay").addClass("d-none");
 
@@ -234,6 +249,11 @@
 
     function closeModalBranch() {
         $('#modal-company-branch').modal('hide')
+        $("#modal-companyInfo .overlay").addClass("d-none");
+    }
+
+    function closeModalUser() {
+        $('#modal-company-user').modal('hide')
         $("#modal-companyInfo .overlay").addClass("d-none");
     }
 

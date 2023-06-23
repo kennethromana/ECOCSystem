@@ -1,0 +1,101 @@
+﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
+@model UserModel
+
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">User Information</h4>
+        <button type="button" class="close" onclick="closeModalUser()" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body @*overlay*@">
+        <section class="row mt-4 pb-4">
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.FirstName)
+                <div class="input-group">@Html.TextBoxFor(o => o.FirstName, new { @class = "form-control input-style", placeholder = "First Name" })</div>
+                @Html.ValidationMessageFor(o => o.FirstName)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.LastName)
+                <div class="input-group">@Html.TextBoxFor(o => o.LastName, new { @class = "form-control input-style", placeholder = "Last name" })</div>
+                @Html.ValidationMessageFor(o => o.LastName)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.MiddleName)
+                <div class="input-group">@Html.TextBoxFor(o => o.MiddleName, new { @class = "form-control input-style", placeholder = "Middle Name" })</div>
+                @Html.ValidationMessageFor(o => o.MiddleName)
+            </div>
+        </section>
+        <section class="row pb-4">
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.Email)
+                <div class="input-group">@Html.TextBoxFor(o => o.Email, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
+                @Html.ValidationMessageFor(o => o.Email)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.Password)
+                <div class="input-group">@Html.TextBoxFor(o => o.Password, new { @class = "form-control input-style Password", type = "Password", placeholder = "Password" })</div>
+                @Html.ValidationMessageFor(o => o.Password)
+            </div>
+        </section>
+        <section class="row pb-4">
+            <div class="form-group col-lg-4 col-sm-4">
+                @Html.LabelFor(m => m.SelectedUserTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedUserTypeID, new SelectList(Model.UserTypes, "ID", "Info"), " Select User Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetUserTypes", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedUserTypeID, "", new { @class = "" })
+            </div>
+            @*<div class="form-group col-lg-4 col-sm-4">
+                @Html.LabelFor(m => m.SelectedCompanyID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedCompanyID, new SelectList(Model.CompanyList, "ID", "Info"), " Select Company  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedCompanyID, "", new { @class = "" })
+            </div>*@
+            <div class="form-group col-lg-4 col-sm-4">
+                @Html.LabelFor(m => m.SelectedCompanyBranchID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedCompanyBranchID, new SelectList(Model.CompanyBranchList, "ID", "Info"), " Select Branch  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyBranchList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedCompanyBranchID, "", new { @class = "" })
+            </div>
+        </section>
+    </div>
+    <div id="userOption" class="modal-footer justify-content-between submit-btn">
+    </div>
+</div>
+<script>
+
+
+    $(document).ready(function () {
+
+        $('#addUser').on('click', function () {
+            $('#userOption').empty();
+            $('#userOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
+            <button type="button" id="submit_addUser" class="btn btn-success">Save </button>  `)
+
+            $("#modal-companyInfo .overlay").removeClass("d-none");
+
+            $('#submit_addUser').on('click', function () {
+
+
+                if ($('#SelectedCompanyID').val() == 0)
+                    toastr.info('No selected Company');
+                else
+                    submitForm("ADDBRANCH");
+
+
+            });
+        });
+
+
+    });
+
+
+</script>
