@@ -82,8 +82,8 @@ namespace ECOCSystem.Controllers
                                 db.CompanyBranch.Add(newBranch);
 
 
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
+                                db.SaveChanges();
+                                dbTransaction.Commit();
 
                                 currentForm = "Company";
                                 Status = "Success";

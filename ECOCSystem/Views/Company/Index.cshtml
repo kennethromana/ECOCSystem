@@ -213,6 +213,7 @@
                                 case "Branch":
                                     $('#modal-company-branch').modal('hide')
                                     getBatchList(response.CompanyID)
+                                    clearModelBranch()
                                     break;
                                 case "User":
                                     $('#modal-company-user').modal('hide')
@@ -259,6 +260,18 @@
     function closeModalUser() {
         $('#modal-company-user').modal('hide')
         $("#modal-companyInfo .overlay").addClass("d-none");
+    }
+
+    function clearModelBranch()
+    {
+        $('#CompanyBranch_Name').val('');
+        $('#CompanyBranch_Address').val('');
+        $('#CompanyBranch_EmailAddress').val('');
+        $('#CompanyBranch_BusinessPhone').val('');
+        $('#CompanyBranch_MobilePhone').val('');
+        $('#CompanyBranch_AccreditationNumber').val('');
+        $('#CompanyBranch_FaxNumber').val('');
+        $('#CompanyBranch_TIN').val('');
     }
 
 
