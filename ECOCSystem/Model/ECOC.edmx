@@ -152,6 +152,18 @@ warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="CompanyEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MVPremium">
@@ -435,6 +447,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <EntitySet Name="ClientAddress" EntityType="Self.ClientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyBranch" EntityType="Self.CompanyBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyEntity" EntityType="Self.CompanyEntity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationType" EntityType="Self.RegistrationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleType" EntityType="Self.TitleType" Schema="dbo" store:Type="Tables" />
@@ -614,6 +627,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <EntitySet Name="VehicleFuelType" EntityType="ECOCModel.VehicleFuelType" />
           <EntitySet Name="VehicleMake" EntityType="ECOCModel.VehicleMake" />
           <EntitySet Name="UserEntity" EntityType="ECOCModel.UserEntity" />
+          <EntitySet Name="CompanyEntity" EntityType="ECOCModel.CompanyEntity" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -950,6 +964,18 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           </Key>
           <Property Name="UserEntityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserEntityName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CompanyEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -1344,6 +1370,19 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="UserEntityName" ColumnName="UserEntityName" />
                 <ScalarProperty Name="UserEntityID" ColumnName="UserEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyEntity">
+            <EntityTypeMapping TypeName="ECOCModel.CompanyEntity">
+              <MappingFragment StoreEntitySet="CompanyEntity">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

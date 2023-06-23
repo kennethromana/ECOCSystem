@@ -29,6 +29,7 @@
         <EntityTypeShape EntityType="ECOCModel.VehicleFuelType" Width="1.5" PointX="14.75" PointY="8.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleMake" Width="1.5" PointX="14.75" PointY="12.75" />
         <EntityTypeShape EntityType="ECOCModel.UserEntity" Width="1.5" PointX="10.375" PointY="15.75" />
+        <EntityTypeShape EntityType="ECOCModel.CompanyEntity" Width="1.5" PointX="16.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

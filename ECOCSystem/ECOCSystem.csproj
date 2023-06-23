@@ -160,6 +160,9 @@
     <Compile Include="Model\CompanyBranch.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CompanyEntity.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CompanyModel.cs" />
     <Compile Include="Model\CPTLModel.cs" />
     <Compile Include="Model\ECOC.Context.cs">
