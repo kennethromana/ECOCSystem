@@ -139,8 +139,8 @@ namespace ECOCSystem.Controllers
 
 
                                 db.Account.Add(newAccount);
-                                db.SaveChanges();
-                                dbTransaction.Commit();
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
 
                                 currentForm = "User";
                                 Status = "Success";

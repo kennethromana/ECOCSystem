@@ -218,6 +218,7 @@
                                 case "User":
                                     $('#modal-company-user').modal('hide')
                                     getUserList(response.CompanyID)
+                                    clearModelUser()
                                     break;
                                 default:
                                     toastr.info("There's something error. Please try again later.");
@@ -272,6 +273,14 @@
         $('#CompanyBranch_AccreditationNumber').val('');
         $('#CompanyBranch_FaxNumber').val('');
         $('#CompanyBranch_TIN').val('');
+    }
+    function clearModelUser() {
+        $('#CompanyUser_FirstName').val('');
+        $('#CompanyUser_LastName').val('');
+        $('#CompanyUser_MiddleName').val('');
+        $('#CompanyUser_Email').val('');
+        $('#CompanyUser_Password').val('');
+
     }
 
 
