@@ -37,6 +37,8 @@ namespace ECOCSystem.Controllers
             var PartialViewDataString = "";
             var Message = "";
             var currentForm = "";
+            int CompanyID = model.SelectedCompanyID;
+
 
 
             int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
@@ -80,8 +82,8 @@ namespace ECOCSystem.Controllers
                                 db.CompanyBranch.Add(newBranch);
 
 
-                                db.SaveChanges();
-                                dbTransaction.Commit();
+                                //db.SaveChanges();
+                                //dbTransaction.Commit();
 
                                 currentForm = "Company";
                                 Status = "Success";
@@ -93,7 +95,7 @@ namespace ECOCSystem.Controllers
                             {
                                 var newBranch = new CompanyBranch();
 
-                                newBranch.CompanyID = model.SelectedCompanyID; ;
+                                newBranch.CompanyID = model.SelectedCompanyID;
                                 newBranch.Name = model.CompanyBranch.Name;
                                 newBranch.Address = model.CompanyBranch.Address;
                                 newBranch.EmailAddress = model.CompanyBranch.EmailAddress;
@@ -106,6 +108,8 @@ namespace ECOCSystem.Controllers
                                 newBranch.Active = true;
                                 newBranch.CreatedBy = CurrentUser.Details.ID;
                                 newBranch.CreatedDate = DateTime.Now;
+
+                                db.CompanyBranch.Add(newBranch);
                                 db.SaveChanges();
                                 dbTransaction.Commit();
 
@@ -134,7 +138,7 @@ namespace ECOCSystem.Controllers
 
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString , currentForm });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString , currentForm ,CompanyID});
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 

@@ -191,7 +191,19 @@
                     switch (response.Status) {
                         case "Success":
                             
-                            console.log(response.currentForm)
+                            switch (response.currentForm) {
+                                case "Company":
+                                    location.reload();
+                                    break;
+                                case "Branch":
+                                    $('#modal-company-branch').modal('hide')
+                                    getBatchList(response.CompanyID)
+                                    break;                          
+                                default:
+                                    toastr.success(response.Message);
+                                    break;
+                            }
+
                             toastr.success(response.Message);
                             break;
                         case "Warning":
