@@ -304,6 +304,7 @@
                 data: { "CompanyID": CompanyID },
                 success: function (response) {
 
+                    
                     $('#SelectedCompanyID').val(response.ID)
                     $('#CompanyInfo_Name').val(response.Name)
                     $('#CompanyInfo_Address').val(response.Address)
@@ -312,6 +313,7 @@
                     $('#CompanyInfo_MobilePhone').val(response.MobilePhone)
                     $('#CompanyInfo_FaxNumber').val(response.FaxNumber)
                     $('#CompanyInfo_TIN').val(response.TIN)
+                    switchUi(response.CompanyEntityID)
                 },
                 error: function (xhr, status, error) {
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
@@ -462,7 +464,11 @@
     };
 
 
+    function switchUi(selection) {
 
+            $('div.CompanyEntityType').filter('[data-attribute="' + selection + '"]').show();
+            $('div.CompanyEntityType').not('[data-attribute="' + selection + '"]').hide();
+    }
 
 
 </script>
