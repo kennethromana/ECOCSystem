@@ -212,80 +212,79 @@
                         <section id="companyOption" class="row mt-4 pb-4 submit-btn">
                         </section>
 
-                        @if (CurrentUser.Details.CompanyEntityID == Convert.ToInt32(CompanyEntityEnum.Insurance))
-                        {
-                            <section class="row pb-4">
-                                <div class="col-12 col-sm-12 card">
-                                    <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        <label>Company Branch List</label>
-                                        <div class="uiverse ">
-                                            <span class="tooltip">Add new Branch</span>
-                                            <span type="button" id="addBranch" class="" data-toggle="modal" data-target="#modal-company-branch">
-                                                +
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <table id="tbl_Batches" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                        <thead>
-                                                            <tr>
-                                                                <th><center>Action Edit</center></th>
-                                                                <th>Branch Name</th>
-                                                                <th>Address</th>
-                                                                <th>Accreditation</th>
-                                                                <th>Email Address</th>
-                                                                <th>Business Phone</th>
-                                                                <th>Mobile Phone</th>
-                                                                <th>Fax</th>
-                                                                <th>TIN</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
 
-                                                </div>
+                        <section class="row pb-4">
+                            <div class="col-12 col-sm-12 card">
+                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                    <label>Company Branch List</label>
+                                    <div class="uiverse ">
+                                        <span class="tooltip">Add new Branch</span>
+                                        <span type="button" id="addBranch" class="" data-toggle="modal" data-target="#modal-company-branch">
+                                            +
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Batches" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>Action Edit</center></th>
+                                                            <th>Branch Name</th>
+                                                            <th>Address</th>
+                                                            <th>Accreditation</th>
+                                                            <th>Email Address</th>
+                                                            <th>Business Phone</th>
+                                                            <th>Mobile Phone</th>
+                                                            <th>Fax</th>
+                                                            <th>TIN</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
+                        </section>
 
-                            <section class="row pb-4">
-                                <div class="col-12 col-sm-12 card">
-                                    <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        <label>Company User List</label>
-                                        <div class="uiverse ">
-                                            <span class="tooltip">Add new User</span>
-                                            <span type="button" id="addUser" class="newUser" data-toggle="modal" data-target="#modal-company-user">
-                                                +
-                                            </span>
-                                        </div>
+                        <section class="row pb-4">
+                            <div class="col-12 col-sm-12 card">
+                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                    <label>Company User List</label>
+                                    <div class="uiverse ">
+                                        <span class="tooltip">Add new User</span>
+                                        <span type="button" id="addUser" class="newUser" data-toggle="modal" data-target="#modal-company-user">
+                                            +
+                                        </span>
                                     </div>
-                                    <div class="card-body">
-                                        <div id="" class="dataTables_wrapper dt-bootstrap4">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <table id="tbl_Users" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
-                                                        <thead>
-                                                            <tr>
-                                                                <th><center>Action Edit</center></th>
-                                                                <th>User Type</th>
-                                                                <th>First name</th>
-                                                                <th>Last name</th>
-                                                                <th>Middle name</th>
-                                                                <th>Email Address</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Users" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><center>Action Edit</center></th>
+                                                            <th>User Type</th>
+                                                            <th>First name</th>
+                                                            <th>Last name</th>
+                                                            <th>Middle name</th>
+                                                            <th>Email Address</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>
-                        }
+                            </div>
+                        </section>
+                        
 
 
 

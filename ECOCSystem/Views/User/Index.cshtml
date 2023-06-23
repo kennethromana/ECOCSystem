@@ -1,4 +1,5 @@
 ﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
 @model UserModel
 @{
     ViewBag.Title = "UserList";
@@ -87,7 +88,7 @@
 
 
     <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">User Information</h4>
@@ -126,33 +127,23 @@
                                 </div>
                                 <div class="form-group col-lg-4">
                                     @Html.LabelFor(o => o.Password)
-                                    <div class="input-group">@Html.TextBoxFor(o => o.Password, new { @class = "form-control input-style Password", type="Password" ,placeholder = "Password" })</div>
+                                    <div class="input-group">@Html.TextBoxFor(o => o.Password, new { @class = "form-control input-style Password", type = "Password", placeholder = "Password" })</div>
                                     @Html.ValidationMessageFor(o => o.Password)
                                 </div>
+                                @if (CurrentUser.Details.CompanyEntityID == Convert.ToInt32(CompanyEntityEnum.Insurance))
+                                {
+                                    <div class="form-group col-lg-4 col-sm-4">
+                                        @Html.LabelFor(m => m.SelectedUserTypeID)
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(m => m.SelectedUserTypeID, new SelectList(Model.UserTypes, "ID", "Info"), " Select User Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetUserTypes", "GetData") })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.SelectedUserTypeID, "", new { @class = "" })
+                                    </div>
+                                }
+
                             </section>
-                            <section class="row pb-4">
-                                <div class="form-group col-lg-4 col-sm-4">
-                                    @Html.LabelFor(m => m.SelectedUserTypeID)
-                                    <div class="input-group">
-                                        @Html.DropDownListFor(m => m.SelectedUserTypeID, new SelectList(Model.UserTypes, "ID", "Info"), " Select User Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetUserTypes", "GetData") })
-                                    </div>
-                                    @Html.ValidationMessageFor(m => m.SelectedUserTypeID, "", new { @class = "" })
-                                </div>
-                                <div class="form-group col-lg-4 col-sm-4">
-                                    @Html.LabelFor(m => m.SelectedCompanyID)
-                                    <div class="input-group">
-                                        @Html.DropDownListFor(m => m.SelectedCompanyID, new SelectList(Model.CompanyList, "ID", "Info"), " Select Company  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyList", "GetData") })
-                                    </div>
-                                    @Html.ValidationMessageFor(m => m.SelectedCompanyID, "", new { @class = "" })
-                                </div>
-                                <div class="form-group col-lg-4 col-sm-4">
-                                    @Html.LabelFor(m => m.SelectedCompanyBranchID)
-                                    <div class="input-group">
-                                        @Html.DropDownListFor(m => m.SelectedCompanyBranchID, new SelectList(Model.CompanyBranchList, "ID", "Info"), " Select Branch  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetCompanyBranchList", "GetData") })
-                                    </div>
-                                    @Html.ValidationMessageFor(m => m.SelectedCompanyBranchID, "", new { @class = "" })
-                                </div>
-                            </section>
+
+
                     </div>
                 <div class="modal-footer justify-content-between submit-btn">
                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
