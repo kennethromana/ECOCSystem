@@ -201,6 +201,9 @@
     <Compile Include="Model\TitleType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserEntity.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\VehicleBodyType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>

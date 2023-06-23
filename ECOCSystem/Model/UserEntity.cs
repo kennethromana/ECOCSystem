@@ -12,22 +12,14 @@ namespace ECOCSystem.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class UserEntity
     {
-        public int ID { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string MiddleName { get; set; }
-        public Nullable<int> UserTypeID { get; set; }
-        public Nullable<int> CompanyID { get; set; }
-        public Nullable<int> CompanyBranchID { get; set; }
+        public int UserEntityID { get; set; }
+        public string UserEntityName { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<int> UserEntityID { get; set; }
     }
 }

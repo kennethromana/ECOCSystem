@@ -48,5 +48,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<VehicleColor> VehicleColor { get; set; }
         public virtual DbSet<VehicleFuelType> VehicleFuelType { get; set; }
         public virtual DbSet<VehicleMake> VehicleMake { get; set; }
+        public virtual DbSet<UserEntity> UserEntity { get; set; }
     }
 }
