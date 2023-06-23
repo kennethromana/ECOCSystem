@@ -94,6 +94,7 @@ namespace ECOCSystem.Model
         public string CompanyName { get; set; }
         public string BranchName { get; set; }
         public string FullName { get; set; }
+        public int? CompanyEntityID { get; set; }
 
-     }
+    }
 }

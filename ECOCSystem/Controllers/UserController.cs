@@ -88,6 +88,7 @@ namespace ECOCSystem.Controllers
                                                 CompanyName = b.Name,
                                                 BranchName = c.Name,
                                                 FullName = a.FirstName + " " + a.LastName + " " +a.MiddleName,
+                                                CompanyEntityID = b.CompanyEntityID
                                             }
                                             ).FirstOrDefault();
 
