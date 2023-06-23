@@ -190,7 +190,7 @@
                 success: function (response) {
                     switch (response.Status) {
                         case "Success":
-                            
+
                             switch (response.currentForm) {
                                 case "Company":
                                     location.reload();
@@ -198,7 +198,7 @@
                                 case "Branch":
                                     $('#modal-company-branch').modal('hide')
                                     getBatchList(response.CompanyID)
-                                    break;                          
+                                    break;
                                 default:
                                     toastr.success(response.Message);
                                     break;
@@ -311,11 +311,11 @@
                     "className": "ID", "data": null, "name": "ID",
                     render: function (data, type, row) {
                         return `<center>
-                                  <div class="icheck-success d-inline">
-                                    <input class="chk" name="checkAddress" type="checkbox" AddressID="`+ data.ID + `" id="address` + data.ID +`">
-                                        <label for="address`+ data.ID+`">
-                                    </label>
-                                 </div>
+                                     <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" BranchID="`+ data.ID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
                               </center>`
                     }, "autoWidth": true
                 },
