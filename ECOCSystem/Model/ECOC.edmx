@@ -129,6 +129,7 @@ warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CompanyEntityID" Type="int" />
         </EntityType>
         <EntityType Name="CompanyBranch">
           <Key>
@@ -717,6 +718,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyEntityID" Type="Int32" />
         </EntityType>
         <EntityType Name="CompanyBranch">
           <Key>
@@ -1084,6 +1086,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="ECOCModel.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyEntityID" ColumnName="CompanyEntityID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
