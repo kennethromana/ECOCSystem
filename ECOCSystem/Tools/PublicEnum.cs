@@ -17,4 +17,9 @@ namespace ECOCSystem.Tools
         CompanyAdministrator = 2,
         BranchUser = 3
     }
+    public enum CompanyEntityEnum
+    {
+        DatabridgeAsia = 1,
+        Insurance = 2
+    }
 }
