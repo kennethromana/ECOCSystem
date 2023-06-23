@@ -131,7 +131,13 @@
 
 
     $(document).ready(function () {
-
+        //for select2 adding parameter
+        jQuery('.select2Ajax').on('select2:opening', function () {
+            var objParams = {
+                CompanyID: $('#SelectedCompanyID').val(),
+            };
+            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
+        });
 
         //if the modal is close then remove the overlay effect
         $('#modal-company-branch').on('hide.bs.modal', function (e) {

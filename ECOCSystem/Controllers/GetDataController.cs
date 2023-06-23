@@ -325,13 +325,14 @@ namespace ECOCSystem.Controllers
                 return jsonResult;
             }
         }
-        public ActionResult GetCompanyBranchList(string search, int page, int pageSize)
+        public ActionResult GetCompanyBranchList(string search, int page, int pageSize,int CompanyID)
         {
             using (var db = new ECOCEntities())
             {
 
 
                 var itemList = (from a in db.CompanyBranch
+                                where a.CompanyID  == CompanyID
                                 select new
                                 {
                                     id = a.ID,
