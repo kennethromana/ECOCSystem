@@ -83,9 +83,9 @@ namespace ECOCSystem.Controllers
                                 db.SaveChanges();
                                 dbTransaction.Commit();
 
-                           
+                                currentForm = "Company";
                                 Status = "Success";
-                                Message = "Error. Please contact Databridge support to assist you.";
+                                Message = "New Company was created successfully!";
 
                             }
                             break;
@@ -106,8 +106,8 @@ namespace ECOCSystem.Controllers
                                 newBranch.Active = true;
                                 newBranch.CreatedBy = CurrentUser.Details.ID;
                                 newBranch.CreatedDate = DateTime.Now;
-                                //db.SaveChanges();
-                                //dbTransaction.Commit();
+                                db.SaveChanges();
+                                dbTransaction.Commit();
 
                                 currentForm = "Branch";
                                 Status = "Success";

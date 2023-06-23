@@ -89,11 +89,18 @@
             $('#branchOption').empty();
             $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
             <button type="button" id="submit_addBranch" class="btn btn-success">Save </button>  `)
-
+            
             $("#modal-companyInfo .overlay").removeClass("d-none");
-
+           
             $('#submit_addBranch').on('click', function () {
+
+
+                if ($('#SelectedCompanyID').val() == 0)
+                    toastr.info('No selected Company');
+                else
                 submitForm("ADDBRANCH");
+
+           
             });
         });
 
