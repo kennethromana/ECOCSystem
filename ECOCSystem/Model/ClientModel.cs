@@ -43,13 +43,15 @@ namespace ECOCSystem.Model
         public string ContactPersonNo { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<int> BranchID { get; set; }
-        public Nullable<bool> Active { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
         public List<TitleList> Titles { get; set; }
         public List<ClientView> ClientViewList { get; set; }
+        [DisplayName("Email Address")]
+        public string EmailAddress { get; set; }
+        [DisplayName("Business Phone")]
+        public string BusinessPhone { get; set; }
+        [DisplayName("Mobile Phone")]
+        public string MobilePhone { get; set; }
+
     }
     public class ClientView 
     {

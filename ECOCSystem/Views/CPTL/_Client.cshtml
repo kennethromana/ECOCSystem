@@ -47,6 +47,24 @@
                 @Html.ValidationMessageFor(o => o.MiddleName)
             </div>
         </section>
+        <section class="row pb-4">
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.EmailAddress)
+                <div class="input-group">@Html.TextBoxFor(o => o.EmailAddress, new { @class = "form-control input-style", placeholder = "Email Address" })</div>
+                @Html.ValidationMessageFor(o => o.EmailAddress)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.BusinessPhone)
+                <div class="input-group">@Html.TextBoxFor(o => o.BusinessPhone, new { @class = "form-control input-style", placeholder = "Business Phone" })</div>
+                @Html.ValidationMessageFor(o => o.BusinessPhone)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.MobileNo)
+                <div class="input-group">@Html.TextBoxFor(o => o.MobileNo, new { @class = "form-control input-style", placeholder = "Mobile Number" })</div>
+                @Html.ValidationMessageFor(o => o.MobileNo)
+            </div>
+        </section>
     </div>
         <div id="clientOption" class="modal-footer justify-content-between submit-btn">          
         </div>  

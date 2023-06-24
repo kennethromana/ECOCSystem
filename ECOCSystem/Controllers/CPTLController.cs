@@ -73,6 +73,9 @@ namespace ECOCSystem.Controllers
                                     NewClient.MiddleName = model.Client.MiddleName.Trim();
                                 }
 
+                                NewClient.EmailAddress = model.Client.EmailAddress;
+                                NewClient.BusinessPhone = model.Client.BusinessPhone;
+                                NewClient.MobileNo = model.Client.MobileNo;
                                 NewClient.CompanyID = currentCompany;
                                 NewClient.BranchID = currentBranch;
                                 NewClient.TitleID = model.Client.TitleID;
