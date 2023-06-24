@@ -15,8 +15,8 @@ namespace ECOCSystem.Controllers
         public ActionResult Index()
         {
             var model = new CompanyModel();
-
-            model.CompanyListView = db.Company.Where(o => o.Active == true).ToList();
+            //select all insurance comapny exclude databridge asia which has ID = 1
+            model.CompanyListView = db.Company.Where(o => o.Active == true && o.ID != 1).ToList();
 
             return View(model);
         }
