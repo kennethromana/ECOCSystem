@@ -590,7 +590,8 @@ namespace ECOCSystem.Controllers
                                       firstName = a.FirstName,
                                       lastName = a.LastName,
                                       middleName = a.MiddleName,
-                                      titleType = c.Name
+                                      titleType = c.Name,
+                                      TitleTypeID = c.ID
                                   }).FirstOrDefault();
 
                 return Json(ClientInfo, JsonRequestBehavior.AllowGet);

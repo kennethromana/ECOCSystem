@@ -1,4 +1,5 @@
 ﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
 @model CPTLModel
 @{
     ViewBag.Title = "Index";
@@ -397,21 +398,21 @@ svg:hover .tooltip {
 
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-lg-12 info-container">
+                                                                <div class="form-group col-lg-12 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                                                                     @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
                                                                     <label class="info-label">Corporate Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_CorpName">Databridge Asia Inc</span>
                                                                 </div>
-                                                                <div class="form-group col-lg-4 info-container">
+                                                                <div class="form-group col-lg-4 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                                                                     @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
                                                                     <label class="info-label">First Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_FirstName"></span>
                                                                 </div>
-                                                                <div class="form-group col-lg-4 info-container">
+                                                                <div class="form-group col-lg-4 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                                                                     <label class="info-label">Last Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_LastName"></span>
                                                                 </div>
-                                                                <div class="form-group col-lg-4 info-container">
+                                                                <div class="form-group col-lg-4 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
                                                                     <label class="info-label">Middle Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_MiddleName"></span>
                                                                 </div>
@@ -829,7 +830,8 @@ svg:hover .tooltip {
             data: { "ClientID": ClientID },
             success: function (response) {
 
-                
+                switchTitleType(response.TitleTypeID)
+
                 $("#Application_CorpName").text(response.corpName)
                 $("#Application_FirstName").text(response.firstName)
                 $("#Application_LastName").text(response.lastName)
@@ -845,4 +847,19 @@ svg:hover .tooltip {
         });
 
     };
+
+    function switchTitleType(selection) {
+
+        debugger
+            if (selection == 3) {
+                $('div.Type').filter('[data-attribute2="' + selection + '"]').show();
+                $('div.Type').not('[data-attribute2="' + selection + '"]').hide();
+
+            }
+            else
+            {
+                $('div.Type').filter('[data-attribute="' + selection + '"]').show();
+                $('div.Type').not('[data-attribute="' + selection + '"]').hide();
+            }       
+    }
 </script>

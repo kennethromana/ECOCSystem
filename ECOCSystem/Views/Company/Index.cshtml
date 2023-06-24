@@ -462,6 +462,16 @@
         //});
     };
 
+    function switchUi(selection) {
+        if (selection == 3) {
+            $('section.TitleType').filter('[data-attribute2="' + selection + '"]').show();
+            $('section.TitleType').not('[data-attribute2="' + selection + '"]').hide();
 
+        }
+        else {
+            $('section.TitleType').filter('[data-attribute="' + selection + '"]').show();
+            $('section.TitleType').not('[data-attribute="' + selection + '"]').hide();
+        }
+    }
 
 </script>
