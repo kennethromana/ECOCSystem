@@ -573,5 +573,28 @@ namespace ECOCSystem.Controllers
                 return Json(AddressInfo, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult GetClientInfo(int ClientID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                var ClientInfo = (from a in db.Client
+                                  from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
+                                  from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
+                                  where
+                                  a.Active == true &&
+                                  a.ID == ClientID
+                                  select new
+                                  {
+                                      ID = a.ID,
+                                      corpName = a.CorpName,
+                                      firstName = a.FirstName,
+                                      lastName = a.LastName,
+                                      middleName = a.MiddleName,
+                                      titleType = c.Name
+                                  }).FirstOrDefault();
+
+                return Json(ClientInfo, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

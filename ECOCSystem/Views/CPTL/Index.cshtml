@@ -400,7 +400,7 @@ svg:hover .tooltip {
                                                                 <div class="form-group col-lg-12 info-container">
                                                                     @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
                                                                     <label class="info-label">Corporate Name</label>
-                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_ClientName">Databridge Asia Inc</span>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_CorpName">Databridge Asia Inc</span>
                                                                 </div>
                                                                 <div class="form-group col-lg-4 info-container">
                                                                     @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
@@ -634,6 +634,7 @@ svg:hover .tooltip {
             let ID = $(this).val();
             getAddressList(ID)
             getVehicleList(ID)
+            getClientInfo(ID)
             console.log()
         });
 
@@ -803,6 +804,37 @@ svg:hover .tooltip {
                 $("#Application_Barangay").text(response.Barangay)
                 $("#Application_City").text(response.City)
                 $("#Application_Province").text(response.Province)
+            },
+            error: function (xhr, status, error) {
+                toastr.error('An error has occured while processing, Please contact Databridge Support.');
+            },
+            complete: function () {
+                $('#loadingScreen').hide();
+            },
+        });
+
+    };
+    let getClientInfo = (ClientID) => {
+
+        $('#loadingScreen').show();
+        $.ajax({
+            url: '@Url.Action("GetClientInfo", "GetData")',
+            type: "GET",
+            cache: false,
+            dataType: "JSON",
+            beforeSend: function () {
+                $('#loadingScreen').show();
+            },
+/*            async: false,*/
+            data: { "ClientID": ClientID },
+            success: function (response) {
+
+                
+                $("#Application_CorpName").text(response.corpName)
+                $("#Application_FirstName").text(response.firstName)
+                $("#Application_LastName").text(response.lastName)
+                $("#Application_MiddleName").text(response.middleName)
+               
             },
             error: function (xhr, status, error) {
                 toastr.error('An error has occured while processing, Please contact Databridge Support.');
