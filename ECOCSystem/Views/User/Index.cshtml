@@ -20,14 +20,9 @@
                     <div class="col-sm-12">
                         <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
                             <thead>
-                                @*<tr>
-                                    <th class="sorting sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">Rendering engine</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Engine version</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CSS grade</th>
-                                    </tr>*@
                                 <tr>
+                                   
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Action Edit</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">First name</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Last  name</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
@@ -50,6 +45,15 @@
                                @for (int i = 0; i < Model.UserList.Count(); i++)
                                 {
                                 <tr>
+                                    <td style="width: 14.28%;">
+                                        <center>
+                                            <div class="">
+                                                <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompanyBranch" BranchID="@Model.UserList[i].UserID">
+                                                    <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                                </span>
+                                            </div>
+                                        </center>
+                                    </td>
                                     <td style="width: 14.28%;">
                                         @Html.DisplayFor(o => Model.UserList[i].FirstName)
                                     </td>
