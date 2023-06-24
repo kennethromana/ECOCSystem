@@ -38,10 +38,21 @@
     .container-login100 {
         /* background: linear-gradient(-135deg, #212529, #007bff);*/
         /*       background: radial-gradient(#28a745, #000);*/
-        background-color: #1977cc;
-        background-image: linear-gradient(45deg, #343a408c, #000000f5);
+        /*   background-color: #1977cc;
+        background-image: linear-gradient(45deg, #343a408c, #000000f5);*/
+        background: url(/Images/ImageBack1.jpg) 50% 50% no-repeat;
+        background-size: cover;
     }
 
+
+
+    .wrap-login100 {
+        /* width: 960px; */
+        width: 470px;
+        justify-content: space-between;
+        padding: 82px 92px 0px 89px;
+        background: radial-gradient(#007bff, #17a2b8f2);
+    }
     /*.login100-form-btn {
 
         background: #007bff;
@@ -51,15 +62,27 @@
     .login100-form span img {
         max-width: 207px;
     }
+    .login100-form-title {
+        color: #fff;
+    }
+    .txt2 {
+
+        color: #fff;
+    }
+    .txt1 {
+
+        color: #ddd;
+    }
+    
 </style>
 <body>
 
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt="">
+                @*<div class="login100-pic js-tilt" data-tilt="">
                     <img src="~/FrontEnd/login/images/img-01.png" alt="IMG">
-                </div>
+                </div>*@
                 @using (Html.BeginForm("LoginUser", "User", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Login_Form", @class = "login100-form validate-form" }))
                 {
 
