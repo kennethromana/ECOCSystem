@@ -267,7 +267,7 @@ namespace ECOCSystem.Controllers
             {
 
 
-                var itemList = (from a in db.UserType
+                var itemList = (from a in db.UserType.Where(o => o.ID != (int)UserTypeEnum.SuperAdmin)
                                 select new
                                 {
                                     id = a.ID,

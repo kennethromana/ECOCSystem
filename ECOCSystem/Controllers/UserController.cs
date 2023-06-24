@@ -125,6 +125,8 @@ namespace ECOCSystem.Controllers
         }
         public new ActionResult User(UserModel model, string submit)
         {
+            var currentCompany = CurrentUser.Details.CompanyID;
+            var currentBranch = CurrentUser.Details.CompanyBranchID;
             try
             {
 
