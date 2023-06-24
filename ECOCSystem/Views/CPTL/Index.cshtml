@@ -782,6 +782,7 @@ svg:hover .tooltip {
 
             let VehicleID = $(this).attr('VehicleID');
             $('#VehicleID').val(VehicleID);
+            getVehicleInfo(VehicleID);
         });
     };
 
@@ -836,7 +837,43 @@ svg:hover .tooltip {
                 $("#Application_FirstName").text(response.firstName)
                 $("#Application_LastName").text(response.lastName)
                 $("#Application_MiddleName").text(response.middleName)
-               
+
+            },
+            error: function (xhr, status, error) {
+                toastr.error('An error has occured while processing, Please contact Databridge Support.');
+            },
+            complete: function () {
+                $('#loadingScreen').hide();
+            },
+        });
+
+    };
+     let getVehicleInfo = (VehicleID) => {
+
+        $('#loadingScreen').show();
+        $.ajax({
+            url: '@Url.Action("GetVehicleInfo", "GetData")',
+            type: "GET",
+            cache: false,
+            dataType: "JSON",
+            beforeSend: function () {
+                $('#loadingScreen').show();
+            },
+/*            async: false,*/
+            data: { "VehicleID": VehicleID },
+            success: function (response) {
+
+                $("#Application_Engine").text(response.Engine)
+                $("#Application_Chassis").text(response.Chassis)
+                $("#Application_MVFile").text(response.MVFile)
+                $("#Application_Plate").text(response.Plate)
+                $("#Application_Year").text(response.Year)
+                $("#Application_Body").text(response.BodyType)
+                $("#Application_Color").text(response.Color)
+                $("#Application_Series").text(response.Series)
+                $("#Application_Make").text(response.Make)
+
+
             },
             error: function (xhr, status, error) {
                 toastr.error('An error has occured while processing, Please contact Databridge Support.');
@@ -860,6 +897,6 @@ svg:hover .tooltip {
             {
                 $('div.Type').filter('[data-attribute="' + selection + '"]').show();
                 $('div.Type').not('[data-attribute="' + selection + '"]').hide();
-            }       
+            }
     }
 </script>

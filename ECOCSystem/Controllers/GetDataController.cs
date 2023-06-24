@@ -597,5 +597,48 @@ namespace ECOCSystem.Controllers
                 return Json(ClientInfo, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult GetVehicleInfo(int VehicleID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                //var ClientInfo = (from a in db.Client
+                //                  from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
+                //                  from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
+                //                  where
+                //                  a.Active == true &&
+                //                  a.ID == ClientID
+                //                  select new
+                //                  {
+                //                      ID = a.ID,
+                //                      corpName = a.CorpName,
+                //                      firstName = a.FirstName,
+                //                      lastName = a.LastName,
+                //                      middleName = a.MiddleName,
+                //                      titleType = c.Name,
+                //                      TitleTypeID = c.ID
+                //                  }).FirstOrDefault();
+                var VehicleInfo = (from a in db.VehicleInfo
+                                   from b in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
+                                   from c in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
+                                   from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                   from e in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                   where a.Active == true && a.VehicleID == VehicleID
+                                   select new
+                                   {
+                                       Engine = a.EngineNumber,
+                                       Chassis = a.ChassisNumber,
+                                       MVFile = a.MVFileNumber,
+                                       Plate = a.PlateNumber,
+                                       Year = a.Year,
+                                       Make = b.VehicleMakeName,
+                                       BodyType = d.VehicleBodyTypeName,
+                                       Color = e.VehicleColorName,
+                                       Series = c.Name
+                                   }).FirstOrDefault();
+
+                return Json(VehicleInfo, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }
