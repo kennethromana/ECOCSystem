@@ -16,7 +16,7 @@
         <div class="fab" type="button" data-toggle="modal" data-target="#modal-lg" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                <div class="row">
                     <div class="col-sm-12">
                         <table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
                             <thead>
@@ -32,8 +32,11 @@
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Last  name</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
                                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">User Type</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Branch</th>
+                                    @if (CurrentUser.Details.CompanyEntityID == (int)CompanyEntityEnum.Insurance)
+                                    {
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Branch</th>
+                                    }
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,12 +63,13 @@
                                     <td style="width: 14.28%;">
                                         @Html.DisplayFor(o => Model.UserList[i].UserType)
                                     </td>
-                                    <td style="width: 14.28%;">
-                                        @Html.DisplayFor(o => Model.UserList[i].Company)
-                                    </td>
-                                    <td style="width: 14.28%;">
-                                        @Html.DisplayFor(o => Model.UserList[i].CompanyBranch)
-                                    </td>
+                                    @if (CurrentUser.Details.CompanyEntityID == (int)CompanyEntityEnum.Insurance)
+                                    {
+                                        <td style="width: 14.28%;">
+                                            @Html.DisplayFor(o => Model.UserList[i].CompanyBranch)
+                                        </td>
+                                    }
+
 
                                 </tr>
                                 }

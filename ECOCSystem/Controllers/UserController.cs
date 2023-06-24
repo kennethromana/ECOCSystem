@@ -17,13 +17,15 @@ namespace ECOCSystem.Controllers
         public ActionResult Index()
         {
             UserModel User = new UserModel();
-
+         
             List<UserList> userlist = new List<UserList>();
+            var currentCompany = CurrentUser.Details.CompanyID;
 
             userlist = (from a in db.Account.Where(a => a.Active == true)
                         from b in db.UserType.Where(b => b.ID == a.UserTypeID && b.Active == true).DefaultIfEmpty()
                         from c in db.Company.Where(c => c.ID == a.CompanyID && b.Active == true).DefaultIfEmpty()
                         from d in db.CompanyBranch.Where(d => d.ID == a.CompanyBranchID && b.Active == true).DefaultIfEmpty()
+                        where a.CompanyID == currentCompany
                         select new UserList
                         {
                             UserID = a.ID,
