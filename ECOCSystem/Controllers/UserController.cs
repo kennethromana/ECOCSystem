@@ -145,9 +145,15 @@ namespace ECOCSystem.Controllers
                                 newAccount.MiddleName = model.MiddleName == null ? "" : model.MiddleName.Trim();
                                 newAccount.Email = model.Email.Trim();
                                 newAccount.Password = model.Password.Encrypt(model.Email);
-                                newAccount.UserTypeID = model.SelectedUserTypeID;
                                 newAccount.CompanyID = model.SelectedCompanyID;
                                 newAccount.CompanyBranchID = model.SelectedCompanyBranchID;
+
+                                //check if current user is databridge company then create user with super admin user type
+                                if (CurrentUser.Details.CompanyEntityID == (int)CompanyEntityEnum.DatabridgeAsia) 
+                                    newAccount.UserTypeID = (int)UserTypeEnum.SuperAdmin;
+                                else
+                                    newAccount.UserTypeID = model.SelectedUserTypeID;
+
 
                                 newAccount.Active = true;
                                 newAccount.CreatedBy = CurrentUser.Details.ID;
