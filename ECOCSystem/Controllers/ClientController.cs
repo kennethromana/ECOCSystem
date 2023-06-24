@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ECOCSystem.Model;
+using ECOCSystem.Tools;
 
 namespace ECOCSystem.Controllers
 {
     public class ClientController : Controller
     {
         // GET: Client
+        [AuthorizeUser]
         public ActionResult Index()
         {
             var clientModel = new ClientModel();

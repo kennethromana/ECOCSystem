@@ -12,6 +12,7 @@ namespace ECOCSystem.Controllers
     public class CPTLController : Controller
     {
         // GET: CPTL
+        [AuthorizeUser]
         public ActionResult Index()
         {
             CPTLModel Model = new CPTLModel();

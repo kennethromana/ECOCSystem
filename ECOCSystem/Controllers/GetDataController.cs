@@ -11,8 +11,10 @@ using System.Net.Http;
 using ECOCSystem.Model;
 using ECOCSystem.Tools;
 
+
 namespace ECOCSystem.Controllers
 {
+    [AuthorizeUser]
     public class GetDataController : Controller
     {
         // GET: GetData

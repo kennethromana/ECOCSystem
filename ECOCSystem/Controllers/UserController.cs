@@ -14,6 +14,7 @@ namespace ECOCSystem.Controllers
     {
         ECOCEntities db = new ECOCEntities();
         // GET: User
+        [AuthorizeUser]
         public ActionResult Index()
         {
             UserModel User = new UserModel();

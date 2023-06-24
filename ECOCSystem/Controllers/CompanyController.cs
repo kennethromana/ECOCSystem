@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using ECOCSystem.Model;
 using ECOCSystem.Tools;
 
+
 namespace ECOCSystem.Controllers
 {
     public class CompanyController : Controller
     {
         ECOCEntities db = new ECOCEntities();
         // GET: Company
+        [AuthorizeUser]
         public ActionResult Index()
         {
             var model = new CompanyModel();
