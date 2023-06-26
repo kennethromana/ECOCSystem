@@ -270,6 +270,16 @@ warning 6002: The table/view 'ECOC.dbo.Region' does not have a primary key defin
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.SystemVariable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SystemVariable">
+          <Key>
+            <PropertyRef Name="VariableName" />
+            <PropertyRef Name="VariableValue" />
+          </Key>
+          <Property Name="VariableName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="VariableValue" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Title">
           <Key>
             <PropertyRef Name="ID" />
@@ -533,6 +543,12 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
     [Region].[UpdatedDate] AS [UpdatedDate]
     FROM [dbo].[Region] AS [Region]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="SystemVariable" EntityType="Self.SystemVariable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SystemVariable].[VariableName] AS [VariableName], 
+    [SystemVariable].[VariableValue] AS [VariableValue]
+    FROM [dbo].[SystemVariable] AS [SystemVariable]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VehicleBodyType" EntityType="Self.VehicleBodyType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VehicleBodyType].[VehicleBodyTypeID] AS [VehicleBodyTypeID], 
@@ -629,6 +645,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <EntitySet Name="VehicleMake" EntityType="ECOCModel.VehicleMake" />
           <EntitySet Name="UserEntity" EntityType="ECOCModel.UserEntity" />
           <EntitySet Name="CompanyEntity" EntityType="ECOCModel.CompanyEntity" />
+          <EntitySet Name="SystemVariable" EntityType="ECOCModel.SystemVariable" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -983,6 +1000,14 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SystemVariable">
+          <Key>
+            <PropertyRef Name="VariableName" />
+            <PropertyRef Name="VariableValue" />
+          </Key>
+          <Property Name="VariableName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VariableValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1386,6 +1411,14 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemVariable">
+            <EntityTypeMapping TypeName="ECOCModel.SystemVariable">
+              <MappingFragment StoreEntitySet="SystemVariable">
+                <ScalarProperty Name="VariableValue" ColumnName="VariableValue" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

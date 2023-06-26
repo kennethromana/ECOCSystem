@@ -200,6 +200,9 @@
     <Compile Include="Model\RegistrationType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SystemVariable.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Title.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
