@@ -140,7 +140,14 @@
             $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
         });
 
-        //if the modal is close then remove the overlay effect
+          //if the company modal is close then refresh the page
+        $('#modal-companyInfo').on('hide.bs.modal', function (e) {
+            // do something…
+            window.location.href = '/Company/Index/';
+
+        });
+
+        //if the branch modal is close then remove the overlay effect
         $('#modal-company-branch').on('hide.bs.modal', function (e) {
             // do something…
             $("#modal-companyInfo .overlay").addClass("d-none");
@@ -212,10 +219,13 @@
                 success: function (response) {
                     switch (response.Status) {
                         case "Success":
+                            debugger
+        
 
                             switch (response.currentForm) {
                                 case "Company":
-                                    location.reload();
+                                    /*  location.reload();*/
+                       
                                     break;
                                 case "Branch":
                                     $('#modal-company-branch').modal('hide')
@@ -231,7 +241,7 @@
                                     toastr.info("There's something error. Please try again later.");
                                     break;
                             }
-
+                            
                             toastr.success(response.Message);
                             break;
                         case "Warning":

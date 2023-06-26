@@ -93,6 +93,30 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "EDITCOMPANY":
+                            {
+                                var updateCompany = db.Company.Where(o => o.ID == CompanyID).FirstOrDefault();
+
+                                updateCompany.Name = model.CompanyInfo.Name.Trim();
+                                updateCompany.Address = model.CompanyInfo.Address;
+                                updateCompany.EmailAddress = model.CompanyInfo.EmailAddress;
+                                updateCompany.BusinessPhone = model.CompanyInfo.BusinessPhone;
+                                updateCompany.MobilePhone = model.CompanyInfo.MobilePhone;
+                                updateCompany.FaxNumber = model.CompanyInfo.FaxNumber;
+                                updateCompany.TIN = model.CompanyInfo.TIN;
+
+                                updateCompany.UpdatedBy = CurrentUser.Details.ID;
+                                updateCompany.UpdatedDate = DateTime.Now;
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                currentForm = "Company";
+                                Status = "Success";
+                                Message = "Company was updated successfully!";
+
+                            }
+                            break;
                         case "ADDBRANCH":
                             {
                                 var newBranch = new CompanyBranch();
