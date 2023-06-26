@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CPTLController.cs" />
+    <Compile Include="Controllers\ECOC_APIController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2604,6 +2605,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ECOC_API\" />
     <Folder Include="Views\Error\" />
     <Folder Include="Views\GetData\" />
     <Folder Include="Views\PartialView\" />
