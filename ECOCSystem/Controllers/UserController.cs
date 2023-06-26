@@ -194,5 +194,32 @@ namespace ECOCSystem.Controllers
 
 
         }
+
+        public JsonResult GetUserInfo(int UserID)
+        {
+            using (var db = new ECOCEntities())
+            {
+                var UserInfo = (from a in db.Account
+                                from b in db.UserType.Where(o => o.ID == a.UserTypeID).DefaultIfEmpty()
+                                from c in db.CompanyBranch.Where(o => o.ID == a.CompanyBranchID).DefaultIfEmpty()
+                                where
+                                a.Active == true &&
+                                a.ID == UserID
+                                select new
+                                {
+                                    Fname = a.FirstName,
+                                    Lname = a.LastName,
+                                    Mname = a.MiddleName,
+                                    Email = a.Email,
+                                    BranchID = c.ID,
+                                    UserTypeID = b.ID
+                                }
+                                ).FirstOrDefault();
+                return Json(UserInfo, JsonRequestBehavior.AllowGet);
+
+            }
+            
+        }
     }
+   
 }

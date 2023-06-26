@@ -13,7 +13,7 @@
         <div class="card-header">
             <h3 class="card-title">User List</h3>
         </div>
-        <div class="fab" type="button" data-toggle="modal" data-target="#modal-lg" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" type="button" data-toggle="modal" data-target="#modal-user" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
@@ -48,7 +48,7 @@
                                     <td style="width: 14.28%;">
                                         <center>
                                             <div class="">
-                                                <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompanyBranch" BranchID="@Model.UserList[i].UserID">
+                                                <span type="button" data-toggle="modal" data-target="#modal-user" class="editUser" UserID="@Model.UserList[i].UserID">
                                                     <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                                 </span>
                                             </div>
@@ -95,7 +95,7 @@
  
 
 
-    <div class="modal fade" id="modal-lg" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="modal-user" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -191,7 +191,47 @@
             };
             $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
         });
+
+        $('.editUser').on('click', function () {
+            let UserID = $(this).attr('UserID');
+             getUserInfo(UserID)
+        });
+
     });
+    function getUserInfo(UserID)
+    {
+            $.ajax({
+                url: '@Url.Action("GetUserInfo", "User")',
+                type: "GET",
+                cache: false,
+                dataType: "JSON",
+                beforeSend: function () {
+                    $('#loadingScreen').show();
+                },
+               /* async: false,*/
+                data: { "UserID": UserID },
+                success: function (response) {
+
+
+                    $('#FirstName').val(response.Fname)
+                    $('#LastName').val(response.Lname)
+                    $('#MiddleName').val(response.Mname)
+                    $('#Email').val(response.Email)
+                    //$('#SelectedUserTypeID').val(response.UserTypeID)
+                    //$('#SelectedCompanyBranchID').val(response.BranchID)
+
+
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                    $('#loadingScreen').hide();
+                },
+            });
+
+
+    };
 </script>
 
 
