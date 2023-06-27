@@ -188,6 +188,15 @@
     </Compile>
     <Compile Include="Model\CompanyModel.cs" />
     <Compile Include="Model\CPTLModel.cs" />
+    <Compile Include="Model\CTPL.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CTPLTaxType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CTPLTerm.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ECOC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -202,6 +211,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ECOC.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MVPremium.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Province.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
@@ -228,6 +240,9 @@
     <Compile Include="Model\VehicleBodyType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\VehicleClassification.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\VehicleColor.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
@@ -242,6 +257,9 @@
     </Compile>
     <Compile Include="Model\VehicleModel.cs" />
     <Compile Include="Model\VehicleSeries.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vwUserListModel.cs" />
