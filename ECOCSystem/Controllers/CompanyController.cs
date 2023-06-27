@@ -288,6 +288,7 @@ namespace ECOCSystem.Controllers
 
                     var tableData = (from a in db.Account
                                      from b in db.UserType.Where(o => o.ID == a.UserTypeID).DefaultIfEmpty()
+                                     from c in db.CompanyBranch.Where(o => o.ID == a.CompanyBranchID).DefaultIfEmpty()
                                      where a.Active == true &&
                                      a.CompanyID == CompanyID
                                      select new
@@ -298,6 +299,7 @@ namespace ECOCSystem.Controllers
                                          Lname = a.LastName,
                                          Mname = a.MiddleName,
                                          UserType = b.Name,
+                                         Branch = c.Name
                                      }
                                      ).ToList();
 
