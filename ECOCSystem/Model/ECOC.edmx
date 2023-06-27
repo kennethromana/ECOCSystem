@@ -170,6 +170,18 @@ warning 6002: The table/view 'ECOC.dbo.CTPL' does not have a primary key defined
         <EntityType Name="CTPL">
           <Key>
             <PropertyRef Name="CTPLID" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
           </Key>
           <Property Name="CTPLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CTPLTermID" Type="int" Nullable="false" />
@@ -192,16 +204,19 @@ warning 6002: The table/view 'ECOC.dbo.CTPLTaxType' does not have a primary key 
         <EntityType Name="CTPLTaxType">
           <Key>
             <PropertyRef Name="CTPLTaxTypeID" />
-            <PropertyRef Name="CTPLTaxType" />
           </Key>
           <Property Name="CTPLTaxTypeID" Type="int" Nullable="false" />
-          <Property Name="CTPLTaxType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.CTPLTerm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CTPLTerm">
           <Key>
             <PropertyRef Name="CPTLTermID" />
+            
+            
+            
+            
           </Key>
           <Property Name="CPTLTermID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CoverageYear" Type="int" Nullable="false" />
@@ -217,6 +232,8 @@ warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key de
         <EntityType Name="MVPremium">
           <Key>
             <PropertyRef Name="ID" />
+            
+            
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleTypeID" Type="int" Nullable="false" />
@@ -351,6 +368,10 @@ warning 6002: The table/view 'ECOC.dbo.VehicleClassification' does not have a pr
         <EntityType Name="VehicleClassification">
           <Key>
             <PropertyRef Name="VehicleClassificationID" />
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleClassificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleClassificationName" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -458,6 +479,10 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
         <EntityType Name="VehicleType">
           <Key>
             <PropertyRef Name="VehicleTypeID" />
+            
+            
+            
+            
           </Key>
           <Property Name="VehicleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -518,7 +543,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="CTPLTaxType" EntityType="Self.CTPLTaxType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CTPLTaxType].[CTPLTaxTypeID] AS [CTPLTaxTypeID], 
-    [CTPLTaxType].[CTPLTaxType] AS [CTPLTaxType]
+    [CTPLTaxType].[Name] AS [Name]
     FROM [dbo].[CTPLTaxType] AS [CTPLTaxType]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="CTPLTerm" EntityType="Self.CTPLTerm" store:Type="Tables" store:Schema="dbo">
@@ -688,11 +713,11 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="CompanyEntity" EntityType="ECOCModel.CompanyEntity" />
           <EntitySet Name="SystemVariable" EntityType="ECOCModel.SystemVariable" />
           <EntitySet Name="CTPL" EntityType="ECOCModel.CTPL" />
-          <EntitySet Name="CTPLTaxType" EntityType="ECOCModel.CTPLTaxType" />
           <EntitySet Name="CTPLTerm" EntityType="ECOCModel.CTPLTerm" />
           <EntitySet Name="MVPremium" EntityType="ECOCModel.MVPremium" />
           <EntitySet Name="VehicleClassification" EntityType="ECOCModel.VehicleClassification" />
           <EntitySet Name="VehicleType" EntityType="ECOCModel.VehicleType" />
+          <EntitySet Name="CTPLTaxType" EntityType="ECOCModel.CTPLTaxType" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -1023,14 +1048,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="CTPLTaxType">
-          <Key>
-            <PropertyRef Name="CTPLTaxTypeID" />
-            <PropertyRef Name="CTPLTaxType1" />
-          </Key>
-          <Property Name="CTPLTaxTypeID" Type="Int32" Nullable="false" />
-          <Property Name="CTPLTaxType1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CTPLTerm">
           <Key>
             <PropertyRef Name="CPTLTermID" />
@@ -1076,6 +1093,13 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CTPLTaxType">
+          <Key>
+            <PropertyRef Name="CTPLTaxTypeID" />
+          </Key>
+          <Property Name="CTPLTaxTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1454,14 +1478,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CTPLTaxType">
-            <EntityTypeMapping TypeName="ECOCModel.CTPLTaxType">
-              <MappingFragment StoreEntitySet="CTPLTaxType">
-                <ScalarProperty Name="CTPLTaxType1" ColumnName="CTPLTaxType" />
-                <ScalarProperty Name="CTPLTaxTypeID" ColumnName="CTPLTaxTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CTPLTerm">
             <EntityTypeMapping TypeName="ECOCModel.CTPLTerm">
               <MappingFragment StoreEntitySet="CTPLTerm">
@@ -1509,6 +1525,14 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
                 <ScalarProperty Name="VehicleTypeDescription" ColumnName="VehicleTypeDescription" />
                 <ScalarProperty Name="VehicleCode" ColumnName="VehicleCode" />
                 <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTPLTaxType">
+            <EntityTypeMapping TypeName="ECOCModel.CTPLTaxType">
+              <MappingFragment StoreEntitySet="CTPLTaxType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CTPLTaxTypeID" ColumnName="CTPLTaxTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

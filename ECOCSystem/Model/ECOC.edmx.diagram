@@ -28,11 +28,11 @@
         <EntityTypeShape EntityType="ECOCModel.CompanyEntity" Width="1.5" PointX="16.375" PointY="0.75" />
         <EntityTypeShape EntityType="ECOCModel.SystemVariable" Width="1.5" PointX="3.375" PointY="16.75" />
         <EntityTypeShape EntityType="ECOCModel.CTPL" Width="1.625" PointX="5.375" PointY="12.75" />
-        <EntityTypeShape EntityType="ECOCModel.CTPLTaxType" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="ECOCModel.CTPLTerm" Width="1.5" PointX="16.375" PointY="4.75" />
         <EntityTypeShape EntityType="ECOCModel.MVPremium" Width="1.375" PointX="12.375" PointY="16.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleClassification" Width="1.5" PointX="14.375" PointY="16.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleType" Width="1.375" PointX="16.375" PointY="16.75" />
+        <EntityTypeShape EntityType="ECOCModel.CTPLTaxType" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

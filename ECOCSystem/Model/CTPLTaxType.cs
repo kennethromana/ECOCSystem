@@ -15,6 +15,6 @@ namespace ECOCSystem.Model
     public partial class CTPLTaxType
     {
         public int CTPLTaxTypeID { get; set; }
-        public string CTPLTaxType1 { get; set; }
+        public string Name { get; set; }
     }
 }

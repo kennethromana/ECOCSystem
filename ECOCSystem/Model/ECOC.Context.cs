@@ -48,10 +48,10 @@ namespace ECOCSystem.Model
         public virtual DbSet<CompanyEntity> CompanyEntity { get; set; }
         public virtual DbSet<SystemVariable> SystemVariable { get; set; }
         public virtual DbSet<CTPL> CTPL { get; set; }
-        public virtual DbSet<CTPLTaxType> CTPLTaxType { get; set; }
         public virtual DbSet<CTPLTerm> CTPLTerm { get; set; }
         public virtual DbSet<MVPremium> MVPremium { get; set; }
         public virtual DbSet<VehicleClassification> VehicleClassification { get; set; }
         public virtual DbSet<VehicleType> VehicleType { get; set; }
+        public virtual DbSet<CTPLTaxType> CTPLTaxType { get; set; }
     }
 }
