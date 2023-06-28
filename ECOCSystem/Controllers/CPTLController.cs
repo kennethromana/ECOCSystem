@@ -192,6 +192,14 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "CTPLAPPLICATION":
+                            {
+                               
+                                Status = "Success";
+                                Message = "COC Applied Successfully!";
+
+                            }
+                            break;
                         default:
                             //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
                             Status = "Error";
