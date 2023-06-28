@@ -215,7 +215,18 @@ namespace ECOCSystem.Controllers
 
                                 }
 
-                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID);
+                                var newCTPLApplication = new CTPLApplication();
+                                newCTPLApplication.VehicleID = model.VehicleID;
+                                newCTPLApplication.ClientAddressID = model.AddressID;
+                                newCTPLApplication.ClientID = model.ClientID;
+                                newCTPLApplication.RegistrationTypeID = model.SelectedRegistrationTypeID;
+
+                                db.CTPLApplication.Add(newCTPLApplication);
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID, newCTPLApplication.ID);
 
                                 if (isSucess)
                                 {
@@ -361,7 +372,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
+        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID,int CPTLApplicationID)
         {
             ECOCEntities db = new ECOCEntities();
             try
@@ -576,7 +587,7 @@ namespace ECOCSystem.Controllers
                     using (db = new ECOCEntities())
                     {
                         var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
-                        var UpdateInvoice = db.CTPLApplication.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
+                        var UpdateInvoice = db.CTPLApplication.Where(o => o.ID == CPTLApplicationID).FirstOrDefault();
 
                         UpdateInvoice.COCByte = pdfBytes;
                         UpdateInvoice.COCContentType = "application/pdf";
