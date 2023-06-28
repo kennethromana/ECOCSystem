@@ -570,32 +570,50 @@ namespace ECOCSystem.Controllers
                         }
 
                 }
-                //Generate Attachment
-                if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
+                byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
+                using (db = new ECOCEntities())
                 {
-                    //Save merged pdf to Vehicle Info
-                    byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
-                    using (db = new ECOCEntities())
-                    {
-                        var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
+                    var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
 
-                        var newCTPLApplication = new CTPLApplication();
-                        newCTPLApplication.VehicleID = VehicleID;
-                        newCTPLApplication.ClientAddressID = AddressID;
-                        newCTPLApplication.ClientID = ClientID;
-                        newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
-                        newCTPLApplication.COCByte = pdfBytes;
-                        newCTPLApplication.COCContentType = "application/pdf";
+                    var newCTPLApplication = new CTPLApplication();
+                    newCTPLApplication.VehicleID = VehicleID;
+                    newCTPLApplication.ClientAddressID = AddressID;
+                    newCTPLApplication.ClientID = ClientID;
+                    newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
+                    newCTPLApplication.COCByte = pdfBytes;
+                    newCTPLApplication.COCContentType = "application/pdf";
 
-                        db.CTPLApplication.Add(newCTPLApplication);
-                        db.SaveChanges();
+                    db.CTPLApplication.Add(newCTPLApplication);
+                    db.SaveChanges();
 
-                        return true;
-                    }
-
+                    return true;
                 }
-                else
-                    return false;
+                //Generate Attachment
+                //if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
+                //{
+                //    //Save merged pdf to Vehicle Info
+                //    byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
+                //    using (db = new ECOCEntities())
+                //    {
+                //        var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
+
+                //        var newCTPLApplication = new CTPLApplication();
+                //        newCTPLApplication.VehicleID = VehicleID;
+                //        newCTPLApplication.ClientAddressID = AddressID;
+                //        newCTPLApplication.ClientID = ClientID;
+                //        newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
+                //        newCTPLApplication.COCByte = pdfBytes;
+                //        newCTPLApplication.COCContentType = "application/pdf";
+
+                //        db.CTPLApplication.Add(newCTPLApplication);
+                //        db.SaveChanges();
+
+                //        return true;
+                //    }
+
+                //}
+                //else
+                //    return false;
             }
             catch (Exception ex)
             {
