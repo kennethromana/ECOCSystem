@@ -194,7 +194,28 @@ namespace ECOCSystem.Controllers
                             break;
                         case "CTPLAPPLICATION":
                             {
-                               
+                                if (model.ClientID == 0) 
+                                {
+                                    Status = "Info";
+                                    Message = "Client Information is required.";
+                                    break;
+                                }
+
+                                if (model.ClientID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Client Vehicle Information is required.";
+                                    break;
+                                }
+                                if (model.AddressID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Client Address Information is required";
+                                    break;
+
+                                }
+
+
                                 Status = "Success";
                                 Message = "COC Applied Successfully!";
 
