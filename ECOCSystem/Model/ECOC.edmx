@@ -199,11 +199,45 @@ warning 6002: The table/view 'ECOC.dbo.CTPL' does not have a primary key defined
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="CTPLApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COC" Type="nvarchar" MaxLength="100" />
+          <Property Name="COCInceptionDate" Type="date" />
+          <Property Name="COCExpirationDate" Type="date" />
+          <Property Name="COCBasicPremium" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCVAT" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCDST" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCLGT" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCTaxes" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCAuthenticationFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCPremium" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="COCPolicyNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="COCContentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="COCByte" Type="varbinary(max)" />
+          <Property Name="VehicleID" Type="int" />
+          <Property Name="VehicleTypeID" Type="int" />
+          <Property Name="VehicleClassificationID" Type="int" />
+          <Property Name="TaxTypeID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ClientAddressID" Type="int" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="CompanyBranchID" Type="int" />
+          <Property Name="RegistrationTypeID" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.CTPLTaxType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CTPLTaxType">
           <Key>
             <PropertyRef Name="CTPLTaxTypeID" />
+            
           </Key>
           <Property Name="CTPLTaxTypeID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -501,6 +535,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyBranch" EntityType="Self.CompanyBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyEntity" EntityType="Self.CompanyEntity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTPLApplication" EntityType="Self.CTPLApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationType" EntityType="Self.RegistrationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleType" EntityType="Self.TitleType" Schema="dbo" store:Type="Tables" />
@@ -718,6 +753,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="VehicleClassification" EntityType="ECOCModel.VehicleClassification" />
           <EntitySet Name="VehicleType" EntityType="ECOCModel.VehicleType" />
           <EntitySet Name="CTPLTaxType" EntityType="ECOCModel.CTPLTaxType" />
+          <EntitySet Name="CTPLApplication" EntityType="ECOCModel.CTPLApplication" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -1100,6 +1136,39 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           </Key>
           <Property Name="CTPLTaxTypeID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CTPLApplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COCInceptionDate" Type="DateTime" Precision="0" />
+          <Property Name="COCExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="COCBasicPremium" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCVAT" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCDST" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCLGT" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCTaxes" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCAuthenticationFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCPremium" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="COCPolicyNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COCContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COCByte" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VehicleID" Type="Int32" />
+          <Property Name="VehicleTypeID" Type="Int32" />
+          <Property Name="VehicleClassificationID" Type="Int32" />
+          <Property Name="TaxTypeID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ClientAddressID" Type="Int32" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="CompanyBranchID" Type="Int32" />
+          <Property Name="RegistrationTypeID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1533,6 +1602,40 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
               <MappingFragment StoreEntitySet="CTPLTaxType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CTPLTaxTypeID" ColumnName="CTPLTaxTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTPLApplication">
+            <EntityTypeMapping TypeName="ECOCModel.CTPLApplication">
+              <MappingFragment StoreEntitySet="CTPLApplication">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RegistrationTypeID" ColumnName="RegistrationTypeID" />
+                <ScalarProperty Name="CompanyBranchID" ColumnName="CompanyBranchID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="ClientAddressID" ColumnName="ClientAddressID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="TaxTypeID" ColumnName="TaxTypeID" />
+                <ScalarProperty Name="VehicleClassificationID" ColumnName="VehicleClassificationID" />
+                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+                <ScalarProperty Name="COCByte" ColumnName="COCByte" />
+                <ScalarProperty Name="COCContentType" ColumnName="COCContentType" />
+                <ScalarProperty Name="COCPolicyNumber" ColumnName="COCPolicyNumber" />
+                <ScalarProperty Name="COCPremium" ColumnName="COCPremium" />
+                <ScalarProperty Name="COCAuthenticationFee" ColumnName="COCAuthenticationFee" />
+                <ScalarProperty Name="COCTaxes" ColumnName="COCTaxes" />
+                <ScalarProperty Name="COCLGT" ColumnName="COCLGT" />
+                <ScalarProperty Name="COCDST" ColumnName="COCDST" />
+                <ScalarProperty Name="COCVAT" ColumnName="COCVAT" />
+                <ScalarProperty Name="COCBasicPremium" ColumnName="COCBasicPremium" />
+                <ScalarProperty Name="COCExpirationDate" ColumnName="COCExpirationDate" />
+                <ScalarProperty Name="COCInceptionDate" ColumnName="COCInceptionDate" />
+                <ScalarProperty Name="COC" ColumnName="COC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

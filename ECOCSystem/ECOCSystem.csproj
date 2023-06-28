@@ -191,6 +191,9 @@
     <Compile Include="Model\CTPL.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CTPLApplication.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CTPLTaxType.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>

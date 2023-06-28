@@ -53,5 +53,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<VehicleClassification> VehicleClassification { get; set; }
         public virtual DbSet<VehicleType> VehicleType { get; set; }
         public virtual DbSet<CTPLTaxType> CTPLTaxType { get; set; }
+        public virtual DbSet<CTPLApplication> CTPLApplication { get; set; }
     }
 }
