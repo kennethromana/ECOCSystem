@@ -22,4 +22,10 @@ namespace ECOCSystem.Tools
         DatabridgeAsia = 1,
         Insurance = 2
     }
+    public enum ParamountVehicleType
+    {
+        CV,
+        MC,
+        PC
+    }
 }

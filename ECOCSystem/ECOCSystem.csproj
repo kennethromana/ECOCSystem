@@ -73,6 +73,12 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,6 +183,7 @@
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClientModel.cs" />
+    <Compile Include="Model\COCReturnModel.cs" />
     <Compile Include="Model\Company.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
@@ -274,6 +281,7 @@
     <Compile Include="Tools\AuthorizeUserAttribute.cs" />
     <Compile Include="Tools\CurrentUser.cs" />
     <Compile Include="Tools\Extensions.cs" />
+    <Compile Include="Tools\Functions.cs" />
     <Compile Include="Tools\PublicEnum.cs" />
     <Compile Include="Tools\SessionExpireAttribute .cs" />
   </ItemGroup>
