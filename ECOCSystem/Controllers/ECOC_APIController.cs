@@ -15,7 +15,7 @@ namespace ECOCSystem.Controllers
         ECOCEntities db = new ECOCEntities();
 
         HttpClient ECOC_Client = new HttpClient();
-        Uri URI;
+        //Uri URI;
         UriBuilder builder = new UriBuilder();
         NameValueCollection query = new NameValueCollection();
         public ActionResult Index()

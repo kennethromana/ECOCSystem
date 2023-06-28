@@ -215,9 +215,19 @@ namespace ECOCSystem.Controllers
 
                                 }
 
+                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID);
 
-                                Status = "Success";
-                                Message = "COC Applied Successfully!";
+                                if (isSucess)
+                                {
+                                    Status = "Success";
+                                    Message = "COC Applied Successfully!";
+                                }
+                                else 
+                                {
+                                    Status = "Error";
+                                    Message = "COC failed. Please contact Databridge support to assist you.";
+                                }
+                              
 
                             }
                             break;
@@ -351,183 +361,14 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public async Task<bool> CoCReport(int VehicleID)
+        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
         {
             try
             {
-                LocalReport lr = new LocalReport();
-                string path = Path.Combine(Server.MapPath("~/Reports/RDLC"), "CoCReport.rdlc");
-                if (System.IO.File.Exists(path))
-                {
-                    lr.ReportPath = path;
-                }
-                else
-                {
-                    return false;
-                }
-
-
-           
-
-                var dateFrom = (DateTime)DateTime.Now;
-                var dateTo = (DateTime)DateTime.Now;
-
-                //string imagepath = Path.Combine(Server.MapPath("~/Content"), "DataBridge Asia Inc Logo-01.jpg");
-                //var base64 = Convert.ToBase64String(dealerss.LogoByte);
-                //var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                //lr.EnableExternalImages = true;
-
-                //convert byte array to base64string
-
-                //string base64String = Convert.ToBase64String(Insurance.LogoByte);
-                //var imgSrc = String.Format("data:image/png;base64,{0}", base64String);
-                //var logoimage = "data:image/gif;base64," + base64String;
-
-                //Image image;
-                //using (MemoryStream ms = new MemoryStream(Insurance.LogoByte))
-                //{
-                //    image = Image.FromStream(ms);
-                //}
-                //var randomFileName = "Insurance-Logo" + Vehicle.VehicleID + ".png";
-                //var fullPath = Path.Combine(Server.MapPath("~/scripts/Img/"), randomFileName);
-                //image.Save(fullPath, System.Drawing.Imaging.ImageFormat.Png);
-
-
-                //string imagePath = new Uri().AbsoluteUri;
-                lr.EnableExternalImages = true;
-                lr.EnableHyperlinks = true;
-
-                ReportParameter[] prm = new ReportParameter[24];
-                prm[0] = new ReportParameter("NameParameter", "");
-                prm[1] = new ReportParameter("AddressParameter", "");
-                prm[2] = new ReportParameter("AuthenticationParameter", "");
-                prm[3] = new ReportParameter("PolicyParameter","");
-                prm[4] = new ReportParameter("BusinessParameter", "");
-                prm[5] = new ReportParameter("CoCParameter","");
-                prm[6] = new ReportParameter("DateIssuedParameter", dateFrom.ToString("MMM dd, yyyy"));
-                prm[7] = new ReportParameter("ORParameter", "");
-                prm[8] = new ReportParameter("PeriodFromParameter", dateFrom.ToString("MMM dd, yyyy"));
-                prm[9] = new ReportParameter("PeriodToParameter", dateTo.ToString("MMM dd, yyyy"));
-                prm[10] = new ReportParameter("ModelParameter", "");
-                prm[11] = new ReportParameter("MakeParameter", "");
-                prm[12] = new ReportParameter("BodyParameter", "");
-                prm[13] = new ReportParameter("ColorParameter", "");
-                prm[14] = new ReportParameter("MVFileNoParameter", "");
-                prm[15] = new ReportParameter("PlateParameter", "");
-                prm[16] = new ReportParameter("SerialOrChassisParameter","");
-                prm[17] = new ReportParameter("MotorParameter", "");
-                prm[18] = new ReportParameter("CapacityParameter", "");
-                prm[19] = new ReportParameter("UnLadenWghtParameter", "");
-                prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
-                prm[21] = new ReportParameter("PremiumParameter","");
-                prm[22] = new ReportParameter("InsuranceAddress", "");
-                prm[23] = new ReportParameter("InsuranceLogoParameter", "");
-                lr.SetParameters(prm);
-
-                //ReportDataSource rd = new ReportDataSource("MyDataSet", dealerlist);
-                //lr.DataSources.Add(rd);
-
-                lr.Refresh();
-
-                string reportTypeImage = "PDF";
-                string mimeTypeImage;
-                string encodingImage;
-                string fileNameExtensionImage;
-
-                string deviceInforImage =
-
-                "<DeviceInfo>" +
-                "  <OutputFormat>PDF</OutputFormat>" +
-                "  <PageWidth>8.27in</PageWidth>" +
-                "  <PageHeight>11.69in</PageHeight>" +
-                "  <MarginTop>0.25in</MarginTop>" +
-                "  <MarginLeft>0.25in</MarginLeft>" +
-                "  <MarginRight>0.25in</MarginRight>" +
-                "  <MarginBottom>0.10in</MarginBottom>" +
-                "</DeviceInfo>";
-
-                Warning[] warningsImage;
-                string[] streamsImage;
-                byte[] renderedBytesImage;
-
-                renderedBytesImage = lr.Render(
-                    reportTypeImage,
-                    deviceInforImage,
-                    out mimeTypeImage,
-                    out encodingImage,
-                    out fileNameExtensionImage,
-                    out streamsImage,
-                    out warningsImage);
-
-                //Save PDF to TEMP
-                var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) +"_Policy.pdf";
-
-                using (FileStream fs = new FileStream(pdfPath, FileMode.Create))
-                {
-                    fs.Write(renderedBytesImage, 0, renderedBytesImage.Length);
-                }
-
-                //    ParamountVehicleType paramountVehicleType = ParamountVehicleType.PC;
-                //    switch (invoice.VehicleClassificationID)
-                //    {
-                //        Private Car
-                //        case 1:
-                //        case 8:
-                //            {
-                //        paramountVehicleType = ParamountVehicleType.PC;
-                //        break;
-                //    }
-                //    Commercial Vehicle
-                //        case 2:
-                //        case 3:
-                //        case 4:
-                //        case 5:
-                //        case 6:
-
-                //        case 9:
-                //        case 10:
-                //        case 11:
-                //        case 12:
-                //        case 13:
-                //            {
-                //        paramountVehicleType = ParamountVehicleType.CV;
-                //        break;
-                //    }
-                //    Motorcycle
-                //        case 7:
-                //        case 14:
-                //            {
-                //        paramountVehicleType = ParamountVehicleType.MC;
-                //        break;
-                //    }
-
-                //}
-                //Generate Attachment
-                //if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
-                //{
-                //    //Save merged pdf to Vehicle Info
-                //    byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
-                //    using (db = new VRSystemEntities())
-                //    {
-                //        var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
-                //        var UpdateInvoice = db.DealerInvoice.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
-
-                //        Update.CertificateOfConformity = pdfBytes;
-                //        Update.COCContentType = "application/pdf";
-                //        UpdateInvoice.COCByte = pdfBytes;
-                //        UpdateInvoice.COCContentType = "application/pdf";
-
-
-                //        db.SaveChanges();
-                //        return true;
-                //    }
-
-                //}
-                //else
-                //    return false;
+                
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
