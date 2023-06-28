@@ -387,7 +387,7 @@ namespace ECOCSystem.Controllers
                                 select new
                                 {
                                     id = a.VehicleTypeID,
-                                    text = a.Name
+                                    text = a.VehicleTypeDescription
                                 }).ToList();
 
 

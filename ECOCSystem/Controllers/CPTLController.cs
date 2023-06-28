@@ -306,7 +306,7 @@ namespace ECOCSystem.Controllers
                                         Chassis = a.ChassisNumber,
                                         PlateNo = a.PlateNumber,
                                         Year = a.Year,
-                                        VehicleType = b.Name,
+                                        VehicleType = b.VehicleTypeDescription,
                                         VehicleMake = c.VehicleMakeName,
                                         VehicleBody = d.VehicleBodyTypeName,
                                         VehicleSeries = e.Name,
