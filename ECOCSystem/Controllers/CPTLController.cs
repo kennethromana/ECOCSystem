@@ -456,22 +456,22 @@ namespace ECOCSystem.Controllers
  //                   }
  //               }
 
-                var dateFrom = (DateTime)invoice.COCInceptionDate;
-                var dateTo = (DateTime)invoice.COCExpirationDate;
+                var dateFrom = DateTime.UtcNow;
+                var dateTo = DateTime.UtcNow;
 
-            
+
 
                 //string imagePath = new Uri(Server.MapPath("~/Logos/" + Insurance.Logo)).AbsoluteUri;
                 lr.EnableExternalImages = true;
                 lr.EnableHyperlinks = true;
 
                 ReportParameter[] prm = new ReportParameter[24];
-                prm[0] = new ReportParameter("NameParameter", NameParameter);
-                prm[1] = new ReportParameter("AddressParameter", AddressParameter);
+                prm[0] = new ReportParameter("NameParameter", /*NameParameter*/"");
+                prm[1] = new ReportParameter("AddressParameter", /*AddressParameter*/"");
                 prm[2] = new ReportParameter("AuthenticationParameter",/* invoice.COCAuthenticationCode*/"");
-                prm[3] = new ReportParameter("PolicyParameter", invoice.COCPolicyNumber);
+                prm[3] = new ReportParameter("PolicyParameter", /*invoice.COCPolicyNumber*/"");
                 prm[4] = new ReportParameter("BusinessParameter", "");
-                prm[5] = new ReportParameter("CoCParameter", invoice.COC);
+                prm[5] = new ReportParameter("CoCParameter", /*invoice.COC*/"");
                 prm[6] = new ReportParameter("DateIssuedParameter", dateFrom.ToString("MMM dd, yyyy"));
                 prm[7] = new ReportParameter("ORParameter", "");
                 prm[8] = new ReportParameter("PeriodFromParameter", dateFrom.ToString("MMM dd, yyyy"));
@@ -482,13 +482,13 @@ namespace ECOCSystem.Controllers
                 prm[13] = new ReportParameter("ColorParameter", /*Vehicle.VehicleColorName*/"");
                 prm[14] = new ReportParameter("MVFileNoParameter", "");
                 prm[15] = new ReportParameter("PlateParameter", "");
-                prm[16] = new ReportParameter("SerialOrChassisParameter", Vehicle.ChassisNumber);
-                prm[17] = new ReportParameter("MotorParameter", Vehicle.EngineNumber);
+                prm[16] = new ReportParameter("SerialOrChassisParameter", /*Vehicle.ChassisNumber*/"");
+                prm[17] = new ReportParameter("MotorParameter", /*Vehicle.EngineNumber*/"");
                 prm[18] = new ReportParameter("CapacityParameter", "");
                 prm[19] = new ReportParameter("UnLadenWghtParameter",/* Vehicle.GrossVehicleWeight.ToString()*/"");
                 prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
-                prm[21] = new ReportParameter("PremiumParameter", CTPL.GrossPremium.ToString("#,##0.00"));
-                prm[22] = new ReportParameter("InsuranceAddress", Insurance.Address + "\nTelephone: " + Insurance.BusinessPhone);
+                prm[21] = new ReportParameter("PremiumParameter",/* CTPL.GrossPremium.ToString("#,##0.00")*/"");
+                prm[22] = new ReportParameter("InsuranceAddress","");
                 prm[23] = new ReportParameter("InsuranceLogoParameter", /*imagePath*/ "");
                 lr.SetParameters(prm);
 
@@ -597,7 +597,7 @@ namespace ECOCSystem.Controllers
                 else
                     return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

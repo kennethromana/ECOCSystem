@@ -2289,6 +2289,7 @@
       <DependentUpon>ECOC.edmx</DependentUpon>
       <LastGenOutput>ECOC.cs</LastGenOutput>
     </Content>
+    <Content Include="Reports\ParamountFiles\Signature.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="FrontEnd\build\config\.eslintrc.json" />
@@ -2598,6 +2599,9 @@
     <Content Include="FrontEnd\login\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="FrontEnd\login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="FrontEnd\login\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Reports\ParamountFiles\CV.pdf" />
+    <Content Include="Reports\ParamountFiles\MC.pdf" />
+    <Content Include="Reports\ParamountFiles\PC.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
