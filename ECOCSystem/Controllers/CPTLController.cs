@@ -215,18 +215,9 @@ namespace ECOCSystem.Controllers
 
                                 }
 
-                                var newCTPLApplication = new CTPLApplication();
-                                newCTPLApplication.VehicleID = model.VehicleID;
-                                newCTPLApplication.ClientAddressID = model.AddressID;
-                                newCTPLApplication.ClientID = model.ClientID;
-                                newCTPLApplication.RegistrationTypeID = model.SelectedRegistrationTypeID;
+       
 
-                                db.CTPLApplication.Add(newCTPLApplication);
-
-                                db.SaveChanges();
-                                dbTransaction.Commit();
-
-                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID, newCTPLApplication.ID);
+                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID);
 
                                 if (isSucess)
                                 {
@@ -372,7 +363,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID,int CPTLApplicationID)
+        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
         {
             ECOCEntities db = new ECOCEntities();
             try
@@ -587,12 +578,18 @@ namespace ECOCSystem.Controllers
                     using (db = new ECOCEntities())
                     {
                         var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
-                        var UpdateInvoice = db.CTPLApplication.Where(o => o.ID == CPTLApplicationID).FirstOrDefault();
 
-                        UpdateInvoice.COCByte = pdfBytes;
-                        UpdateInvoice.COCContentType = "application/pdf";
+                        var newCTPLApplication = new CTPLApplication();
+                        newCTPLApplication.VehicleID = VehicleID;
+                        newCTPLApplication.ClientAddressID = AddressID;
+                        newCTPLApplication.ClientID = ClientID;
+                        newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
+                        newCTPLApplication.COCByte = pdfBytes;
+                        newCTPLApplication.COCContentType = "application/pdf";
 
+                        db.CTPLApplication.Add(newCTPLApplication);
                         db.SaveChanges();
+
                         return true;
                     }
 
