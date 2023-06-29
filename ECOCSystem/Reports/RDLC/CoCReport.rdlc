@@ -13,6 +13,9 @@
             <Left>5.36174in</Left>
             <Height>0.55209in</Height>
             <Width>1.23833in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6403,59 +6406,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>15th Floor, Sage House, 110 V.A Rufino St.,</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Legaspi Village, Makati City, 1229 Philippines</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Tel No.: +(632) 8772 9200 Fax No.: 8772 9290</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>insure@paramount.com.ph www.paramount.com.ph</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>TIN 000-487-644-000 VAT</Value>
+                      <Value />
                       <Style>
                         <FontSize>8pt</FontSize>
                       </Style>
@@ -6491,6 +6442,9 @@
               <Height>0.80334in</Height>
               <Width>3.01104in</Width>
               <ZIndex>2</ZIndex>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
