@@ -407,54 +407,59 @@ namespace ECOCSystem.Controllers
                 //InsuranceCOCSeries CoCSeries = new InsuranceCOCSeries();
 
 
-                var NameParameter = "";
-                var AddressParameter = "";
- //using (db = new ECOCEntities())
- //               {
- //                   invoice = db.DealerInvoice.Where(o => o.Active == true && o.VehicleID == VehicleID).FirstOrDefault();
- //                   customer = db.Customer.Where(o => o.CustomerID == invoice.CustomerID).FirstOrDefault();
- //                   var TitleType = (from a in db.Title
- //                                    join b in db.TitleType on a.TitleTypeID equals b.TitleTypeID into temp
- //                                    from temptbl in temp.DefaultIfEmpty()
- //                                    select new
- //                                    {
- //                                        TitleID = a.TitleID,
- //                                        TitleTypeID = temptbl.TitleTypeID,
- //                                        TitleTypeName = temptbl.TitleTypeName
- //                                    })
- //                                .Where(o => o.TitleID == customer.TitleID).FirstOrDefault();
+                var ClientName = "";
+                var ClientAddress = "";
+                int Individual = (int)TitleTypeEnum.Individual;
+                int Corporate = (int)TitleTypeEnum.Corporate;
+                int CorporateWithAssignee = (int)TitleTypeEnum.CorporateWithAssignee;
 
- //                   City = db.City.Where(o => o.CityID == customer.CityID).FirstOrDefault();
- //                   int BarangayID = Convert.ToInt32(customer.Barangay);
- //                   oBarangay = db.Barangay.Where(o => o.BarangayID == BarangayID).FirstOrDefault();
- //                   oProvince = db.Province.Where(o => o.ProvinceID == City.ProvinceID).FirstOrDefault();
+                //get client info
+                var ClientInfo = (from a in db.Client
+                                  from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
+                                  from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
+                                  from d in db.ClientAddress.Where(o => o.ClientID == a.ID).DefaultIfEmpty()
+                                  from e in db.City.Where(o => o.CityID == d.CityID).DefaultIfEmpty()
+                                  from f in db.Province.Where(o => o.ProvinceID == d.ProvinceID).DefaultIfEmpty()
+                                  where
+                                  a.Active == true &&
+                                  a.ID == ClientID &&
+                                  d.ID == AddressID
+                                  select new
+                                  {
+                                      Client = c.ID == Individual ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
+                                                            : c.ID == Corporate ? a.CorpName.ToUpper()
+                                                            : c.ID == CorporateWithAssignee ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
+                                                            : "-",
+                                      TitleType = c.ID,
+                                      Address = d.HouseBldgNo + ", " + d.StreetSubdivision.ToUpper() + ", " + d.Barangay.ToUpper() + ", " + e.CityName.ToUpper() + ", " + f.ProvinceName.ToUpper()
+                                  }
+                                  ).FirstOrDefault();
+
+                //GET VEHICLE INFO
+                var VehicleInfo = (from a in db.VehicleInfo
+                                   from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
+                                   from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
+                                   from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                   from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
+                                   from f in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                   where
+                                   a.Active == true &&
+                                   a.VehicleID == VehicleID
+                                   select new
+                                   {
+                                       VehicleID = a.VehicleID,
+                                       Chassis = a.ChassisNumber,
+                                       Engine = a.EngineNumber,
+                                       PlateNo = a.PlateNumber,
+                                       Year = a.Year,
+                                       VehicleType = b.VehicleTypeDescription,
+                                       VehicleMake = c.VehicleMakeName,
+                                       VehicleBody = d.VehicleBodyTypeName,
+                                       VehicleSeries = e.Name,
+                                       Color = f.VehicleColorName,
+                                   }).FirstOrDefault();
 
 
- //                   VehicleModel = db.VehicleModel.Where(o => o.VehicleModelID == Vehicle.SelectedVehicleModelID).FirstOrDefault();
- //                   if (invoice.VehicleClassificationID != 0)
- //                   {
- //                       VC = db.VehicleClassification.Where(o => o.VehicleClassificationID == invoice.VehicleClassificationID).FirstOrDefault();
- //                   }
- //                   else
- //                   {
- //                       VC = db.VehicleClassification.Where(o => o.VehicleClassificationID == VehicleModel.VehicleClassificationID).FirstOrDefault();
- //                   }
- //                   CTPL = db.CTPL.Where(o => o.VehicleClassificationID == VC.VehicleClassificationID).FirstOrDefault();
- //                   CTPLTerm = db.CTPLTerm.Where(o => o.CPTLTermID == CTPL.CTPLTermID).FirstOrDefault();
- //                   Insurance = db.Insurance.Where(o => o.InsuranceID == invoice.InsuranceID).FirstOrDefault();
- //                   CoCSeries = db.InsuranceCOCSeries.Where(o => o.InsuranceID == Insurance.InsuranceID && o.Active == true).FirstOrDefault();
-
- //                   if (TitleType.TitleTypeID == 2)
- //                   {
- //                       NameParameter = customer.CorpName;
- //                       AddressParameter = customer.HouseBldgNumber + ", " + customer.StreetSubdivision + ", " + oBarangay.BarangayName + ", " + City.CityName + ", " + oProvince.ProvinceName + " " + customer.ZipCode;
- //                   }
- //                   else
- //                   {
- //                       NameParameter = customer.FirstName + " " + customer.MiddleName + " " + customer.LastName;
- //                       AddressParameter = customer.HouseBldgNumber + ", " + customer.StreetSubdivision + ", " + oBarangay.BarangayName + ", " + City.CityName + ", " + oProvince.ProvinceName + " " + customer.ZipCode;
- //                   }
- //               }
 
                 var dateFrom = DateTime.UtcNow;
                 var dateTo = DateTime.UtcNow;
@@ -466,8 +471,8 @@ namespace ECOCSystem.Controllers
                 lr.EnableHyperlinks = true;
 
                 ReportParameter[] prm = new ReportParameter[24];
-                prm[0] = new ReportParameter("NameParameter", /*NameParameter*/"");
-                prm[1] = new ReportParameter("AddressParameter", /*AddressParameter*/"");
+                prm[0] = new ReportParameter("NameParameter", ClientInfo.Client);
+                prm[1] = new ReportParameter("AddressParameter", ClientInfo.Address);
                 prm[2] = new ReportParameter("AuthenticationParameter",/* invoice.COCAuthenticationCode*/"");
                 prm[3] = new ReportParameter("PolicyParameter", /*invoice.COCPolicyNumber*/"");
                 prm[4] = new ReportParameter("BusinessParameter", "");
@@ -476,14 +481,14 @@ namespace ECOCSystem.Controllers
                 prm[7] = new ReportParameter("ORParameter", "");
                 prm[8] = new ReportParameter("PeriodFromParameter", dateFrom.ToString("MMM dd, yyyy"));
                 prm[9] = new ReportParameter("PeriodToParameter", dateTo.ToString("MMM dd, yyyy"));
-                prm[10] = new ReportParameter("ModelParameter", /*Vehicle.VehicleModelName*/ "");
-                prm[11] = new ReportParameter("MakeParameter",/* Vehicle.VehicleMakeName*/"");
-                prm[12] = new ReportParameter("BodyParameter", /*Vehicle.VehicleBodyTypeName*/"");
-                prm[13] = new ReportParameter("ColorParameter", /*Vehicle.VehicleColorName*/"");
+                prm[10] = new ReportParameter("ModelParameter", VehicleInfo.VehicleSeries);
+                prm[11] = new ReportParameter("MakeParameter", VehicleInfo.VehicleMake);
+                prm[12] = new ReportParameter("BodyParameter", VehicleInfo.VehicleBody);
+                prm[13] = new ReportParameter("ColorParameter", VehicleInfo.Color);
                 prm[14] = new ReportParameter("MVFileNoParameter", "");
-                prm[15] = new ReportParameter("PlateParameter", "");
-                prm[16] = new ReportParameter("SerialOrChassisParameter", /*Vehicle.ChassisNumber*/"");
-                prm[17] = new ReportParameter("MotorParameter", /*Vehicle.EngineNumber*/"");
+                prm[15] = new ReportParameter("PlateParameter", VehicleInfo.PlateNo);
+                prm[16] = new ReportParameter("SerialOrChassisParameter", VehicleInfo.Chassis);
+                prm[17] = new ReportParameter("MotorParameter", VehicleInfo.Engine);
                 prm[18] = new ReportParameter("CapacityParameter", "");
                 prm[19] = new ReportParameter("UnLadenWghtParameter",/* Vehicle.GrossVehicleWeight.ToString()*/"");
                 prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
