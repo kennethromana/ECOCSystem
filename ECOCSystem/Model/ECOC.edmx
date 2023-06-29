@@ -262,6 +262,26 @@ warning 6002: The table/view 'ECOC.dbo.CTPLTerm' does not have a primary key def
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ECOC.dbo.InsuranceCOCSeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InsuranceCOCSeries">
+          <Key>
+            <PropertyRef Name="InsuranceCOCSeriesID" />
+          </Key>
+          <Property Name="InsuranceCOCSeriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsuranceID" Type="int" Nullable="false" />
+          <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="SeriesFrom" Type="int" Nullable="false" />
+          <Property Name="SeriesTo" Type="int" Nullable="false" />
+          <Property Name="CurrentSeries" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="MasterPolicy" Type="nvarchar" MaxLength="50" />
+          <Property Name="COCPrefix" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MVPremium">
           <Key>
@@ -593,6 +613,23 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
     [CTPLTerm].[UpdatedDate] AS [UpdatedDate]
     FROM [dbo].[CTPLTerm] AS [CTPLTerm]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="InsuranceCOCSeries" EntityType="Self.InsuranceCOCSeries" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InsuranceCOCSeries].[InsuranceCOCSeriesID] AS [InsuranceCOCSeriesID], 
+    [InsuranceCOCSeries].[InsuranceID] AS [InsuranceID], 
+    [InsuranceCOCSeries].[EffectiveDate] AS [EffectiveDate], 
+    [InsuranceCOCSeries].[SeriesFrom] AS [SeriesFrom], 
+    [InsuranceCOCSeries].[SeriesTo] AS [SeriesTo], 
+    [InsuranceCOCSeries].[CurrentSeries] AS [CurrentSeries], 
+    [InsuranceCOCSeries].[Active] AS [Active], 
+    [InsuranceCOCSeries].[CreatedDate] AS [CreatedDate], 
+    [InsuranceCOCSeries].[CreatedBy] AS [CreatedBy], 
+    [InsuranceCOCSeries].[UpdatedDate] AS [UpdatedDate], 
+    [InsuranceCOCSeries].[UpdatedBy] AS [UpdatedBy], 
+    [InsuranceCOCSeries].[MasterPolicy] AS [MasterPolicy], 
+    [InsuranceCOCSeries].[COCPrefix] AS [COCPrefix]
+    FROM [dbo].[InsuranceCOCSeries] AS [InsuranceCOCSeries]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="MVPremium" EntityType="Self.MVPremium" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MVPremium].[ID] AS [ID], 
@@ -754,6 +791,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="VehicleType" EntityType="ECOCModel.VehicleType" />
           <EntitySet Name="CTPLTaxType" EntityType="ECOCModel.CTPLTaxType" />
           <EntitySet Name="CTPLApplication" EntityType="ECOCModel.CTPLApplication" />
+          <EntitySet Name="InsuranceCOCSeries" EntityType="ECOCModel.InsuranceCOCSeries" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -1169,6 +1207,24 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InsuranceCOCSeries">
+          <Key>
+            <PropertyRef Name="InsuranceCOCSeriesID" />
+          </Key>
+          <Property Name="InsuranceCOCSeriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsuranceID" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SeriesFrom" Type="Int32" Nullable="false" />
+          <Property Name="SeriesTo" Type="Int32" Nullable="false" />
+          <Property Name="CurrentSeries" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="MasterPolicy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COCPrefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1636,6 +1692,25 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
                 <ScalarProperty Name="COCInceptionDate" ColumnName="COCInceptionDate" />
                 <ScalarProperty Name="COC" ColumnName="COC" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCOCSeries">
+            <EntityTypeMapping TypeName="ECOCModel.InsuranceCOCSeries">
+              <MappingFragment StoreEntitySet="InsuranceCOCSeries">
+                <ScalarProperty Name="COCPrefix" ColumnName="COCPrefix" />
+                <ScalarProperty Name="MasterPolicy" ColumnName="MasterPolicy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CurrentSeries" ColumnName="CurrentSeries" />
+                <ScalarProperty Name="SeriesTo" ColumnName="SeriesTo" />
+                <ScalarProperty Name="SeriesFrom" ColumnName="SeriesFrom" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="InsuranceID" ColumnName="InsuranceID" />
+                <ScalarProperty Name="InsuranceCOCSeriesID" ColumnName="InsuranceCOCSeriesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

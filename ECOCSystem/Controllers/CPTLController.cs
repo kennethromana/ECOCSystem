@@ -463,7 +463,7 @@ namespace ECOCSystem.Controllers
                                        VehicleType = b.VehicleTypeDescription,
                                        VehicleMake = c.VehicleMakeName,
                                        VehicleBody = d.VehicleBodyTypeName,
-                                       VehicleSeries = e.Name,
+                                       VehicleSeries = e.Name.ToUpper(),
                                        Color = f.VehicleColorName,
                                    }).FirstOrDefault();
 
