@@ -528,7 +528,9 @@ namespace ECOCSystem.Controllers
                     out warningsImage);
 
                 //Save PDF to TEMP
-                var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + "_Policy.pdf";
+                var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + "_Policy.pdf";
+                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/_Policy.pdf")));
+                //string sample = System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/"));
 
                 using (FileStream fs = new FileStream(pdfPath, FileMode.Create))
                 {
@@ -570,7 +572,7 @@ namespace ECOCSystem.Controllers
                         }
 
                 }
-                byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
+                byte[] pdfBytes = System.IO.File.ReadAllBytes(filePath);
                 using (db = new ECOCEntities())
                 {
                     var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
@@ -584,7 +586,7 @@ namespace ECOCSystem.Controllers
                     newCTPLApplication.COCContentType = "application/pdf";
 
                     db.CTPLApplication.Add(newCTPLApplication);
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
                     return true;
                 }
