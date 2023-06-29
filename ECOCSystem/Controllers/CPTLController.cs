@@ -37,6 +37,7 @@ namespace ECOCSystem.Controllers
             int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
 
             var CurrentSubmit = "";
+            var FileName = "";
 
 
             using (var db = new ECOCEntities())
@@ -226,9 +227,9 @@ namespace ECOCSystem.Controllers
 
        
 
-                                var isSucess = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID);
+                                 FileName = CoCReport(model.ClientID,model.AddressID,model.VehicleID,model.SelectedRegistrationTypeID);
 
-                                if (isSucess)
+                                if (FileName != null)
                                 {
                                     Status = "Success";
                                     Message = "COC Applied Successfully!";
@@ -259,7 +260,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID ,CurrentSubmit});
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID ,CurrentSubmit, FileName });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 
@@ -373,7 +374,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
+        public string CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
         {
             using (var db = new ECOCEntities())
             using (var dbTransaction = db.Database.BeginTransaction())
@@ -389,7 +390,7 @@ namespace ECOCSystem.Controllers
                     }
                     else
                     {
-                        return false;
+                        return null;
                     }
 
 
@@ -552,9 +553,10 @@ namespace ECOCSystem.Controllers
                         out warningsImage);
 
                     //Save PDF to TEMP
-                    var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + VehicleInfo.Chassis + "-"+ COCNo + "_COC.pdf";
-                    var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/")+ VehicleInfo.Chassis + "-" +COCNo + "_COC.pdf"));
-                    //string sample = System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/"));
+                    var FileName = VehicleInfo.Chassis + "-" + COCNo + "_COC.pdf";
+                    var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + FileName;
+                    var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/")+ FileName));
+            
 
                     using (FileStream fs = new FileStream(pdfPath, FileMode.Create))
                     {
@@ -622,7 +624,7 @@ namespace ECOCSystem.Controllers
                     db.CTPLApplication.Add(newCTPLApplication);
                     //db.SaveChanges();
 
-                    return true;
+                    return FileName;
 
                     //Generate Attachment
                     //if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
@@ -654,7 +656,7 @@ namespace ECOCSystem.Controllers
                 catch (Exception ex)
                 {
                     dbTransaction.Rollback();
-                    return false;
+                    return null;
                 }
             }
      

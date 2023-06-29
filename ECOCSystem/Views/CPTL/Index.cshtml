@@ -582,7 +582,7 @@ svg:hover .tooltip {
                                     $("#modal-client-vehicle").modal('hide');
                                     break;
                                 case "CTPL":
-                                    showCOCFile();
+                                    showCOCFile(response.FileName);
                                     break;
                                 default:
                         
@@ -672,7 +672,7 @@ svg:hover .tooltip {
     });
 
   
-    function showCOCFile(src)
+    function showCOCFile(FileName)
     {
         $('#loadingScreen').show();
 
@@ -681,7 +681,7 @@ svg:hover .tooltip {
         $('#modal-ApplicationSummary .modal-body').append(`<iframe id="report_viewer" frameborder="0"
                     scrolling="no" seamless="seamless" marginheight="0" marginwidth="0" role="document" style="width: 100%; margin: 0%; height: 720px;" aria-label="PDF document" title="PDF document"></iframe>`)
 
-        $('#report_viewer').attr('src', '@Url.Content("~/Reports/VRTempFiles/_Policy.pdf")');
+        $('#report_viewer').attr('src', '@Url.Content("~/Reports/VRTempFiles/")' + FileName);
 
 
         $('#modal-ApplicationSummary .modal-title').text('COC File')
