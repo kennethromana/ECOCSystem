@@ -647,19 +647,22 @@ svg:hover .tooltip {
             console.log("applied")
         });
 
+        $('#SelectedRegistrationTypeID').on('change', function () {
+
+            //for Application Summary
+            $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
+
+
+
+        });
+
     });
 
-    $('#SelectedRegistrationTypeID').on('click', function () {
-
-        //for Application Summary
-        $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
-
-       
-
-    });
+  
     function showCOCFile(src)
     {
         $('#loadingScreen').show();
+
         $('#modal-ApplicationSummary .modal-body').empty();
 
         $('#modal-ApplicationSummary .modal-body').append(`<iframe id="report_viewer" frameborder="0"
