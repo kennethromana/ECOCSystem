@@ -11,14 +11,17 @@ namespace ECOCSystem.Model
     {
         public VehicleModel()
         {
-            VehicleTypes = new List<VehicleTypes>();
-            VehicleColors = new List<VehicleColors>();
-            VehicleMakeList = new List<VehicleMakeList>();
-            VehicleBodyList = new List<VehicleBodyList>();
-            VehicleSeriesList = new List<VehicleSeriesList>();
+            VehicleTypes = new List<DropdownModel>();
+            VehicleColors = new List<DropdownModel>();
+            VehicleMakeList = new List<DropdownModel>();
+            VehicleBodyList = new List<DropdownModel>();
+            VehicleSeriesList = new List<DropdownModel>();
+            VehicleClassificationList = new List<DropdownModel>();
 
         }
         public int VehicleID { get; set; }
+        [DisplayName("Vehicle Classification")]
+        public int SelectedClassificationID { get; set; }
         [Required]
         [DisplayName("Vehicle Type")]
         public int SelectedVehicleTypeID { get; set; }
@@ -52,37 +55,13 @@ namespace ECOCSystem.Model
         public Nullable<int> MakeID { get; set; }
         public Nullable<int> SeriesID { get; set; }
         public Nullable<int> BodyTypeID { get; set; }
-        public List<VehicleTypes> VehicleTypes { get; set; }
-        public List<VehicleColors> VehicleColors { get; set; }
-        public List<VehicleMakeList> VehicleMakeList { get; set; }
-        public List<VehicleBodyList> VehicleBodyList { get; set; }
-        public List<VehicleSeriesList> VehicleSeriesList { get; set; }
+        public List<DropdownModel> VehicleTypes { get; set; }
+        public List<DropdownModel> VehicleColors { get; set; }
+        public List<DropdownModel> VehicleMakeList { get; set; }
+        public List<DropdownModel> VehicleBodyList { get; set; }
+        public List<DropdownModel> VehicleSeriesList { get; set; }
+        public List<DropdownModel> VehicleClassificationList { get; set; }
 
-    }
-    public class VehicleTypes
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-    }
-    public class VehicleColors
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-    }
-    public class VehicleMakeList
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-    }
-    public class VehicleBodyList
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
-    }
-    public class VehicleSeriesList
-    {
-        public int ID { get; set; }
-        public string Info { get; set; }
     }
 
 

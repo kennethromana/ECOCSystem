@@ -387,7 +387,39 @@ namespace ECOCSystem.Controllers
                                 select new
                                 {
                                     id = a.VehicleTypeID,
-                                    text = a.VehicleTypeDescription
+                                    text = a.VehicleCode+" - "+a.VehicleTypeDescription
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+        public ActionResult GetVehicleClassificationList(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.VehicleClassification
+                                select new
+                                {
+                                    id = a.VehicleClassificationID,
+                                    text = a.VehicleClassificationName
                                 }).ToList();
 
 

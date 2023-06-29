@@ -176,6 +176,8 @@ namespace ECOCSystem.Controllers
                                     newVehicle.MVFileNumber = model.ClientVehicle.MVFileNumber;
 
                                     newVehicle.VehicleTypeID = model.ClientVehicle.SelectedVehicleTypeID;
+                                    newVehicle.ClassificationID = model.ClientVehicle.SelectedClassificationID;
+
                                     newVehicle.VehicleColorID = model.ClientVehicle.SelectedColorID;
                                     newVehicle.MakeID = model.ClientVehicle.SelectedMakeID;
                                     newVehicle.BodyTypeID = model.ClientVehicle.SelectedBodyTypeID;

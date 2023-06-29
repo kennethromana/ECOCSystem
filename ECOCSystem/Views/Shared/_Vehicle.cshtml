@@ -13,12 +13,19 @@
     </div>
     <div class="modal-body @*overlay*@" style="padding:2rem;">
         <section class="row mt-4 pb-4">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 @Html.LabelFor(m => m.SelectedVehicleTypeID)
                 <div class="input-group">
                     @Html.DropDownListFor(m => m.SelectedVehicleTypeID, new SelectList(Model.VehicleTypes, "ID", "Info"), "Select Vehicle Type  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleTypes", "GetData") })
                 </div>
                 @Html.ValidationMessageFor(m => m.SelectedVehicleTypeID, "", new { @class = "" })
+            </div>
+            <div class="form-group col-lg-6">
+                @Html.LabelFor(m => m.SelectedClassificationID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedClassificationID, new SelectList(Model.VehicleClassificationList, "ID", "Info"), "Select Vehicle Classification  ", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleClassificationList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedClassificationID, "", new { @class = "" })
             </div>
         </section>
         <section class="row pb-4 TitleType">
