@@ -212,7 +212,9 @@ namespace ECOCSystem.Controllers
                                     Mname = a.MiddleName,
                                     Email = a.Email,
                                     BranchID = c.ID,
-                                    UserTypeID = b.ID
+                                    Branch = c.Name,
+                                    UserTypeID = b.ID,
+                                    UserType = b.Name,
                                 }
                                 ).FirstOrDefault();
                 return Json(UserInfo, JsonRequestBehavior.AllowGet);

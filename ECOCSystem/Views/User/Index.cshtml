@@ -183,6 +183,7 @@
 
 <script>
     $(document).ready(function () {
+
         $(".table").DataTable();
         //for select2 adding parameter
         jQuery('.select2Ajax').on('select2:opening', function () {
@@ -217,8 +218,10 @@
                     $('#LastName').val(response.Lname)
                     $('#MiddleName').val(response.Mname)
                     $('#Email').val(response.Email)
-                    //$('#SelectedUserTypeID').val(response.UserTypeID)
-                    //$('#SelectedCompanyBranchID').val(response.BranchID)
+                    var selectedUserType = $("<option selected='selected'></option>").val(response.UserTypeID).text(response.UserType)
+                    var selectedBranch = $("<option selected='selected'></option>").val(response.BranchID).text(response.Branch)
+                    $("#SelectedUserTypeID").append(selectedUserType).trigger('change');
+                    $("#SelectedCompanyBranchID").append(selectedBranch).trigger('change');
 
 
                 },
