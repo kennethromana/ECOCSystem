@@ -565,16 +565,30 @@ svg:hover .tooltip {
                 success: function (response) {
                     switch (response.Status) {
                         case "Success":
-                            //$("#" + submitType).html(response.Data);
-                            //$("#" + submitType + "_nav").removeClass("error warning").addClass("done");
 
                             if (response.ClientID > 0) {
                                 getAddressList(response.ClientID)
                                 getVehicleList(response.ClientID)
                             }
-
-               /*             changeStatus();*/
-            /*                LoadImage(response.MVID);*/
+                            console.log(response.CurrentSubmit)
+                            switch (response.CurrentSubmit) {
+                                case "Client":
+                                    $("#modal-client").modal('hide');
+                                    break;
+                                case "Address":
+                                    $("#modal-client-address").modal('hide');
+                                    break;
+                                case "Vehicle":
+                                    $("#modal-client-vehicle").modal('hide');
+                                    break;
+                                case "CTPL":
+                                    showCOCFile();
+                                    break;
+                                default:
+                        
+                                    break;
+                            }
+                          
                             toastr.success(response.Message);
                             break;
                         case "Warning":
@@ -590,7 +604,7 @@ svg:hover .tooltip {
                             toastr.error(response.Message);
                             break;
                     }
-                    showCOCFile();
+               
                 },
                 error: function (xhr, status, error) {
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
@@ -644,7 +658,6 @@ svg:hover .tooltip {
 
         $('#submit_Application').on('click', function () {
             submitForm("CTPLAPPLICATION");
-            console.log("applied")
         });
 
         $('#SelectedRegistrationTypeID').on('change', function () {
@@ -678,8 +691,6 @@ svg:hover .tooltip {
         $('#loadingScreen').hide();
 
         $('#modal-ApplicationSummary').on('hide.bs.modal', function (e) {
-            // do something…
-            /*       window.location.href = '/Company/Index/';*/
             window.location.reload(true)
 
         });
@@ -923,7 +934,6 @@ svg:hover .tooltip {
 
     function switchTitleType(selection) {
 
-        debugger
             if (selection == 3) {
                 $('div.Type').filter('[data-attribute2="' + selection + '"]').show();
                 $('div.Type').not('[data-attribute2="' + selection + '"]').hide();

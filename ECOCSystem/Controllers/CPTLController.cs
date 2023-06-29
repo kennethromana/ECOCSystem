@@ -36,6 +36,8 @@ namespace ECOCSystem.Controllers
             int Corporate = Convert.ToInt32(TitleTypeEnum.Corporate);
             int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
 
+            var CurrentSubmit = "";
+
 
             using (var db = new ECOCEntities())
             using (var dbTransaction = db.Database.BeginTransaction())
@@ -93,6 +95,7 @@ namespace ECOCSystem.Controllers
 
                                 Status = "Success";
                                 Message = "New client Added Successfully!";
+                                CurrentSubmit = "Client";
                             }
                             break;
                         case "EDITCLIENT":
@@ -100,6 +103,7 @@ namespace ECOCSystem.Controllers
                                 var clientModel = model.Client;
                                 Status = "Success";
                                 Message = "Client Updated Successfully!";
+                                CurrentSubmit = "Client";
 
                             }
                             break;
@@ -142,8 +146,10 @@ namespace ECOCSystem.Controllers
 
                                     Status = "Success";
                                     Message = "New Address added Successfully!";
+
                                 }
-                                
+                                CurrentSubmit = "Client";
+
 
                             }
                             break;
@@ -187,8 +193,9 @@ namespace ECOCSystem.Controllers
                                     dbTransaction.Commit();
 
                                     Status = "Success";
-                                    Message = "New Address added Successfully!";
+                                    Message = "New Vehicle added Successfully!";
                                 }
+                                CurrentSubmit = "Vehicle";
 
                             }
                             break;
@@ -229,7 +236,8 @@ namespace ECOCSystem.Controllers
                                     Status = "Error";
                                     Message = "COC failed. Please contact Databridge support to assist you.";
                                 }
-                              
+                                CurrentSubmit = "CTPL";
+
 
                             }
                             break;
@@ -249,7 +257,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ClientID ,CurrentSubmit});
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 
