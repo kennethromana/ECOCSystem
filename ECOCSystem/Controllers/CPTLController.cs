@@ -375,223 +375,243 @@ namespace ECOCSystem.Controllers
         }
         public bool CoCReport(int ClientID,int AddressID,int VehicleID,int RegistrationTypeID)
         {
-            ECOCEntities db = new ECOCEntities();
-            try
+            using (var db = new ECOCEntities())
+            using (var dbTransaction = db.Database.BeginTransaction())
             {
-                LocalReport lr = new LocalReport();
-                string path = Path.Combine(Server.MapPath("~/Reports/RDLC"), "CoCReport.rdlc");
-                if (System.IO.File.Exists(path))
+                try
                 {
-                    lr.ReportPath = path;
-                }
-                else
-                {
-                    return false;
-                }
+
+                    LocalReport lr = new LocalReport();
+                    string path = Path.Combine(Server.MapPath("~/Reports/RDLC"), "CoCReport.rdlc");
+                    if (System.IO.File.Exists(path))
+                    {
+                        lr.ReportPath = path;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
 
-                //var Vehicle = GetVehicleInfoV2(VehicleID);
-                var Vehicle = db.VehicleInfo.Where(o => o.VehicleID == VehicleID).FirstOrDefault();
+                    //var Vehicle = GetVehicleInfoV2(VehicleID);
+                    var Vehicle = db.VehicleInfo.Where(o => o.VehicleID == VehicleID).FirstOrDefault();
 
-                //DealerInvoice invoice = new DealerInvoice();
+                    //DealerInvoice invoice = new DealerInvoice();
 
-                CTPLApplication invoice = new CTPLApplication();
+                    CTPLApplication invoice = new CTPLApplication();
 
-                //Customer customer = new Customer();
-                Client customer = new Client();
-
-
-                City City = new City();
-
-                //Barangay oBarangay = new Barangay();
-                Province oProvince = new Province();
-                VehicleModel VehicleModel = new VehicleModel();
-                VehicleClassification VC = new VehicleClassification();
-                CTPL CTPL = new CTPL();
-                CTPLTerm CTPLTerm = new CTPLTerm();
-
-                //Insurance Insurance = new Insurance();
-                Company Insurance = new Company();
+                    //Customer customer = new Customer();
+                    Client customer = new Client();
 
 
-                //InsuranceCOCSeries CoCSeries = new InsuranceCOCSeries();
+                    City City = new City();
+
+                    //Barangay oBarangay = new Barangay();
+                    Province oProvince = new Province();
+                    VehicleModel VehicleModel = new VehicleModel();
+                    VehicleClassification VC = new VehicleClassification();
+
+                    //CTPL CTPL = new CTPL();
+                    //CTPLTerm CTPLTerm = new CTPLTerm();
+
+                    //Insurance Insurance = new Insurance();
+                    Company Insurance = new Company();
 
 
-
-                int Individual = (int)TitleTypeEnum.Individual;
-                int Corporate = (int)TitleTypeEnum.Corporate;
-                int CorporateWithAssignee = (int)TitleTypeEnum.CorporateWithAssignee;
-
-                //get client info
-                var ClientInfo = (from a in db.Client
-                                  from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
-                                  from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
-                                  from d in db.ClientAddress.Where(o => o.ClientID == a.ID).DefaultIfEmpty()
-                                  from e in db.City.Where(o => o.CityID == d.CityID).DefaultIfEmpty()
-                                  from f in db.Province.Where(o => o.ProvinceID == d.ProvinceID).DefaultIfEmpty()
-                                  where
-                                  a.Active == true &&
-                                  a.ID == ClientID &&
-                                  d.ID == AddressID
-                                  select new
-                                  {
-                                      Client = c.ID == Individual ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
-                                                            : c.ID == Corporate ? a.CorpName.ToUpper()
-                                                            : c.ID == CorporateWithAssignee ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
-                                                            : "-",
-                                      TitleType = c.ID,
-                                      Address = d.HouseBldgNo + ", " + d.StreetSubdivision.ToUpper() + ", " + d.Barangay.ToUpper() + ", " + e.CityName.ToUpper() + ", " + f.ProvinceName.ToUpper()
-                                  }
-                                  ).FirstOrDefault();
-
-                //GET VEHICLE INFO
-                var VehicleInfo = (from a in db.VehicleInfo
-                                   from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
-                                   from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
-                                   from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                   from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
-                                   from f in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
-                                   where
-                                   a.Active == true &&
-                                   a.VehicleID == VehicleID
-                                   select new
-                                   {
-                                       VehicleID = a.VehicleID,
-                                       Chassis = a.ChassisNumber,
-                                       Engine = a.EngineNumber,
-                                       PlateNo = a.PlateNumber,
-                                       Year = a.Year,
-                                       VehicleType = b.VehicleTypeDescription,
-                                       VehicleMake = c.VehicleMakeName,
-                                       VehicleBody = d.VehicleBodyTypeName,
-                                       VehicleSeries = e.Name.ToUpper(),
-                                       Color = f.VehicleColorName,
-                                   }).FirstOrDefault();
+                    //InsuranceCOCSeries CoCSeries = new InsuranceCOCSeries();
 
 
 
-                var dateFrom = DateTime.UtcNow;
-                var dateTo = DateTime.UtcNow;
+                    int Individual = (int)TitleTypeEnum.Individual;
+                    int Corporate = (int)TitleTypeEnum.Corporate;
+                    int CorporateWithAssignee = (int)TitleTypeEnum.CorporateWithAssignee;
+
+                    //get client info
+                    var ClientInfo = (from a in db.Client
+                                      from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
+                                      from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
+                                      from d in db.ClientAddress.Where(o => o.ClientID == a.ID).DefaultIfEmpty()
+                                      from e in db.City.Where(o => o.CityID == d.CityID).DefaultIfEmpty()
+                                      from f in db.Province.Where(o => o.ProvinceID == d.ProvinceID).DefaultIfEmpty()
+                                      where
+                                      a.Active == true &&
+                                      a.ID == ClientID &&
+                                      d.ID == AddressID
+                                      select new
+                                      {
+                                          Client = c.ID == Individual ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
+                                                                : c.ID == Corporate ? a.CorpName.ToUpper()
+                                                                : c.ID == CorporateWithAssignee ? a.FirstName.ToUpper() + " " + a.MiddleName.ToUpper() + " " + a.LastName.ToUpper()
+                                                                : "-",
+                                          TitleType = c.ID,
+                                          Address = d.HouseBldgNo + ", " + d.StreetSubdivision.ToUpper() + ", " + d.Barangay.ToUpper() + ", " + e.CityName.ToUpper() + ", " + f.ProvinceName.ToUpper()
+                                      }
+                                      ).FirstOrDefault();
+
+                    //GET VEHICLE INFO
+                    var VehicleInfo = (from a in db.VehicleInfo
+                                       from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
+                                       from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
+                                       from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                       from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
+                                       from f in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                       where
+                                       a.Active == true &&
+                                       a.VehicleID == VehicleID
+                                       select new
+                                       {
+                                           VehicleID = a.VehicleID,
+                                           Chassis = a.ChassisNumber,
+                                           Engine = a.EngineNumber,
+                                           PlateNo = a.PlateNumber,
+                                           Year = a.Year,
+                                           VehicleType = b.VehicleTypeDescription,
+                                           VehicleMake = c.VehicleMakeName,
+                                           VehicleBody = d.VehicleBodyTypeName,
+                                           VehicleSeries = e.Name.ToUpper(),
+                                           Color = f.VehicleColorName,
+                                           ClassificationID = a.ClassificationID
+                                       }).FirstOrDefault();
+
+                    //GET INSURANCE PARAMOUNT SERIES WHICH IS 4
+                    var InsuranceCOC = db.InsuranceCOCSeries.Where(o => o.InsuranceID == 4 && o.Active == true).FirstOrDefault();
+
+                    var CTPL = db.CTPL.Where(o => o.VehicleClassificationID == VehicleInfo.ClassificationID).FirstOrDefault();
+                    var CTPLTerm = db.CTPLTerm.Where(o => o.CPTLTermID == CTPL.CTPLTermID).FirstOrDefault();
+
+                    var InceptionDate = DateTime.Now;
+                    var COCExpirationDate = DateTime.Now.AddYears(CTPLTerm.CoverageYear);
+
+                    var COCNo = InsuranceCOC.COCPrefix + (InsuranceCOC.CurrentSeries + 1);
 
 
+                    //string imagePath = new Uri(Server.MapPath("~/Logos/" + Insurance.Logo)).AbsoluteUri;
+                    lr.EnableExternalImages = true;
+                    lr.EnableHyperlinks = true;
 
-                //string imagePath = new Uri(Server.MapPath("~/Logos/" + Insurance.Logo)).AbsoluteUri;
-                lr.EnableExternalImages = true;
-                lr.EnableHyperlinks = true;
+                    ReportParameter[] prm = new ReportParameter[24];
+                    prm[0] = new ReportParameter("NameParameter", ClientInfo.Client);
+                    prm[1] = new ReportParameter("AddressParameter", ClientInfo.Address);
+                    prm[2] = new ReportParameter("AuthenticationParameter",/* invoice.COCAuthenticationCode*/"");
+                    prm[3] = new ReportParameter("PolicyParameter", /*invoice.COCPolicyNumber*/"");
+                    prm[4] = new ReportParameter("BusinessParameter", "");
+                    prm[5] = new ReportParameter("CoCParameter", /*invoice.COC*/"");
+                    prm[6] = new ReportParameter("DateIssuedParameter", InceptionDate.ToString("MMM dd, yyyy"));
+                    prm[7] = new ReportParameter("ORParameter", "");
+                    prm[8] = new ReportParameter("PeriodFromParameter", InceptionDate.ToString("MMM dd, yyyy"));
+                    prm[9] = new ReportParameter("PeriodToParameter", COCExpirationDate.ToString("MMM dd, yyyy"));
+                    prm[10] = new ReportParameter("ModelParameter", VehicleInfo.VehicleSeries);
+                    prm[11] = new ReportParameter("MakeParameter", VehicleInfo.VehicleMake);
+                    prm[12] = new ReportParameter("BodyParameter", VehicleInfo.VehicleBody);
+                    prm[13] = new ReportParameter("ColorParameter", VehicleInfo.Color);
+                    prm[14] = new ReportParameter("MVFileNoParameter", "");
+                    prm[15] = new ReportParameter("PlateParameter", VehicleInfo.PlateNo);
+                    prm[16] = new ReportParameter("SerialOrChassisParameter", VehicleInfo.Chassis);
+                    prm[17] = new ReportParameter("MotorParameter", VehicleInfo.Engine);
+                    prm[18] = new ReportParameter("CapacityParameter", "");
+                    prm[19] = new ReportParameter("UnLadenWghtParameter",/* Vehicle.GrossVehicleWeight.ToString()*/"");
+                    prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
+                    prm[21] = new ReportParameter("PremiumParameter",/* CTPL.GrossPremium.ToString("#,##0.00")*/"");
+                    prm[22] = new ReportParameter("InsuranceAddress", "");
+                    prm[23] = new ReportParameter("InsuranceLogoParameter", /*imagePath*/ "");
+                    lr.SetParameters(prm);
 
-                ReportParameter[] prm = new ReportParameter[24];
-                prm[0] = new ReportParameter("NameParameter", ClientInfo.Client);
-                prm[1] = new ReportParameter("AddressParameter", ClientInfo.Address);
-                prm[2] = new ReportParameter("AuthenticationParameter",/* invoice.COCAuthenticationCode*/"");
-                prm[3] = new ReportParameter("PolicyParameter", /*invoice.COCPolicyNumber*/"");
-                prm[4] = new ReportParameter("BusinessParameter", "");
-                prm[5] = new ReportParameter("CoCParameter", /*invoice.COC*/"");
-                prm[6] = new ReportParameter("DateIssuedParameter", dateFrom.ToString("MMM dd, yyyy"));
-                prm[7] = new ReportParameter("ORParameter", "");
-                prm[8] = new ReportParameter("PeriodFromParameter", dateFrom.ToString("MMM dd, yyyy"));
-                prm[9] = new ReportParameter("PeriodToParameter", dateTo.ToString("MMM dd, yyyy"));
-                prm[10] = new ReportParameter("ModelParameter", VehicleInfo.VehicleSeries);
-                prm[11] = new ReportParameter("MakeParameter", VehicleInfo.VehicleMake);
-                prm[12] = new ReportParameter("BodyParameter", VehicleInfo.VehicleBody);
-                prm[13] = new ReportParameter("ColorParameter", VehicleInfo.Color);
-                prm[14] = new ReportParameter("MVFileNoParameter", "");
-                prm[15] = new ReportParameter("PlateParameter", VehicleInfo.PlateNo);
-                prm[16] = new ReportParameter("SerialOrChassisParameter", VehicleInfo.Chassis);
-                prm[17] = new ReportParameter("MotorParameter", VehicleInfo.Engine);
-                prm[18] = new ReportParameter("CapacityParameter", "");
-                prm[19] = new ReportParameter("UnLadenWghtParameter",/* Vehicle.GrossVehicleWeight.ToString()*/"");
-                prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
-                prm[21] = new ReportParameter("PremiumParameter",/* CTPL.GrossPremium.ToString("#,##0.00")*/"");
-                prm[22] = new ReportParameter("InsuranceAddress","");
-                prm[23] = new ReportParameter("InsuranceLogoParameter", /*imagePath*/ "");
-                lr.SetParameters(prm);
+                    //ReportDataSource rd = new ReportDataSource("MyDataSet", dealerlist);
+                    //lr.DataSources.Add(rd);
 
-                //ReportDataSource rd = new ReportDataSource("MyDataSet", dealerlist);
-                //lr.DataSources.Add(rd);
+                    lr.Refresh();
 
-                lr.Refresh();
+                    string reportTypeImage = "PDF";
+                    string mimeTypeImage;
+                    string encodingImage;
+                    string fileNameExtensionImage;
 
-                string reportTypeImage = "PDF";
-                string mimeTypeImage;
-                string encodingImage;
-                string fileNameExtensionImage;
+                    string deviceInforImage =
 
-                string deviceInforImage =
+                    "<DeviceInfo>" +
+                    "  <OutputFormat>PDF</OutputFormat>" +
+                    "  <PageWidth>8.27in</PageWidth>" +
+                    "  <PageHeight>11.69in</PageHeight>" +
+                    "  <MarginTop>0.25in</MarginTop>" +
+                    "  <MarginLeft>0.25in</MarginLeft>" +
+                    "  <MarginRight>0.25in</MarginRight>" +
+                    "  <MarginBottom>0.10in</MarginBottom>" +
+                    "</DeviceInfo>";
 
-                "<DeviceInfo>" +
-                "  <OutputFormat>PDF</OutputFormat>" +
-                "  <PageWidth>8.27in</PageWidth>" +
-                "  <PageHeight>11.69in</PageHeight>" +
-                "  <MarginTop>0.25in</MarginTop>" +
-                "  <MarginLeft>0.25in</MarginLeft>" +
-                "  <MarginRight>0.25in</MarginRight>" +
-                "  <MarginBottom>0.10in</MarginBottom>" +
-                "</DeviceInfo>";
+                    Warning[] warningsImage;
+                    string[] streamsImage;
+                    byte[] renderedBytesImage;
 
-                Warning[] warningsImage;
-                string[] streamsImage;
-                byte[] renderedBytesImage;
+                    renderedBytesImage = lr.Render(
+                        reportTypeImage,
+                        deviceInforImage,
+                        out mimeTypeImage,
+                        out encodingImage,
+                        out fileNameExtensionImage,
+                        out streamsImage,
+                        out warningsImage);
 
-                renderedBytesImage = lr.Render(
-                    reportTypeImage,
-                    deviceInforImage,
-                    out mimeTypeImage,
-                    out encodingImage,
-                    out fileNameExtensionImage,
-                    out streamsImage,
-                    out warningsImage);
+                    //Save PDF to TEMP
+                    var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + VehicleInfo.Chassis + "-"+ COCNo + "_COC.pdf";
+                    var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/")+ VehicleInfo.Chassis + "-" +COCNo + "_COC.pdf"));
+                    //string sample = System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/"));
 
-                //Save PDF to TEMP
-                var pdfPath = Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + "_Policy.pdf";
-                var filePath = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/_Policy.pdf")));
-                //string sample = System.Web.HttpContext.Current.Server.MapPath(string.Format("~/Reports/VRTempFiles/"));
+                    using (FileStream fs = new FileStream(pdfPath, FileMode.Create))
+                    {
+                        fs.Write(renderedBytesImage, 0, renderedBytesImage.Length);
+                    }
 
-                using (FileStream fs = new FileStream(pdfPath, FileMode.Create))
-                {
-                    fs.Write(renderedBytesImage, 0, renderedBytesImage.Length);
-                }
+                    ParamountVehicleType paramountVehicleType = ParamountVehicleType.PC;
+                    switch (invoice.VehicleClassificationID)
+                    {
+                        //Private Car
+                        case 1:
+                        case 8:
+                            {
+                                paramountVehicleType = ParamountVehicleType.PC;
+                                break;
+                            }
+                        //Commercial Vehicle
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
 
-                ParamountVehicleType paramountVehicleType = ParamountVehicleType.PC;
-                switch (invoice.VehicleClassificationID)
-                {
-                    //Private Car
-                    case 1:
-                    case 8:
-                        {
-                            paramountVehicleType = ParamountVehicleType.PC;
-                            break;
-                        }
-                    //Commercial Vehicle
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
+                        case 9:
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13:
+                            {
+                                paramountVehicleType = ParamountVehicleType.CV;
+                                break;
+                            }
+                        //Motorcycle
+                        case 7:
+                        case 14:
+                            {
+                                paramountVehicleType = ParamountVehicleType.MC;
+                                break;
+                            }
 
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                        {
-                            paramountVehicleType = ParamountVehicleType.CV;
-                            break;
-                        }
-                    //Motorcycle
-                    case 7:
-                    case 14:
-                        {
-                            paramountVehicleType = ParamountVehicleType.MC;
-                            break;
-                        }
+                    }
 
-                }
-                byte[] pdfBytes = System.IO.File.ReadAllBytes(filePath);
-                using (db = new ECOCEntities())
-                {
-                    var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
+                    byte[] pdfBytes = System.IO.File.ReadAllBytes(filePath);
 
+
+                    //creating application
                     var newCTPLApplication = new CTPLApplication();
+                    newCTPLApplication.COC = COCNo;
+                    newCTPLApplication.COCInceptionDate = InceptionDate;
+                    newCTPLApplication.COCExpirationDate = COCExpirationDate;
+                    newCTPLApplication.COCBasicPremium = CTPL.BasicPremium;
+                    newCTPLApplication.COCVAT = CTPL.VAT;
+                    newCTPLApplication.COCDST = CTPL.DST;
+                    newCTPLApplication.COCLGT = CTPL.LGT;
+                    newCTPLApplication.COCTaxes = CTPL.Taxes;
+                    newCTPLApplication.COCAuthenticationFee = CTPL.AuthenticationFee;
+                    newCTPLApplication.COCPremium = CTPL.GrossPremium;
                     newCTPLApplication.VehicleID = VehicleID;
                     newCTPLApplication.ClientAddressID = AddressID;
                     newCTPLApplication.ClientID = ClientID;
@@ -603,38 +623,41 @@ namespace ECOCSystem.Controllers
                     //db.SaveChanges();
 
                     return true;
+
+                    //Generate Attachment
+                    //if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
+                    //{
+                    //    //Save merged pdf to Vehicle Info
+                    //    byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
+                    //    using (db = new ECOCEntities())
+                    //    {
+                    //        var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
+
+                    //        var newCTPLApplication = new CTPLApplication();
+                    //        newCTPLApplication.VehicleID = VehicleID;
+                    //        newCTPLApplication.ClientAddressID = AddressID;
+                    //        newCTPLApplication.ClientID = ClientID;
+                    //        newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
+                    //        newCTPLApplication.COCByte = pdfBytes;
+                    //        newCTPLApplication.COCContentType = "application/pdf";
+
+                    //        db.CTPLApplication.Add(newCTPLApplication);
+                    //        db.SaveChanges();
+
+                    //        return true;
+                    //    }
+
+                    //}
+                    //else
+                    //    return false;
                 }
-                //Generate Attachment
-                //if (Tools.Functions.FillParamountPolicyCondition(paramountVehicleType, invoice.COCPolicyNumber, "Makati City", Tools.Functions.AddOrdinal(Convert.ToInt32(dateFrom.ToString("dd"))), dateFrom.ToString("MMMM"), dateFrom.ToString("yy")))
-                //{
-                //    //Save merged pdf to Vehicle Info
-                //    byte[] pdfBytes = System.IO.File.ReadAllBytes(Server.MapPath(string.Format("~/Reports/VRTempFiles/")) + invoice.COCPolicyNumber + ".pdf");
-                //    using (db = new ECOCEntities())
-                //    {
-                //        var Update = db.VehicleInfo.Where(o => o.VehicleID == Vehicle.VehicleID).FirstOrDefault();
-
-                //        var newCTPLApplication = new CTPLApplication();
-                //        newCTPLApplication.VehicleID = VehicleID;
-                //        newCTPLApplication.ClientAddressID = AddressID;
-                //        newCTPLApplication.ClientID = ClientID;
-                //        newCTPLApplication.RegistrationTypeID = RegistrationTypeID;
-                //        newCTPLApplication.COCByte = pdfBytes;
-                //        newCTPLApplication.COCContentType = "application/pdf";
-
-                //        db.CTPLApplication.Add(newCTPLApplication);
-                //        db.SaveChanges();
-
-                //        return true;
-                //    }
-
-                //}
-                //else
-                //    return false;
+                catch (Exception ex)
+                {
+                    dbTransaction.Rollback();
+                    return false;
+                }
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
+     
         }
     }
 }
