@@ -149,7 +149,7 @@ namespace ECOCSystem.Controllers
                                 newAccount.Email = model.Email.Trim();
                                 newAccount.Password = model.Password.Encrypt(model.Email);
                                 newAccount.CompanyID = currentCompany;
-                                newAccount.CompanyBranchID = currentBranch;
+                                newAccount.CompanyBranchID = model.SelectedCompanyBranchID;
 
                                 //check if current user is databridge company then create user with super admin user type
                                 if (CurrentUser.Details.CompanyEntityID == (int)CompanyEntityEnum.DatabridgeAsia) 
@@ -171,8 +171,42 @@ namespace ECOCSystem.Controllers
                             else
                                 TempData["InfoMessage"] = "User Email already registered!";
 
+                        }
+                        break;
+                    case "EDITUSER":
+                        {
+                            var updateUser = db.Account.Where(o => o.ID == model.UserID).FirstOrDefault();
+
+                                updateUser.FirstName = model.FirstName.Trim();
+                                updateUser.LastName = model.LastName.Trim();
+                                updateUser.MiddleName = model.MiddleName == null ? "" : model.MiddleName.Trim();
+                                updateUser.Email = model.Email.Trim();
+                                updateUser.Password = model.Password.Encrypt(model.Email);
+                                updateUser.CompanyID = currentCompany;
 
 
+                            //check if current user is databridge company then create user with super admin user type
+                            if (CurrentUser.Details.CompanyEntityID == (int)CompanyEntityEnum.DatabridgeAsia)
+                            {
+                                updateUser.UserTypeID = (int)UserTypeEnum.SuperAdmin;
+                                //set the mainbranch of databridge which is 2
+                                updateUser.CompanyBranchID = 2; 
+                            }
+                            else 
+                            {
+                                updateUser.UserTypeID = model.SelectedUserTypeID;
+                                updateUser.CompanyBranchID = model.SelectedCompanyBranchID;
+                            }
+                                  
+
+
+                                updateUser.Active = true;
+                                updateUser.UpdatedBy = CurrentUser.Details.ID;
+                                updateUser.UpdatedDate = DateTime.Now;
+
+                                db.SaveChanges();
+
+                                TempData["SuccessMessage"] = "User updated Succesfully!";
 
 
                         }
@@ -207,6 +241,7 @@ namespace ECOCSystem.Controllers
                                 a.ID == UserID
                                 select new
                                 {
+                                    UserID = a.ID,
                                     Fname = a.FirstName,
                                     Lname = a.LastName,
                                     Mname = a.MiddleName,
