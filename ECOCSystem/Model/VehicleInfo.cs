@@ -33,5 +33,6 @@ namespace ECOCSystem.Model
         public Nullable<int> ClientID { get; set; }
         public Nullable<int> VehicleColorID { get; set; }
         public Nullable<int> VehicleTypeID { get; set; }
+        public Nullable<int> ClassificationID { get; set; }
     }
 }

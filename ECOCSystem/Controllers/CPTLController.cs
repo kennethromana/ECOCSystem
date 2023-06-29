@@ -415,8 +415,7 @@ namespace ECOCSystem.Controllers
                 //InsuranceCOCSeries CoCSeries = new InsuranceCOCSeries();
 
 
-                var ClientName = "";
-                var ClientAddress = "";
+
                 int Individual = (int)TitleTypeEnum.Individual;
                 int Corporate = (int)TitleTypeEnum.Corporate;
                 int CorporateWithAssignee = (int)TitleTypeEnum.CorporateWithAssignee;
