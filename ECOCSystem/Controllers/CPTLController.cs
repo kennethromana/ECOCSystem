@@ -496,7 +496,7 @@ namespace ECOCSystem.Controllers
                     prm[2] = new ReportParameter("AuthenticationParameter",/* invoice.COCAuthenticationCode*/"");
                     prm[3] = new ReportParameter("PolicyParameter", /*invoice.COCPolicyNumber*/"");
                     prm[4] = new ReportParameter("BusinessParameter", "");
-                    prm[5] = new ReportParameter("CoCParameter", /*invoice.COC*/"");
+                    prm[5] = new ReportParameter("CoCParameter", COCNo);
                     prm[6] = new ReportParameter("DateIssuedParameter", InceptionDate.ToString("MMM dd, yyyy"));
                     prm[7] = new ReportParameter("ORParameter", "");
                     prm[8] = new ReportParameter("PeriodFromParameter", InceptionDate.ToString("MMM dd, yyyy"));
@@ -512,7 +512,7 @@ namespace ECOCSystem.Controllers
                     prm[18] = new ReportParameter("CapacityParameter", "");
                     prm[19] = new ReportParameter("UnLadenWghtParameter",/* Vehicle.GrossVehicleWeight.ToString()*/"");
                     prm[20] = new ReportParameter("LiabilityParameter", "100,000.00");
-                    prm[21] = new ReportParameter("PremiumParameter",/* CTPL.GrossPremium.ToString("#,##0.00")*/"");
+                    prm[21] = new ReportParameter("PremiumParameter", CTPL.GrossPremium.ToString("#,##0.00"));
                     prm[22] = new ReportParameter("InsuranceAddress", "");
                     prm[23] = new ReportParameter("InsuranceLogoParameter", /*imagePath*/ "");
                     lr.SetParameters(prm);
