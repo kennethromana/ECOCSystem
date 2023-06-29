@@ -382,7 +382,8 @@ svg:hover .tooltip {
                                                 <span aria-hidden="true"><i class="fa" fa></i>×</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body @*overlay*@" style="padding:2rem;">                                   
+                                        <div class="modal-body @*overlay*@" style="padding:2rem;">                  
+                                             
                                             <div id="client" class="dataTables_wrapper dt-bootstrap4">
                                                 <div class="row">
                                                     <div class="col-sm-12">
@@ -399,12 +400,12 @@ svg:hover .tooltip {
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-lg-12 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Corporate)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
-                                                                    @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
+                                                                    @Html.LabelFor(o => o.FirstName, new { @class = "info-label" })
                                                                     <label class="info-label">Corporate Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_CorpName"></span>
                                                                 </div>
                                                                 <div class="form-group col-lg-4 info-container Type" data-attribute='@Convert.ToInt32(TitleTypeEnum.Individual)' data-attribute2='@Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee)'>
-                                                                    @*@Html.LabelFor(o => o.FirstName, new { @class = "info-label" })*@
+                                                                    @Html.LabelFor(o => o.FirstName, new { @class = "info-label" })
                                                                     <label class="info-label">First Name</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_FirstName"></span>
                                                                 </div>
@@ -589,13 +590,14 @@ svg:hover .tooltip {
                             toastr.error(response.Message);
                             break;
                     }
+                    showCOCFile();
                 },
                 error: function (xhr, status, error) {
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
                 },
                 complete: function () {
-                    $(".modal").modal('hide');
-                    $('.modal-backdrop').remove();
+                  /*  $(".modal").modal('hide');*/
+                /*    $('.modal-backdrop').remove();*/
                     $('#loadingScreen').hide();
                 },
             });
@@ -652,7 +654,33 @@ svg:hover .tooltip {
         //for Application Summary
         $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
 
-    })
+       
+
+    });
+    function showCOCFile(src)
+    {
+        $('#loadingScreen').show();
+        $('#modal-ApplicationSummary .modal-body').empty();
+
+        $('#modal-ApplicationSummary .modal-body').append(`<iframe id="report_viewer" frameborder="0"
+                    scrolling="no" seamless="seamless" marginheight="0" marginwidth="0" role="document" style="width: 100%; margin: 0%; height: 720px;" aria-label="PDF document" title="PDF document"></iframe>`)
+
+        $('#report_viewer').attr('src', '@Url.Content("~/Reports/VRTempFiles/_Policy.pdf")');
+
+
+        $('#modal-ApplicationSummary .modal-title').text('COC File')
+
+        $('#modal-ApplicationSummary .modal-footer').empty();
+
+        $('#loadingScreen').hide();
+
+        $('#modal-ApplicationSummary').on('hide.bs.modal', function (e) {
+            // do something…
+            /*       window.location.href = '/Company/Index/';*/
+            window.location.reload(true)
+
+        });
+    }
     function getAddressList(ClientID) {
         let cntRow = 0;
         vehicle_table = $("#tbl_Address").DataTable({
