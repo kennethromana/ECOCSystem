@@ -184,6 +184,10 @@ svg:hover .tooltip {
         font-weight: 100;
 
     }
+
+    [class*=icheck-] > input:first-child + input[type=hidden] + label::before, [class*=icheck-] > input:first-child + label::before {
+        border: 1px solid #007bff;
+    }
 </style>
 <section class="content">
     <div class="card card-success card-outline">
@@ -575,7 +579,7 @@ svg:hover .tooltip {
                             switch (response.CurrentSubmit) {
                                 case "Client":
                                     $("#modal-client").modal('hide');
-                                    clearClientForm()
+                                    clearClientForm(response.ClientID)
                                     break;
                                 case "Address":
                                     $("#modal-client-address").modal('hide');
@@ -589,10 +593,9 @@ svg:hover .tooltip {
                                     showCOCFile(response.FileName);
                                     break;
                                 default:
-                        
                                     break;
                             }
-                          
+
                             toastr.success(response.Message);
                             break;
                         case "Warning":
@@ -608,7 +611,7 @@ svg:hover .tooltip {
                             toastr.error(response.Message);
                             break;
                     }
-               
+
                 },
                 error: function (xhr, status, error) {
                     toastr.error('An error has occured while processing, Please contact Databridge Support.');
@@ -624,7 +627,7 @@ svg:hover .tooltip {
     }
     $(document).ready(function () {
 
-       
+
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
 
@@ -663,11 +666,11 @@ svg:hover .tooltip {
 
         });
 
-       
+
 
     });
 
-  
+
     function showCOCFile(FileName)
     {
         $('#loadingScreen').show();
@@ -807,7 +810,7 @@ svg:hover .tooltip {
                                  </div>
                               </center>`
                     }, "autoWidth": true
-                },              
+                },
                 { "className": "VehicleType", "data": "VehicleType", "name": "VehicleType", "autoWidth": true },
                 { "className": "Chassis", "data": "Chassis", "name": "Chassis", "autoWidth": true },
                 { "className": "PlateNo", "data": "PlateNo", "name": "PlateNo", "autoWidth": true },
@@ -878,13 +881,56 @@ svg:hover .tooltip {
         $('#ClientAddress_TelephoneNo').val('');
 
     }
-    function clearClientForm() {
 
+    function clearClientForm(ClientID) {
+        
+        let Individual = 1;
+        let Corporate = 2;
+        let CorporateWithAssignee = 3;
+        let TitleType = 0;
+        let ClientName = '';
+
+          $.ajax({
+                url: '@Url.Action("GetTitleTypeID","GetData")',
+                type: "GET",
+                cache: false,
+                dataType: "JSON",
+     /*           async: false,*/
+                data: { "TitleID": $('#Client_TitleID').val() },
+                beforeSend: function () {
+
+                    $('#loadingScreen').show();
+                },
+                success: function (response) {
+                    TitleType = response.ID;
+                },
+                complete: function () {
+                  $('#loadingScreen').hide();
+                },
+          });
+
+            switch (TitleType) {
+                case Individual:
+                    ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() +" " + $('#Client_LastName').val();
+                    break;
+                case Corporate:
+                    ClientName = $('#Client_CorpName').val();
+                    break;
+                case CorporateWithAssignee:
+                     ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() +" " + $('#Client_LastName').val() + "  - " + $('#Client_CorpName').val();
+                    break;
+                default:
+                // code block
+            }
+
+        //set value of select2 dropdown for cliend
+        var selectedClient = $("<option selected='selected'></option>").val(ClientID).text(ClientName)
+        $("#ClientID").append(selectedClient).trigger('change');
 
         $('#Client_ClientID').val(0);
         $('#Client_CorpName').val('');
         $('#Client_FirstName').val('');
-        $('#Client_LastNames').val('');
+        $('#Client_LastName').val('');
         $('#Client_MiddleName').val('');
         $('#Client_EmailAddress').val('');
         $('#Client_BusinessPhone').val('');

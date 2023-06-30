@@ -76,7 +76,7 @@ namespace ECOCSystem.Controllers
                                     NewClient.CorpName = model.Client.CorpName.Trim();
                                     NewClient.FirstName = model.Client.FirstName.Trim();
                                     NewClient.LastName = model.Client.LastName.Trim();
-                                    NewClient.MiddleName = model.Client.MiddleName.Trim();
+                                    NewClient.MiddleName = model.Client.MiddleName == null ? "" : model.Client.MiddleName.Trim();
                                 }
 
                                 NewClient.EmailAddress = model.Client.EmailAddress;
@@ -97,6 +97,7 @@ namespace ECOCSystem.Controllers
                                 Status = "Success";
                                 Message = "New client Added Successfully!";
                                 CurrentSubmit = "Client";
+                                ClientID = NewClient.ID;
                             }
                             break;
                         case "EDITCLIENT":
