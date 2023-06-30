@@ -86,6 +86,9 @@ warning 6002: The table/view 'ECOC.dbo.City' does not have a primary key defined
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
           <Property Name="BusinessPhone" Type="nvarchar" MaxLength="50" />
           <Property Name="MobilePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelectedVehicleID" Type="int" />
+          <Property Name="SelectedAddressID" Type="int" />
+          <Property Name="TaxTypeID" Type="int" />
         </EntityType>
         <EntityType Name="ClientAddress">
           <Key>
@@ -845,6 +848,9 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BusinessPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SelectedVehicleID" Type="Int32" />
+          <Property Name="SelectedAddressID" Type="Int32" />
+          <Property Name="TaxTypeID" Type="Int32" />
         </EntityType>
         <EntityType Name="ClientAddress">
           <Key>
@@ -1277,6 +1283,9 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="ECOCModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="TaxTypeID" ColumnName="TaxTypeID" />
+                <ScalarProperty Name="SelectedAddressID" ColumnName="SelectedAddressID" />
+                <ScalarProperty Name="SelectedVehicleID" ColumnName="SelectedVehicleID" />
                 <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
                 <ScalarProperty Name="BusinessPhone" ColumnName="BusinessPhone" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />

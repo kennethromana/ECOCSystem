@@ -43,5 +43,8 @@ namespace ECOCSystem.Model
         public string EmailAddress { get; set; }
         public string BusinessPhone { get; set; }
         public string MobilePhone { get; set; }
+        public Nullable<int> SelectedVehicleID { get; set; }
+        public Nullable<int> SelectedAddressID { get; set; }
+        public Nullable<int> TaxTypeID { get; set; }
     }
 }
