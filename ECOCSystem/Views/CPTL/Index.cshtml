@@ -649,12 +649,14 @@ svg:hover .tooltip {
         $('#ClientID').on('change', function () {
             $('#VehicleID').val(0)
             $('#AddressID').val(0)
-            clearVehicleForm()
+
 
             let ID = $(this).val();
             getAddressList(ID)
             getVehicleList(ID)
             getClientInfo(ID)
+
+            clearVehicleForm()
         });
 
 
@@ -877,6 +879,17 @@ svg:hover .tooltip {
         $('#ClientVehicle_MVFileNumber').val('');
         $('#ClientVehicle_PlateNumber').val('');
         $('#ClientVehicle_Year').val('');
+
+
+        $("#Application_Engine").text('')
+        $("#Application_Chassis").text('')
+        $("#Application_MVFile").text('')
+        $("#Application_Plate").text('')
+        $("#Application_Year").text('')
+        $("#Application_Body").text('')
+        $("#Application_Color").text('')
+        $("#Application_Series").text('')
+        $("#Application_Make").text('')
 
     }
     function clearAddressForm() {
