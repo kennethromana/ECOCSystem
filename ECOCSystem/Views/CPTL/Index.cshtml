@@ -647,11 +647,14 @@ svg:hover .tooltip {
 
 
         $('#ClientID').on('change', function () {
+            $('#VehicleID').val(0)
+            $('#AddressID').val(0)
+            clearVehicleForm()
+
             let ID = $(this).val();
             getAddressList(ID)
             getVehicleList(ID)
             getClientInfo(ID)
-            console.log()
         });
 
 
