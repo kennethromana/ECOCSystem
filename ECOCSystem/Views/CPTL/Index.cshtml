@@ -329,6 +329,7 @@ svg:hover .tooltip {
                                                                 <th>Make</th>
                                                                 <th>Body</th>
                                                                 <th>Series</th>
+                                                                <th><center>Action Edit</center></th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -620,15 +621,7 @@ svg:hover .tooltip {
     }
     $(document).ready(function () {
 
-        vehicle_table = $("#tbl_Vehicle").DataTable({
-            "processing": true, // for show progress bar
-            "serverSide": false, // for process server side
-            "filter": true, // this is for disable filter (search box)
-            "orderMulti": false, // for disable multiple column at once
-            "scrollX": true,
-            "scrollY": true,
-            "destroy": true,
-        });
+       
         $("#btm_csr_btn_container").html('' +
             '<button type="button" id="verify_csr" class="btn btn-block btn-success" style="width: 250px;"> Submit </button>');
 
@@ -665,9 +658,9 @@ svg:hover .tooltip {
             //for Application Summary
             $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
 
-
-
         });
+
+       
 
     });
 
@@ -811,7 +804,7 @@ svg:hover .tooltip {
                                  </div>
                               </center>`
                     }, "autoWidth": true
-                },
+                },              
                 { "className": "VehicleType", "data": "VehicleType", "name": "VehicleType", "autoWidth": true },
                 { "className": "Chassis", "data": "Chassis", "name": "Chassis", "autoWidth": true },
                 { "className": "PlateNo", "data": "PlateNo", "name": "PlateNo", "autoWidth": true },
@@ -819,9 +812,34 @@ svg:hover .tooltip {
                 { "className": "VehicleMake", "data": "VehicleMake", "name": "VehicleMake", "autoWidth": true },
                 { "className": "VehicleBody", "data": "VehicleBody", "name": "VehicleBody", "autoWidth": true },
                 { "className": "VehicleSeries", "data": "VehicleSeries", "name": "VehicleSeries", "autoWidth": true },
+                {
+                    "className": "edit", "data": null, "name": "edit",
+                    render: function (data, type, row) {
+                        return `<center>
+                                            <div class="">
+                                                <span type="button" data-toggle="modal" data-target="#modal-client-vehicle" class="vehicleEdit" VehicleID="`+ data.VehicleID + `">
+                                                    <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                                </span>
+                                            </div>
+                                        </center>`
+                    }, "autoWidth": true
+                },
 
             ]
         });
+
+        $(document).on('click', "span.vehicleEdit", function () {
+            $('#vehicleOptions').empty();
+            $('#vehicleOptions').append(`<button  class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
+                      <button type="buttin" id="submit_editVehicle" value="EDITVEHICLE" class="btn btn-success">Update</button>`);
+
+            $('#submit_editVehicle').on('click', function (e) {
+                e.preventDefault();
+                submitForm("EDITVEHICLE");
+            });
+        });
+
+
         $('#tbl_Vehicle_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
         $(document).on("change", "input[name='checkVehicle']", function () {
@@ -831,6 +849,12 @@ svg:hover .tooltip {
             $('#VehicleID').val(VehicleID);
             getVehicleInfo(VehicleID);
         });
+
+      
+
+
+
+
     };
 
     let getAddressInfo = (AddressID) => {
