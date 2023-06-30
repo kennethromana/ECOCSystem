@@ -535,21 +535,31 @@ namespace ECOCSystem.Controllers
                     string encodingImage;
                     string fileNameExtensionImage;
 
-                    string deviceInforImage =
+                    //string deviceInforImage =
 
-                    "<DeviceInfo>" +
-                    "  <OutputFormat>PDF</OutputFormat>" +
-                    "  <PageWidth>8.27in</PageWidth>" +
-                    "  <PageHeight>11.69in</PageHeight>" +
-                    "  <MarginTop>0.25in</MarginTop>" +
-                    "  <MarginLeft>0.25in</MarginLeft>" +
-                    "  <MarginRight>0.25in</MarginRight>" +
-                    "  <MarginBottom>0.10in</MarginBottom>" +
-                    "</DeviceInfo>";
+                    //"<DeviceInfo>" +
+                    //"  <OutputFormat>PDF</OutputFormat>" +
+                    //"  <PageWidth>8.27in</PageWidth>" +
+                    //"  <PageHeight>11.69in</PageHeight>" +
+                    //"  <MarginTop>0.25in</MarginTop>" +
+                    //"  <MarginLeft>0.25in</MarginLeft>" +
+                    //"  <MarginRight>0.25in</MarginRight>" +
+                    //"  <MarginBottom>0.10in</MarginBottom>" +
+                    //"</DeviceInfo>";
 
                     Warning[] warningsImage;
                     string[] streamsImage;
                     byte[] renderedBytesImage;
+                    string deviceInforImage = "<DeviceInfo>" +
+                    "  <OutputFormat>PDF</OutputFormat>" +
+                    "  <PageWidth>8.27in</PageWidth>" +
+                    "  <PageHeight>11.69in</PageHeight>" +
+                    "  <MarginTop>0.25in</MarginTop>" +
+                    "  <MarginLeft>0.4in</MarginLeft>" +
+                    "  <MarginRight>0in</MarginRight>" +
+                    "  <MarginBottom>0.10in</MarginBottom>" +
+                    "  <EmbedFonts>None</EmbedFonts>" +
+                    "</DeviceInfo>";
 
                     renderedBytesImage = lr.Render(
                         reportTypeImage,
