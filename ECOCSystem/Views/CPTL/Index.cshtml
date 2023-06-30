@@ -575,12 +575,15 @@ svg:hover .tooltip {
                             switch (response.CurrentSubmit) {
                                 case "Client":
                                     $("#modal-client").modal('hide');
+                                    clearClientForm()
                                     break;
                                 case "Address":
                                     $("#modal-client-address").modal('hide');
+                                    clearAddressForm()
                                     break;
                                 case "Vehicle":
                                     $("#modal-client-vehicle").modal('hide');
+                                    clearVehicleForm();
                                     break;
                                 case "CTPL":
                                     showCOCFile(response.FileName);
@@ -850,12 +853,44 @@ svg:hover .tooltip {
             getVehicleInfo(VehicleID);
         });
 
-      
-
-
-
-
     };
+
+    function clearVehicleForm()
+    {
+        $('#ClientVehicle_VehicleID').val(0);
+        $('#ClientVehicle_EngineNumber').val('');
+        $('#ClientVehicle_ChassisNumber').val('');
+        $('#ClientVehicle_MVFileNumber').val('');
+        $('#ClientVehicle_PlateNumber').val('');
+        $('#ClientVehicle_Year').val('');
+
+    }
+    function clearAddressForm() {
+
+
+        $('#ClientAddress_ClientAddressID').val(0);
+        $('#ClientAddress_HouseBldgNo').val('');
+        $('#ClientAddress_StreetSubdivision').val('');
+        $('#ClientAddress_Barangay').val('');
+        $('#ClientAddress_ZipCode').val('');
+        $('#ClientAddress_EmailAddress').val('');
+        $('#ClientAddress_MobileNo').val('');
+        $('#ClientAddress_TelephoneNo').val('');
+
+    }
+    function clearClientForm() {
+
+
+        $('#Client_ClientID').val(0);
+        $('#Client_CorpName').val('');
+        $('#Client_FirstName').val('');
+        $('#Client_LastNames').val('');
+        $('#Client_MiddleName').val('');
+        $('#Client_EmailAddress').val('');
+        $('#Client_BusinessPhone').val('');
+        $('#Client_MobileNo').val('');
+
+    }
 
     let getAddressInfo = (AddressID) => {
 

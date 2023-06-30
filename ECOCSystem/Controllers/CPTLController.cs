@@ -149,7 +149,7 @@ namespace ECOCSystem.Controllers
                                     Message = "New Address added Successfully!";
 
                                 }
-                                CurrentSubmit = "Client";
+                                CurrentSubmit = "Address";
 
 
                             }
@@ -198,6 +198,14 @@ namespace ECOCSystem.Controllers
                                     Status = "Success";
                                     Message = "New Vehicle added Successfully!";
                                 }
+                                CurrentSubmit = "Vehicle";
+
+                            }
+                            break;
+                        case "EDITVEHICLE":
+                            {
+                                Status = "Success";
+                                Message = "Vehicle update Successfully!";
                                 CurrentSubmit = "Vehicle";
 
                             }
