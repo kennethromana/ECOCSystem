@@ -792,7 +792,7 @@ svg:hover .tooltip {
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-
+                    getcheckedVehicle()
                 }
             },
             "createdRow": function (row, data, dataIndex) {
@@ -804,7 +804,7 @@ svg:hover .tooltip {
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-primary d-inline">
-                                    <input class="chk2" name="checkVehicle" type="checkbox" VehicleID="`+ data.VehicleID+`" id="vehicle`+ data.VehicleID +`">
+                                    <input class="chk2" `+data.isChecked+` name="checkVehicle"  type="checkbox" VehicleID="`+ data.VehicleID+`" id="vehicle`+ data.VehicleID +`">
                                         <label for="vehicle`+ data.VehicleID+`">
                                     </label>
                                  </div>
@@ -857,6 +857,14 @@ svg:hover .tooltip {
         });
 
     };
+    function getcheckedVehicle()
+    {
+        $("input:checkbox[name=checkVehicle]:checked").each(function () {
+            let VehicleID = $(this).attr('VehicleID');
+            $('#VehicleID').val(VehicleID);
+            getVehicleInfo(VehicleID);
+        });
+    }
 
     function clearVehicleForm()
     {

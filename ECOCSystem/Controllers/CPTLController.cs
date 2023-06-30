@@ -191,13 +191,18 @@ namespace ECOCSystem.Controllers
                                     newVehicle.CreatedDate = DateTime.Now;
 
 
+                                   
                                     db.VehicleInfo.Add(newVehicle);
-
                                     db.SaveChanges();
+                                    var updateClient = db.Client.Where(o => o.ID == ClientID).FirstOrDefault();
+                                    updateClient.SelectedVehicleID = newVehicle.VehicleID;
+                                    db.SaveChanges();
+
                                     dbTransaction.Commit();
 
                                     Status = "Success";
                                     Message = "New Vehicle added Successfully!";
+
                                 }
                                 CurrentSubmit = "Vehicle";
 
@@ -220,7 +225,7 @@ namespace ECOCSystem.Controllers
                                     break;
                                 }
 
-                                if (model.ClientID == 0)
+                                if (model.VehicleID == 0)
                                 {
                                     Status = "Info";
                                     Message = "Client Vehicle Information is required.";
@@ -326,43 +331,24 @@ namespace ECOCSystem.Controllers
         {
             try
             {
+
                 //Creating instance of DatabaseContext class  
                 using (var db = new ECOCEntities())
                 {
-                    //var tableData = (from a in db.ClientAddress
-                    //                 from b in db.Client.Where(o => o.ID == a.ClientID).DefaultIfEmpty()
-                    //                 from c in db.City.Where(o => o.CityID == a.CityID).DefaultIfEmpty()
-                    //                 from d in db.Province.Where(o => o.ProvinceID == a.ProvinceID).DefaultIfEmpty()
-                    //                 from e in db.AddressType.Where(o => o.ID == a.AddressTypeID).DefaultIfEmpty()
-                    //                 where
-                    //                 a.Active == true &&
-                    //                 a.ClientID == ClientID
-                    //                 select new
-                    //                 {
-                    //                     AddressID = a.ID,
-                    //                     HouseBldgNo = a.HouseBldgNo,
-                    //                     StreetName = a.StreetSubdivision,
-                    //                     Barangay = a.Barangay,
-                    //                     ZipCode = a.ZipCode,
-                    //                     City = c.CityName,
-                    //                     Province = d.ProvinceName,
-                    //                     AddressType = e.Name,
-                    //                     EmailAddress = a.EmailAddress,
-                    //                     MobileNo = a.MobileNo,
-                    //                     TelephoneNo = a.TelephoneNo
 
-                    //                 }
-                    //                 ).ToList();
+
                     var tableData = (from a in db.VehicleInfo
                                      from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
                                      from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
                                      from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
                                      from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
+                                     from f in db.Client.Where(o => o.ID == ClientID).DefaultIfEmpty()
                                      where
                                      a.Active == true &&
                                      a.ClientID == ClientID
                                      select new
                                      { 
+                                        isChecked = (f.SelectedVehicleID ?? 0) == a.VehicleID ? "checked" : "uncheck",
                                         VehicleID = a.VehicleID,
                                         Chassis = a.ChassisNumber,
                                         PlateNo = a.PlateNumber,
@@ -378,7 +364,7 @@ namespace ECOCSystem.Controllers
                     return Json(new { data = tableData });
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
