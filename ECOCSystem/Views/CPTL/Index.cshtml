@@ -864,11 +864,24 @@ svg:hover .tooltip {
     };
     function getcheckedVehicle()
     {
-        $("input:checkbox[name=checkVehicle]:checked").each(function () {
-            let VehicleID = $(this).attr('VehicleID');
-            $('#VehicleID').val(VehicleID);
-            getVehicleInfo(VehicleID);
-        });
+
+        let VehiceID = $('input[name="checkVehicle"]:checked').attr('VehicleID')
+
+        if (VehiceID != undefined)
+        {
+            $('#VehicleID').val(VehiceID);
+            getVehicleInfo(VehiceID)
+        }
+        else
+            VehiceID = 0
+
+        
+
+        //$("input:checkbox[name=checkVehicle]:checked").each(function () {
+        //    let VehicleID = $(this).attr('VehicleID');
+        //    $('#VehicleID').val(VehicleID);
+        //    getVehicleInfo(VehicleID);
+        //});
     }
 
     function clearVehicleForm()
