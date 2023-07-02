@@ -144,6 +144,9 @@ namespace ECOCSystem.Controllers
 
                                     db.ClientAddress.Add(newAddress);
                                     db.SaveChanges();
+                                    var updateClient = db.Client.Where(o => o.ID == ClientID).FirstOrDefault();
+                                    updateClient.SelectedAddressID = newAddress.ID;
+                                    db.SaveChanges();
                                     dbTransaction.Commit();
 
                                     Status = "Success";

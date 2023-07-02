@@ -649,12 +649,14 @@ svg:hover .tooltip {
             $('#AddressID').val(0)
 
 
+
             let ID = $(this).val();
             getAddressList(ID)
             getVehicleList(ID)
             getClientInfo(ID)
+     
 
-            clearVehicleForm()
+           
         });
 
 
@@ -698,6 +700,8 @@ svg:hover .tooltip {
         });
     }
     function getAddressList(ClientID) {
+
+        clearAddressForm()
         let cntRow = 0;
         vehicle_table = $("#tbl_Address").DataTable({
             "processing": true, // for show progress bar
@@ -768,6 +772,7 @@ svg:hover .tooltip {
 
 
     function getVehicleList(ClientID) {
+        clearVehicleForm()
         let cntRow = 0;
         vehicle_table = $("#tbl_Vehicle").DataTable({
             "processing": true, // for show progress bar
@@ -920,6 +925,13 @@ svg:hover .tooltip {
 
     }
     function clearAddressForm() {
+
+
+        $("#Application_HouseBldg").text('')
+        $("#Application_Street").text('')
+        $("#Application_Barangay").text('')
+        $("#Application_City").text('')
+        $("#Application_Province").text('')
 
 
         $('#ClientAddress_ClientAddressID').val(0);
