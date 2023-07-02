@@ -92,13 +92,6 @@
 
     $(document).ready(function () {
 
-        //for select2 adding parameter
-        jQuery('.select2Ajax').on('select2:opening', function () {
-            var objParams = {
-                CompanyID: $('#SelectedCompanyID').val(),
-            };
-            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
-        });
 
           //if the company modal is close then refresh the page
         $('#modal-companyInfo').on('hide.bs.modal', function (e) {
@@ -166,14 +159,13 @@
                 success: function (response) {
                     switch (response.Status) {
                         case "Success":
-                            debugger
+
 
 
                             switch (response.currentForm) {
                                 case "Company":
                                     /*  location.reload();*/
                                     getBatchList(response.CompanyID)
-
                                     break;
                                 case "Branch":
                                     $('#modal-company-branch').modal('hide')
@@ -301,7 +293,15 @@
 
     };
     function getBatchList(CompanyID) {
-    /*    all_table.clear();*/
+
+        $('#SelectedCompanyID').val(CompanyID)
+        //for select2 adding parameter
+        jQuery('.select2Ajax').on('select2:opening', function () {
+            var objParams = {
+                CompanyID: CompanyID ,
+            };
+            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
+        });
         let cntRow = 0;
          batchList_table  = $("#tbl_Batches").DataTable({
             "processing": true, // for show progress bar

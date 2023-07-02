@@ -90,6 +90,7 @@ namespace ECOCSystem.Controllers
                                 currentForm = "Company";
                                 Status = "Success";
                                 Message = "New Company was created successfully!";
+                                CompanyID = newCompany.ID;
 
                             }
                             break;
