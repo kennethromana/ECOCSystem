@@ -950,9 +950,8 @@ svg:hover .tooltip {
         let Individual = 1;
         let Corporate = 2;
         let CorporateWithAssignee = 3;
-        let TitleType = 0;
         let ClientName = '';
-
+    
           $.ajax({
                 url: '@Url.Action("GetTitleTypeID","GetData")',
                 type: "GET",
@@ -964,41 +963,41 @@ svg:hover .tooltip {
 
                     $('#loadingScreen').show();
                 },
-                success: function (response) {
-                    TitleType = response.ID;
+              success: function (response) {
+
+                  switch (response.ID) {
+                        case Individual:
+                            ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() + " " + $('#Client_LastName').val();
+                            break;
+                        case Corporate:
+                            ClientName = $('#Client_CorpName').val();
+                            break;
+                        case CorporateWithAssignee:
+                            ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() + " " + $('#Client_LastName').val() + "  - " + $('#Client_CorpName').val();
+                            break;
+                        default:
+                        // code block
+                  }
+
+                    //set value of select2 dropdown for cliend
+                    var selectedClient = $("<option selected='selected'></option>").val(ClientID).text(ClientName)
+                    $("#ClientID").append(selectedClient).trigger('change');
+
                 },
                 complete: function () {
-                  $('#loadingScreen').hide();
+                    $('#loadingScreen').hide();
+                    $('#Client_ClientID').val(0);
+                    $('#Client_CorpName').val('');
+                    $('#Client_FirstName').val('');
+                    $('#Client_LastName').val('');
+                    $('#Client_MiddleName').val('');
+                    $('#Client_EmailAddress').val('');
+                    $('#Client_BusinessPhone').val('');
+                    $('#Client_MobileNo').val('');
                 },
           });
 
-            switch (TitleType) {
-                case Individual:
-                    ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() +" " + $('#Client_LastName').val();
-                    break;
-                case Corporate:
-                    ClientName = $('#Client_CorpName').val();
-                    break;
-                case CorporateWithAssignee:
-                     ClientName = $('#Client_FirstName').val() + " " + $('#Client_MiddleName').val() +" " + $('#Client_LastName').val() + "  - " + $('#Client_CorpName').val();
-                    break;
-                default:
-                // code block
-            }
-
-        //set value of select2 dropdown for cliend
-        var selectedClient = $("<option selected='selected'></option>").val(ClientID).text(ClientName)
-        $("#ClientID").append(selectedClient).trigger('change');
-
-        $('#Client_ClientID').val(0);
-        $('#Client_CorpName').val('');
-        $('#Client_FirstName').val('');
-        $('#Client_LastName').val('');
-        $('#Client_MiddleName').val('');
-        $('#Client_EmailAddress').val('');
-        $('#Client_BusinessPhone').val('');
-        $('#Client_MobileNo').val('');
-
+       
     }
 
     let getAddressInfo = (AddressID) => {
