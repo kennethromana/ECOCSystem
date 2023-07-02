@@ -30,60 +30,20 @@
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="" t>
+                            <table id="table-CompanyList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap "style="width:100%; min-width: 90em;cursor:pointer">
                                 <thead>
                                     <tr>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"><center>Action Edit</center></th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Company Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Business Phone</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Mobile Phone</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Fax No.</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">TIN</th>
+                                        <th><center>Action Edit</center></th>
+                                        <th>Company Name</th>
+                                        <th>Address</th>
+                                        <th>Email</th>
+                                        <th>Business Phone</th>
+                                        <th>Mobile Phone</th>
+                                        <th>Fax No.</th>
+                                        <th>TIN</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    @for (int i = 0; i < Model.CompanyListView.Count(); i++)
-                                    {
-                                        <tr>
-                                            <td style="width: 14.28%;">
-                                                <center>
-                                                    <div class="">
-                                                        <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" CompanyID="@Model.CompanyListView[i].ID">
-                                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
-                                                        </span>
-                                                    </div>
-                                                </center>
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].Name)
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].Address)
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].EmailAddress)
-                                            </td>
-
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].BusinessPhone)
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].MobilePhone)
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].FaxNumber)
-                                            </td>
-                                            <td style="width: 14.28%;">
-                                                @Html.DisplayFor(o => Model.CompanyListView[i].TIN)
-                                            </td>
-
-                                        </tr>
-                                    }
-
-                                </tbody>
+                           
 
                             </table>
                         </div>
@@ -131,7 +91,7 @@
 
 
     $(document).ready(function () {
-        $(".table").DataTable();
+
         //for select2 adding parameter
         jQuery('.select2Ajax').on('select2:opening', function () {
             var objParams = {
@@ -174,25 +134,10 @@
 
 
         });
-        $('.editCompany').on('click', function () {
-            $('#companyOption').empty();
-            $('#companyOption').append(`<button type="button"  id = "submit_editCompany" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
 
 
+        getCompanyList();
 
-            $('#submit_editCompany').on('click', function () {
-                submitForm("EDITCOMPANY");
-            });
-
-            let CompanyID = $(this).attr('CompanyID');
-
-
-            getBatchList(CompanyID)
-            getCompanyInfo(CompanyID)
-            //getUserList(CompanyID)
-
-
-        });
 
     });
 
@@ -222,12 +167,13 @@
                     switch (response.Status) {
                         case "Success":
                             debugger
-        
+
 
                             switch (response.currentForm) {
                                 case "Company":
                                     /*  location.reload();*/
-                       
+                                    getBatchList(response.CompanyID)
+
                                     break;
                                 case "Branch":
                                     $('#modal-company-branch').modal('hide')
@@ -243,7 +189,7 @@
                                     toastr.info("There's something error. Please try again later.");
                                     break;
                             }
-                            
+
                             toastr.success(response.Message);
                             break;
                         case "Warning":
@@ -301,10 +247,27 @@
         $('#CompanyUser_Password').val('');
 
     }
+     function EditCompany(CompanyID)
+    {
 
+         getBatchList(CompanyID)
+         getCompanyInfo(CompanyID)
+         $('#companyOption').empty();
+         $('#companyOption').append(`<button type="button"  id = "submit_editCompany" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
+
+
+
+         $('#submit_editCompany').on('click', function () {
+             submitForm("EDITCOMPANY");
+         });
+     
+
+    };
 
     function getCompanyInfo(CompanyID)
     {
+
+
             $.ajax({
                 url: '@Url.Action("GetCompanyInfo", "Company")',
                 type: "GET",
@@ -317,7 +280,7 @@
                 data: { "CompanyID": CompanyID },
                 success: function (response) {
 
-                    
+
                     $('#SelectedCompanyID').val(response.ID)
                     $('#CompanyInfo_Name').val(response.Name)
                     $('#CompanyInfo_Address').val(response.Address)
@@ -444,7 +407,7 @@
                 },
                 "complete": function (row, data, dataIndex) {
 
-              
+
                     $('#loadingScreen').hide();
                 }
             },
@@ -483,6 +446,75 @@
         //    $('#AddressID').val(AddressID);
 
         //});
+    };
+
+    function getCompanyList() {
+
+        let cntRow = 0;
+        Company_table = $("#table-CompanyList").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetCompanyList", "Company")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+
+
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+                $(row).attr("CompanyIDS", data.ID);
+                cntRow++;
+            },
+            "columns": [
+                {
+                    "className": "ID", "data": null, "name": "ID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditCompany(`+ data.ID + `)" CompanyID="` + data.ID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "Name", "data": "Name", "name": "Name", "autoWidth": true },
+                { "className": "Address", "data": "Address", "name": "Address", "autoWidth": true },
+                { "className": "EmailAddress", "data": "EmailAddress", "name": "EmailAddress", "autoWidth": true },
+                { "className": "BusinessPhone", "data": "BusinessPhone", "name": "BusinessPhone", "autoWidth": true },
+                { "className": "MobilePhone", "data": "MobilePhone", "name": "MobilePhone", "autoWidth": true },
+                { "className": "FaxNumber", "data": "FaxNumber", "name": "FaxNumber", "autoWidth": true },
+                { "className": "TIN", "data": "TIN", "name": "TIN", "autoWidth": true },
+
+
+            ]
+        });
+        $('#table-CompanyList_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
     };
 
     function switchUi(selection) {

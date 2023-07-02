@@ -278,6 +278,27 @@ namespace ECOCSystem.Controllers
             }
         }
         [HttpPost]
+        public ActionResult GetCompanyList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    //select all insurance comapny exclude databridge asia which has ID = 1
+                    var tableData = db.Company.Where(o => o.Active == true && o.ID != 1).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public ActionResult GetCompanyUserList(int CompanyID,int BranchID)
         {
             try
