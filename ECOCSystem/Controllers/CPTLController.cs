@@ -297,11 +297,13 @@ namespace ECOCSystem.Controllers
                                      from c in db.City.Where(o => o.CityID == a.CityID).DefaultIfEmpty()
                                      from d in db.Province.Where(o => o.ProvinceID == a.ProvinceID).DefaultIfEmpty()
                                      from e in db.AddressType.Where(o => o.ID == a.AddressTypeID).DefaultIfEmpty()
+                                     from f in db.Client.Where(o => o.ID == ClientID).DefaultIfEmpty()
                                      where
                                      a.Active == true &&
                                      a.ClientID == ClientID
                                      select new
                                      {
+                                         isChecked = (f.SelectedAddressID ?? 0) == a.ID ? "checked" : "checkStatus='false'",
                                          AddressID = a.ID,
                                          HouseBldgNo = a.HouseBldgNo,
                                          StreetName = a.StreetSubdivision,
@@ -348,8 +350,8 @@ namespace ECOCSystem.Controllers
                                      a.ClientID == ClientID
                                      select new
                                      { 
-                                        isChecked = (f.SelectedVehicleID ?? 0) == a.VehicleID ? "checked" : "uncheck",
-                                        VehicleID = a.VehicleID,
+                                        isChecked = (f.SelectedVehicleID ?? 0) == a.VehicleID ? "checked" : "checkStatus='false'",
+                                         VehicleID = a.VehicleID,
                                         Chassis = a.ChassisNumber,
                                         PlateNo = a.PlateNumber,
                                         Year = a.Year,
@@ -364,7 +366,7 @@ namespace ECOCSystem.Controllers
                     return Json(new { data = tableData });
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

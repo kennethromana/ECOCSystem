@@ -725,7 +725,7 @@ svg:hover .tooltip {
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-
+                    getcheckedAddress()
                 }
             },
             "createdRow": function (row, data, dataIndex) {
@@ -737,7 +737,7 @@ svg:hover .tooltip {
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-primary d-inline">
-                                    <input class="chk" name="checkAddress" type="checkbox" AddressID="`+ data.AddressID +`" id="address`+ data.AddressID +`">
+                                    <input class="chk" `+ data.isChecked +` name="checkAddress" type="checkbox" AddressID="`+ data.AddressID +`" id="address`+ data.AddressID +`">
                                         <label for="address`+ data.AddressID+`">
                                     </label>
                                  </div>
@@ -837,6 +837,7 @@ svg:hover .tooltip {
             ]
         });
 
+        //will optimize this
         $(document).on('click', "span.vehicleEdit", function () {
             $('#vehicleOptions').empty();
             $('#vehicleOptions').append(`<button  class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
@@ -873,7 +874,22 @@ svg:hover .tooltip {
         else
             VehiceID = 0
 
-        
+        //$("input:checkbox[name=checkVehicle]:checked").each(function () {
+        //    let VehicleID = $(this).attr('VehicleID');
+        //    $('#VehicleID').val(VehicleID);
+        //    getVehicleInfo(VehicleID);
+        //});
+    }
+    function getcheckedAddress() {
+
+        let AddressID = $('input[name="checkAddress"]:checked').attr('AddressID')
+
+        if (AddressID != undefined) {
+            $('#AddressID').val(AddressID);
+            getAddressInfo(AddressID)
+        }
+        else
+            AddressID = 0
 
         //$("input:checkbox[name=checkVehicle]:checked").each(function () {
         //    let VehicleID = $(this).attr('VehicleID');
