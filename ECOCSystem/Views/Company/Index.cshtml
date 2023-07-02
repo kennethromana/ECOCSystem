@@ -158,6 +158,7 @@
         $('#modal-company-user').on('hide.bs.modal', function (e) {
             // do something…
             $("#modal-companyInfo .overlay").addClass("d-none");
+            $("#sectionUser").addClass("d-none");
 
         });
 
@@ -369,7 +370,10 @@
 
                     $('#tbl_Batches tbody').on('click', 'tr > td:not(.td_Edit) ', function () {
                         var BranchID = $(this).closest("tr").find("span").attr('BranchID');
-                        getUserList(CompanyID,BranchID)
+                        getUserList(CompanyID, BranchID)
+
+                        $("#sectionUser").removeClass("d-none");
+
                     });
                     $('#loadingScreen').hide();
                 }
