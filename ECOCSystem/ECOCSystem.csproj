@@ -2280,8 +2280,11 @@
     <Content Include="FrontEnd\plugins\uplot\uPlot.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\arrow_8.jpg" />
+    <Content Include="Images\BG-9.jpg" />
     <Content Include="Images\DataBridgeLogo.png" />
     <Content Include="Images\ImageBack1.jpg" />
+    <Content Include="Images\rm222-mind-19.jpg" />
     <Content Include="Model\ECOC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ECOC.Context.cs</LastGenOutput>
