@@ -188,7 +188,7 @@
 
             getBatchList(CompanyID)
             getCompanyInfo(CompanyID)
-            getUserList(CompanyID)
+            //getUserList(CompanyID)
 
 
         });
@@ -235,8 +235,8 @@
                                     break;
                                 case "User":
                                     $('#modal-company-user').modal('hide')
-                                    getUserList(response.CompanyID)
-                                    clearModelUser()
+/*                                    getUserList(response.CompanyID)*/
+                              /*      clearModelUser()*/
                                     break;
                                 default:
                                     toastr.info("There's something error. Please try again later.");
@@ -365,6 +365,12 @@
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
+
+
+                    $('#tbl_Batches tbody').on('click', 'tr > td:not(.td_Edit) ', function () {
+                        var BranchID = $(this).closest("tr").find("span").attr('BranchID');
+                        getUserList(CompanyID,BranchID)
+                    });
                     $('#loadingScreen').hide();
                 }
             },
@@ -373,7 +379,7 @@
             },
             "columns": [
                 {
-                    "className": "ID", "data": null, "name": "ID",
+                    "className": "td_Edit", "data": null, "name": "ID",
                     render: function (data, type, row) {
                         return `<center>
                                      <div class="">
@@ -406,10 +412,10 @@
         //});
     };
 
-    function getUserList(CompanyID) {
+    function getUserList(CompanyID,BranchID) {
 
         let cntRow = 0;
-        batchList_table = $("#tbl_Users").DataTable({
+        UserList_table = $("#tbl_Users").DataTable({
             "processing": true, // for show progress bar
             "serverSide": false, // for process server side
             "filter": true, // this is for disable filter (search box)
@@ -427,14 +433,14 @@
                 "url": '@Url.Action("GetCompanyUserList", "Company")',
                 "type": "POST",
                 "datatype": "json",
-                "data": function (o) {
-                    o.CompanyID = CompanyID;
-                },
+                "data": { "CompanyID": CompanyID, "BranchID": BranchID },
                 "beforeSend": function () {
                     $('#loadingScreen').show();
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
+
+              
                     $('#loadingScreen').hide();
                 }
             },
@@ -447,7 +453,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" BranchID="`+ data.ID +`">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyUser" class="editCompany" UserID="`+ data.ID +`">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>

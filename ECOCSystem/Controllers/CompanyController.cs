@@ -278,7 +278,7 @@ namespace ECOCSystem.Controllers
             }
         }
         [HttpPost]
-        public ActionResult GetCompanyUserList(int CompanyID)
+        public ActionResult GetCompanyUserList(int CompanyID,int BranchID)
         {
             try
             {
@@ -290,7 +290,8 @@ namespace ECOCSystem.Controllers
                                      from b in db.UserType.Where(o => o.ID == a.UserTypeID).DefaultIfEmpty()
                                      from c in db.CompanyBranch.Where(o => o.ID == a.CompanyBranchID).DefaultIfEmpty()
                                      where a.Active == true &&
-                                     a.CompanyID == CompanyID
+                                     a.CompanyID == CompanyID &&
+                                     a.CompanyBranchID == BranchID
                                      select new
                                      {
                                          ID = a.ID,
@@ -304,7 +305,7 @@ namespace ECOCSystem.Controllers
                                      ).ToList();
 
                     //Returning Json Data    
-                    return Json(new { data = tableData });
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception)
