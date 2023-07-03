@@ -344,7 +344,7 @@ svg:hover .tooltip {
                                 </div>
                             </section>
                             <section class="row mt-4 pb-4 submit-btn">
-                                <button data-toggle="modal" data-target="#modal-ApplicationSummary" class="btn btn-success" type="button" style="height: 45px; ">Submit Application</button>
+                                <button data-toggle="modal" data-target="#modal-ApplicationSummary" id="submit_Summary" class="btn btn-success" type="button" style="height: 45px; ">Submit Application</button>
                             </section>
 
 
@@ -667,6 +667,11 @@ svg:hover .tooltip {
 
 
         });
+        $('#submit_Summary').on('click', function () {
+            getcheckedVehicle();
+
+            getcheckedAddress();
+        });
 
 
         $('#submit_Application').on('click', function () {
@@ -738,7 +743,7 @@ svg:hover .tooltip {
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-                    getcheckedAddress()
+                   /* getcheckedAddress()*/
                 }
             },
             "createdRow": function (row, data, dataIndex) {
@@ -809,7 +814,7 @@ svg:hover .tooltip {
                     cntRow = 0;
                 },
                 "complete": function (row, data, dataIndex) {
-                    getcheckedVehicle()
+                 /*   getcheckedVehicle()*/
                 }
             },
             "createdRow": function (row, data, dataIndex) {
