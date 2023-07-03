@@ -1,8 +1,146 @@
-﻿
+﻿@using ECOCSystem.Model
+@model MakeModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
 }
 
-<h2>Index</h2>
+<section class="content">
+    <div class="card card-success card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Vehicle Make List</h3>
+        </div>
+        <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-make-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            {
+
+                @Html.HiddenFor(m => m.MakeID)
+                <div id="" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="table-makeList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="width:100%; min-width: 90em;cursor:pointer">
+                                <thead>
+                                    <tr>
+                                        <th style="width:300px"><center>Action Edit</center></th>
+                                        <th>Vehicle Make</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-make-info" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        @{
+                            Html.RenderPartial("_MakeInfo", Model.MakeInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "MakeInfo" } });
+                        }
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-make-series" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-make-body" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+                <div class="modal fade" id="modal-make-color" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+
+
+</section>
+<script>
+    $(document).ready(function () {
+
+
+      
+
+        getMakeList();
+
+
+    });
+
+    function getMakeList() {
+
+        let cntRow = 0;
+        Make_table = $("#table-makeList").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetMakeList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+            
+            },
+            "columns": [
+                {
+                    "className": "VehicleMakeID", "data": null, "name": "VehicleMakeID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditMake(`+ data.VehicleMakeID + `)" MakesID="` + data.VehicleMakeID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "VehicleMakeName", "data": "VehicleMakeName", "name": "VehicleMakeName", "autoWidth": true },
+             
+
+
+            ]
+        });
+        $('#table-makeList_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+</script>
+
 

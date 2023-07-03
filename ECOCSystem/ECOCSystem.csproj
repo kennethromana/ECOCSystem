@@ -2667,6 +2667,7 @@
     <Content Include="Views\Company\_Branch.cshtml" />
     <Content Include="Views\Company\_User.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Vehicle\_MakeInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
