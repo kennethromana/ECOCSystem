@@ -594,6 +594,7 @@ svg:hover .tooltip {
                                 case "Vehicle":
                                     $("#modal-client-vehicle").modal('hide');
                                     clearVehicleForm();
+                                    getVehicleList(response.ClientID)
                                     break;
                                 case "CTPL":
                                     showCOCFile(response.FileName);
@@ -662,9 +663,9 @@ svg:hover .tooltip {
             getAddressList(ID)
             getVehicleList(ID)
             getClientInfo(ID)
-     
 
-           
+
+
         });
 
 
@@ -839,7 +840,7 @@ svg:hover .tooltip {
                     render: function (data, type, row) {
                         return `<center>
                                             <div class="">
-                                                <span type="button" data-toggle="modal" data-target="#modal-client-vehicle" class="vehicleEdit" VehicleID="`+ data.VehicleID + `">
+                                                <span type="button" data-toggle="modal" onclick="EditVehicle(`+ data.VehicleID + `)" data-target="#modal-client-vehicle" class="vehicleEdit" VehicleID="` + data.VehicleID + `">
                                                     <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                                 </span>
                                             </div>
@@ -875,16 +876,55 @@ svg:hover .tooltip {
 
     };
 
-    function editVehicle(VehicleID) {
+    function EditVehicle(VehicleID) {
 
-        let VehiceID = $('input[name="checkVehicle"]:checked').attr('VehicleID')
+       $('#loadingScreen').show();
+        $.ajax({
+            url: '@Url.Action("GetVehicleInfo", "GetData")',
+            type: "GET",
+            cache: false,
+            dataType: "JSON",
+            beforeSend: function () {
+                $('#loadingScreen').show();
+            },
+/*            async: false,*/
+            data: { "VehicleID": VehicleID },
+            success: function (response) {
 
-        if (VehiceID != undefined) {
-            $('#VehicleID').val(VehiceID);
-            getVehicleInfo(VehiceID)
-        }
-        else
-            VehiceID = 0
+                $('#ClientVehicle_VehicleID').val(response.VehiceID);
+                $('#ClientVehicle_EngineNumber').val(response.Chassis);
+                $('#ClientVehicle_ChassisNumber').val(response.Chassis);
+                $('#ClientVehicle_MVFileNumber').val(response.MVFile);
+                $('#ClientVehicle_PlateNumber').val(response.Plate);
+                $('#ClientVehicle_Year').val(response.Year);
+
+                var selectedMake = $("<option selected='selected'></option>").val(response.MakeID).text(response.Make)
+                $("#ClientVehicle_SelectedMakeID").append(selectedMake).trigger('change');
+
+                var selectedBody = $("<option selected='selected'></option>").val(response.BodyTypeID).text(response.BodyType)
+                $("#ClientVehicle_SelectedBodyTypeID").append(selectedBody).trigger('change');
+
+                var SelectedColor = $("<option selected='selected'></option>").val(response.ColorID).text(response.Color)
+                $("#ClientVehicle_SelectedColorID").append(SelectedColor).trigger('change');
+
+                var SelectedSeries = $("<option selected='selected'></option>").val(response.SeriesID).text(response.Series)
+                $("#ClientVehicle_SelectedSeriesID").append(SelectedSeries).trigger('change');
+
+                var SelectedVehicleType = $("<option selected='selected'></option>").val(response.VTypeID).text(response.VType)
+                $("#ClientVehicle_SelectedVehicleTypeID").append(SelectedVehicleType).trigger('change');
+
+                var SelectedClassification = $("<option selected='selected'></option>").val(response.ClassificationID).text(response.Classification)
+                $("#ClientVehicle_SelectedClassificationID").append(SelectedClassification).trigger('change');
+
+
+            },
+            error: function (xhr, status, error) {
+                toastr.error('An error has occured while processing, Please contact Databridge Support.');
+            },
+            complete: function () {
+                $('#loadingScreen').hide();
+            },
+        });
 
     }
 
@@ -901,7 +941,7 @@ svg:hover .tooltip {
         else
             VehiceID = 0
 
-      
+
     }
     function getcheckedAddress() {
 
@@ -943,6 +983,25 @@ svg:hover .tooltip {
         $("#Application_VehicleType").text('')
         $("#Application_Classification").text('')
 
+        var selectedMake = $("<option selected='selected'></option>").val(0).text('Select Vehicle Make')
+        $("#ClientVehicle_SelectedMakeID").append(selectedMake).trigger('change');
+
+        var selectedBody = $("<option selected='selected'></option>").val(0).text('Select Body Type')
+        $("#ClientVehicle_SelectedBodyTypeID").append(selectedBody).trigger('change');
+
+        var SelectedColor = $("<option selected='selected'></option>").val(0).text('Select Color')
+        $("#ClientVehicle_SelectedColorID").append(SelectedColor).trigger('change');
+
+        var SelectedSeries = $("<option selected='selected'></option>").val(0).text('Select Series')
+        $("#ClientVehicle_SelectedSeriesID").append(SelectedSeries).trigger('change');
+
+        var SelectedVehicleType = $("<option selected='selected'></option>").val(0).text('Select Vehicle Type')
+        $("#ClientVehicle_SelectedVehicleTypeID").append(SelectedVehicleType).trigger('change');
+
+        var SelectedClassification = $("<option selected='selected'></option>").val(0).text('Selet Classification')
+        $("#ClientVehicle_SelectedClassificationID").append(SelectedClassification).trigger('change');
+
+
     }
     function clearAddressForm() {
 
@@ -966,12 +1025,12 @@ svg:hover .tooltip {
     }
 
     function clearClientForm(ClientID) {
-        
+
         let Individual = 1;
         let Corporate = 2;
         let CorporateWithAssignee = 3;
         let ClientName = '';
-    
+
           $.ajax({
                 url: '@Url.Action("GetTitleTypeID","GetData")',
                 type: "GET",
@@ -1017,7 +1076,7 @@ svg:hover .tooltip {
                 },
           });
 
-       
+
     }
 
     let getAddressInfo = (AddressID) => {
@@ -1108,16 +1167,6 @@ svg:hover .tooltip {
                 $("#Application_Make").text(response.Make)
                 $("#Application_VehicleType").text(response.VType)
                 $("#Application_Classification").text(response.Classification)
-
-                $('#ClientVehicle_VehicleID').val(0);
-                $('#ClientVehicle_EngineNumber').val('');
-                $('#ClientVehicle_ChassisNumber').val('');
-                $('#ClientVehicle_MVFileNumber').val('');
-                $('#ClientVehicle_PlateNumber').val('');
-                $('#ClientVehicle_Year').val('');
-
-                var selectedClient = $("<option selected='selected'></option>").val(ClientID).text(ClientName)
-                $("#ClientID").append(selectedClient).trigger('change');
 
 
             },

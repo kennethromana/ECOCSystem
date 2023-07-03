@@ -644,6 +644,7 @@ namespace ECOCSystem.Controllers
                                    where a.Active == true && a.VehicleID == VehicleID
                                    select new
                                    {
+                                       VehicleID = a.VehicleID,
                                        Engine = a.EngineNumber,
                                        Chassis = a.ChassisNumber,
                                        MVFile = a.MVFileNumber,
@@ -655,6 +656,12 @@ namespace ECOCSystem.Controllers
                                        Series = c.VehicleModelName + " " + c.Variant,
                                        VType = f.VehicleTypeDescription,
                                        Classification = g.VehicleClassificationName,
+                                       BodyTypeID = d.VehicleBodyTypeID,
+                                       ColorID = e.VehicleColorID,
+                                       SeriesID = c.VehicleModelName +" "+c.Variant,
+                                       VTypeID = f.VehicleTypeID,
+                                       ClassificationID = g.VehicleClassificationID,
+                                       MakeID = b.VehicleMakeID,
                                    }).FirstOrDefault();
 
                 return Json(VehicleInfo, JsonRequestBehavior.AllowGet);
