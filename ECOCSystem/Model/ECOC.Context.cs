@@ -39,7 +39,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<VehicleInfo> VehicleInfo { get; set; }
-        public virtual DbSet<VehicleSeries> VehicleSeries { get; set; }
         public virtual DbSet<VehicleBodyType> VehicleBodyType { get; set; }
         public virtual DbSet<VehicleColor> VehicleColor { get; set; }
         public virtual DbSet<VehicleFuelType> VehicleFuelType { get; set; }
@@ -55,5 +54,8 @@ namespace ECOCSystem.Model
         public virtual DbSet<CTPLTaxType> CTPLTaxType { get; set; }
         public virtual DbSet<CTPLApplication> CTPLApplication { get; set; }
         public virtual DbSet<InsuranceCOCSeries> InsuranceCOCSeries { get; set; }
+        public virtual DbSet<MakeBodyType> MakeBodyType { get; set; }
+        public virtual DbSet<MakeColor> MakeColor { get; set; }
+        public virtual DbSet<VehicleSeries> VehicleSeries { get; set; }
     }
 }

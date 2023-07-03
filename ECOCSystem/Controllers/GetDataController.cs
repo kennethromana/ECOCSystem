@@ -550,7 +550,7 @@ namespace ECOCSystem.Controllers
                                 select new
                                 {
                                     id = a.VehicleSeriesID,
-                                    text = a.Name
+                                    text = a.VehicleModelName + " " + a.Variant,
                                 }).ToList();
 
 
@@ -650,7 +650,7 @@ namespace ECOCSystem.Controllers
                                        Make = b.VehicleMakeName,
                                        BodyType = d.VehicleBodyTypeName,
                                        Color = e.VehicleColorName,
-                                       Series = c.Name
+                                       Series = c.VehicleModelName + " " + c.Variant,
                                    }).FirstOrDefault();
 
                 return Json(VehicleInfo, JsonRequestBehavior.AllowGet);

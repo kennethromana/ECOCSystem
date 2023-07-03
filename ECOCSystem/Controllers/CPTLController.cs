@@ -361,7 +361,7 @@ namespace ECOCSystem.Controllers
                                         VehicleType = b.VehicleTypeDescription,
                                         VehicleMake = c.VehicleMakeName,
                                         VehicleBody = d.VehicleBodyTypeName,
-                                        VehicleSeries = e.Name,
+                                        VehicleSeries = e.VehicleModelName + " " + e.Variant,
                                      }
                                      ).ToList();
 
@@ -469,7 +469,7 @@ namespace ECOCSystem.Controllers
                                            VehicleType = b.VehicleTypeDescription,
                                            VehicleMake = c.VehicleMakeName,
                                            VehicleBody = d.VehicleBodyTypeName,
-                                           VehicleSeries = e.Name.ToUpper(),
+                                           VehicleSeries = e.VehicleModelName.ToUpper() + " " + e.Variant.ToUpper(),
                                            Color = f.VehicleColorName,
                                            ClassificationID = a.ClassificationID
                                        }).FirstOrDefault();
