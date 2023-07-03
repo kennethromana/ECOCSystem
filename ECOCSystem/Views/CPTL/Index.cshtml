@@ -500,6 +500,14 @@ svg:hover .tooltip {
                                                                     <label class="info-label">Series</label>
                                                                     <span class="input-group info-display" data-toggle="tooltip" id="Application_Series"></span>
                                                                 </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Vehicle Type</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_VehicleType"></span>
+                                                                </div>
+                                                                <div class="form-group col-lg-4 info-container">
+                                                                    <label class="info-label">Classification</label>
+                                                                    <span class="input-group info-display" data-toggle="tooltip" id="Application_Classification"></span>
+                                                                </div>
                                                             </div>
                                                         </blockquote>
 
@@ -866,6 +874,20 @@ svg:hover .tooltip {
         });
 
     };
+
+    function editVehicle(VehicleID) {
+
+        let VehiceID = $('input[name="checkVehicle"]:checked').attr('VehicleID')
+
+        if (VehiceID != undefined) {
+            $('#VehicleID').val(VehiceID);
+            getVehicleInfo(VehiceID)
+        }
+        else
+            VehiceID = 0
+
+    }
+
     function getcheckedVehicle()
     {
 
@@ -879,11 +901,7 @@ svg:hover .tooltip {
         else
             VehiceID = 0
 
-        //$("input:checkbox[name=checkVehicle]:checked").each(function () {
-        //    let VehicleID = $(this).attr('VehicleID');
-        //    $('#VehicleID').val(VehicleID);
-        //    getVehicleInfo(VehicleID);
-        //});
+      
     }
     function getcheckedAddress() {
 
@@ -922,6 +940,8 @@ svg:hover .tooltip {
         $("#Application_Color").text('')
         $("#Application_Series").text('')
         $("#Application_Make").text('')
+        $("#Application_VehicleType").text('')
+        $("#Application_Classification").text('')
 
     }
     function clearAddressForm() {
@@ -1086,6 +1106,18 @@ svg:hover .tooltip {
                 $("#Application_Color").text(response.Color)
                 $("#Application_Series").text(response.Series)
                 $("#Application_Make").text(response.Make)
+                $("#Application_VehicleType").text(response.VType)
+                $("#Application_Classification").text(response.Classification)
+
+                $('#ClientVehicle_VehicleID').val(0);
+                $('#ClientVehicle_EngineNumber').val('');
+                $('#ClientVehicle_ChassisNumber').val('');
+                $('#ClientVehicle_MVFileNumber').val('');
+                $('#ClientVehicle_PlateNumber').val('');
+                $('#ClientVehicle_Year').val('');
+
+                var selectedClient = $("<option selected='selected'></option>").val(ClientID).text(ClientName)
+                $("#ClientID").append(selectedClient).trigger('change');
 
 
             },

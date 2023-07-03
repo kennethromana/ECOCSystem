@@ -639,6 +639,8 @@ namespace ECOCSystem.Controllers
                                    from c in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
                                    from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
                                    from e in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                   from f in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
+                                   from g in db.VehicleClassification.Where(o => o.VehicleClassificationID == a.ClassificationID).DefaultIfEmpty()
                                    where a.Active == true && a.VehicleID == VehicleID
                                    select new
                                    {
@@ -651,6 +653,8 @@ namespace ECOCSystem.Controllers
                                        BodyType = d.VehicleBodyTypeName,
                                        Color = e.VehicleColorName,
                                        Series = c.VehicleModelName + " " + c.Variant,
+                                       VType = f.VehicleTypeDescription,
+                                       Classification = g.VehicleClassificationName,
                                    }).FirstOrDefault();
 
                 return Json(VehicleInfo, JsonRequestBehavior.AllowGet);
