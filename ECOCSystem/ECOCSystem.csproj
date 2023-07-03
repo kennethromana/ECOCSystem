@@ -164,6 +164,7 @@
     <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2659,6 +2660,7 @@
     <Content Include="Views\Company\_CompanyInfo.cshtml" />
     <Content Include="Views\Company\_Branch.cshtml" />
     <Content Include="Views\Company\_User.cshtml" />
+    <Content Include="Views\Vehicle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
