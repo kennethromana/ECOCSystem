@@ -252,7 +252,7 @@
          $('#submit_editCompany').on('click', function () {
              submitForm("EDITCOMPANY");
          });
-     
+
 
     };
 
@@ -381,7 +381,12 @@
 
     function getUserList(CompanyID,BranchID) {
 
-        let cntRow = 0;
+        console.log(CompanyID)
+        console.log(BranchID)
+
+        if (CompanyID != 0 && BranchID != 0 && BranchID != undefined)
+        {
+                    let cntRow = 0;
         UserList_table = $("#tbl_Users").DataTable({
             "processing": true, // for show progress bar
             "serverSide": false, // for process server side
@@ -446,6 +451,8 @@
         //    $('#AddressID').val(AddressID);
 
         //});
+        }
+
     };
 
     function getCompanyList() {
