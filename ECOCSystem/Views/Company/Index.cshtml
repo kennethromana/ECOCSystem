@@ -333,9 +333,12 @@
 
                     $('#tbl_Batches tbody').on('click', 'tr > td:not(.td_Edit) ', function () {
                         var BranchID = $(this).closest("tr").find("span").attr('BranchID');
-                        getUserList(CompanyID, BranchID)
-
-                        $("#sectionUser").removeClass("d-none");
+                        if (BranchID != undefined)
+                        {
+                            getUserList(CompanyID, BranchID)
+                            $("#sectionUser").removeClass("d-none");
+                        }
+                    
 
                     });
                     $('#loadingScreen').hide();
