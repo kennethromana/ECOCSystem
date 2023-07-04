@@ -23,7 +23,7 @@
                             <table id="table-makeList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="min-width: 80em;cursor:pointer">
                                 <thead>
                                     <tr>
-                                        <th style="width:300px"><center>Action Edit</center></th>
+                                        <th><center>Action Edit</center></th>
                                         <th>Vehicle Make</th>
                                     </tr>
                                 </thead>
@@ -216,7 +216,7 @@
                         return `<center>
                                   <div class="">
                                          <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editSeries" onclick="EditSeries(`+ data.VehicleSeriesID + `)" MakesID="` + data.VehicleSeriesID +`">
-                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
                                         </span>
                                     </div>
                                  </div>
@@ -277,7 +277,7 @@
                         return `<center>
                                   <div class="">
                                          <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditBodyType(`+ data.BodyTypeID + `)" MakesID="` + data.BodyTypeID +`">
-                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
                                         </span>
                                     </div>
                                  </div>
@@ -338,7 +338,7 @@
                         return `<center>
                                   <div class="">
                                          <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditColor(`+ data.ColorID + `)" MakesID="` + data.ColorID +`">
-                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
                                         </span>
                                     </div>
                                  </div>
