@@ -448,6 +448,7 @@ namespace ECOCSystem.Controllers
 
 
                 var itemList = (from a in db.VehicleMake
+                                where a.Active == true
                                 select new
                                 {
                                     id = a.VehicleMakeID,
@@ -482,7 +483,7 @@ namespace ECOCSystem.Controllers
 
                 var itemList = (from a in db.MakeBodyType
                                 from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                where a.MakeID == MakeID
+                                where a.MakeID == MakeID && a.Active == true
                                 select new
                                 {
                                     id = a.BodyTypeID,
@@ -517,7 +518,7 @@ namespace ECOCSystem.Controllers
 
                 var itemList = (from a in db.MakeColor
                                 from b in db.VehicleColor.Where(o => o.VehicleColorID == a.ColorID).DefaultIfEmpty()
-                                where a.MakeID == MakeID
+                                where a.MakeID == MakeID && a.Active == true
                                 select new
                                 {
                                     id = a.ColorID,
@@ -551,7 +552,7 @@ namespace ECOCSystem.Controllers
 
 
                 var itemList = (from a in db.VehicleSeries
-                                where a.VehicleMakeID == MakeID
+                                where a.VehicleMakeID == MakeID && a.Active == true
                                 select new
                                 {
                                     id = a.VehicleSeriesID,
