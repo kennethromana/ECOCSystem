@@ -474,17 +474,19 @@ namespace ECOCSystem.Controllers
             }
         }
         
-        public ActionResult GetVehicleBodyList(string search, int page, int pageSize)
+        public ActionResult GetVehicleBodyList(string search, int page, int pageSize,int MakeID)
         {
             using (var db = new ECOCEntities())
             {
 
 
-                var itemList = (from a in db.VehicleBodyType
+                var itemList = (from a in db.MakeBodyType
+                                from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                where a.MakeID == MakeID
                                 select new
                                 {
-                                    id = a.VehicleBodyTypeID,
-                                    text = a.VehicleBodyTypeName
+                                    id = a.BodyTypeID,
+                                    text = b.VehicleBodyTypeName
                                 }).ToList();
 
 
@@ -507,17 +509,19 @@ namespace ECOCSystem.Controllers
             }
         }
        
-        public ActionResult GetVehicleColors(string search, int page, int pageSize)
+        public ActionResult GetVehicleColors(string search, int page, int pageSize,int MakeID)
         {
             using (var db = new ECOCEntities())
             {
 
 
-                var itemList = (from a in db.VehicleColor
+                var itemList = (from a in db.MakeColor
+                                from b in db.VehicleColor.Where(o => o.VehicleColorID == a.ColorID).DefaultIfEmpty()
+                                where a.MakeID == MakeID
                                 select new
                                 {
-                                    id = a.VehicleColorID,
-                                    text = a.VehicleColorName
+                                    id = a.ColorID,
+                                    text = b.VehicleColorName
                                 }).ToList();
 
 
@@ -540,13 +544,14 @@ namespace ECOCSystem.Controllers
             }
         }
         
-        public ActionResult GetVehicleSeries(string search, int page, int pageSize)
+        public ActionResult GetVehicleSeries(string search, int page, int pageSize, int MakeID)
         {
             using (var db = new ECOCEntities())
             {
 
 
                 var itemList = (from a in db.VehicleSeries
+                                where a.VehicleMakeID == MakeID
                                 select new
                                 {
                                     id = a.VehicleSeriesID,

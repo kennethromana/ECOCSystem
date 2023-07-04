@@ -51,6 +51,45 @@
             @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
 
             <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedMakeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedMakeID, new SelectList(Model.VehicleMakeList, "ID", "Info"), "Select Make", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleMakeList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedMakeID, "", new { @class = "" })
+            </div>
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedSeriesID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedSeriesID, new SelectList(Model.VehicleSeriesList, "ID", "Info"), "Select Series", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleSeries", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedSeriesID, "", new { @class = "" })
+            </div>
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedBodyTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
+            </div>
+
+        </section>
+        <section class="row pb-4">
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+
+          
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedColorID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedColorID, new SelectList(Model.VehicleColors, "ID", "Info"), "Select Color", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleColors", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedColorID, "", new { @class = "" })
+            </div>
+          
+
+            <div class="form-group col-lg-4">
                 @Html.LabelFor(o => o.PlateNumber)
                 <div class="input-group">@Html.TextBoxFor(o => o.PlateNumber, new { @class = "form-control input-style", placeholder = "Plate Number" })</div>
                 @Html.ValidationMessageFor(o => o.PlateNumber)
@@ -61,41 +100,6 @@
                 @Html.LabelFor(o => o.Year)
                 <div class="input-group">@Html.TextBoxFor(o => o.Year, new { @class = "form-control input-style", placeholder = "Year" })</div>
                 @Html.ValidationMessageFor(o => o.Year)
-            </div>
-
-            <div class="form-group col-lg-4">
-                @Html.LabelFor(m => m.SelectedMakeID)
-                <div class="input-group">
-                    @Html.DropDownListFor(m => m.SelectedMakeID, new SelectList(Model.VehicleMakeList, "ID", "Info"), "Select Make", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleMakeList", "GetData") })
-                </div>
-                @Html.ValidationMessageFor(m => m.SelectedMakeID, "", new { @class = "" })
-            </div>
-
-        </section>
-        <section class="row pb-4">
-            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
-
-
-            <div class="form-group col-lg-4">
-                @Html.LabelFor(m => m.SelectedBodyTypeID)
-                <div class="input-group">
-                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList", "GetData") })
-                </div>
-                @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
-            </div>
-            <div class="form-group col-lg-4">
-                @Html.LabelFor(m => m.SelectedColorID)
-                <div class="input-group">
-                    @Html.DropDownListFor(m => m.SelectedColorID, new SelectList(Model.VehicleColors, "ID", "Info"), "Select Color", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleColors", "GetData") })
-                </div>
-                @Html.ValidationMessageFor(m => m.SelectedColorID, "", new { @class = "" })
-            </div>
-            <div class="form-group col-lg-4">
-                @Html.LabelFor(m => m.SelectedSeriesID)
-                <div class="input-group">
-                    @Html.DropDownListFor(m => m.SelectedSeriesID, new SelectList(Model.VehicleSeriesList, "ID", "Info"), "Select Series", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleSeries", "GetData") })
-                </div>
-                @Html.ValidationMessageFor(m => m.SelectedSeriesID, "", new { @class = "" })
             </div>
         </section>
     </div>
@@ -108,6 +112,8 @@
 
     $(document).ready(function () {
 
+  
+
         $('#addVehicle').on('click', function () {
             clearVehicleForm();
             $('#vehicleOptions').empty();
@@ -118,6 +124,24 @@
                 e.preventDefault();
                 submitForm("ADDVEHICLE");
             });
+        });
+
+
+
+        jQuery('#ClientVehicle_SelectedMakeID').on('change', function () {
+            console.log($(this).val())
+            jQuery("#ClientVehicle_SelectedSeriesID").val("").trigger("change");
+            jQuery("#ClientVehicle_SelectedBodyTypeID").val("").trigger("change");
+            jQuery("#ClientVehicle_SelectedColorID").val("").trigger("change");
+
+         
+        });
+
+        jQuery('.select2Ajax').on('select2:opening', function () {
+            var objParams = {
+                MakeID: jQuery('#ClientVehicle_SelectedMakeID').val(),
+            };
+            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
         });
 
 
