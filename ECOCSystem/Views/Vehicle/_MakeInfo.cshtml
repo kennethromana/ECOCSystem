@@ -196,19 +196,51 @@
                                 <div class="card-body">
                                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                         <div class="row">
-                                            <div class="col-sm-12" style="display:flex;align-items:center;">
-                                                <div class="form-group col-sm-11">
-                                                    <div class="input-group">
-                                                        @Html.DropDownListFor(m => m.SelectedSeriesID, new SelectList(Model.VehicleSeriesList, "ID", "Info"), "Select Series", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleSeries", "GetData") })
-                                                    </div>
-                                                    @Html.ValidationMessageFor(m => m.SelectedSeriesID, "", new { @class = "" })
-                                                </div>
-                                                <div class="col-sm-1  uiverse btn-edit-1 add-button">
-                                                    <span class="tooltip" style="white-space:nowrap;">Edit Series</span>
-                                                    <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
-                                                        <i class="fa fa-user-edit btn-sm"></i>
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Series" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style=" min-width: 61em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:150px"><center>Action Edit</center></th>
+                                                            <th>Model</th>
+                                                            <th>Variant</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
 
-                                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="row pb-4">
+                            <div class="col-12 col-sm-12 card">
+                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
+                                    <label>Make Body Type List</label>
+                                    <div class="uiverse ">
+                                        <span class="tooltip">Add new Body Type</span>
+                                        <span type="button" id="addSeries" class="" data-toggle="modal" data-target="#modal-company-branch">
+                                            +
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="tbl_BodyType" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style="min-width: 61em">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width:150px"><center>Action Edit</center></th>
+                                                                <th>Body Type</th>
+                                                                <th>Body Abbreviation</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -231,20 +263,16 @@
                                 <div class="card-body">
                                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                         <div class="row">
-                                            <div class="col-sm-12" style="display:flex;align-items:center;">
-                                                <div class="form-group col-sm-11">
-                                                    <div class="input-group">
-                                                        @Html.DropDownListFor(m => m.SelectedColorID, new SelectList(Model.VehicleColors, "ID", "Info"), "Select Color", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleColors", "GetData") })
-                                                    </div>
-                                                    @Html.ValidationMessageFor(m => m.SelectedColorID, "", new { @class = "" })
-                                                </div>
-                                                <div class="col-sm-1  uiverse btn-edit-1 add-button">
-                                                    <span class="tooltip" style="white-space:nowrap;">Edit Color</span>
-                                                    <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
-                                                        <i class="fa fa-user-edit btn-sm"></i>
+                                            <div class="col-sm-12">
+                                                <table id="tbl_Color" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style="min-width: 60em">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:20px"><center>Action Edit</center></th>
+                                                            <th>Color</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
 
-                                                    </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -253,41 +281,6 @@
                         </section>
 
 
-                        <section class="row pb-4">
-                            <div class="col-12 col-sm-12 card">
-                                <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                    <label>Make Body Type List</label>
-                                    <div class="uiverse ">
-                                        <span class="tooltip">Add new Body Type</span>
-                                        <span type="button" id="addSeries" class="" data-toggle="modal" data-target="#modal-company-branch">
-                                            +
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        <div class="row">
-                                            <div class="col-sm-12" style="display:flex;align-items:center;">
-                                                <div class="form-group col-sm-11">
-                                                    <div class="input-group">
-                                                        @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList", "GetData") })
-                                                    </div>
-                                                    @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
-                                                </div>
-
-                                                <div class="col-sm-1  uiverse btn-edit-1 add-button">
-                                                    <span class="tooltip" style="white-space:nowrap;">Edit Body Type</span>
-                                                    <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
-                                                        <i class="fa fa-user-edit btn-sm"></i>
-
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
 
 
                     </div>

@@ -40,6 +40,85 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
+        public ActionResult GetSeriesList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+
+                    var tableData = db.VehicleSeries.Where(o => o.Active).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetBodyTypeList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+
+                    var tableData = (from a in db.MakeBodyType
+                                     from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                     where a.Active == true
+                                     select new
+                                     {
+                                         BodyTypeID = a.BodyTypeID,
+                                         BodyTypeName = b.VehicleBodyTypeName,
+                                         BodyTypeAbbreviation = b.VehicleBodyAbbr,
+                                     }
+                                     ).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetColorList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    var tableData = (from a in db.MakeColor
+                                     from b in db.VehicleColor.Where(o => o.VehicleColorID == a.ColorID).DefaultIfEmpty()
+                                     where a.Active == true
+                                     select new
+                                     {
+                                         ColorID = a.ColorID,
+                                         ColorName = b.VehicleColorName
+                                     }
+                                     ).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
     
 }

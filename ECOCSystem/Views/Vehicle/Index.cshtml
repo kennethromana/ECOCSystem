@@ -20,7 +20,7 @@
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="table-makeList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="width:100%; min-width: 90em;cursor:pointer">
+                            <table id="table-makeList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="min-width: 80em;cursor:pointer">
                                 <thead>
                                     <tr>
                                         <th style="width:300px"><center>Action Edit</center></th>
@@ -74,10 +74,12 @@
     $(document).ready(function () {
 
 
-      
+
 
         getMakeList();
-
+        getSeriesList();
+        getColorList();
+        getBodyList();
 
     });
 
@@ -92,6 +94,7 @@
             "scrollX": true,
             "scrollY": true,
             "destroy": true,
+
 
             "order": [],
             "dom":
@@ -114,7 +117,7 @@
                 }
             },
             "createdRow": function (row, data, dataIndex) {
-            
+
             },
             "columns": [
                 {
@@ -131,12 +134,195 @@
                     }, "autoWidth": true
                 },
                 { "className": "VehicleMakeName", "data": "VehicleMakeName", "name": "VehicleMakeName", "autoWidth": true },
-             
+
 
 
             ]
         });
         $('#table-makeList_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+
+     function getSeriesList(MakeID) {
+
+        let cntRow = 0;
+         Series_table = $("#tbl_Series").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+             "destroy": true,
+             "pageLength": 5,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetSeriesList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "VehicleSeriesID", "data": null, "name": "VehicleSeriesID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editSeries" onclick="EditSeries(`+ data.VehicleSeriesID + `)" MakesID="` + data.VehicleSeriesID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "VehicleModelName", "data": "VehicleModelName", "name": "VehicleModelName", "autoWidth": true },
+                { "className": "Variant", "data": "Variant", "name": "Variant", "autoWidth": true },
+
+
+
+            ]
+        });
+         $('#tbl_Series_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+
+     function getBodyList(MakeID) {
+
+        let cntRow = 0;
+         BodyType_table = $("#tbl_BodyType").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+             "pageLength": 5,
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetBodyTypeList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "BodyTypeID", "data": null, "name": "BodyTypeID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditBodyType(`+ data.BodyTypeID + `)" MakesID="` + data.BodyTypeID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "BodyTypeName", "data": "BodyTypeName", "name": "BodyTypeName", "autoWidth": true },
+                { "className": "BodyTypeAbbreviation", "data": "BodyTypeAbbreviation", "name": "BodyTypeAbbreviation", "autoWidth": true },
+
+
+
+            ]
+        });
+         $('#tbl_BodyType_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+
+     function getColorList(MakeID) {
+
+        let cntRow = 0;
+         Color_table = $("#tbl_Color").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+             "pageLength": 5,
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetColorList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "ColorID", "data": null, "name": "ColorID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditColor(`+ data.ColorID + `)" MakesID="` + data.ColorID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": false
+                },
+                { "className": "ColorName", "data": "ColorName", "name": "ColorName", "autoWidth": true },
+
+
+
+            ]
+        });
+         $('#tbl_Color_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
 
 
