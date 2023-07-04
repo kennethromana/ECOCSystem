@@ -18,6 +18,12 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
+        public ActionResult BodyType()
+        {
+            var model = new BodyTypeModel();
+            return View(model);
+
+        }
 
         public ActionResult GetMakeList()
         {
@@ -29,6 +35,26 @@ namespace ECOCSystem.Controllers
 
                     //select all insurance comapny exclude databridge asia which has ID = 1
                     var tableData = db.VehicleMake.Where(o => o.Active).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetAllBodyTypeList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    var tableData = db.VehicleBodyType.Where(o => o.Active).ToList();
 
 
                     //Returning Json Data    

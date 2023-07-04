@@ -1,0 +1,145 @@
+﻿@using ECOCSystem.Model
+@model BodyTypeModel
+@{
+    ViewBag.Title = "BodyType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+}
+
+<section class="content">
+    <div class="card card-success card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Vehicle Body Type List</h3>
+        </div>
+        <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-make-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            {
+
+                @Html.HiddenFor(m => m.BodyTypeID)
+                <div id="" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="table-BodyType" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="min-width: 80em;cursor:pointer">
+                                <thead>
+                                    <tr>
+                                        <th><center>Action Edit</center></th>
+                                        <th>Body Type</th>
+                                        <th>Body Type Abbreviation</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-make-info" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-make-series" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-make-body" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+                <div class="modal fade" id="modal-make-color" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+
+
+</section>
+<script>
+    $(document).ready(function () {
+
+        getBodyTypeList();
+
+
+    });
+
+
+
+   function getBodyTypeList() {
+
+        let cntRow = 0;
+       BodyType_table = $("#table-BodyType").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetAllBodyTypeList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "VehicleBodyTypeID", "data": null, "name": "VehicleBodyTypeID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-make-info"" onclick="EditMake(`+ data.VehicleBodyTypeID + `,'` + data.VehicleBodyTypeID+`')">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "VehicleBodyTypeName", "data": "VehicleBodyTypeName", "name": "VehicleBodyTypeName", "autoWidth": true },
+                { "className": "VehicleBodyAbbr", "data": "VehicleBodyAbbr", "name": "VehicleBodyAbbr", "autoWidth": true },
+
+
+
+            ]
+        });
+       $('#table-BodyType_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+</script>
+

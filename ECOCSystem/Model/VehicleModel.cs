@@ -77,4 +77,15 @@ namespace ECOCSystem.Model
         public VehicleModel MakeInfo { get; set; }
 
     }
+    public class BodyTypeModel
+    {
+        public BodyTypeModel()
+        {
+            BodyTypeInfo = new VehicleModel();
+        }
+        public int BodyTypeID { get; set; }
+        public VehicleModel BodyTypeInfo { get; set; }
+
+    }
+
 }
