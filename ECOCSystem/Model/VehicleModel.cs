@@ -60,9 +60,6 @@ namespace ECOCSystem.Model
         public List<DropdownModel> VehicleBodyList { get; set; }
         public List<DropdownModel> VehicleSeriesList { get; set; }
         public List<DropdownModel> VehicleClassificationList { get; set; }
-        [Required]
-        [DisplayName("Vehicle Make")]
-        public string VehicleMake { get; set; }
 
 
     }
@@ -71,12 +68,36 @@ namespace ECOCSystem.Model
     {
         public MakeModel()
         {
-            MakeInfo = new VehicleModel();
+            MakeInfo = new MakeInfo();
+            SeriesInfo = new SeriesInfo();
         }
         public int MakeID { get; set; }
-        public VehicleModel MakeInfo { get; set; }
+        public MakeInfo MakeInfo { get; set; }
+        public SeriesInfo SeriesInfo { get; set; }
 
     }
+    public class MakeInfo
+    {
+        [Required]
+        [DisplayName("Vehicle Make")]
+        public string VehicleMake { get; set; }
+    }
+    public class SeriesInfo
+    {
+        public SeriesInfo()
+        {
+            VehicleBodyList = new List<DropdownModel>();
+        }
+        [Required]
+        [DisplayName("Vehicle Model")]
+        public string VehicleModel { get; set; }
+        [Required]
+        [DisplayName("Variant")]
+        public string Variant { get; set; }
+        public List<DropdownModel> VehicleBodyList { get; set; }
+    }
+
+
     public class BodyTypeModel
     {
         public BodyTypeModel()

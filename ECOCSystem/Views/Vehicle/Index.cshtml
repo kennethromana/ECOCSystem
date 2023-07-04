@@ -75,8 +75,6 @@
 
         getMakeList();
         getSeriesList(0);
-        getColorList(0);
-        getBodyList(0);
 
         $('#addMake').on('click', function () {
             $('.infoButtons').empty();
@@ -232,7 +230,7 @@
                         return `<center>
                                   <div class="">
                                          <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editSeries" onclick="EditSeries(`+ data.VehicleSeriesID + `)" MakesID="` + data.VehicleSeriesID +`">
-                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
                                  </div>
