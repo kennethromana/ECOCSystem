@@ -75,13 +75,42 @@
 
 
 
-
         getMakeList();
-        getSeriesList();
-        getColorList();
-        getBodyList();
+
+        getSeriesList(0);
+        getColorList(0);
+        getBodyList(0);
 
     });
+
+    function EditMake(MakeID,MakeName) {
+
+        $("#MakeInfo_VehicleMake").val(MakeName)
+
+        jQuery('.select2Ajax').on('select2:opening', function () {
+            var objParams = {
+                MakeID: MakeID,
+            };
+            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
+        });
+
+
+        getSeriesList(MakeID);
+        getColorList(MakeID);
+        getBodyList(MakeID);
+        //////getBatchList(CompanyID)
+        //////getCompanyInfo(CompanyID)
+        //////$('#companyOption').empty();
+        //////$('#companyOption').append(`<button type="button"  id = "submit_editCompany" value="EDITCOMPANY" class="btn btn-success">Update</button> `)
+
+
+
+        ////$('#submit_editCompany').on('click', function () {
+        ////    submitForm("EDITCOMPANY");
+        ////});
+
+
+    };
 
     function getMakeList() {
 
@@ -125,7 +154,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditMake(`+ data.VehicleMakeID + `)" MakesID="` + data.VehicleMakeID +`">
+                                         <span type="button" data-toggle="modal" data-target="#modal-make-info"" onclick="EditMake(`+ data.VehicleMakeID + `,'` + data.VehicleMakeName+`')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -167,7 +196,7 @@
                 "url": '@Url.Action("GetSeriesList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
-/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "data": { "MakeID": MakeID },
                 "beforeSend": function () {
                     $('#loadingScreen').show();
                     cntRow = 0;
@@ -228,7 +257,7 @@
                 "url": '@Url.Action("GetBodyTypeList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
-/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "data": { "MakeID": MakeID },
                 "beforeSend": function () {
                     $('#loadingScreen').show();
                     cntRow = 0;
@@ -289,7 +318,7 @@
                 "url": '@Url.Action("GetColorList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
-/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "data": { "MakeID": MakeID },
                 "beforeSend": function () {
                     $('#loadingScreen').show();
                     cntRow = 0;

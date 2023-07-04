@@ -40,7 +40,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetSeriesList()
+        public ActionResult GetSeriesList(int MakeID)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace ECOCSystem.Controllers
                 {
 
 
-                    var tableData = db.VehicleSeries.Where(o => o.Active).ToList();
+                    var tableData = db.VehicleSeries.Where(o => o.Active && o.VehicleMakeID == MakeID).ToList();
 
 
                     //Returning Json Data    
@@ -61,7 +61,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetBodyTypeList()
+        public ActionResult GetBodyTypeList(int MakeID)
         {
             try
             {
@@ -72,7 +72,9 @@ namespace ECOCSystem.Controllers
 
                     var tableData = (from a in db.MakeBodyType
                                      from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                     where a.Active == true
+                                     where 
+                                     a.Active == true &&
+                                     a.MakeID == MakeID
                                      select new
                                      {
                                          BodyTypeID = a.BodyTypeID,
@@ -91,7 +93,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetColorList()
+        public ActionResult GetColorList(int MakeID)
         {
             try
             {
@@ -101,7 +103,8 @@ namespace ECOCSystem.Controllers
 
                     var tableData = (from a in db.MakeColor
                                      from b in db.VehicleColor.Where(o => o.VehicleColorID == a.ColorID).DefaultIfEmpty()
-                                     where a.Active == true
+                                     where a.Active == true &&
+                                     a.MakeID == MakeID
                                      select new
                                      {
                                          ColorID = a.ColorID,
