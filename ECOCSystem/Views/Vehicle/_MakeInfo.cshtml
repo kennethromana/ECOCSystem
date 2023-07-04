@@ -152,6 +152,11 @@
     .row {
         margin: 0;
     }
+
+    .infoButtons {
+        display: flex;
+        justify-content: space-around;
+    }
 </style>
 <div class="modal-content ">
     <div id="" class="overlay d-none">
@@ -179,7 +184,7 @@
                                 @Html.ValidationMessageFor(o => o.VehicleMake)
                             </div>
                         </section>
-                        <section id="makeOption" class="row mt-4 pb-4 submit-btn">
+                        <section  class="infoButtons row mt-4 pb-4 submit-btn">
                         </section>
 
                         <section class="row pb-4">

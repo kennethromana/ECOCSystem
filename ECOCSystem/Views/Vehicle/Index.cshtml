@@ -73,17 +73,33 @@
 <script>
     $(document).ready(function () {
 
-
-
         getMakeList();
-
         getSeriesList(0);
         getColorList(0);
         getBodyList(0);
 
+        $('#addMake').on('click', function () {
+            $('.infoButtons').empty();
+            $('.infoButtons').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
+
+            $('#submit_addMake').on('click', function () {
+                submitForm("ADDMAKE");
+            });
+
+
+
+        });
+
     });
 
-    function EditMake(MakeID,MakeName) {
+
+
+    function EditMake(MakeID, MakeName) {
+
+        $('.infoButtons').empty();
+        $('.infoButtons').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
+                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
+
 
         $("#MakeInfo_VehicleMake").val(MakeName)
 
