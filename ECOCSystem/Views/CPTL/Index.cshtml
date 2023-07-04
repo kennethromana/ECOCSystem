@@ -593,8 +593,9 @@ svg:hover .tooltip {
                                     break;
                                 case "Vehicle":
                                     $("#modal-client-vehicle").modal('hide');
-                                    clearVehicleForm();
                                     getVehicleList(response.ClientID)
+                                    clearVehicleForm();
+
                                     break;
                                 case "CTPL":
                                     showCOCFile(response.FileName);
@@ -938,13 +939,17 @@ svg:hover .tooltip {
 
         let VehiceID = $('input[name="checkVehicle"]:checked').attr('VehicleID')
 
-        if (VehiceID != undefined)
-        {
+        if (VehiceID != undefined) {
             $('#VehicleID').val(VehiceID);
             getVehicleInfo(VehiceID)
         }
         else
+        {
             VehiceID = 0
+            $('#VehicleID').val(VehiceID);
+            clearVehicleForm()
+        }
+          
 
 
     }
@@ -957,7 +962,11 @@ svg:hover .tooltip {
             getAddressInfo(AddressID)
         }
         else
+        {
             AddressID = 0
+            $('#AddressID').val(AddressID);
+            clearAddressForm()
+        }
 
         //$("input:checkbox[name=checkVehicle]:checked").each(function () {
         //    let VehicleID = $(this).attr('VehicleID');
