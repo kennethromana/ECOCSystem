@@ -82,9 +82,8 @@
 </section>
 <script>
     $(document).ready(function () {
-
-        getMakeList();
         getMakeSeriesList(0);
+        getMakeList();
         getSeriesList()
         //getColorList(0);
         //getBodyList(0);
@@ -107,10 +106,9 @@
 
     function EditMake(MakeID, MakeName) {
 
-        $('.infoButtons').empty();
-        $('.infoButtons').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
-                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
 
+
+        getMakeSeriesList(MakeID)
 
         $("#MakeInfo_VehicleMake").val(MakeName)
 
@@ -121,8 +119,11 @@
             $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
         });
 
+        $('.infoButtons').empty();
+        $('.infoButtons').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
+                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
 
-        getMakeSeriesList(MakeID)
+
         //getColorList(MakeID);
         //getBodyList(MakeID);
         //////getBatchList(CompanyID)
