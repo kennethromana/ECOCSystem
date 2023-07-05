@@ -2670,7 +2670,6 @@
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Vehicle\_MakeInfo.cshtml" />
     <Content Include="Views\Vehicle\BodyType.cshtml" />
-    <Content Include="Views\Vehicle\_Series.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
