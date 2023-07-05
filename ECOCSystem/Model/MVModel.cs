@@ -84,21 +84,19 @@ namespace ECOCSystem.Model
 
         public List<Models> ModelList { get; set; }
     }
-    public class Series
-    {
-        public bool isChecked { get; set; }
-        public int SeriesID { get; set; }
-        public string Model { get; set; }
-        public string Variant { get; set; }
-        public string BodyType { get; set; }
-
-    }
 
     public class Models
     {
         public bool isChecked { get; set; }
         public int ModelID { get; set; }
         public string ModelName { get; set; }
+
+    }
+    public class Variants
+    {
+        public bool isChecked { get; set; }
+        public int VariantID { get; set; }
+        public string VariantName { get; set; }
 
     }
 
@@ -110,6 +108,7 @@ namespace ECOCSystem.Model
         }
         public int ModelID { get; set; }
         public MVModel ModelInfo { get; set; }
+        public List<Variants> VariantList { get; set; }
 
     }
     public class BodyTypeModel

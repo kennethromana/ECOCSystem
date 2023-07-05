@@ -41,9 +41,11 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="modal-make-series" style="display: none;" aria-hidden="true">
+                <div class="modal fade" id="modal-add-variant" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-
+                        @{
+                            Html.RenderPartial("_AddVariant", Model.VariantList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "VariantList" } });
+                        }
                     </div>
                 </div>
 
@@ -126,7 +128,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-series-info"" onclick="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-series-info"" onclick="EditModel(`+data.ModelID+`)">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -144,4 +146,9 @@
         $('#table-Series_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
     };
+
+    function EditModel(ModelID)
+    {
+
+    }
 </script>
