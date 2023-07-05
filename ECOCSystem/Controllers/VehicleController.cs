@@ -29,9 +29,9 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
-        public ActionResult Series()
+        public ActionResult Model()
         {
-            var model = new SeriesModel();
+            var model = new VehicleModelModel();
             return View(model);
 
         }
@@ -115,6 +115,34 @@ namespace ECOCSystem.Controllers
                                          Model = a.VehicleModelName,
                                          Variant = a.Variant,
                                          BodyType = a.Variant
+                                     }
+                                    ).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetModelList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+
+                    var tableData = (from a in db.VehicleModel
+                                     where a.Active == true
+                                     select new Models
+                                     {
+                                         ModelID = a.VehicleModelID,
+                                         ModelName = a.VehicleModelName
                                      }
                                     ).ToList();
 

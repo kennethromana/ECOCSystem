@@ -94,14 +94,22 @@ namespace ECOCSystem.Model
 
     }
 
-    public class SeriesModel
+    public class Models
     {
-        public SeriesModel()
+        public bool isChecked { get; set; }
+        public int ModelID { get; set; }
+        public string ModelName { get; set; }
+
+    }
+
+    public class VehicleModelModel
+    {
+        public VehicleModelModel()
         {
-            SeriesInfo = new MVModel();
+            ModelInfo = new MVModel();
         }
-        public int SeriesID { get; set; }
-        public MVModel SeriesInfo { get; set; }
+        public int ModelID { get; set; }
+        public MVModel ModelInfo { get; set; }
 
     }
     public class BodyTypeModel

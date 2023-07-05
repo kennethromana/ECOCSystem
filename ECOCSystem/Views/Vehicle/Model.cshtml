@@ -1,5 +1,5 @@
 ﻿@using ECOCSystem.Model
-@model SeriesModel
+@model VehicleModelModel
 @{
     ViewBag.Title = "Series";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +16,7 @@
             @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
 
-                @Html.HiddenFor(m => m.SeriesID)
+                @Html.HiddenFor(m => m.ModelID)
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
@@ -25,8 +25,7 @@
                                     <tr>
                                         <th><center>Action Edit</center></th>
                                         <th>Model Name</th>
-                                        <th>Variant</th>
-                                        <th>Body Type</th>
+
                                     </tr>
                                 </thead>
                             </table>
@@ -37,7 +36,7 @@
                 <div class="modal fade" id="modal-series-info" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
                         @{
-                            Html.RenderPartial("_SeriesInfo", Model.SeriesInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "SeriesInfo" } });
+                            Html.RenderPartial("_ModelInfo", Model.ModelInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ModelInfo" } });
                         }
                     </div>
                 </div>
@@ -105,7 +104,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetSeriesList", "Vehicle")',
+                "url": '@Url.Action("GetModelList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
 /*                "data": { "MakeID": MakeID },*/
@@ -123,7 +122,7 @@
             },
             "columns": [
                 {
-                    "className": "SeriesID", "data": null, "name": "SeriesID",
+                    "className": "ModelID", "data": null, "name": "ModelID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
@@ -135,9 +134,8 @@
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "Model", "data": "Model", "name": "Model", "autoWidth": true },
-                { "className": "Variant", "data": "Variant", "name": "Variant", "autoWidth": true },
-                { "className": "BodyType", "data": "BodyType", "name": "BodyType", "autoWidth": true },
+                { "className": "ModelName", "data": "ModelName", "name": "ModelName", "autoWidth": true },
+             
 
 
 

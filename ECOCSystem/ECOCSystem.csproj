@@ -2681,9 +2681,9 @@
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Vehicle\_MakeInfo.cshtml" />
     <Content Include="Views\Vehicle\BodyType.cshtml" />
-    <Content Include="Views\Vehicle\Series.cshtml" />
+    <Content Include="Views\Vehicle\Model.cshtml" />
     <Content Include="Views\Vehicle\_AddSeries.cshtml" />
-    <Content Include="Views\Vehicle\_SeriesInfo.cshtml" />
+    <Content Include="Views\Vehicle\_ModelInfo.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
