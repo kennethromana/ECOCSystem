@@ -98,36 +98,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetSeriesList()
-        {
-            try
-            {
-                //Creating instance of DatabaseContext class  
-                using (var db = new ECOCEntities())
-                {
 
-
-                    var tableData = (from a in db.VehicleSeries
-                                     where a.Active == true
-                                     select new Series
-                                     {
-                                         SeriesID = a.VehicleSeriesID,
-                                         Model = a.VehicleModelName,
-                                         Variant = a.Variant,
-                                         BodyType = a.Variant
-                                     }
-                                    ).ToList();
-
-
-                    //Returning Json Data    
-                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
         public ActionResult GetModelList()
         {
             try
