@@ -83,6 +83,8 @@
 <script>
     $(document).ready(function () {
 
+      
+
         getMakeList();
         getSeriesList()
         //getColorList(0);
@@ -305,8 +307,8 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-primary d-inline">
-                                    <input class="chk"  name="checkAddress" type="checkbox" SeriesID="`+ data.SeriesID +`" id="Series`+ data.SeriesID +`">
-                                        <label for="Series`+ data.AddressID+`">
+                                    <input class="chk"  name="check" type="checkbox" SeriesID="`+ data.SeriesID +`" id="Series`+ data.SeriesID +`">
+                                        <label for="Series`+ data.SeriesID+`">
                                     </label>
                                  </div>
                               </center>`
@@ -320,7 +322,10 @@
 
             ]
         });
-         $('#tbl_Series_list_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+        $('#tbl_Series_list_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+     
 
     };
 
