@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ECOCSystem.Model
 {
-    public class VehicleModel
+    public class MVModel
     {
-        public VehicleModel()
+        public MVModel()
         {
             VehicleTypes = new List<DropdownModel>();
             VehicleColors = new List<DropdownModel>();
@@ -77,10 +77,10 @@ namespace ECOCSystem.Model
     {
         public MakeModel()
         {
-            MakeInfo = new VehicleModel();
+            MakeInfo = new MVModel();
         }
         public int MakeID { get; set; }
-        public VehicleModel MakeInfo { get; set; }
+        public MVModel MakeInfo { get; set; }
 
         public List<Series> SeriesList { get; set; }
     }
@@ -98,20 +98,20 @@ namespace ECOCSystem.Model
     {
         public SeriesModel()
         {
-            SeriesInfo = new VehicleModel();
+            SeriesInfo = new MVModel();
         }
         public int SeriesID { get; set; }
-        public VehicleModel SeriesInfo { get; set; }
+        public MVModel SeriesInfo { get; set; }
 
     }
     public class BodyTypeModel
     {
         public BodyTypeModel()
         {
-            BodyTypeInfo = new VehicleModel();
+            BodyTypeInfo = new MVModel();
         }
         public int BodyTypeID { get; set; }
-        public VehicleModel BodyTypeInfo { get; set; }
+        public MVModel BodyTypeInfo { get; set; }
 
     }
 

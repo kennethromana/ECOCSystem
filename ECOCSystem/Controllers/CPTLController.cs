@@ -409,7 +409,7 @@ namespace ECOCSystem.Controllers
 
                     //Barangay oBarangay = new Barangay();
                     Province oProvince = new Province();
-                    VehicleModel VehicleModel = new VehicleModel();
+                    MVModel VehicleModel = new MVModel();
                     VehicleClassification VC = new VehicleClassification();
 
                     //CTPL CTPL = new CTPL();

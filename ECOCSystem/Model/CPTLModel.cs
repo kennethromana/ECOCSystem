@@ -16,7 +16,7 @@ namespace ECOCSystem.Model
             ClientAddress = new ClientAddressModel();
             Clients = new List<ClientList>();
             RegistrationTypes = new List<RegistrationTypeList>();
-            ClientVehicle = new VehicleModel();
+            ClientVehicle = new MVModel();
         }
         [DisplayName("Client")]
         public int ClientID { get; set; }
@@ -49,7 +49,7 @@ namespace ECOCSystem.Model
         public List<ClientList> Clients { get; set; }
 
         public List<RegistrationTypeList> RegistrationTypes { get; set; }
-        public VehicleModel ClientVehicle { get; set; }
+        public MVModel ClientVehicle { get; set; }
 
 
     }
