@@ -57,5 +57,8 @@ namespace ECOCSystem.Model
         public virtual DbSet<MakeBodyType> MakeBodyType { get; set; }
         public virtual DbSet<MakeColor> MakeColor { get; set; }
         public virtual DbSet<VehicleSeries> VehicleSeries { get; set; }
+        public virtual DbSet<MVSeries> MVSeries { get; set; }
+        public virtual DbSet<VehicleModel> VehicleModel { get; set; }
+        public virtual DbSet<VehicleVariant> VehicleVariant { get; set; }
     }
 }

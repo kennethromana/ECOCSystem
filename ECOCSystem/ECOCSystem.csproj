@@ -237,6 +237,9 @@
     <Compile Include="Model\MVPremium.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\MVSeries.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Province.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
@@ -278,10 +281,16 @@
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MVModel.cs" />
+    <Compile Include="Model\VehicleModel.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\VehicleSeries.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\VehicleType.cs">
+      <DependentUpon>ECOC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VehicleVariant.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vwUserListModel.cs" />

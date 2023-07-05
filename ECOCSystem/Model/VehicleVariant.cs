@@ -12,21 +12,14 @@ namespace ECOCSystem.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class VehicleSeries
+    public partial class VehicleVariant
     {
-        public int VehicleSeriesID { get; set; }
-        public int VehicleMakeID { get; set; }
-        public string VehicleModelName { get; set; }
+        public int VariantID { get; set; }
         public string Variant { get; set; }
-        public int YearOfMake { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool Active { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public int VehicleClassificationID { get; set; }
-        public int PNPVehicleTypeID { get; set; }
-        public Nullable<int> VehicleTypeID { get; set; }
-        public Nullable<int> BodyTypeID { get; set; }
     }
 }
