@@ -509,7 +509,41 @@ namespace ECOCSystem.Controllers
                 return jsonResult;
             }
         }
-       
+        public ActionResult GetVehicleBodyList2(string search, int page, int pageSize)
+        {
+            using (var db = new ECOCEntities())
+            {
+
+
+                var itemList = (from a in db.MakeBodyType
+                                from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                where a.Active == true
+                                select new
+                                {
+                                    id = a.BodyTypeID,
+                                    text = b.VehicleBodyTypeName
+                                }).ToList();
+
+
+
+                //Search itemList
+                if (!string.IsNullOrWhiteSpace(search))
+                {
+                    itemList = itemList.Where(m => m.text != null && m.text.ToLower().Contains(search.ToLower())).ToList();
+                }
+
+                //Total size of itemList
+                var itemsTotal = itemList.Count();
+
+                //check next page itemList
+                itemList = itemList.Skip((page * pageSize) - pageSize).Take(page * pageSize).ToList();
+
+                var jsonResult = Json(new { items = itemList, page = page, pageSize = pageSize, total_count = itemsTotal }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+        }
+
         public ActionResult GetVehicleColors(string search, int page, int pageSize,int MakeID)
         {
             using (var db = new ECOCEntities())

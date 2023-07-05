@@ -184,7 +184,7 @@
                             <div class="form-group col-lg-6">
                                 @Html.LabelFor(m => m.SelectedBodyTypeID)
                                 <div class="input-group">
-                                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList", "GetData") })
+                                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList2", "GetData") })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
                             </div>
