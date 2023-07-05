@@ -87,6 +87,17 @@ namespace ECOCSystem.Model
         public string BodyType { get; set; }
 
     }
+
+    public class SeriesModel
+    {
+        public SeriesModel()
+        {
+            SeriesInfo = new VehicleModel();
+        }
+        public int SeriesID { get; set; }
+        public VehicleModel SeriesInfo { get; set; }
+
+    }
     public class BodyTypeModel
     {
         public BodyTypeModel()

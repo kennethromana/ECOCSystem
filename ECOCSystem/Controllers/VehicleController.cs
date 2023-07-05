@@ -29,6 +29,12 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
+        public ActionResult Series()
+        {
+            var model = new SeriesModel();
+            return View(model);
+
+        }
 
         public ActionResult GetMakeList()
         {
