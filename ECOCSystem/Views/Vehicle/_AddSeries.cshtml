@@ -1,0 +1,71 @@
+﻿@using ECOCSystem.Model
+@model List<Series>
+
+<!-- Main content -->
+
+
+
+<div class="modal-content ">
+    <div id="" class="overlay d-none">
+        @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+    </div>
+    <div class="modal-header">
+        <h4 class="modal-title">Add Series</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body " style="padding:2rem;">
+
+        <section class="content ">
+
+            <table id="tbl_Series_list" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style="min-width: 61em">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>
+                                <div title="Check all" class="icheck-success d-inline">
+                                    @Html.CheckBox("check_all", false)
+                                    <label for="check_all"></label>
+                                </div>
+                            </center>
+                        </th>
+                        <th>Model Name</th>
+                        <th>Variant</th>
+                        <th>Body Type</th>
+                    </tr>
+                </thead>
+                @*<tbody id="color_tbdy">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td style="width:20%">
+                            <center>
+                                <div class="icheck-success d-inline">
+                                    @Html.CheckBoxFor(o => Model[i].isChecked, new { id = i, @class = "checkbox_all", Name = "SeriesList[" + i + "].isChecked" })
+                                    <label for="@i"></label>
+                                </div>
+                            </center>
+                        </td>
+                        <td style="width:80%">
+                            @Html.HiddenFor(o => Model[i].SeriesID, new { Name = "SeriesList[" + i + "].ColorID" })
+                            @Html.DisplayFor(o => Model[i].Model, new { Name = "SeriesList[" + i + "].Model" })
+                            @Html.DisplayFor(o => Model[i].Variant, new { Name = "SeriesList[" + i + "].Variant" })
+                            @Html.DisplayFor(o => Model[i].BodyType, new { Name = "SeriesList[" + i + "].BodyType" })
+                        </td>
+                    </tr>
+                }
+            </tbody>*@
+            </table>
+
+
+
+        </section>
+    </div>
+    @*<div id="addressOption" class="modal-footer justify-content-between submit-btn">
+        </div>*@
+</div>
+<script>
+
+
+</script>

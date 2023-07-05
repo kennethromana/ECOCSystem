@@ -14,9 +14,14 @@ namespace ECOCSystem.Controllers
         // GET: Vehicle
         public ActionResult Index()
         {
-            var model = new MakeModel();
-            return View(model);
+            using (var db = new ECOCEntities())
+            {
+                var model = new MakeModel();
+              
+                return View(model);
+            }
 
+   
         }
         public ActionResult BodyType()
         {
@@ -66,7 +71,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetSeriesList(int MakeID)
+        public ActionResult GetMakeSeriesList(int MakeID)
         {
             try
             {
@@ -76,6 +81,36 @@ namespace ECOCSystem.Controllers
 
 
                     var tableData = db.VehicleSeries.Where(o => o.Active && o.VehicleMakeID == MakeID).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetSeriesList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+
+                    var tableData = (from a in db.VehicleSeries
+                                     where a.Active == true
+                                     select new Series
+                                     {
+                                         SeriesID = a.VehicleSeriesID,
+                                         Model = a.VehicleModelName,
+                                         Variant = a.Variant,
+                                         BodyType = a.Variant
+                                     }
+                                    ).ToList();
 
 
                     //Returning Json Data    

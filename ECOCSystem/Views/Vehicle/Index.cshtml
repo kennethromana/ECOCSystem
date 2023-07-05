@@ -41,9 +41,11 @@
 
                 </div>
 
-                <div class="modal fade" id="modal-make-series" style="display: none;" aria-hidden="true">
+                <div class="modal fade" id="modal-add-series" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-
+                        @{
+                            Html.RenderPartial("_AddSeries", Model.SeriesList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "SeriesList" } });
+                        }
                     </div>
 
                 </div>
@@ -74,9 +76,10 @@
     $(document).ready(function () {
 
         getMakeList();
-        getSeriesList(0);
-        getColorList(0);
-        getBodyList(0);
+        getMakeSeriesList(0);
+        getSeriesList()
+        //getColorList(0);
+        //getBodyList(0);
 
         $('#addMake').on('click', function () {
             $('.infoButtons').empty();
@@ -111,9 +114,9 @@
         });
 
 
-        getSeriesList(MakeID);
-        getColorList(MakeID);
-        getBodyList(MakeID);
+        getMakeSeriesList(MakeID)
+        //getColorList(MakeID);
+        //getBodyList(MakeID);
         //////getBatchList(CompanyID)
         //////getCompanyInfo(CompanyID)
         //////$('#companyOption').empty();
@@ -190,7 +193,7 @@
 
     };
 
-     function getSeriesList(MakeID) {
+     function getMakeSeriesList(MakeID) {
 
         let cntRow = 0;
          Series_table = $("#tbl_Series").DataTable({
@@ -209,7 +212,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetSeriesList", "Vehicle")',
+                "url": '@Url.Action("GetMakeSeriesList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
                 "data": { "MakeID": MakeID },
@@ -249,6 +252,66 @@
          $('#tbl_Series_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
 
+
+    };
+
+    function getSeriesList() {
+        console.log('seriesList')
+        let cntRow = 0;
+         SeriesList_table = $("#tbl_Series_list").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+             "destroy": true,
+             "pageLength": 5,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetSeriesList", "Vehicle")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "MakeID": MakeID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+
+            },
+            "columns": [
+                {
+                    "className": "SeriesID", "data": null, "name": "SeriesID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="icheck-primary d-inline">
+                                    <input class="chk"  name="checkAddress" type="checkbox" SeriesID="`+ data.SeriesID +`" id="Series`+ data.SeriesID +`">
+                                        <label for="Series`+ data.AddressID+`">
+                                    </label>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "Model", "data": "Model", "name": "Model", "autoWidth": true },
+                { "className": "Variant", "data": "Variant", "name": "Variant", "autoWidth": true },
+                { "className": "BodyType", "data": "BodyType", "name": "BodyType", "autoWidth": true },
+
+
+
+            ]
+        });
+         $('#tbl_Series_list_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
     };
 

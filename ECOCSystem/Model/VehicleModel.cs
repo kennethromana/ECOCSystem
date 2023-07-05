@@ -76,6 +76,16 @@ namespace ECOCSystem.Model
         public int MakeID { get; set; }
         public VehicleModel MakeInfo { get; set; }
 
+        public List<Series> SeriesList { get; set; }
+    }
+    public class Series
+    {
+        public bool isChecked { get; set; }
+        public int SeriesID { get; set; }
+        public string Model { get; set; }
+        public string Variant { get; set; }
+        public string BodyType { get; set; }
+
     }
     public class BodyTypeModel
     {
