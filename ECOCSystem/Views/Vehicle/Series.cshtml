@@ -11,7 +11,7 @@
         <div class="card-header">
             <h3 class="card-title">Vehicle Series List</h3>
         </div>
-        <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-series-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" id="addSeries" type="button" data-toggle="modal" data-target="#modal-series-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
             @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
@@ -40,14 +40,12 @@
                             Html.RenderPartial("_SeriesInfo", Model.SeriesInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "SeriesInfo" } });
                         }
                     </div>
-
                 </div>
 
                 <div class="modal fade" id="modal-make-series" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
 
                     </div>
-
                 </div>
 
                 <div class="modal fade" id="modal-make-body" style="display: none;" aria-hidden="true">
@@ -72,6 +70,18 @@
 
     $(document).ready(function () {
 
+
+        $('#addSeries').on('click', function () {
+            $('#SeriesOption').empty();
+            $('#SeriesOption').append(`<button type="button" id="" value="" class="btn btn-default">Cancel</button>
+                                      <button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button>`)
+
+
+            $('#submit_addMake').on('click', function () {
+                submitForm("ADDMAKE");
+            });
+
+        });
 
         getSeriesList();
 
