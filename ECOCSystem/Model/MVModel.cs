@@ -82,7 +82,7 @@ namespace ECOCSystem.Model
         public int MakeID { get; set; }
         public MVModel MakeInfo { get; set; }
 
-        public List<Series> SeriesList { get; set; }
+        public List<Models> ModelList { get; set; }
     }
     public class Series
     {

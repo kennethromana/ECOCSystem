@@ -52,7 +52,7 @@
                 <div class="modal fade" id="modal-add-series" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         @{
-                            Html.RenderPartial("_AddSeries", Model.SeriesList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "SeriesList" } });
+                            Html.RenderPartial("_AddModel", Model.ModelList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ModelList" } });
                         }
                     </div>
 
@@ -284,7 +284,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetSeriesList", "Vehicle")',
+                "url": '@Url.Action("GetModelList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
 /*                "data": { "MakeID": MakeID },*/
@@ -302,20 +302,18 @@
             },
             "columns": [
                 {
-                    "className": "SeriesID", "data": null, "name": "SeriesID",
+                    "className": "ModelID", "data": null, "name": "ModelID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="icheck-primary d-inline">
-                                    <input class="chk"  name="check" type="checkbox" SeriesID="`+ data.SeriesID +`" id="Series`+ data.SeriesID +`">
-                                        <label for="Series`+ data.SeriesID+`">
+                                    <input class="chk"  name="check" type="checkbox" SeriesID="`+ data.ModelID + `" id="Model` + data.ModelID +`">
+                                        <label for="Model`+ data.ModelID+`">
                                     </label>
                                  </div>
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "Model", "data": "Model", "name": "Model", "autoWidth": true },
-                { "className": "Variant", "data": "Variant", "name": "Variant", "autoWidth": true },
-                { "className": "BodyType", "data": "BodyType", "name": "BodyType", "autoWidth": true },
+                { "className": "ModelName", "data": "ModelName", "name": "ModelName", "autoWidth": true },
 
 
 
