@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CPTLController.cs" />
+    <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\ECOC_APIController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GetDataController.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Model\CTPLTerm.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DivisionModel.cs" />
     <Compile Include="Model\ECOC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2673,6 +2675,7 @@
     <Content Include="Views\Vehicle\Series.cshtml" />
     <Content Include="Views\Vehicle\_AddSeries.cshtml" />
     <Content Include="Views\Vehicle\_SeriesInfo.cshtml" />
+    <Content Include="Views\Division\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

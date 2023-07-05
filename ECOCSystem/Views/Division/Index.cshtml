@@ -1,0 +1,77 @@
+﻿@using ECOCSystem.Model
+@model DivisionModel
+@{
+    ViewBag.Title = "Division";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+}
+
+<style>
+    .modal {
+        overflow: auto !important;
+    }
+
+    .card .overlay, .info-box .overlay, .overlay-wrapper .overlay, .small-box .overlay {
+        background-color: rgb(52 58 64 / 59%);
+    }
+</style>
+<section class="content">
+    <div class="card card-success card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Region List</h3>
+        </div>
+        <div class="fab" id="addCompany" type="button" data-toggle="modal" data-target="#modal-companyInfo" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CompanyForm", "Company", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            {
+
+                @Html.HiddenFor(m => m.SelectedRegionID)
+                <div id="" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="table-RegionList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="width:100%; min-width: 90em;cursor:pointer">
+                                <thead>
+                                    <tr>
+                                        <th><center>Action Edit</center></th>
+                                        <th>Region Number</th>
+                                        <th>Region Name</th>
+                                    </tr>
+                                </thead>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal-companyInfo" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-company-branch" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modal-company-user" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+
+
+</section>
