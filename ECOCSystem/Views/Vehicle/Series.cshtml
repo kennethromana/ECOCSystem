@@ -11,7 +11,7 @@
         <div class="card-header">
             <h3 class="card-title">Vehicle Series List</h3>
         </div>
-        <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-make-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-series-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
             @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
@@ -34,9 +34,11 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="modal-make-info" style="display: none;" aria-hidden="true">
+                <div class="modal fade" id="modal-series-info" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
-
+                        @{
+                            Html.RenderPartial("_SeriesInfo", Model.SeriesInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "SeriesInfo" } });
+                        }
                     </div>
 
                 </div>
@@ -115,7 +117,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-make-info"" onclick="EditMake(`+ data.SeriesID + `,'` + data.SeriesID + `')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-series-info"" onclick="">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>

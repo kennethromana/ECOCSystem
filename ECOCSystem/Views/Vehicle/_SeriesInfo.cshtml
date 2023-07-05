@@ -1,0 +1,60 @@
+﻿@using ECOCSystem.Model
+@using ECOCSystem.Tools
+@model VehicleModel
+
+
+@Html.HiddenFor(m => m.SeriesID)
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Vehicle Series Information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fa" fa></i>×</span>
+        </button>
+    </div>
+    <div class="modal-body @*overlay*@" style="padding:2rem;">
+
+        <section class="row mt-4 pb-4 ">
+            @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
+
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.Model)
+                <div class="input-group">@Html.TextBoxFor(o => o.Model, new { @class = "form-control input-style", placeholder = "Vehicle Model" })</div>
+                @Html.ValidationMessageFor(o => o.Model)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(o => o.VehicleVariant)
+                <div class="input-group">@Html.TextBoxFor(o => o.VehicleVariant, new { @class = "form-control input-style", placeholder = "Vehicle Variant" })</div>
+                @Html.ValidationMessageFor(o => o.VehicleVariant)
+            </div>
+            <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.SelectedBodyTypeID)
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.SelectedBodyTypeID, new SelectList(Model.VehicleBodyList, "ID", "Info"), "Select Body Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetVehicleBodyList", "GetData") })
+                </div>
+                @Html.ValidationMessageFor(m => m.SelectedBodyTypeID, "", new { @class = "" })
+            </div>
+        </section>
+    </div>
+    <div id="addressOption" class="modal-footer justify-content-between submit-btn">
+    </div>
+</div>
+<script>
+
+
+    $(document).ready(function () {
+
+        //$('#addAddress').on('click', function () {
+        //    $('#addressOption').empty();
+        //    $('#addressOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        //    <button type="button" id="submit_Address" class="btn btn-success">Save </button>  `)
+
+        //    $('#submit_Address').on('click', function () {
+        //        submitForm("ADDADDRESS");
+        //    });
+        //});
+
+
+    });
+
+
+</script>

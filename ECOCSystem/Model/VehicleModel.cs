@@ -63,6 +63,12 @@ namespace ECOCSystem.Model
         [Required]
         [DisplayName("Vehicle Make")]
         public string VehicleMake { get; set; }
+        [Required]
+        [DisplayName("Vehicle Model")]
+        public string Model { get; set; }
+        [Required]
+        [DisplayName("Variant")]
+        public string VehicleVariant { get; set; }
 
 
     }
