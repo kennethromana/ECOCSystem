@@ -5,7 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
 }
+<style>
+    .modal {
+        overflow: auto !important;
+    }
 
+    .card .overlay, .info-box .overlay, .overlay-wrapper .overlay, .small-box .overlay {
+        background-color: rgb(52 58 64 / 59%);
+    }
+</style>
 <section class="content">
     <div class="card card-success card-outline">
         <div class="card-header">
@@ -266,7 +274,7 @@
             "scrollX": true,
             "scrollY": true,
              "destroy": true,
-             "pageLength": 5,
+             "pageLength": 20,
 
             "order": [],
             "dom":

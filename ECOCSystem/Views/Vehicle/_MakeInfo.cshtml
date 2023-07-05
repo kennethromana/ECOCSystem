@@ -299,3 +299,26 @@
     @*<div id="addressOption" class="modal-footer justify-content-between submit-btn">
         </div>*@
 </div>
+<script>
+    $(document).ready(function () {
+
+
+        $('#modal-add-series').on('hide.bs.modal', function (e) {
+            // do something…
+            $("#modal-make-info .overlay").addClass("d-none");
+
+        });
+
+        getMakeList();
+        getMakeSeriesList(0);
+        getSeriesList()
+        //getColorList(0);
+        //getBodyList(0);
+
+        $('#addSeries').on('click', function () {
+            $("#modal-make-info .overlay").removeClass("d-none");
+        });
+
+    });
+
+</script>

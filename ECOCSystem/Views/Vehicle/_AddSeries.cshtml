@@ -19,7 +19,7 @@
 
         <section class="content ">
 
-            <table id="tbl_Series_list" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style="min-width: 61em">
+            <table id="tbl_Series_list" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style="min-width: 45em">
                 <thead>
                     <tr>
                         <th>
@@ -62,8 +62,10 @@
 
         </section>
     </div>
-    @*<div id="addressOption" class="modal-footer justify-content-between submit-btn">
-        </div>*@
+    <div id="addSeriesOption" class="modal-footer justify-content-between submit-btn">
+        <button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
+        <button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">ADD</button>
+    </div>
 </div>
 <script>
 
