@@ -33,8 +33,8 @@
                                 <thead>
                                     <tr>
                                         <th><center>Action Edit</center></th>
-                                        <th>Region Number</th>
                                         <th>Region Name</th>
+                                        <th>Region Number</th>
                                     </tr>
                                 </thead>
 
@@ -75,3 +75,77 @@
 
 
 </section>
+
+<script>
+    $(document).ready(function () {
+
+        getRegionList();
+
+
+    });
+
+    function getRegionList() {
+
+        let cntRow = 0;
+        Region_table = $("#table-RegionList").DataTable({
+            "processing": true, // for show progress bar
+            "serverSide": false, // for process server side
+            "filter": true, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "scrollX": true,
+            "scrollY": true,
+            "destroy": true,
+
+            "order": [],
+            "dom":
+                "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
+            "ajax": {
+                "url": '@Url.Action("GetRegionList", "Division")',
+                "type": "POST",
+                "datatype": "json",
+/*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
+                "beforeSend": function () {
+                    $('#loadingScreen').show();
+                    cntRow = 0;
+                },
+                "complete": function (row, data, dataIndex) {
+
+
+
+
+                    $('#loadingScreen').hide();
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+               
+                cntRow++;
+            },
+            "columns": [
+                {
+                    "className": "RegionID", "data": null, "name": "RegionID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompany" onclick="EditCompany(`+ data.RegionID + `)" CompanyID="` + data.RegionID +`">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },            
+                { "className": "RegionName", "data": "RegionName", "name": "RegionName", "autoWidth": true },
+                { "className": "RegionNumber", "data": "RegionNumber", "name": "RegionNumber", "autoWidth": true },
+
+
+
+            ]
+        });
+        $('#table-CompanyList_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
+
+
+
+    };
+</script>
