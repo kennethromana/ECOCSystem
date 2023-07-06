@@ -199,7 +199,7 @@
                                     <label>Model Variant List</label>
                                     <div class="uiverse ">
                                         <span class="tooltip">Add new Variant</span>
-                                        <span type="button" id="addVariant" class="" data-toggle="modal" data-target="#modal-add-series">
+                                        <span type="button" id="addVariant" class="" data-toggle="modal" data-target="#modal-add-variant">
                                             +
                                         </span>
                                     </div>
@@ -236,18 +236,18 @@
 </div>
 <script>
 
-
     $(document).ready(function () {
 
-        //$('#addAddress').on('click', function () {
-        //    $('#addressOption').empty();
-        //    $('#addressOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        //    <button type="button" id="submit_Address" class="btn btn-success">Save </button>  `)
 
-        //    $('#submit_Address').on('click', function () {
-        //        submitForm("ADDADDRESS");
-        //    });
-        //});
+        $('#modal-add-variant').on('hide.bs.modal', function (e) {
+            // do something…
+            $("#modal-model-info .overlay").addClass("d-none");
+
+        });
+
+        $('#addVariant').on('click', function () {
+            $("#modal-model-info .overlay").removeClass("d-none");
+        });
 
 
     });
