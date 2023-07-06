@@ -3,7 +3,7 @@
 
 
 <div class="modal-content ">
-    <div id="" class="overlay d-none">
+    <div id="model-overlay" class="overlay d-none">
         @*<i class="fas fa-2x fa-sync fa-spin"></i>*@
     </div>
     <div class="modal-header">
@@ -94,7 +94,7 @@
                                 </div>
                             </section>              
                         </div>
-                        <div id="vehicleOptions" class="modal-footer justify-content-between submit-btn">
+                        <div id="variantOptions" class="modal-footer justify-content-between submit-btn">
 
                         </div>
                     </div>
@@ -112,15 +112,6 @@
     $(document).ready(function () {
 
 
-        $('#modal-model-info').on('hide.bs.modal', function (e) {
-            // do something…
-            $("#modal-make-info .overlay").addClass("d-none");
-
-        });
-
-        //$('#addVariant').on('click', function () {
-        //    $("#modal-model-info .overlay").removeClass("d-none");
-        //});
 
 
     });
