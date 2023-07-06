@@ -259,11 +259,13 @@ namespace ECOCSystem.Controllers
 
 
                     var tableData = (from a in db.VehicleModel
+                                     from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
                                      where a.Active == true
                                      select new Models
                                      {
                                          ModelID = a.VehicleModelID,
-                                         ModelName = a.VehicleModelName
+                                         ModelName = a.VehicleModelName,
+                                         BodyType = b.VehicleBodyTypeName
                                      }
                                     ).ToList();
 

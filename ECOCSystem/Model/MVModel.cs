@@ -90,6 +90,7 @@ namespace ECOCSystem.Model
         public bool isChecked { get; set; }
         public int ModelID { get; set; }
         public string ModelName { get; set; }
+        public string BodyType { get; set; }
 
     }
     public class Variants
