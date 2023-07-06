@@ -246,7 +246,6 @@
         }); 
 
 
-
         $('#modal-model-variant').on('hide.bs.modal', function () {
             $("#make-overlay").removeClass("d-none");
             $("#model-overlay").addClass("d-none");
@@ -276,9 +275,6 @@
 
 
     function EditMake(MakeID, MakeName) {
-
-
-
         getMakeSeriesList(MakeID)
 
         $("#MakeInfo_VehicleMake").val(MakeName)
@@ -293,7 +289,23 @@
         $('#MakeOptions').empty();
         $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
                                  <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
+    };
 
+    function EditModel(ModelID, ModelName) {
+        //getMakeSeriesList(MakeID)
+
+        //$("#MakeInfo_VehicleMake").val(MakeName)
+
+        //jQuery('.select2Ajax').on('select2:opening', function () {
+        //    var objParams = {
+        //        MakeID: MakeID,
+        //    };
+        //    $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
+        //});
+        $("#make-overlay").removeClass("d-none");
+        $('#ModelOptions').empty();
+        $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
+                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
     };
 
     function getMakeList() {
@@ -399,7 +411,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditMake(`+ data.VehicleSeriesID + `,'` + data.VehicleSeriesID + `')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleSeriesID + `,'` + data.VehicleSeriesID + `')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
