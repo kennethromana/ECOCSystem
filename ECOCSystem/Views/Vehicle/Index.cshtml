@@ -58,9 +58,11 @@
 
                 </div>
 
-                <div class="modal fade" id="modal-make-body" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-
+                <div class="modal fade" id="modal-model-info" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        @{
+                            Html.RenderPartial("_Model", Model.ModelInfo, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ModelInfo" } });
+                        }
                     </div>
 
                 </div>
@@ -87,6 +89,9 @@
 
         getMakeList();
         getModelList()
+
+        getModelList();
+        getVariantList();
         //getColorList(0);
         //getBodyList(0);
 

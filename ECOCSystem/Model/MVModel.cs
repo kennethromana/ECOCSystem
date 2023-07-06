@@ -78,11 +78,14 @@ namespace ECOCSystem.Model
         public MakeModel()
         {
             MakeInfo = new MVModel();
+            ModelInfo = new MVModel();
         }
         public int MakeID { get; set; }
         public MVModel MakeInfo { get; set; }
 
         public List<Models> ModelList { get; set; }
+
+        public MVModel ModelInfo { get; set; }
     }
 
     public class Models
