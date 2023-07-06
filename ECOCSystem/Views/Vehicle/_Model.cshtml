@@ -37,7 +37,7 @@
                             </div>
                         </section>
 
-                        <section class="infoButtons row mt-4 pb-4 submit-btn">
+                        <section id="ModelOptions" class="infoButtons row mt-4 pb-4 submit-btn">
                         </section>
 
                         <section class="row pb-4">
@@ -111,7 +111,15 @@
 
     $(document).ready(function () {
 
+        $('#addVariant').on('click', function () {
+            $('#variantOptions').empty();
+            $('#variantOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-default">Cancel</button>
+                                       <button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
 
+            $('#submit_addMake').on('click', function () {
+                submitForm("ADDMAKE");
+            });
+        });
 
 
     });

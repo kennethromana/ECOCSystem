@@ -28,7 +28,7 @@
                                 @Html.ValidationMessageFor(o => o.VehicleMake)
                             </div>
                         </section>
-                        <section  class="infoButtons row mt-4 pb-4 submit-btn">
+                        <section id="MakeOptions"  class="infoButtons row mt-4 pb-4 submit-btn">
                         </section>
 
                         <section class="row pb-4">
@@ -76,7 +76,14 @@
 </div>
 <script>
     $(document).ready(function () {
+        $('#addModel').on('click', function () {
+            $('#ModelOptions').empty();
+            $('#ModelOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
 
+            $('#submit_addMake').on('click', function () {
+                submitForm("ADDMAKE");
+            });
+        });
 
     });
 

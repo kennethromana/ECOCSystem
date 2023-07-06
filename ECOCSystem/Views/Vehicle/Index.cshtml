@@ -248,8 +248,9 @@
 
 
         $('#modal-model-variant').on('hide.bs.modal', function () {
-            $("#model-overlay").addClass("d-none");
             $("#make-overlay").removeClass("d-none");
+            $("#model-overlay").addClass("d-none");
+
             console.log($("#make-overlay").hasClass("d-none"))
            
 
@@ -264,8 +265,8 @@
 
 
         $('#addMake').on('click', function () {
-            $('.infoButtons').empty();
-            $('.infoButtons').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
+            $('#MakeOptions').empty();
+            $('#MakeOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
 
             $('#submit_addMake').on('click', function () {
                 submitForm("ADDMAKE");
@@ -293,8 +294,8 @@
             $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
         });
 
-        $('.infoButtons').empty();
-        $('.infoButtons').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
+        $('#MakeOptions').empty();
+        $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
                                  <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
 
     };
