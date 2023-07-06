@@ -11,9 +11,9 @@
         <div class="card-header">
             <h3 class="card-title">Vehicle Model List</h3>
         </div>
-        <div class="fab" id="addSeries" type="button" data-toggle="modal" data-target="#modal-series-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
+        <div class="fab" id="addModel" type="button" data-toggle="modal" data-target="#modal-series-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
-            @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            @using (Html.BeginForm("Model", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Model_Form" }))
             {
 
                 @Html.HiddenFor(m => m.ModelID)
@@ -72,21 +72,105 @@
     $(document).ready(function () {
 
 
-        $('#addSeries').on('click', function () {
-            $('#SeriesOption').empty();
-            $('#SeriesOption').append(`<button type="button" id="" value="" class="btn btn-default">Cancel</button>
-                                      <button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button>`)
+        $('#addModel').on('click', function () {
+            $('.infoButtons').empty();
+            $('.infoButtons').append(`<button type="button" id="submit_addModel" value="ADDMODEL" class="btn btn-success">Save</button> `)
 
-
-            $('#submit_addMake').on('click', function () {
-                submitForm("ADDMAKE");
+            $('#submit_addModel').on('click', function () {
+                submitForm("ADDMODEL");
             });
+
 
         });
 
         getSeriesList();
 
     });
+
+    var addAntiForgeryToken = function (data) {
+        data.__RequestVerificationToken = $("[name='__RequestVerificationToken']").val();
+        return data;
+    };
+
+    function submitForm(submitType) {
+        var form = jQuery("#Model_Form");
+        if (form.valid()) {
+            var formData = new FormData(form[0]);
+            formData.append("submitType", submitType);
+            $.ajax({
+                url: '@Url.Action("ModelForm", "Vehicle")',
+                type: "POST",
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                async: true,
+                data: addAntiForgeryToken(formData),
+                beforeSend: function () {
+                    toastr.clear();
+
+                },
+                success: function (response) {
+                    switch (response.Status) {
+                        case "Success":
+
+                            if (response.ClientID > 0) {
+                                getAddressList(response.ClientID)
+                                getVehicleList(response.ClientID)
+                            }
+                            console.log(response.CurrentSubmit)
+                            switch (response.CurrentSubmit) {
+                                case "Client":
+                                    $("#modal-client").modal('hide');
+                                    clearClientForm(response.ClientID)
+                                    break;
+                                case "Address":
+                                    $("#modal-client-address").modal('hide');
+                                    clearAddressForm()
+                                    break;
+                                case "Vehicle":
+                                    $("#modal-client-vehicle").modal('hide');
+                                    getVehicleList(response.ClientID)
+                                    clearVehicleForm();
+
+                                    break;
+                                case "CTPL":
+                                    showCOCFile(response.FileName);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            toastr.success(response.Message);
+                            break;
+                        case "Warning":
+                            toastr.warning(response.Message);
+                            break;
+                        case "Error":
+                            toastr.error(response.Message);
+                            break;
+                        case "Info":
+                            toastr.info(response.Message);
+                            break;
+                        default:
+                            toastr.error(response.Message);
+                            break;
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                  /*  $(".modal").modal('hide');*/
+                /*    $('.modal-backdrop').remove();*/
+                    $('#loadingScreen').hide();
+                },
+            });
+        }
+/*        $(".tab-content").height("auto");*/
+    }
+
+
     function getSeriesList() {
 
         let cntRow = 0;
@@ -137,7 +221,7 @@
                     }, "autoWidth": true
                 },
                 { "className": "ModelName", "data": "ModelName", "name": "ModelName", "autoWidth": true },
-             
+
 
 
 
@@ -151,4 +235,6 @@
     {
 
     }
+
+
 </script>

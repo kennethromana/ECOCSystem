@@ -35,6 +35,136 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
+        public ActionResult ModelForm(VehicleModelModel model, string submitType)
+        {
+            int currentCompany = (int)CurrentUser.Details.CompanyID;
+            int currentBranch = (int)CurrentUser.Details.CompanyBranchID;
+            var Status = "Error";
+            var PartialViewDataString = "";
+            var Message = "";
+            int ModelID = model.ModelID;
+            //int? VehicleBodyTypeID = 0;
+            //int? VehicleTypeID = 0;
+
+            int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
+            int Corporate = Convert.ToInt32(TitleTypeEnum.Corporate);
+            int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
+
+            var CurrentSubmit = "";
+            var FileName = "";
+
+
+            using (var db = new ECOCEntities())
+            using (var dbTransaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    switch (submitType)
+                    {
+                        case "ADDCLIENT":
+                            {
+
+
+                                Status = "Success";
+                                Message = "New client Added Successfully!";
+                                CurrentSubmit = "Client";
+
+                            }
+                            break;
+                        case "EDITCLIENT":
+                            {
+
+                                Status = "Success";
+                                Message = "Client Updated Successfully!";
+                                CurrentSubmit = "Client";
+
+                            }
+                            break;
+                        case "ADDADDRESS":
+                            {
+                                if (model.ModelID == 0)
+                                {
+
+                                    Status = "Info";
+                                    Message = "Message: Select Client first!";
+                                    //ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    //PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //return RedirectToAction("Index");
+
+                                }
+                                else
+                                {
+                                   
+                                    Status = "Success";
+                                    Message = "New Address added Successfully!";
+
+                                }
+                                CurrentSubmit = "Address";
+
+
+                            }
+                            break;
+                        case "ADDVEHICLE":
+                            {
+                                if (model.ModelID == 0)
+                                {
+
+                                    Status = "Info";
+                                    Message = "Message: Select Client first!";
+                                    //ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    //PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //return RedirectToAction("Index");
+
+                                }
+                                else
+                                {
+                                    
+
+                                    Status = "Success";
+                                    Message = "New Vehicle added Successfully!";
+
+                                }
+                                CurrentSubmit = "Vehicle";
+
+                            }
+                            break;
+                        case "EDITVEHICLE":
+                            {
+                                Status = "Success";
+                                Message = "Vehicle update Successfully!";
+                                CurrentSubmit = "Vehicle";
+
+                            }
+                            break;
+                        case "CTPLAPPLICATION":
+                            {
+                               
+
+
+
+                            }
+                            break;
+                        default:
+                            //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                            Status = "Error";
+                            Message = "Message: ErrorThere's something error. Please try again later.";
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    dbTransaction.Rollback();
+                    //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";
+                    Status = "Warning";
+                    Message = "Error. Please contact Databridge support to assist you.";
+                }
+            }
+
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ModelID, CurrentSubmit, FileName });
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+
+        }
 
         public ActionResult GetMakeList()
         {

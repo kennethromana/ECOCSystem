@@ -515,14 +515,15 @@ namespace ECOCSystem.Controllers
             {
 
 
-                var itemList = (from a in db.MakeBodyType
-                                from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                var itemList = (from a in db.VehicleBodyType
                                 where a.Active == true
                                 select new
                                 {
-                                    id = a.BodyTypeID,
-                                    text = b.VehicleBodyTypeName
+                                    id = a.VehicleBodyTypeID,
+                                    text = a.VehicleBodyTypeName
                                 }).ToList();
+
+
 
 
 
