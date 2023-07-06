@@ -46,7 +46,7 @@
                                     <label>Model Variant List</label>
                                     <div class="uiverse ">
                                         <span class="tooltip">Add new Variant</span>
-                                        <span type="button" id="addVariant" class="" data-toggle="modal" data-target="#modal-add-variant">
+                                        <span type="button" id="addVariant" class="" data-toggle="modal" data-target="#modal-add-series">
                                             +
                                         </span>
                                     </div>
@@ -75,6 +75,14 @@
             </div>
 
 
+            <div class="modal fade" id="modal-add-series" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    @{
+                        Html.RenderPartial("_AddModel", Model.ModelList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ModelList" } });
+                    }
+                </div>
+
+            </div>
 
         </section>
     </div>

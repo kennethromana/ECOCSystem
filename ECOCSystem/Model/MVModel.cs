@@ -69,7 +69,7 @@ namespace ECOCSystem.Model
         [Required]
         [DisplayName("Variant")]
         public string VehicleVariant { get; set; }
-
+        public List<Models> ModelList { get; set; }
 
     }
   
@@ -83,7 +83,7 @@ namespace ECOCSystem.Model
         public int MakeID { get; set; }
         public MVModel MakeInfo { get; set; }
 
-        public List<Models> ModelList { get; set; }
+      
 
         public MVModel ModelInfo { get; set; }
     }

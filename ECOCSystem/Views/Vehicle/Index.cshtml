@@ -49,14 +49,6 @@
 
                 </div>
 
-                <div class="modal fade" id="modal-add-series" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        @{
-                            Html.RenderPartial("_AddModel", Model.ModelList, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = "ModelList" } });
-                        }
-                    </div>
-
-                </div>
 
                 <div class="modal fade" id="modal-model-info" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -91,7 +83,7 @@
         getModelList()
 
         getModelList();
-        getVariantList();
+/*        getVariantList();*/
         //getColorList(0);
         //getBodyList(0);
 
