@@ -49,8 +49,8 @@
                                                 <table id="tbl_Series" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive" style=" min-width: 58em">
                                                     <thead>
                                                         <tr>
-                                                            <th style="width:20px"><center>Action Edit</center></th>
-                                                            <th style="width:20px"><center>Action Remove</center></th>
+                                                            <th style="width:50px"><center>Action Edit</center></th>
+                                                            <th style="width:50px"><center>Action Remove</center></th>
                                                             <th>Model</th>
                                                             <th>Body Type</th>
                                                         </tr>
@@ -80,10 +80,10 @@
     $(document).ready(function () {
         $('#addModel').on('click', function () {
             $('#ModelOptions').empty();
-            $('#ModelOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
+            $('#ModelOptions').append(`<button type="button" id="submit_addModel" value="ADDMODEL" class="btn btn-success">Save</button> `)
 
-            $('#submit_addMake').on('click', function () {
-                submitForm("ADDMAKE");
+            $('#submit_addModel').on('click', function () {
+                submitForm("ADDMODEL");
             });
         });
 

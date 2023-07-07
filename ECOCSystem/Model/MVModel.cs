@@ -18,6 +18,7 @@ namespace ECOCSystem.Model
             VehicleSeriesList = new List<DropdownModel>();
             VehicleClassificationList = new List<DropdownModel>();
         }
+        public int ModelID { get; set; }
         public int VehicleID { get; set; }
         [DisplayName("Vehicle Classification")]
         public int SelectedClassificationID { get; set; }

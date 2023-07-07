@@ -243,6 +243,7 @@
 
         $('#addModel').on('click', function () {
             $("#make-overlay").removeClass("d-none");
+            clearModelForm()
         });
 
 
@@ -356,7 +357,19 @@
     }
 
 
+    function clearModelForm() {
+        $('#ModelInfo_Modelid').val(0)
 
+
+        $('#ModelInfo_Model').val('')
+
+        var selecteBodyType = $("<option selected='selected'></option>").val(0).text("Select Body Type")
+        $("#ModelInfo_SelectedBodyTypeID").append(selecteBodyType).trigger('change');
+
+
+
+
+    }
     function EditMake(MakeID, MakeName) {
         getMakeModelList(MakeID)
 
@@ -372,7 +385,9 @@
     function EditModel(ModelID, ModelName,BodyTypeID,BodyName) {
         console.log(ModelID, ModelName)
 
+        $('#ModelInfo_Modelid').val(ModelID)
         $('#ModelInfo_Model').val(ModelName)
+
 
         var selecteBodyType = $("<option selected='selected'></option>").val(BodyTypeID).text(BodyName == "No Body Type" ? "Select Body Type" : BodyName)
         $("#ModelInfo_SelectedBodyTypeID").append(selecteBodyType).trigger('change');
