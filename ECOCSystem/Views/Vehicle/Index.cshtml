@@ -366,8 +366,7 @@
 
 
         $('#MakeOptions').empty();
-        $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
-                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
+        $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>`)
     };
 
     function EditModel(ModelID, ModelName,BodyTypeID,BodyName) {
@@ -380,8 +379,7 @@
 
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
-        $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
-                                 <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
+        $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>`)
     };
 
     function getMakeList() {
@@ -489,6 +487,19 @@
                                   <div class="">
                                          <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleModelID + `,'` + data.VehicleModelName + `',` + data.BodyTypeID + `,'` + data.BodyTypeName + `')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                {
+                    "className": "VehicleModelID", "data": null, "name": "VehicleModelID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleModelID + `,'` + data.VehicleModelName + `',` + data.BodyTypeID + `,'` + data.BodyTypeName + `')">
+                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
                                         </span>
                                     </div>
                                  </div>
