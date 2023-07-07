@@ -580,19 +580,23 @@ namespace ECOCSystem.Controllers
             }
         }
         
-        public ActionResult GetVehicleSeries(string search, int page, int pageSize, int MakeID)
+        public ActionResult GetVehicleVariants(string search, int page, int pageSize, int MakeID)
         {
             using (var db = new ECOCEntities())
             {
 
-
-                var itemList = (from a in db.VehicleSeries
-                                where a.VehicleMakeID == MakeID && a.Active == true
-                                select new
+                var itemList = (from a in db.VehicleVariant
+                                from b in db.VehicleModel.Where(o => o.VehicleModelID == a.VehicleModelID).DefaultIfEmpty()
+                                from c in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == b.BodyTypeID).DefaultIfEmpty()
+                                where
+                                a.Active == true &&
+                                b.VehicleMakeID == MakeID
+                                select new 
                                 {
-                                    id = a.VehicleSeriesID,
-                                    text = a.VehicleModelName + " " + a.Variant,
-                                }).ToList();
+                                    id = a.VariantID,
+                                    text = b.VehicleModelName + "  " + a.VariantName + "  -   " + c.VehicleBodyTypeName
+                                }
+                                ).ToList();
 
 
 
