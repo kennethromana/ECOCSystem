@@ -35,14 +35,14 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
-        public ActionResult ModelForm(VehicleModelModel model, string submitType)
+        public ActionResult MakeForm(MakeModel model, string submitType)
         {
             int currentCompany = (int)CurrentUser.Details.CompanyID;
             int currentBranch = (int)CurrentUser.Details.CompanyBranchID;
             var Status = "Error";
             var PartialViewDataString = "";
             var Message = "";
-            int ModelID = model.ModelID;
+            int MakeID = model.MakeID;
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
@@ -82,7 +82,7 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDADDRESS":
                             {
-                                if (model.ModelID == 0)
+                                if (model.MakeID == 0)
                                 {
 
                                     Status = "Info";
@@ -106,7 +106,7 @@ namespace ECOCSystem.Controllers
                             break;
                         case "ADDVEHICLE":
                             {
-                                if (model.ModelID == 0)
+                                if (model.MakeID == 0)
                                 {
 
                                     Status = "Info";
@@ -160,7 +160,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, ModelID, CurrentSubmit, FileName });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, MakeID, CurrentSubmit, FileName });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 

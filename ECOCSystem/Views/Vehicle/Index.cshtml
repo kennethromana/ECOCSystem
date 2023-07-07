@@ -174,7 +174,7 @@
         </div>
         <div class="fab" id="addMake" type="button" data-toggle="modal" data-target="#modal-make-info" name="btnSubmit" title="" @*onclick="location.href='/Customer/Customer'"*@ data-original-title="Create New"> + </div>
         <div class="card-body">
-            @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
+            @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Make_Form" }))
             {
 
                 @Html.HiddenFor(m => m.MakeID)
@@ -243,7 +243,7 @@
 
         $('#addModel').on('click', function () {
             $("#make-overlay").removeClass("d-none");
-        }); 
+        });
 
 
         $('#modal-model-variant').on('hide.bs.modal', function () {
@@ -268,9 +268,92 @@
             });
         });
 
-     
 
     });
+
+
+    var addAntiForgeryToken = function (data) {
+        data.__RequestVerificationToken = $("[name='__RequestVerificationToken']").val();
+        return data;
+    };
+
+    function submitForm(submitType) {
+        var form = jQuery("#Make_Form");
+        if (form.valid()) {
+            var formData = new FormData(form[0]);
+            formData.append("submitType", submitType);
+            $.ajax({
+                url: '@Url.Action("MakeForm", "Vehicle")',
+                type: "POST",
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                async: true,
+                data: addAntiForgeryToken(formData),
+                beforeSend: function () {
+                    toastr.clear();
+
+                },
+                success: function (response) {
+                    switch (response.Status) {
+                        case "Success":
+
+                            if (response.ClientID > 0) {
+                                getAddressList(response.ClientID)
+                                getVehicleList(response.ClientID)
+                            }
+                            console.log(response.CurrentSubmit)
+                            switch (response.CurrentSubmit) {
+                                case "Client":
+                                    $("#modal-client").modal('hide');
+                                    clearClientForm(response.ClientID)
+                                    break;
+                                case "Address":
+                                    $("#modal-client-address").modal('hide');
+                                    clearAddressForm()
+                                    break;
+                                case "Vehicle":
+                                    $("#modal-client-vehicle").modal('hide');
+                                    getVehicleList(response.ClientID)
+                                    clearVehicleForm();
+
+                                    break;
+                                case "CTPL":
+                                    showCOCFile(response.FileName);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            toastr.success(response.Message);
+                            break;
+                        case "Warning":
+                            toastr.warning(response.Message);
+                            break;
+                        case "Error":
+                            toastr.error(response.Message);
+                            break;
+                        case "Info":
+                            toastr.info(response.Message);
+                            break;
+                        default:
+                            toastr.error(response.Message);
+                            break;
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    toastr.error('An error has occured while processing, Please contact Databridge Support.');
+                },
+                complete: function () {
+                  /*  $(".modal").modal('hide');*/
+                /*    $('.modal-backdrop').remove();*/
+                    $('#loadingScreen').hide();
+                },
+            });
+        }
+/*        $(".tab-content").height("auto");*/
+    }
 
 
 
@@ -292,7 +375,7 @@
     };
 
     function EditModel(ModelID, ModelName) {
-
+        console.log(ModelID,ModelName)
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
         $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
@@ -398,11 +481,11 @@
             },
             "columns": [
                 {
-                    "className": "VehicleSeriesID", "data": null, "name": "VehicleSeriesID",
+                    "className": "VehicleModelID", "data": null, "name": "VehicleModelID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleSeriesID + `,'` + data.VehicleSeriesID + `')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleModelID + `,'` + data.VehicleModelName + `')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -423,7 +506,6 @@
     };
 
     function getModelList() {
-        console.log('seriesList')
         let cntRow = 0;
          SeriesList_table = $("#tbl_Series_list").DataTable({
             "processing": true, // for show progress bar
@@ -479,7 +561,7 @@
         $('#tbl_Series_list_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
 
-     
+
 
     };
 
