@@ -234,6 +234,7 @@
 
         getMakeList();
         getMakeModelList(0);
+        getModelVariantList(0)
 
         $('#addVariant').on('click', function () {
             $("#model-overlay").removeClass("d-none");
@@ -363,7 +364,7 @@
         $('#ModelInfo_Modelid').val(0)
 
 
-    
+
         $('#ModelInfo_Model').val('')
 
         var selecteBodyType = $("<option selected='selected'></option>").val(0).text("Select Body Type")
@@ -541,9 +542,10 @@
 
     };
 
-    function getModelList() {
+    function getModelVariantList(ModelID) {
+
         let cntRow = 0;
-         SeriesList_table = $("#tbl_Series_list").DataTable({
+        Variant_table = $("#tbl_Variant").DataTable({
             "processing": true, // for show progress bar
             "serverSide": false, // for process server side
             "filter": true, // this is for disable filter (search box)
@@ -551,7 +553,7 @@
             "scrollX": true,
             "scrollY": true,
              "destroy": true,
-             "pageLength": 20,
+             "pageLength": 5,
 
             "order": [],
             "dom":
@@ -559,10 +561,10 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetModelList", "Vehicle")',
+                "url": '@Url.Action("GetModelVariantList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
-/*                "data": { "MakeID": MakeID },*/
+                "data": { "ModelID": ModelID },
                 "beforeSend": function () {
                     $('#loadingScreen').show();
                     cntRow = 0;
@@ -577,25 +579,37 @@
             },
             "columns": [
                 {
-                    "className": "ModelID", "data": null, "name": "ModelID",
+                    "className": "VariantID", "data": null, "name": "VariantID",
                     render: function (data, type, row) {
                         return `<center>
-                                  <div class="icheck-primary d-inline">
-                                    <input class="chk"  name="check" type="checkbox" SeriesID="`+ data.ModelID + `" id="Model` + data.ModelID +`">
-                                        <label for="Model`+ data.ModelID+`">
-                                    </label>
+                                  <div class="">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditVariant(`+ data.VariantID + `,'` + data.VariantName + `')">
+                                            <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
                                  </div>
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "ModelName", "data": "ModelName", "name": "ModelName", "autoWidth": true },
-
+                {
+                    "className": "VehicleModelID", "data": null, "name": "VehicleModelID",
+                    render: function (data, type, row) {
+                        return `<center>
+                                  <div class="">
+                                          <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditVariant(`+ data.VariantID + `,'` + data.VariantName + `')">
+                                            <i class="fa fa-minus-circle fa-lg text-danger" style="padding: 0px"></i>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </center>`
+                    }, "autoWidth": true
+                },
+                { "className": "VariantName", "data": "VariantName", "name": "VariantName", "autoWidth": true },
 
 
             ]
         });
-        $('#tbl_Series_list_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
-
+        $('#tbl_Variant_paginate').parent('div').parent('div').css('flex-direction', 'row-reverse').css('margin', '12px');
 
 
 

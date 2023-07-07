@@ -268,6 +268,25 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
+        public ActionResult GetModelVariantList(int ModelID)
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    var tableData = db.VehicleVariant.Where(o => o.VehicleModelID == ModelID).ToList();
+                  
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public ActionResult GetVariantList()
         {
             try
