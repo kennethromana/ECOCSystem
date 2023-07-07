@@ -362,20 +362,22 @@
 
         $("#MakeInfo_VehicleMake").val(MakeName)
 
-        jQuery('.select2Ajax').on('select2:opening', function () {
-            var objParams = {
-                MakeID: MakeID,
-            };
-            $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
-        });
+        $("#model-title").text(MakeName)
+
 
         $('#MakeOptions').empty();
         $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
                                  <button type="button" id="submit_deleteMake" value="DELETEMAKE" class="btn btn-danger">Delete</button>`)
     };
 
-    function EditModel(ModelID, ModelName) {
-        console.log(ModelID,ModelName)
+    function EditModel(ModelID, ModelName,BodyTypeID,BodyName) {
+        console.log(ModelID, ModelName)
+
+        $('#ModelInfo_Model').val(ModelName)
+
+        var selecteBodyType = $("<option selected='selected'></option>").val(BodyTypeID).text(BodyName == "No Body Type" ? "Select Body Type" : BodyName)
+        $("#ModelInfo_SelectedBodyTypeID").append(selecteBodyType).trigger('change');
+
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
         $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
@@ -485,7 +487,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleModelID + `,'` + data.VehicleModelName + `')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditModel(`+ data.VehicleModelID + `,'` + data.VehicleModelName + `',` + data.BodyTypeID + `,'` + data.BodyTypeName + `')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -494,6 +496,8 @@
                     }, "autoWidth": true
                 },
                 { "className": "VehicleModelName", "data": "VehicleModelName", "name": "VehicleModelName", "autoWidth": true },
+                { "className": "BodyTypeName", "data": "BodyTypeName", "name": "BodyTypeName", "autoWidth": true },
+
 
 
 

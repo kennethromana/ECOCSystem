@@ -216,7 +216,19 @@ namespace ECOCSystem.Controllers
                 {
 
 
-                    var tableData = db.VehicleModel.Where(o => o.Active && o.VehicleMakeID == MakeID).ToList();
+                    var tableData = (from a in db.VehicleModel
+                                     from b in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
+                                     where
+                                     a.Active == true &&
+                                     a.VehicleMakeID == MakeID
+                                     select new
+                                     {
+                                         VehicleModelID = a.VehicleModelID,
+                                         VehicleModelName = a.VehicleModelName,
+                                         BodyTypeID = a.BodyTypeID ?? 0,
+                                         BodyTypeName = b.VehicleBodyTypeName ?? "No Body Type",
+                                     }
+                                     ).ToList();
 
 
                     //Returning Json Data    
