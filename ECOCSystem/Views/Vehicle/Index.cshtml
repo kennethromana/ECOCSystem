@@ -275,7 +275,7 @@
 
 
     function EditMake(MakeID, MakeName) {
-        getMakeSeriesList(MakeID)
+        getMakeModelList(MakeID)
 
         $("#MakeInfo_VehicleMake").val(MakeName)
 
@@ -292,16 +292,7 @@
     };
 
     function EditModel(ModelID, ModelName) {
-        //getMakeSeriesList(MakeID)
 
-        //$("#MakeInfo_VehicleMake").val(MakeName)
-
-        //jQuery('.select2Ajax').on('select2:opening', function () {
-        //    var objParams = {
-        //        MakeID: MakeID,
-        //    };
-        //    $(this).attr("select2Ajax-parameter", JSON.stringify(objParams));
-        //});
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
         $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>
@@ -370,7 +361,7 @@
 
     };
 
-     function getMakeSeriesList(MakeID) {
+    function getMakeModelList(MakeID) {
 
         let cntRow = 0;
          Series_table = $("#tbl_Series").DataTable({
@@ -389,7 +380,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetMakeSeriesList", "Vehicle")',
+                "url": '@Url.Action("GetMakeModelList", "Vehicle")',
                 "type": "POST",
                 "datatype": "json",
                 "data": { "MakeID": MakeID },

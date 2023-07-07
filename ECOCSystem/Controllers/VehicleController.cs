@@ -207,7 +207,7 @@ namespace ECOCSystem.Controllers
                 throw;
             }
         }
-        public ActionResult GetMakeSeriesList(int MakeID)
+        public ActionResult GetMakeModelList(int MakeID)
         {
             try
             {
@@ -216,7 +216,7 @@ namespace ECOCSystem.Controllers
                 {
 
 
-                    var tableData = db.VehicleSeries.Where(o => o.Active && o.VehicleMakeID == MakeID).ToList();
+                    var tableData = db.VehicleModel.Where(o => o.Active && o.VehicleMakeID == MakeID).ToList();
 
 
                     //Returning Json Data    
