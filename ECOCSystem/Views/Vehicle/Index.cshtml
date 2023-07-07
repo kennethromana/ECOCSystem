@@ -233,7 +233,7 @@
 
 
         getMakeList();
-        getModelList()
+        getMakeModelList(0);
 
         $('#addVariant').on('click', function () {
             $("#model-overlay").removeClass("d-none");
@@ -263,6 +263,8 @@
         $('#addMake').on('click', function () {
             $('#MakeOptions').empty();
             $('#MakeOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
+
+            $("#model-title").text('Vehicle Model Information');
 
             $('#submit_addMake').on('click', function () {
                 submitForm("ADDMAKE");
@@ -305,9 +307,9 @@
                             }
                             console.log(response.CurrentSubmit)
                             switch (response.CurrentSubmit) {
-                                case "Client":
-                                    $("#modal-client").modal('hide');
-                                    clearClientForm(response.ClientID)
+                                case "Model":
+                                    closeModalModel();
+                                    clearModelForm();
                                     break;
                                 case "Address":
                                     $("#modal-client-address").modal('hide');
@@ -361,6 +363,7 @@
         $('#ModelInfo_Modelid').val(0)
 
 
+    
         $('#ModelInfo_Model').val('')
 
         var selecteBodyType = $("<option selected='selected'></option>").val(0).text("Select Body Type")
@@ -597,6 +600,14 @@
 
 
     };
+
+    function closeModalVariant() {
+        $('#modal-model-variant').modal('hide')
+    }
+    function closeModalModel() {
+        $('#modal-model-info').modal('hide')
+    }
+
 
 </script>
 
