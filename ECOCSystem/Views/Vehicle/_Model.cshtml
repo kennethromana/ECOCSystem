@@ -8,7 +8,7 @@
     </div>
     <div class="modal-header">
         <h4 class="modal-title">Vehicle Model Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" onclick="closeModalModel()" aria-label="Close">
             <span aria-hidden="true"><i class="fa" fa></i>×</span>
         </button>
     </div>
@@ -80,7 +80,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Variant Information</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" onclick="closeModalVariant()" aria-label="Close">
                                 <span aria-hidden="true"><i class="fa" fa></i>×</span>
                             </button>
                         </div>
@@ -121,10 +121,14 @@
             });
         });
 
-
-
-
     });
+
+    function closeModalVariant() {
+        $('#modal-model-variant').modal('hide')
+    }
+    function closeModalModel() {
+        $('#modal-model-info').modal('hide')
+    }
 
 
 </script>
