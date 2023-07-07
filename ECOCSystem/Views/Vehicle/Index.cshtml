@@ -312,9 +312,10 @@
                                     closeModalModel();
                                     clearModelForm();
                                     break;
-                                case "Address":
-                                    $("#modal-client-address").modal('hide');
-                                    clearAddressForm()
+                                case "Variant":
+                                    closeModalVariant()
+                                    getModelVariantList(response.ModelID)
+                                    $('#ModelInfo_VehicleVariant').val('')
                                     break;
                                 case "Vehicle":
                                     $("#modal-client-vehicle").modal('hide');
@@ -361,16 +362,12 @@
 
 
     function clearModelForm() {
-        $('#ModelInfo_Modelid').val(0)
-
-
+        $('#ModelInfo_ModelID').val(0)
 
         $('#ModelInfo_Model').val('')
 
         var selecteBodyType = $("<option selected='selected'></option>").val(0).text("Select Body Type")
         $("#ModelInfo_SelectedBodyTypeID").append(selecteBodyType).trigger('change');
-
-
 
 
     }
@@ -390,8 +387,10 @@
     };
 
     function EditModel(ModelID, ModelName,BodyTypeID,BodyName) {
-        console.log(ModelID, ModelName)
 
+
+        $("#MakeID").val(MakeID)
+        $('#ModelInfo_ModelID').val(ModelID)
         $('#ModelInfo_Modelid').val(ModelID)
         $('#ModelInfo_Model').val(ModelName)
 
@@ -402,6 +401,7 @@
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
         $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>`)
+        getModelVariantList(ModelID)
     };
 
     function getMakeList() {

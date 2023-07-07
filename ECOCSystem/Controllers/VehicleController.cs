@@ -43,6 +43,7 @@ namespace ECOCSystem.Controllers
             var PartialViewDataString = "";
             var Message = "";
             int MakeID = model.MakeID;
+            int ModelID = model.ModelInfo.ModelID;
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
@@ -51,7 +52,6 @@ namespace ECOCSystem.Controllers
             int CorporateWithAssignee = Convert.ToInt32(TitleTypeEnum.CorporateWithAssignee);
 
             var CurrentSubmit = "";
-            var FileName = "";
 
 
             using (var db = new ECOCEntities())
@@ -96,6 +96,36 @@ namespace ECOCSystem.Controllers
                           
                       
                                 CurrentSubmit = "Model";
+
+                            }
+                            break;
+                        case "ADDVARIANT":
+                            {
+                                if (model.ModelInfo.ModelID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Message: No Vehicle Model Selected";
+                                }
+                                else
+                                {
+
+                                    var newVariant = new VehicleVariant();
+                                    newVariant.VehicleModelID = ModelID;
+                                    newVariant.VariantName = model.ModelInfo.VehicleVariant;
+                                    newVariant.Active = true;
+                                    newVariant.CreatedBy = CurrentUser.Details.ID;
+                                    newVariant.CreatedDate = DateTime.Now;
+                                    db.VehicleVariant.Add(newVariant);
+
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
+                                    Status = "Success";
+                                    Message = "New Variant Added Successfully!";
+                                    
+
+                                }
+
+                                CurrentSubmit = "Variant";
 
                             }
                             break;
@@ -188,7 +218,7 @@ namespace ECOCSystem.Controllers
                 }
             }
 
-            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, MakeID, CurrentSubmit, FileName });
+            var jsonResult = Json(new { Status, Message, Data = PartialViewDataString, MakeID, ModelID, CurrentSubmit,  });
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
 
