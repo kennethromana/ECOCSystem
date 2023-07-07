@@ -80,6 +80,7 @@ namespace ECOCSystem.Controllers
                                         var newModel = new VehicleModel();
                                         newModel.VehicleMakeID = MakeID;
                                         newModel.VehicleModelName = model.ModelInfo.Model;
+                                        newModel.BodyTypeID = model.ModelInfo.SelectedBodyTypeID;
                                         newModel.Active = true;
                                         newModel.CreatedBy = CurrentUser.Details.ID;
                                         newModel.CreatedDate = DateTime.Now;
