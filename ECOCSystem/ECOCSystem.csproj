@@ -2681,11 +2681,7 @@
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Vehicle\_MakeInfo.cshtml" />
     <Content Include="Views\Vehicle\BodyType.cshtml" />
-    <Content Include="Views\Vehicle\Model.cshtml" />
-    <Content Include="Views\Vehicle\_AddModel.cshtml" />
-    <Content Include="Views\Vehicle\_ModelInfo.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
-    <Content Include="Views\Vehicle\_AddVariant.cshtml" />
     <Content Include="Views\Vehicle\_Model.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -302,10 +302,6 @@
                     switch (response.Status) {
                         case "Success":
 
-                            if (response.ClientID > 0) {
-                                getAddressList(response.ClientID)
-                                getVehicleList(response.ClientID)
-                            }
                             console.log(response.CurrentSubmit)
                             switch (response.CurrentSubmit) {
                                 case "Model":
