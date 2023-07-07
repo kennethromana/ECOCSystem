@@ -61,13 +61,40 @@ namespace ECOCSystem.Controllers
                 {
                     switch (submitType)
                     {
-                        case "ADDCLIENT":
+                        case "ADDMODEL":
                             {
+                                if (model.ModelInfo.SelectedBodyTypeID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Message: Model Body Type is Required!";
+                                }
+                                else 
+                                {
+                                    if (MakeID == 0)
+                                    {
+                                        Status = "Info";
+                                        Message = "Message: No Vehicle Make Selected";
+                                    }
+                                    else 
+                                    {
+                                        var newModel = new VehicleModel();
+                                        newModel.VehicleMakeID = MakeID;
+                                        newModel.VehicleModelName = model.ModelInfo.Model;
+                                        newModel.Active = true;
+                                        newModel.CreatedBy = CurrentUser.Details.ID;
+                                        newModel.CreatedDate = DateTime.Now;
+                                        db.VehicleModel.Add(newModel);
 
-
-                                Status = "Success";
-                                Message = "New client Added Successfully!";
-                                CurrentSubmit = "Client";
+                                        db.SaveChanges();
+                                        dbTransaction.Commit();
+                                        Status = "Success";
+                                        Message = "New model Added Successfully!";
+                                    }
+                                   
+                                }
+                          
+                      
+                                CurrentSubmit = "Model";
 
                             }
                             break;
@@ -151,7 +178,7 @@ namespace ECOCSystem.Controllers
                             break;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     dbTransaction.Rollback();
                     //TempData["InfoMessage"] = "Message: ErrorThere's something error. Please try again later";

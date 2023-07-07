@@ -373,6 +373,9 @@
     function EditMake(MakeID, MakeName) {
         getMakeModelList(MakeID)
 
+
+        $("#MakeID").val(MakeID)
+
         $("#MakeInfo_VehicleMake").val(MakeName)
 
         $("#model-title").text(MakeName)
