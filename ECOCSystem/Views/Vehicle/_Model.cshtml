@@ -111,17 +111,27 @@
 
     $(document).ready(function () {
 
+
+
         $('#addVariant').on('click', function () {
+
+
+            $('#ModelInfo_Model').rules('remove');
+            $('#ModelInfo_SelectedBodyTypeID').rules('remove');
+
+
+
             $('#variantOptions').empty();
             $('#variantOptions').append(`<button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-default">Cancel</button>
-                                       <button type="button" id="submit_addMake" value="ADDMAKE" class="btn btn-success">Save</button> `)
+                                       <button type="button" id="submit_addVariant" value="ADDMAKE" class="btn btn-success">Save</button> `)
 
-            $('#submit_addMake').on('click', function () {
-                submitForm("ADDMAKE");
+            $('#submit_addVariant').on('click', function () {
+                submitForm("ADDVARIANT");
             });
         });
 
     });
+
 
     function closeModalVariant() {
         $('#modal-model-variant').modal('hide')
