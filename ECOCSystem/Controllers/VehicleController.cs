@@ -44,6 +44,7 @@ namespace ECOCSystem.Controllers
             var Message = "";
             int MakeID = model.MakeID;
             int ModelID = model.ModelInfo.ModelID;
+            int VariantID = model.ModelInfo.VariantID;
             //int? VehicleBodyTypeID = 0;
             //int? VehicleTypeID = 0;
 
@@ -99,6 +100,38 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "UPDATEMODEL":
+                            {
+                                if (model.ModelInfo.SelectedBodyTypeID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Message: Model Body Type is Required!";
+                                }
+                                else
+                                {
+                                  
+
+                                    var updateModel = db.VehicleModel.Where(o => o.VehicleModelID == ModelID).FirstOrDefault();
+                                    updateModel.VehicleModelName = model.ModelInfo.Model;
+                                    updateModel.BodyTypeID = model.ModelInfo.SelectedBodyTypeID;
+                                    updateModel.UpdatedBy = CurrentUser.Details.ID;
+                                    updateModel.UpdatedDate = DateTime.UtcNow;
+
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
+
+
+                                    Status = "Success";
+                                    Message = "model Updated Successfully!";
+                                    
+
+                                }
+
+
+                                CurrentSubmit = "Model";
+
+                            }
+                            break;
                         case "ADDVARIANT":
                             {
                                 if (model.ModelInfo.ModelID == 0)
@@ -122,6 +155,35 @@ namespace ECOCSystem.Controllers
                                     Status = "Success";
                                     Message = "New Variant Added Successfully!";
                                     
+
+                                }
+
+                                CurrentSubmit = "Variant";
+
+                            }
+                            break;
+                        case "UPDATEVARIANT":
+                            {
+                                if (model.ModelInfo.ModelID == 0)
+                                {
+                                    Status = "Info";
+                                    Message = "Message: No Vehicle Model Selected";
+                                }
+                                else
+                                {
+
+                                    var updateVariant = db.VehicleVariant.Where(o => o.VariantID == VariantID).FirstOrDefault();
+                                    updateVariant.VariantName = model.ModelInfo.VehicleVariant;
+                                    updateVariant.UpdatedBy = CurrentUser.Details.ID;
+                                    updateVariant.UpdatedDate = DateTime.UtcNow;
+
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
+
+
+                                    Status = "Success";
+                                    Message = "Model Variant updated Successfully!";
+
 
                                 }
 

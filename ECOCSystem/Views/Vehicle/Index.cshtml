@@ -307,11 +307,13 @@
                                 case "Model":
                                     closeModalModel();
                                     clearModelForm();
+                                    getMakeModelList(response.MakeID)
                                     break;
                                 case "Variant":
                                     closeModalVariant()
                                     getModelVariantList(response.ModelID)
                                     $('#ModelInfo_VehicleVariant').val('')
+                                    $('#ModelInfo_VariantID').val(0)
                                     break;
                                 case "Vehicle":
                                     $("#modal-client-vehicle").modal('hide');
@@ -380,14 +382,15 @@
 
         $('#MakeOptions').empty();
         $('#MakeOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>`)
+        $('#submit_updateMake').on('click', function () {
+            submitForm("UPDATEMAKE");
+        });
     };
-
+    
     function EditModel(ModelID, ModelName,BodyTypeID,BodyName) {
 
 
-        $("#MakeID").val(MakeID)
         $('#ModelInfo_ModelID').val(ModelID)
-        $('#ModelInfo_Modelid').val(ModelID)
         $('#ModelInfo_Model').val(ModelName)
 
 
@@ -396,8 +399,41 @@
 
         $("#make-overlay").removeClass("d-none");
         $('#ModelOptions').empty();
-        $('#ModelOptions').append(`<button type="button" id="submit_updateMake" value="UPDATEMAKE" class="btn btn-success">Update</button>`)
+        $('#ModelOptions').append(`<button type="button" id="submit_updateModel" value="UPDATEMODEL" class="btn btn-success">Update</button>`)
+
+        $('#submit_updateModel').on('click', function () {
+            if (ModelID != 0 && ModelID != undefined) {
+                submitForm("UPDATEMODEL");
+
+            }
+        });
+
         getModelVariantList(ModelID)
+    };
+
+    function EditVariant(VariantID, VariantName) {
+
+
+        $("#model-overlay").removeClass("d-none");
+
+        $('#ModelInfo_VariantID').val(VariantID)
+        $('#ModelInfo_VehicleVariant').val(VariantName)
+
+
+
+        $('#variantOptions').empty();
+        $('#variantOptions').append(`<button type="button" onclick="closeModalVariant()" class="btn btn-default">Cancel</button>
+                                     <button type="button" id="submit_updateVariant" value="UPDATEVARIANT" class="btn btn-success">Update</button>
+                                     `)
+
+        $('#submit_updateVariant').on('click', function () {
+            if (VariantID != 0 && VariantID != undefined)
+            {
+                submitForm("UPDATEVARIANT");
+            }
+        
+        });
+
     };
 
     function getMakeList() {
@@ -579,7 +615,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-model-info"" onclick="EditVariant(`+ data.VariantID + `,'` + data.VariantName + `')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-model-variant" onclick="EditVariant(`+ data.VariantID + `,'` + data.VariantName + `')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>

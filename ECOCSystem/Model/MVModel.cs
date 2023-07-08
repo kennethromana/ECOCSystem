@@ -20,6 +20,7 @@ namespace ECOCSystem.Model
             VehicleVariantList = new List<DropdownModel>();
         }
         public int ModelID { get; set; }
+        public int VariantID { get; set; }
         public int VehicleID { get; set; }
         [DisplayName("Vehicle Series")]
         public int SelectedVariantID { get; set; }
