@@ -23,8 +23,7 @@ namespace ECOCSystem.Model
         public string MVFileNumber { get; set; }
         public Nullable<int> MVTypeID { get; set; }
         public Nullable<int> MakeID { get; set; }
-        public Nullable<int> SeriesID { get; set; }
-        public Nullable<int> BodyTypeID { get; set; }
+        public Nullable<int> VariantID { get; set; }
         public Nullable<bool> Active { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

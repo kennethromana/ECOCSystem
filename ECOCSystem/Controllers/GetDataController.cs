@@ -681,11 +681,12 @@ namespace ECOCSystem.Controllers
             
                 var VehicleInfo = (from a in db.VehicleInfo
                                    from b in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
-                                   from c in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
-                                   from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                   from e in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
-                                   from f in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
-                                   from g in db.VehicleClassification.Where(o => o.VehicleClassificationID == a.ClassificationID).DefaultIfEmpty()
+                                   from c in db.VehicleVariant.Where(o => o.VariantID == a.VariantID).DefaultIfEmpty()
+                                   from d in db.VehicleModel.Where(o => o.VehicleModelID == c.VehicleModelID).DefaultIfEmpty()
+                                   from e in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == d.BodyTypeID).DefaultIfEmpty()
+                                   from f in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                   from g in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
+                                   from h in db.VehicleClassification.Where(o => o.VehicleClassificationID == a.ClassificationID).DefaultIfEmpty()
                                    where a.Active == true && a.VehicleID == VehicleID
                                    select new
                                    {
@@ -696,16 +697,16 @@ namespace ECOCSystem.Controllers
                                        Plate = a.PlateNumber,
                                        Year = a.Year,
                                        Make = b.VehicleMakeName,
-                                       BodyType = d.VehicleBodyTypeName,
-                                       Color = e.VehicleColorName,
-                                       Series = c.VehicleModelName + " " + c.Variant,
-                                       VType = f.VehicleTypeDescription,
-                                       Classification = g.VehicleClassificationName,
-                                       BodyTypeID = d.VehicleBodyTypeID,
-                                       ColorID = e.VehicleColorID,
-                                       SeriesID = c.VehicleModelName +" "+c.Variant,
-                                       VTypeID = f.VehicleTypeID,
-                                       ClassificationID = g.VehicleClassificationID,
+                                       BodyType = e.VehicleBodyTypeName,
+                                       Color = f.VehicleColorName,
+                                       Series = d.VehicleModelName + " " + c.VariantName,
+                                       VType = g.VehicleTypeDescription,
+                                       Classification = h.VehicleClassificationName,
+                                       BodyTypeID = e.VehicleBodyTypeID,
+                                       ColorID = f.VehicleColorID,
+                                       VariantID = c.VariantID,
+                                       VTypeID = g.VehicleTypeID,
+                                       ClassificationID = h.VehicleClassificationID,
                                        MakeID = b.VehicleMakeID,
                                    }).FirstOrDefault();
 

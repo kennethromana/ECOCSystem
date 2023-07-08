@@ -185,8 +185,7 @@ namespace ECOCSystem.Controllers
 
                                     newVehicle.VehicleColorID = model.ClientVehicle.SelectedColorID;
                                     newVehicle.MakeID = model.ClientVehicle.SelectedMakeID;
-                                    newVehicle.BodyTypeID = model.ClientVehicle.SelectedBodyTypeID;
-                                    newVehicle.SeriesID = model.ClientVehicle.SelectedSeriesID;
+                                    newVehicle.VariantID = model.ClientVehicle.SelectedVariantID;
 
                                     newVehicle.ClientID = model.ClientID;
                                     newVehicle.Active = true;
@@ -344,24 +343,25 @@ namespace ECOCSystem.Controllers
 
                     var tableData = (from a in db.VehicleInfo
                                      from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
-                                     from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
-                                     from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                     from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
-                                     from f in db.Client.Where(o => o.ID == ClientID).DefaultIfEmpty()
+                                     from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()                                  
+                                     from d in db.VehicleVariant.Where(o => o.VariantID == a.VariantID).DefaultIfEmpty()
+                                     from e in db.VehicleModel.Where(o => o.VehicleModelID == d.VehicleModelID).DefaultIfEmpty()
+                                     from f in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == e.BodyTypeID).DefaultIfEmpty()
+                                     from g in db.Client.Where(o => o.ID == ClientID).DefaultIfEmpty()
                                      where
                                      a.Active == true &&
                                      a.ClientID == ClientID
                                      select new
                                      { 
-                                        isChecked = (f.SelectedVehicleID ?? 0) == a.VehicleID ? "checked" : "checkStatus='false'",
+                                        isChecked = (g.SelectedVehicleID ?? 0) == a.VehicleID ? "checked" : "checkStatus='false'",
                                          VehicleID = a.VehicleID,
                                         Chassis = a.ChassisNumber,
                                         PlateNo = a.PlateNumber,
                                         Year = a.Year,
                                         VehicleType = b.VehicleTypeDescription,
                                         VehicleMake = c.VehicleMakeName,
-                                        VehicleBody = d.VehicleBodyTypeName,
-                                        VehicleSeries = e.VehicleModelName + " " + e.Variant,
+                                        VehicleBody = f.VehicleBodyTypeName,
+                                        VehicleSeries = e.VehicleModelName + " " + d.VariantName,
                                      }
                                      ).ToList();
 
@@ -453,9 +453,10 @@ namespace ECOCSystem.Controllers
                     var VehicleInfo = (from a in db.VehicleInfo
                                        from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
                                        from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
-                                       from d in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == a.BodyTypeID).DefaultIfEmpty()
-                                       from e in db.VehicleSeries.Where(o => o.VehicleSeriesID == a.SeriesID).DefaultIfEmpty()
-                                       from f in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
+                                       from d in db.VehicleModel.Where(o => o.VehicleMakeID == c.VehicleMakeID).DefaultIfEmpty()
+                                       from e in db.VehicleVariant.Where(o => o.VehicleModelID == d.VehicleModelID).DefaultIfEmpty()
+                                       from f in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == d.BodyTypeID).DefaultIfEmpty()
+                                       from g in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
                                        where
                                        a.Active == true &&
                                        a.VehicleID == VehicleID
@@ -468,9 +469,9 @@ namespace ECOCSystem.Controllers
                                            Year = a.Year,
                                            VehicleType = b.VehicleTypeDescription,
                                            VehicleMake = c.VehicleMakeName,
-                                           VehicleBody = d.VehicleBodyTypeName,
-                                           VehicleSeries = e.VehicleModelName.ToUpper() + " " + e.Variant.ToUpper(),
-                                           Color = f.VehicleColorName,
+                                           VehicleBody = f.VehicleBodyTypeName,
+                                           VehicleSeries = d.VehicleModelName.ToUpper() + " " + e.VariantName.ToUpper(),
+                                           Color = g.VehicleColorName,
                                            ClassificationID = a.ClassificationID
                                        }).FirstOrDefault();
 

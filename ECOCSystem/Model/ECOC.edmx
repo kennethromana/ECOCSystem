@@ -342,19 +342,6 @@ warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key de
           <Property Name="VehicleTypeID" Type="int" Nullable="false" />
           <Property Name="VehicleClassificationID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MVSeries">
-          <Key>
-            <PropertyRef Name="SeriesID" />
-          </Key>
-          <Property Name="SeriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VehicleModelID" Type="int" />
-          <Property Name="VariantID" Type="int" />
-          <Property Name="Active" Type="bit" />
-          <Property Name="CreatedBy" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedBy" Type="int" />
-          <Property Name="UpdatedDate" Type="datetime" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.Province' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Province">
@@ -546,8 +533,7 @@ warning 6002: The table/view 'ECOC.dbo.VehicleFuelType' does not have a primary 
           <Property Name="MVFileNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="MVTypeID" Type="int" />
           <Property Name="MakeID" Type="int" />
-          <Property Name="SeriesID" Type="int" />
-          <Property Name="BodyTypeID" Type="int" />
+          <Property Name="VariantID" Type="int" />
           <Property Name="Active" Type="bit" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -593,35 +579,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleMake' does not have a primary key 
           <Property Name="BodyTypeID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ECOC.dbo.VehicleSeries' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="VehicleSeries">
-          <Key>
-            <PropertyRef Name="VehicleSeriesID" />
-            
-            
-            
-            
-            
-            
-            
-            
-          </Key>
-          <Property Name="VehicleSeriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VehicleMakeID" Type="int" Nullable="false" />
-          <Property Name="VehicleModelName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Variant" Type="nvarchar" MaxLength="100" />
-          <Property Name="YearOfMake" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="UpdatedBy" Type="int" />
-          <Property Name="UpdatedDate" Type="datetime" />
-          <Property Name="VehicleClassificationID" Type="int" Nullable="false" />
-          <Property Name="PNPVehicleTypeID" Type="int" Nullable="false" />
-          <Property Name="VehicleTypeID" Type="int" />
-          <Property Name="BodyTypeID" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VehicleType">
           <Key>
@@ -662,7 +619,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="CompanyBranch" EntityType="Self.CompanyBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyEntity" EntityType="Self.CompanyEntity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTPLApplication" EntityType="Self.CTPLApplication" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MVSeries" EntityType="Self.MVSeries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationType" EntityType="Self.RegistrationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleType" EntityType="Self.TitleType" Schema="dbo" store:Type="Tables" />
@@ -856,24 +812,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
     [VehicleMake].[UpdatedDate] AS [UpdatedDate]
     FROM [dbo].[VehicleMake] AS [VehicleMake]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="VehicleSeries" EntityType="Self.VehicleSeries" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [VehicleSeries].[VehicleSeriesID] AS [VehicleSeriesID], 
-    [VehicleSeries].[VehicleMakeID] AS [VehicleMakeID], 
-    [VehicleSeries].[VehicleModelName] AS [VehicleModelName], 
-    [VehicleSeries].[Variant] AS [Variant], 
-    [VehicleSeries].[YearOfMake] AS [YearOfMake], 
-    [VehicleSeries].[CreatedBy] AS [CreatedBy], 
-    [VehicleSeries].[CreatedDate] AS [CreatedDate], 
-    [VehicleSeries].[Active] AS [Active], 
-    [VehicleSeries].[UpdatedBy] AS [UpdatedBy], 
-    [VehicleSeries].[UpdatedDate] AS [UpdatedDate], 
-    [VehicleSeries].[VehicleClassificationID] AS [VehicleClassificationID], 
-    [VehicleSeries].[PNPVehicleTypeID] AS [PNPVehicleTypeID], 
-    [VehicleSeries].[VehicleTypeID] AS [VehicleTypeID], 
-    [VehicleSeries].[BodyTypeID] AS [BodyTypeID]
-    FROM [dbo].[VehicleSeries] AS [VehicleSeries]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VehicleType].[VehicleTypeID] AS [VehicleTypeID], 
@@ -925,7 +863,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="City" EntityType="ECOCModel.City" />
           <EntitySet Name="Province" EntityType="ECOCModel.Province" />
           <EntitySet Name="Region" EntityType="ECOCModel.Region" />
-          <EntitySet Name="VehicleInfo" EntityType="ECOCModel.VehicleInfo" />
           <EntitySet Name="VehicleBodyType" EntityType="ECOCModel.VehicleBodyType" />
           <EntitySet Name="VehicleColor" EntityType="ECOCModel.VehicleColor" />
           <EntitySet Name="VehicleFuelType" EntityType="ECOCModel.VehicleFuelType" />
@@ -943,10 +880,9 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="InsuranceCOCSeries" EntityType="ECOCModel.InsuranceCOCSeries" />
           <EntitySet Name="MakeBodyType" EntityType="ECOCModel.MakeBodyType" />
           <EntitySet Name="MakeColor" EntityType="ECOCModel.MakeColor" />
-          <EntitySet Name="VehicleSeries" EntityType="ECOCModel.VehicleSeries" />
-          <EntitySet Name="MVSeries" EntityType="ECOCModel.MVSeries" />
           <EntitySet Name="VehicleModel" EntityType="ECOCModel.VehicleModel" />
           <EntitySet Name="VehicleVariant" EntityType="ECOCModel.VehicleVariant" />
+          <EntitySet Name="VehicleInfo" EntityType="ECOCModel.VehicleInfo" />
         </EntityContainer>
         <EntityType Name="UserType">
           <Key>
@@ -1139,31 +1075,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="VehicleInfo">
-          <Key>
-            <PropertyRef Name="VehicleID" />
-          </Key>
-          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EngineNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ChassisNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="PlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MVFileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MVTypeID" Type="Int32" />
-          <Property Name="MakeID" Type="Int32" />
-          <Property Name="SeriesID" Type="Int32" />
-          <Property Name="BodyTypeID" Type="Int32" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ClientID" Type="Int32" />
-          <Property Name="VehicleColorID" Type="Int32" />
-          <Property Name="VehicleTypeID" Type="Int32" />
-          <Property Name="ClassificationID" Type="Int32" />
         </EntityType>
         <EntityType Name="VehicleBodyType">
           <Key>
@@ -1396,38 +1307,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="VehicleSeries">
-          <Key>
-            <PropertyRef Name="VehicleSeriesID" />
-          </Key>
-          <Property Name="VehicleSeriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VehicleMakeID" Type="Int32" Nullable="false" />
-          <Property Name="VehicleModelName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Variant" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="YearOfMake" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="VehicleClassificationID" Type="Int32" Nullable="false" />
-          <Property Name="PNPVehicleTypeID" Type="Int32" Nullable="false" />
-          <Property Name="VehicleTypeID" Type="Int32" />
-          <Property Name="BodyTypeID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="MVSeries">
-          <Key>
-            <PropertyRef Name="SeriesID" />
-          </Key>
-          <Property Name="SeriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VehicleModelID" Type="Int32" />
-          <Property Name="VariantID" Type="Int32" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="VehicleModel">
           <Key>
             <PropertyRef Name="VehicleModelID" />
@@ -1456,6 +1335,30 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VehicleInfo">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EngineNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ChassisNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MVFileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MVTypeID" Type="Int32" />
+          <Property Name="MakeID" Type="Int32" />
+          <Property Name="VariantID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="VehicleColorID" Type="Int32" />
+          <Property Name="VehicleTypeID" Type="Int32" />
+          <Property Name="ClassificationID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1685,32 +1588,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="RegionNumber" ColumnName="RegionNumber" />
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VehicleInfo">
-            <EntityTypeMapping TypeName="ECOCModel.VehicleInfo">
-              <MappingFragment StoreEntitySet="VehicleInfo">
-                <ScalarProperty Name="ClassificationID" ColumnName="ClassificationID" />
-                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
-                <ScalarProperty Name="VehicleColorID" ColumnName="VehicleColorID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="BodyTypeID" ColumnName="BodyTypeID" />
-                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
-                <ScalarProperty Name="MakeID" ColumnName="MakeID" />
-                <ScalarProperty Name="MVTypeID" ColumnName="MVTypeID" />
-                <ScalarProperty Name="MVFileNumber" ColumnName="MVFileNumber" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
-                <ScalarProperty Name="ChassisNumber" ColumnName="ChassisNumber" />
-                <ScalarProperty Name="EngineNumber" ColumnName="EngineNumber" />
-                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1961,40 +1838,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VehicleSeries">
-            <EntityTypeMapping TypeName="ECOCModel.VehicleSeries">
-              <MappingFragment StoreEntitySet="VehicleSeries">
-                <ScalarProperty Name="BodyTypeID" ColumnName="BodyTypeID" />
-                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
-                <ScalarProperty Name="PNPVehicleTypeID" ColumnName="PNPVehicleTypeID" />
-                <ScalarProperty Name="VehicleClassificationID" ColumnName="VehicleClassificationID" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="YearOfMake" ColumnName="YearOfMake" />
-                <ScalarProperty Name="Variant" ColumnName="Variant" />
-                <ScalarProperty Name="VehicleModelName" ColumnName="VehicleModelName" />
-                <ScalarProperty Name="VehicleMakeID" ColumnName="VehicleMakeID" />
-                <ScalarProperty Name="VehicleSeriesID" ColumnName="VehicleSeriesID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MVSeries">
-            <EntityTypeMapping TypeName="ECOCModel.MVSeries">
-              <MappingFragment StoreEntitySet="MVSeries">
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="VariantID" ColumnName="VariantID" />
-                <ScalarProperty Name="VehicleModelID" ColumnName="VehicleModelID" />
-                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VehicleModel">
             <EntityTypeMapping TypeName="ECOCModel.VehicleModel">
               <MappingFragment StoreEntitySet="VehicleModel">
@@ -2023,6 +1866,31 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
                 <ScalarProperty Name="VariantName" ColumnName="VariantName" />
                 <ScalarProperty Name="VehicleModelID" ColumnName="VehicleModelID" />
                 <ScalarProperty Name="VariantID" ColumnName="VariantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleInfo">
+            <EntityTypeMapping TypeName="ECOCModel.VehicleInfo">
+              <MappingFragment StoreEntitySet="VehicleInfo">
+                <ScalarProperty Name="ClassificationID" ColumnName="ClassificationID" />
+                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+                <ScalarProperty Name="VehicleColorID" ColumnName="VehicleColorID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="VariantID" ColumnName="VariantID" />
+                <ScalarProperty Name="MakeID" ColumnName="MakeID" />
+                <ScalarProperty Name="MVTypeID" ColumnName="MVTypeID" />
+                <ScalarProperty Name="MVFileNumber" ColumnName="MVFileNumber" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+                <ScalarProperty Name="ChassisNumber" ColumnName="ChassisNumber" />
+                <ScalarProperty Name="EngineNumber" ColumnName="EngineNumber" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
