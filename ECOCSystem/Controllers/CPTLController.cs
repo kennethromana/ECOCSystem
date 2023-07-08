@@ -453,9 +453,9 @@ namespace ECOCSystem.Controllers
                     var VehicleInfo = (from a in db.VehicleInfo
                                        from b in db.VehicleType.Where(o => o.VehicleTypeID == a.VehicleTypeID).DefaultIfEmpty()
                                        from c in db.VehicleMake.Where(o => o.VehicleMakeID == a.MakeID).DefaultIfEmpty()
-                                       from d in db.VehicleModel.Where(o => o.VehicleMakeID == c.VehicleMakeID).DefaultIfEmpty()
-                                       from e in db.VehicleVariant.Where(o => o.VehicleModelID == d.VehicleModelID).DefaultIfEmpty()
-                                       from f in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == d.BodyTypeID).DefaultIfEmpty()
+                                       from d in db.VehicleVariant.Where(o => o.VariantID == a.VariantID).DefaultIfEmpty()
+                                       from e in db.VehicleModel.Where(o => o.VehicleModelID == d.VehicleModelID).DefaultIfEmpty()
+                                       from f in db.VehicleBodyType.Where(o => o.VehicleBodyTypeID == e.BodyTypeID).DefaultIfEmpty()
                                        from g in db.VehicleColor.Where(o => o.VehicleColorID == a.VehicleColorID).DefaultIfEmpty()
                                        where
                                        a.Active == true &&
@@ -470,7 +470,7 @@ namespace ECOCSystem.Controllers
                                            VehicleType = b.VehicleTypeDescription,
                                            VehicleMake = c.VehicleMakeName,
                                            VehicleBody = f.VehicleBodyTypeName,
-                                           VehicleSeries = d.VehicleModelName.ToUpper() + " " + e.VariantName.ToUpper(),
+                                           VehicleSeries = e.VehicleModelName.ToUpper() + " " + d.VariantName.ToUpper(),
                                            Color = g.VehicleColorName,
                                            ClassificationID = a.ClassificationID
                                        }).FirstOrDefault();
