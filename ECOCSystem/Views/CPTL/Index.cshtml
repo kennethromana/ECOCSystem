@@ -911,8 +911,8 @@ svg:hover .tooltip {
                 var SelectedColor = $("<option selected='selected'></option>").val(response.ColorID).text(response.Color)
                 $("#ClientVehicle_SelectedColorID").append(SelectedColor).trigger('change');
 
-                var SelectedSeries = $("<option selected='selected'></option>").val(response.SeriesID).text(response.Series)
-                $("#ClientVehicle_SelectedSeriesID").append(SelectedSeries).trigger('change');
+                var SelectedSeries = $("<option selected='selected'></option>").val(response.VariantID).text(response.Series)
+                $("#ClientVehicle_SelectedVariantID").append(SelectedSeries).trigger('change');
 
                 var SelectedVehicleType = $("<option selected='selected'></option>").val(response.VTypeID).text(response.VType)
                 $("#ClientVehicle_SelectedVehicleTypeID").append(SelectedVehicleType).trigger('change');
