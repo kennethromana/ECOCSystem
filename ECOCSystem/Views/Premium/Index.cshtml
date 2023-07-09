@@ -16,16 +16,23 @@
             @using (Html.BeginForm("Vehicle", "Vehicle", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "CompanyInfo_Form" }))
             {
 
-                @Html.HiddenFor(m => m)
+                @Html.HiddenFor(m => m.PremiumID)
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="table-BodyType" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="min-width: 80em;cursor:pointer">
+                            <table id="table-PremiumList" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap " style="min-width: 80em;cursor:pointer">
                                 <thead>
                                     <tr>
                                         <th><center>Action Edit</center></th>
-                                        <th>Body Type</th>
-                                        <th>Body Type Abbreviation</th>
+                                        <th>Vehicle Classification</th>
+                                        <th>CTPL Term</th>
+                                        <th>Basic Premium</th>
+                                        <th>Taxes</th>
+                                        <th>Authentication Fee</th>
+                                        <th>Gross Premium</th>
+                                        <th>VAT</th>
+                                        <th>DST</th>
+                                        <th>LGT</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -72,17 +79,17 @@
 <script>
     $(document).ready(function () {
 
-        getBodyTypeList();
+        getPremiumList();
 
 
     });
 
 
 
-   function getBodyTypeList() {
+   function getPremiumList() {
 
         let cntRow = 0;
-       BodyType_table = $("#table-BodyType").DataTable({
+       Premium_table = $("#table-PremiumList").DataTable({
             "processing": true, // for show progress bar
             "serverSide": false, // for process server side
             "filter": true, // this is for disable filter (search box)
@@ -98,7 +105,7 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'p><'col-sm-12 col-md-7'i>>",
             "ajax": {
-                "url": '@Url.Action("GetAllBodyTypeList", "Vehicle")',
+                "url": '@Url.Action("GetAllPremiumList", "Premium")',
                 "type": "POST",
                 "datatype": "json",
 /*                "data": { "CompanyID": CompanyID, "BranchID": BranchID },*/
@@ -117,11 +124,11 @@
             },
             "columns": [
                 {
-                    "className": "VehicleBodyTypeID", "data": null, "name": "VehicleBodyTypeID",
+                    "className": "PremiumID", "data": null, "name": "PremiumID",
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-make-info"" onclick="EditMake(`+ data.VehicleBodyTypeID + `,'` + data.VehicleBodyTypeID+`')">
+                                         <span type="button" data-toggle="modal" data-target="#modal-make-info"" onclick="EditMake(`+ data.PremiumID + `,'` + data.PremiumID+`')">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -129,8 +136,15 @@
                               </center>`
                     }, "autoWidth": true
                 },
-                { "className": "VehicleBodyTypeName", "data": "VehicleBodyTypeName", "name": "VehicleBodyTypeName", "autoWidth": true },
-                { "className": "VehicleBodyAbbr", "data": "VehicleBodyAbbr", "name": "VehicleBodyAbbr", "autoWidth": true },
+                { "className": "Classification", "data": "Classification", "name": "Classification", "autoWidth": true },
+                { "className": "Term", "data": "Term", "name": "Term", "autoWidth": true },
+                { "className": "BasicPremium", "data": "BasicPremium", "name": "BasicPremium", "autoWidth": true },
+                { "className": "Taxes", "data": "Taxes", "name": "Taxes", "autoWidth": true },
+                { "className": "AuthFee", "data": "AuthFee", "name": "AuthFee", "autoWidth": true },
+                { "className": "GrossPremium", "data": "GrossPremium", "name": "GrossPremium", "autoWidth": true },
+                { "className": "VAT", "data": "VAT", "name": "VAT", "autoWidth": true },
+                { "className": "DST", "data": "DST", "name": "DST", "autoWidth": true },
+                { "className": "LGT", "data": "LGT", "name": "LGT", "autoWidth": true },
 
 
 
