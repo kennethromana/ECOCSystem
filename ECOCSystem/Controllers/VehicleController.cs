@@ -87,8 +87,8 @@ namespace ECOCSystem.Controllers
                                         newModel.CreatedDate = DateTime.Now;
                                         db.VehicleModel.Add(newModel);
 
-                                        //db.SaveChanges();
-                                        //dbTransaction.Commit();
+                                        db.SaveChanges();
+                                        dbTransaction.Commit();
                                         Status = "Success";
                                         Message = "New model Added Successfully!";
                                     }
@@ -207,7 +207,7 @@ namespace ECOCSystem.Controllers
                                 Status = "Success";
                                 Message = "New Vehicle Make Added Successfully!";
                               
-                                CurrentSubmit = "MAKE";
+                                CurrentSubmit = "Make";
 
                             }
                             break;

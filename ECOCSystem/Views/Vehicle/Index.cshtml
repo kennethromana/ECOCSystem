@@ -259,7 +259,7 @@
         });
 
         $('#modal-make-info').on('hide.bs.modal', function () {
-            window.location.reload(true)
+            getMakeList()
         });
 
 
@@ -324,8 +324,7 @@
                                     clearVehicleForm();
                                     break;
                                 case "Make":
-                                    $("#modal-make-info").modal('hide');
-                                   
+                                    $("#modal-make-info").modal('hide');                                 
                                     break;
                                 default:
                                     break;
