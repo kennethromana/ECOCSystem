@@ -292,44 +292,8 @@ warning 6002: The table/view 'ECOC.dbo.InsuranceCOCSeries' does not have a prima
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.MakeBodyType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="MakeBodyType">
-          <Key>
-            <PropertyRef Name="MakeBodyTypeID" />
-            
-            
-            
-            
-            
-          </Key>
-          <Property Name="MakeBodyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MakeID" Type="int" Nullable="false" />
-          <Property Name="BodyTypeID" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="int" />
-          <Property Name="UpdatedDate" Type="datetime" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.MakeColor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="MakeColor">
-          <Key>
-            <PropertyRef Name="MakeColorID" />
-            
-            
-            
-            
-            
-          </Key>
-          <Property Name="MakeColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MakeID" Type="int" Nullable="false" />
-          <Property Name="ColorID" Type="int" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="UpdatedBy" Type="int" />
-          <Property Name="UpdatedDate" Type="datetime" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ECOC.dbo.MVPremium' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MVPremium">
@@ -689,30 +653,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
     [InsuranceCOCSeries].[COCPrefix] AS [COCPrefix]
     FROM [dbo].[InsuranceCOCSeries] AS [InsuranceCOCSeries]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="MakeBodyType" EntityType="Self.MakeBodyType" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MakeBodyType].[MakeBodyTypeID] AS [MakeBodyTypeID], 
-    [MakeBodyType].[MakeID] AS [MakeID], 
-    [MakeBodyType].[BodyTypeID] AS [BodyTypeID], 
-    [MakeBodyType].[CreatedBy] AS [CreatedBy], 
-    [MakeBodyType].[CreatedDate] AS [CreatedDate], 
-    [MakeBodyType].[UpdatedBy] AS [UpdatedBy], 
-    [MakeBodyType].[UpdatedDate] AS [UpdatedDate], 
-    [MakeBodyType].[Active] AS [Active]
-    FROM [dbo].[MakeBodyType] AS [MakeBodyType]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="MakeColor" EntityType="Self.MakeColor" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MakeColor].[MakeColorID] AS [MakeColorID], 
-    [MakeColor].[MakeID] AS [MakeID], 
-    [MakeColor].[ColorID] AS [ColorID], 
-    [MakeColor].[CreatedBy] AS [CreatedBy], 
-    [MakeColor].[CreatedDate] AS [CreatedDate], 
-    [MakeColor].[Active] AS [Active], 
-    [MakeColor].[UpdatedBy] AS [UpdatedBy], 
-    [MakeColor].[UpdatedDate] AS [UpdatedDate]
-    FROM [dbo].[MakeColor] AS [MakeColor]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="MVPremium" EntityType="Self.MVPremium" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MVPremium].[ID] AS [ID], 
@@ -861,8 +801,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <EntitySet Name="CTPLTaxType" EntityType="ECOCModel.CTPLTaxType" />
           <EntitySet Name="CTPLApplication" EntityType="ECOCModel.CTPLApplication" />
           <EntitySet Name="InsuranceCOCSeries" EntityType="ECOCModel.InsuranceCOCSeries" />
-          <EntitySet Name="MakeBodyType" EntityType="ECOCModel.MakeBodyType" />
-          <EntitySet Name="MakeColor" EntityType="ECOCModel.MakeColor" />
           <EntitySet Name="VehicleModel" EntityType="ECOCModel.VehicleModel" />
           <EntitySet Name="VehicleVariant" EntityType="ECOCModel.VehicleVariant" />
           <EntitySet Name="VehicleInfo" EntityType="ECOCModel.VehicleInfo" />
@@ -1252,32 +1190,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="MasterPolicy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="COCPrefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="MakeBodyType">
-          <Key>
-            <PropertyRef Name="MakeBodyTypeID" />
-          </Key>
-          <Property Name="MakeBodyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MakeID" Type="Int32" Nullable="false" />
-          <Property Name="BodyTypeID" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MakeColor">
-          <Key>
-            <PropertyRef Name="MakeColorID" />
-          </Key>
-          <Property Name="MakeColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MakeID" Type="Int32" Nullable="false" />
-          <Property Name="ColorID" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="VehicleModel">
           <Key>
@@ -1778,34 +1690,6 @@ warning 6002: The table/view 'ECOC.dbo.VehicleType' does not have a primary key 
                 <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
                 <ScalarProperty Name="InsuranceID" ColumnName="InsuranceID" />
                 <ScalarProperty Name="InsuranceCOCSeriesID" ColumnName="InsuranceCOCSeriesID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MakeBodyType">
-            <EntityTypeMapping TypeName="ECOCModel.MakeBodyType">
-              <MappingFragment StoreEntitySet="MakeBodyType">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="BodyTypeID" ColumnName="BodyTypeID" />
-                <ScalarProperty Name="MakeID" ColumnName="MakeID" />
-                <ScalarProperty Name="MakeBodyTypeID" ColumnName="MakeBodyTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MakeColor">
-            <EntityTypeMapping TypeName="ECOCModel.MakeColor">
-              <MappingFragment StoreEntitySet="MakeColor">
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
-                <ScalarProperty Name="MakeID" ColumnName="MakeID" />
-                <ScalarProperty Name="MakeColorID" ColumnName="MakeColorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

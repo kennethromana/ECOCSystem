@@ -52,8 +52,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<CTPLTaxType> CTPLTaxType { get; set; }
         public virtual DbSet<CTPLApplication> CTPLApplication { get; set; }
         public virtual DbSet<InsuranceCOCSeries> InsuranceCOCSeries { get; set; }
-        public virtual DbSet<MakeBodyType> MakeBodyType { get; set; }
-        public virtual DbSet<MakeColor> MakeColor { get; set; }
         public virtual DbSet<VehicleModel> VehicleModel { get; set; }
         public virtual DbSet<VehicleVariant> VehicleVariant { get; set; }
         public virtual DbSet<VehicleInfo> VehicleInfo { get; set; }
