@@ -274,10 +274,10 @@
     <Compile Include="Model\VehicleInfo.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\MVModel.cs" />
     <Compile Include="Model\VehicleMake.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MVModel.cs" />
     <Compile Include="Model\VehicleModel.cs">
       <DependentUpon>ECOC.tt</DependentUpon>
     </Compile>

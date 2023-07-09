@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="ECOCModel.VehicleBodyType" Width="1.5" PointX="13.75" PointY="4.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleColor" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleFuelType" Width="1.5" PointX="14.75" PointY="8.75" />
-        <EntityTypeShape EntityType="ECOCModel.VehicleMake" Width="1.5" PointX="14.75" PointY="12.75" />
         <EntityTypeShape EntityType="ECOCModel.UserEntity" Width="1.5" PointX="10.375" PointY="15.75" />
         <EntityTypeShape EntityType="ECOCModel.CompanyEntity" Width="1.5" PointX="16.375" PointY="0.75" />
         <EntityTypeShape EntityType="ECOCModel.SystemVariable" Width="1.5" PointX="3.375" PointY="16.75" />
@@ -38,6 +37,7 @@
         <EntityTypeShape EntityType="ECOCModel.VehicleModel" Width="1.5" PointX="0.75" PointY="18.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleVariant" Width="1.5" PointX="18.75" PointY="16.75" />
         <EntityTypeShape EntityType="ECOCModel.VehicleInfo" Width="1.5" PointX="18.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ECOCModel.VehicleMake" Width="1.5" PointX="12.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -41,7 +41,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<VehicleBodyType> VehicleBodyType { get; set; }
         public virtual DbSet<VehicleColor> VehicleColor { get; set; }
         public virtual DbSet<VehicleFuelType> VehicleFuelType { get; set; }
-        public virtual DbSet<VehicleMake> VehicleMake { get; set; }
         public virtual DbSet<UserEntity> UserEntity { get; set; }
         public virtual DbSet<CompanyEntity> CompanyEntity { get; set; }
         public virtual DbSet<SystemVariable> SystemVariable { get; set; }
@@ -58,5 +57,6 @@ namespace ECOCSystem.Model
         public virtual DbSet<VehicleModel> VehicleModel { get; set; }
         public virtual DbSet<VehicleVariant> VehicleVariant { get; set; }
         public virtual DbSet<VehicleInfo> VehicleInfo { get; set; }
+        public virtual DbSet<VehicleMake> VehicleMake { get; set; }
     }
 }

@@ -196,6 +196,7 @@ namespace ECOCSystem.Controllers
 
                                 var newMake = new VehicleMake();
                                 newMake.VehicleMakeName = model.MakeInfo.VehicleMake;
+                                newMake.Active = true;
                                 newMake.CreatedBy = CurrentUser.Details.ID;
                                 newMake.CreatedDate = DateTime.Now;
                                 db.VehicleMake.Add(newMake);
