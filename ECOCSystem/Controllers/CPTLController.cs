@@ -472,7 +472,8 @@ namespace ECOCSystem.Controllers
                                            VehicleBody = f.VehicleBodyTypeName,
                                            VehicleSeries = e.VehicleModelName.ToUpper() + " " + d.VariantName.ToUpper(),
                                            Color = g.VehicleColorName,
-                                           ClassificationID = a.ClassificationID
+                                           ClassificationID = a.ClassificationID,
+                                           MVFileNo = a.MVFileNumber,
                                        }).FirstOrDefault();
 
                     //GET INSURANCE PARAMOUNT SERIES WHICH IS 4
@@ -506,7 +507,7 @@ namespace ECOCSystem.Controllers
                     prm[11] = new ReportParameter("MakeParameter", VehicleInfo.VehicleMake);
                     prm[12] = new ReportParameter("BodyParameter", VehicleInfo.VehicleBody);
                     prm[13] = new ReportParameter("ColorParameter", VehicleInfo.Color);
-                    prm[14] = new ReportParameter("MVFileNoParameter", "");
+                    prm[14] = new ReportParameter("MVFileNoParameter", VehicleInfo.MVFileNo);
                     prm[15] = new ReportParameter("PlateParameter", VehicleInfo.PlateNo);
                     prm[16] = new ReportParameter("SerialOrChassisParameter", VehicleInfo.Chassis);
                     prm[17] = new ReportParameter("MotorParameter", VehicleInfo.Engine);
