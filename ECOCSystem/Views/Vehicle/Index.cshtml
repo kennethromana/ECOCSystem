@@ -256,7 +256,10 @@
 
         $('#modal-model-info').on('hide.bs.modal', function () {
             $("#make-overlay").addClass("d-none");
-            console.log('modal info close')
+        });
+
+        $('#modal-make-info').on('hide.bs.modal', function () {
+            window.location.reload(true)
         });
 
 
@@ -319,10 +322,9 @@
                                     $("#modal-client-vehicle").modal('hide');
                                     getVehicleList(response.ClientID)
                                     clearVehicleForm();
-
                                     break;
-                                case "CTPL":
-                                    showCOCFile(response.FileName);
+                                case "Make":
+                                   
                                     break;
                                 default:
                                     break;

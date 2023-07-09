@@ -191,12 +191,22 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
-                        case "EDITCLIENT":
+                        case "ADDMAKE":
                             {
 
+                                var newMake = new VehicleMake();
+                                newMake.VehicleMakeName = model.MakeInfo.VehicleMake;
+                                newMake.CreatedBy = CurrentUser.Details.ID;
+                                newMake.CreatedDate = DateTime.Now;
+                                db.VehicleMake.Add(newMake);
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
                                 Status = "Success";
-                                Message = "Client Updated Successfully!";
-                                CurrentSubmit = "Client";
+                                Message = "New Vehicle Make Added Successfully!";
+                              
+                                CurrentSubmit = "MAKE";
 
                             }
                             break;
