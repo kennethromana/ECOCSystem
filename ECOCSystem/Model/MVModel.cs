@@ -22,6 +22,7 @@ namespace ECOCSystem.Model
         public int ModelID { get; set; }
         public int VariantID { get; set; }
         public int VehicleID { get; set; }
+        [Required]
         [DisplayName("Vehicle Series")]
         public int SelectedVariantID { get; set; }
         [DisplayName("Vehicle Classification")]

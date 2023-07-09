@@ -29,7 +29,8 @@ namespace ECOCSystem.Controllers
                                               from d in db.CompanyBranch.Where(o => o.ID == a.BranchID).DefaultIfEmpty()
                                               from e in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
                                               where
-                                              a.Active == true
+                                              a.Active == true &&
+                                              a.CompanyID == CurrentUser.Details.CompanyID
                                                 select new ClientView
                                                 {
                                                     ClientID = a.ID,
