@@ -189,3 +189,27 @@
 
     </div>
 </section>
+
+<script>
+    $(document).ready(function () {
+
+
+   
+        $('#addCompany').on('click', function () {
+            $('#companyOption').empty();
+            $('#companyOption').append(`<button type="button" id="submit_addCompany" value="ADDCOMPANY" class="btn btn-success">Save</button> `)
+
+            $('#submit_addCompany').on('click', function () {
+                submitForm("ADDCOMPANY");
+            });
+
+
+
+        });
+
+
+        getCompanyList();
+
+
+    });
+</script>
