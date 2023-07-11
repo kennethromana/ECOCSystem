@@ -426,24 +426,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-map-signs"></i>
-                                        <p>
-                                            Divisions
-                                            <i class="fas fa-angle-left right"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                    
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "Division")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Region List</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-file-contract"></i>
                                         <p>
                                             Premium
@@ -457,10 +439,28 @@
                                                 <p>Premium List</p>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        @*<li class="nav-item">
                                             <a href="pages/tables/data.html" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>CTPL Term</p>
+                                            </a>
+                                        </li>*@
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-map-signs"></i>
+                                        <p>
+                                            Divisions
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "Division")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Region List</p>
                                             </a>
                                         </li>
                                     </ul>
