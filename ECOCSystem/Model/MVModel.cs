@@ -103,6 +103,15 @@ namespace ECOCSystem.Model
         public string BodyType { get; set; }
 
     }
+    public class ClassificationModel
+    {
+        public ClassificationModel()
+        {
+            
+        }
+        public int ClassificationID { get; set; }
+    }
+
     public class Variants
     {
         public bool isChecked { get; set; }
