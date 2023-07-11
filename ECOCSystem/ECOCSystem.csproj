@@ -2681,6 +2681,7 @@
     <Content Include="Views\Vehicle\_Model.cshtml" />
     <Content Include="Views\Premium\Index.cshtml" />
     <Content Include="Views\Vehicle\Classification.cshtml" />
+    <Content Include="Views\Vehicle\VehicleType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

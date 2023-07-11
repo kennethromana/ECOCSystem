@@ -111,6 +111,14 @@ namespace ECOCSystem.Model
         }
         public int ClassificationID { get; set; }
     }
+    public class VehicleTypeModel
+    {
+        public VehicleTypeModel()
+        {
+
+        }
+        public int VehicleTypeID { get; set; }
+    }
 
     public class Variants
     {

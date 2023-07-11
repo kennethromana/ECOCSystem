@@ -35,6 +35,12 @@ namespace ECOCSystem.Controllers
             return View(model);
 
         }
+        public ActionResult VehicleType()
+        {
+            var model = new VehicleTypeModel();
+            return View(model);
+
+        }
         public ActionResult Model()
         {
             var model = new VehicleModelModel();
@@ -334,6 +340,27 @@ namespace ECOCSystem.Controllers
 
                     //select all insurance comapny exclude databridge asia which has ID = 1
                     var tableData = db.VehicleClassification.Where(o => o.Active).ToList();
+
+
+                    //Returning Json Data    
+                    return Json(new { data = tableData }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GetVehicleTypeList()
+        {
+            try
+            {
+                //Creating instance of DatabaseContext class  
+                using (var db = new ECOCEntities())
+                {
+
+                    //select all insurance comapny exclude databridge asia which has ID = 1
+                    var tableData = db.VehicleType.Where(o => o.Active).ToList();
 
 
                     //Returning Json Data    
