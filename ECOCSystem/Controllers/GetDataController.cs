@@ -416,6 +416,7 @@ namespace ECOCSystem.Controllers
 
 
                 var itemList = (from a in db.VehicleClassification
+                                where a.Active
                                 select new
                                 {
                                     id = a.VehicleClassificationID,
