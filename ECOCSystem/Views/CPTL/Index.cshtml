@@ -246,7 +246,7 @@ svg:hover .tooltip {
                                                     </div>
                                                     <div class="col-sm-1  uiverse btn-edit-1 add-button">
                                                         <span class="tooltip" style="white-space:nowrap;">Edit client</span>
-                                                        <span type="button" id="editClient" data-toggle="modal" data-target="#modal-client">
+                                                        <span type="button" id="editClient">
                                                             <i class="fa fa-user-edit btn-sm"></i>
 
                                                         </span>
@@ -653,16 +653,17 @@ svg:hover .tooltip {
 
 
         $('#ClientID').on('change', function () {
+            //remove current selected
             $('#VehicleID').val(0)
             $('#AddressID').val(0)
 
 
 
             let ID = $(this).val();
+
             getAddressList(ID)
             getVehicleList(ID)
             getClientInfo(ID)
-
 
 
         });
@@ -683,6 +684,7 @@ svg:hover .tooltip {
             $("#Application_RegistrationType").text($("#SelectedRegistrationTypeID option:selected").text());
 
         });
+
 
 
 
@@ -947,7 +949,7 @@ svg:hover .tooltip {
             $('#VehicleID').val(VehiceID);
             clearVehicleForm()
         }
-          
+
 
 
     }
@@ -1077,6 +1079,9 @@ svg:hover .tooltip {
                 },
                 complete: function () {
                     $('#loadingScreen').hide();
+
+                    var selectedTitle = $("<option selected='selected'></option>").val(0).text('Select Title')
+                    $("#Client_TitleID").append(selectedTitle).trigger('change');
                     $('#Client_ClientID').val(0);
                     $('#Client_CorpName').val('');
                     $('#Client_FirstName').val('');
@@ -1143,6 +1148,21 @@ svg:hover .tooltip {
                 $("#Application_LastName").text(response.lastName)
                 $("#Application_MiddleName").text(response.middleName)
 
+
+
+
+
+                var selectedTitle = $("<option selected='selected'></option>").val(response.titleID).text(response.titleName)
+                $("#Client_TitleID").append(selectedTitle).trigger('change');
+
+                $("#Client_CorpName").val(response.corpName)
+                $("#Client_FirstName").val(response.firstName)
+                $("#Client_LastName").val(response.lastName)
+                $("#Client_MiddleName").val(response.middleName)
+                $("#Client_EmailAddress").val(response.email)
+                $("#Client_BusinessPhone").val(response.bphone)
+                $("#Client_MobileNo").val(response.cphone)
+
             },
             error: function (xhr, status, error) {
                 toastr.error('An error has occured while processing, Please contact Databridge Support.');
@@ -1205,4 +1225,6 @@ svg:hover .tooltip {
                 $('div.Type').not('[data-attribute="' + selection + '"]').hide();
             }
     }
+
+
 </script>

@@ -40,20 +40,7 @@ namespace ECOCSystem.Controllers
                                     id =  a.ID,
                                     text = a.Name
                                 }).ToList();
-                                      
-
-                //var itemList = (from a in db.Customer
-                //                join b in db.Title on a.TitleID equals b.TitleID into temp
-                //                where
-                //                a.Active == true &&
-                //                a.DealerID == CurrentUser.Details.ReferenceID
-                //                from temptbl in temp.DefaultIfEmpty()
-                //                select new
-                //                {
-                //                    id = a.CustomerID,
-                //                    text = temptbl.TitleTypeID == 1 ? a.LastName + ", " + a.FirstName + " " + a.MiddleName : a.CorpName,
-                //                    a.CreatedDate
-                //                }).OrderByDescending(o => o.CreatedDate).ToList();
+              
 
                 //Search itemList
                 if (!string.IsNullOrWhiteSpace(search))
@@ -635,7 +622,12 @@ namespace ECOCSystem.Controllers
                                       lastName = a.LastName,
                                       middleName = a.MiddleName,
                                       titleType = c.Name,
-                                      TitleTypeID = c.ID
+                                      TitleTypeID = c.ID,
+                                      email = a.EmailAddress,
+                                      bphone = a.BusinessPhone,
+                                      mphone = a.MobileNo,
+                                      titleID =  a.TitleID,
+                                      titleName = b.Name,
                                   }).FirstOrDefault();
 
                 return Json(ClientInfo, JsonRequestBehavior.AllowGet);

@@ -83,15 +83,30 @@
         });
     });
 
-    $('#editClient').on('click', function () {
-        $('#clientOption').empty();
-        $('#clientOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" id="submit_UpdateClient" class="btn btn-success">Update</button>  `)
+        $('#editClient').on('click', function (e) {
 
-        $('#submit_UpdateClient').on('click', function () {
-            submitForm("EDITCLIENT");
+            let ClientID = $('#ClientID').val();
+
+
+            if (ClientID != 0) {
+
+                $('#clientOption').empty();
+                $('#clientOption').append(`<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                           <button type="button" id="submit_UpdateClient" class="btn btn-success">Update</button> `)
+
+                $('#modal-client').modal('show');
+
+                $('#submit_UpdateClient').on('click', function () {
+                    submitForm("EDITCLIENT");
+                });
+            }
+            else {
+                toastr.info("Select a client first.")
+            }
+
         });
-    });
+
+
 
 
 
@@ -112,8 +127,10 @@
                 }
             });
 
-           
+
         });
+
+
     });
 
     function switchUi(selection) {
