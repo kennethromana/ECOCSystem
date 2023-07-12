@@ -266,8 +266,26 @@ namespace ECOCSystem.Controllers
                 //Creating instance of DatabaseContext class  
                 using (var db = new ECOCEntities())
                 {
-                   
-                    var tableData = db.CompanyBranch.Where(o => o.CompanyID == CompanyID).ToList();
+
+                    var tableData = (from a in db.CompanyBranch
+                                     where 
+                                     a.Active == true &&
+                                     a.CompanyID == CompanyID
+                                     select new
+                                     {
+                                         ID = a.ID,
+                                         Name = a.Name,
+                                         Address = a.Address,
+                                         EmailAddress = a.EmailAddress ?? "",
+                                         BusinessPhone = a.BusinessPhone ?? "",
+                                         MobilePhone = a.MobilePhone ?? "", 
+                                         FaxNumber = a.FaxNumber ?? "",
+                                         TIN = a.TIN ?? "",
+                                         Website = a.Website,
+                                         ZipCode = a.ZipCode ?? "",
+                                         AccreditationNumber = a.AccreditationNumber ?? "",
+                                         CompanyID = a.CompanyID
+                                     }).ToList();
 
                     //Returning Json Data    
                     return Json(new { data = tableData });

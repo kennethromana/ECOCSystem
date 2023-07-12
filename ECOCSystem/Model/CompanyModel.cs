@@ -18,6 +18,8 @@ namespace ECOCSystem.Model
 
         }
         public int SelectedCompanyID { get; set; }
+        public int SelectedBranchID { get; set; }
+        public int SelectedUserID { get; set; }
         [Required]
         [DisplayName("Company Name")]
         public string Name { get; set; }

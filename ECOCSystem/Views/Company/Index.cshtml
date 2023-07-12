@@ -27,6 +27,9 @@
             {
 
                 @Html.HiddenFor(m => m.SelectedCompanyID)
+                @Html.HiddenFor(m => m.SelectedBranchID)
+                @Html.HiddenFor(m => m.SelectedUserID)
+
                 <div id="" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
@@ -97,7 +100,7 @@
         $('#modal-companyInfo').on('hide.bs.modal', function (e) {
             // do something…
             /*       window.location.href = '/Company/Index/';*/
-            window.location.reload(true)
+            getCompanyList()
 
         });
 
@@ -128,9 +131,9 @@
 
         });
 
-
         getCompanyList();
-
+        getBatchList(0);
+        getUserList(0, 0);
 
     });
 
@@ -222,6 +225,7 @@
 
     function clearModelBranch()
     {
+        $('#SelectedBranchID').val(0);
         $('#CompanyBranch_Name').val('');
         $('#CompanyBranch_Address').val('');
         $('#CompanyBranch_EmailAddress').val('');
@@ -253,6 +257,24 @@
              submitForm("EDITCOMPANY");
          });
 
+
+    };
+    function EditBranch(BranchInfo) {
+
+
+        $('#SelectedBranchID').val(BranchInfo[0]);
+        $('#CompanyBranch_Name').val(BranchInfo[1]);
+        $('#CompanyBranch_Address').val(BranchInfo[2]);
+        $('#CompanyBranch_EmailAddress').val(BranchInfo[3] ?? "");
+        $('#CompanyBranch_BusinessPhone').val(BranchInfo[4]);
+        $('#CompanyBranch_MobilePhone').val(BranchInfo[5]);
+        $('#CompanyBranch_AccreditationNumber').val(BranchInfo[6]);
+        $('#CompanyBranch_FaxNumber').val(BranchInfo[7]);
+        $('#CompanyBranch_TIN').val(BranchInfo[8]);
+
+        //for (let i = 0; i < BranchInfo.length; i++) {
+        //    console.log(BranchInfo[i]);
+        //}
 
     };
 
@@ -352,11 +374,12 @@
                     "className": "td_Edit", "data": null, "name": "ID",
                     render: function (data, type, row) {
                         return `<center>
-                                     <div class="">
-                                         <span type="button" data-toggle="modal" data-target="#modal-companyInfo" class="editCompanyBranch" BranchID="`+ data.ID +`">
+                                  <div class="">
+                                         <span BranchID = "`+ data.ID + `" type="button" data-toggle="modal" data-target="#modal-company-branch"" onclick="EditBranch([` + data.ID + `,'` + data.Name + `','` + data.Address + `','` + data.EmailAddress + `','` + data.BusinessPhone + `','` + data.MobilePhone + `','` + data.AccreditationNumber + `','` + data.FaxNumber + `','` + data.TIN + `'])">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
+                                 </div>
                               </center>`
                     }, "autoWidth": true
                 },
