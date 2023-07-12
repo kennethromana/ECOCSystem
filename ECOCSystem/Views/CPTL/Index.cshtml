@@ -284,6 +284,7 @@ svg:hover .tooltip {
                                                                 <th>Zip Code</th>
                                                                 <th>City</th>
                                                                 <th>Province</th>
+                                                                <th><center>Action Edit</center></th>
                                                             </tr>
                                                         </thead>
                                                     </table>
@@ -657,8 +658,6 @@ svg:hover .tooltip {
             $('#VehicleID').val(0)
             $('#AddressID').val(0)
 
-
-
             let ID = $(this).val();
 
             getAddressList(ID)
@@ -770,6 +769,18 @@ svg:hover .tooltip {
                 { "className": "ZipCode", "data": "ZipCode", "name": "ZipCode", "autoWidth": true },
                 { "className": "City", "data": "City", "name": "City", "autoWidth": true },
                 { "className": "Province", "data": "Province", "name": "Province", "autoWidth": true },
+                {
+                    "className": "editAddress", "data": null, "name": "editAddress",
+                    render: function (data, type, row) {
+                        return `<center>
+                                            <div class="">
+                                                <span type="button" data-toggle="modal" onclick="EditAddress(`+ data.AddressID + `)" data-target="#modal-client-address" AddressID="` + data.AddressID + `">
+                                                    <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
+                                                </span>
+                                            </div>
+                                        </center>`
+                    }, "autoWidth": true
+                },
 
             ]
         });
@@ -934,6 +945,52 @@ svg:hover .tooltip {
 
     }
 
+
+    function EditAddress(AddressID) {
+
+
+        $('#loadingScreen').show();
+        $.ajax({
+            url: '@Url.Action("GetAddressInfo", "GetData")',
+            type: "GET",
+            cache: false,
+            dataType: "JSON",
+            beforeSend: function () {
+                $('#loadingScreen').show();
+            },
+    /*        async: false,*/
+            data: { "AddressID": AddressID },
+            success: function (response) {
+
+                $('#AddressID').val(response.ID);
+                $('#ClientAddress_ClientAddressID').val(response.ID);
+                $('#ClientAddress_HouseBldgNo').val(response.HouseBldgNo);
+                $('#ClientAddress_StreetSubdivision').val(response.StreetName);
+                $('#ClientAddress_Barangay').val(response.Barangay);
+                $('#ClientAddress_ZipCode').val(response.ZipCode);
+                $('#ClientAddress_EmailAddress').val(response.EmailAddress);
+                $('#ClientAddress_MobileNo').val(response.MobileNo);
+                $('#ClientAddress_TelephoneNo').val(response.TelephoneNo);
+
+                var selectedAddressType = $("<option selected='selected'></option>").val(response.AddressTypeID).text(response.AddressType)
+                $("#ClientAddress_AddressTypeID").append(selectedAddressType).trigger('change');
+
+                var selectedCity = $("<option selected='selected'></option>").val(response.CityID).text(response.City)
+                $("#ClientAddress_CityID").append(selectedCity).trigger('change');
+
+                var selectedProvince = $("<option selected='selected'></option>").val(response.ProvinceID).text(response.Province)
+                $("#ClientAddress_ProvinceID").append(selectedProvince).trigger('change');
+            },
+            error: function (xhr, status, error) {
+                toastr.error('An error has occured while processing, Please contact Databridge Support.');
+            },
+            complete: function () {
+                $('#loadingScreen').hide();
+            },
+        });
+
+    }
+
     function getcheckedVehicle()
     {
 
@@ -1027,6 +1084,7 @@ svg:hover .tooltip {
         $("#Application_Province").text('')
 
 
+        $('#AddressID').val(0);
         $('#ClientAddress_ClientAddressID').val(0);
         $('#ClientAddress_HouseBldgNo').val('');
         $('#ClientAddress_StreetSubdivision').val('');
@@ -1035,6 +1093,15 @@ svg:hover .tooltip {
         $('#ClientAddress_EmailAddress').val('');
         $('#ClientAddress_MobileNo').val('');
         $('#ClientAddress_TelephoneNo').val('');
+
+        var selectedAddressType = $("<option selected='selected'></option>").val(0).text("Select Address Type")
+        $("#ClientAddress_AddressTypeID").append(selectedAddressType).trigger('change');
+
+        var selectedCity = $("<option selected='selected'></option>").val(0).text("Select City")
+        $("#ClientAddress_CityID").append(selectedCity).trigger('change');
+
+        var selectedProvince = $("<option selected='selected'></option>").val(0).text("Select Province")
+        $("#ClientAddress_ProvinceID").append(selectedProvince).trigger('change');
 
     }
 

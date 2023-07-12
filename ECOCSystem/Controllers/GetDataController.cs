@@ -595,7 +595,10 @@ namespace ECOCSystem.Controllers
                                        AddressType = e.Name,
                                        EmailAddress = a.EmailAddress,
                                        MobileNo = a.MobileNo,
-                                       TelephoneNo = a.TelephoneNo
+                                       TelephoneNo = a.TelephoneNo,
+                                       CityID = a.CityID,
+                                       ProvinceID = a.ProvinceID,
+                                       AddressTypeID = a.AddressTypeID
 
                                    }).FirstOrDefault();
 
