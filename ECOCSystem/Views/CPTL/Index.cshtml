@@ -962,7 +962,7 @@ svg:hover .tooltip {
             data: { "AddressID": AddressID },
             success: function (response) {
 
-                $('#AddressID').val(response.ID);
+                $('#AddressID').val(AddressID);
                 $('#ClientAddress_ClientAddressID').val(response.ID);
                 $('#ClientAddress_HouseBldgNo').val(response.HouseBldgNo);
                 $('#ClientAddress_StreetSubdivision').val(response.StreetName);
@@ -980,6 +980,15 @@ svg:hover .tooltip {
 
                 var selectedProvince = $("<option selected='selected'></option>").val(response.ProvinceID).text(response.Province)
                 $("#ClientAddress_ProvinceID").append(selectedProvince).trigger('change');
+
+                $('#addressOption').empty();
+                $('#addressOption').append(`<button  class="btn btn-outline-success" data-dismiss="modal">Cancel</button>
+                      <button type="buttin" id="submit_editAddress" value="EDITADDRESS" class="btn btn-success">Update</button>`);
+
+                $('#submit_editAddress').on('click', function (e) {
+                    e.preventDefault();
+                    submitForm("EDITADDRESS");
+                });
             },
             error: function (xhr, status, error) {
                 toastr.error('An error has occured while processing, Please contact Databridge Support.');

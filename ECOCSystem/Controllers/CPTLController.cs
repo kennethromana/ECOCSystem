@@ -29,8 +29,7 @@ namespace ECOCSystem.Controllers
             var PartialViewDataString = "";
             var Message = "";
             int ClientID = model.ClientID;
-            //int? VehicleBodyTypeID = 0;
-            //int? VehicleTypeID = 0;
+            int AddressID = model.AddressID;
 
             int Individual = Convert.ToInt32(TitleTypeEnum.Individual);
             int Corporate = Convert.ToInt32(TitleTypeEnum.Corporate);
@@ -192,6 +191,50 @@ namespace ECOCSystem.Controllers
 
                                     Status = "Success";
                                     Message = "New Address added Successfully!";
+
+                                }
+                                CurrentSubmit = "Address";
+
+
+                            }
+                            break;
+                        case "EDITADDRESS":
+                            {
+                                if (model.ClientID == 0)
+                                {
+
+                                    Status = "Info";
+                                    Message = "Message: Select Client first!";
+                                    //ViewData.TemplateInfo.HtmlFieldPrefix = "Address";
+                                    //PartialViewDataString = PartialView("_Address", model.ClientAddress).PartialViewToString();
+                                    //return RedirectToAction("Index");
+
+                                }
+                                else
+                                {
+
+                                    var updateAddress = db.ClientAddress.Where(o => o.ID == AddressID).FirstOrDefault();
+
+                                    updateAddress.AddressTypeID = model.ClientAddress.AddressTypeID;
+                                    updateAddress.HouseBldgNo = model.ClientAddress.HouseBldgNo;
+                                    updateAddress.StreetSubdivision = model.ClientAddress.StreetSubdivision;
+                                    updateAddress.Barangay = model.ClientAddress.Barangay;
+                                    updateAddress.ZipCode = model.ClientAddress.ZipCode;
+                                    updateAddress.EmailAddress = model.ClientAddress.EmailAddress;
+                                    updateAddress.TelephoneNo = model.ClientAddress.TelephoneNo;
+                                    updateAddress.MobileNo = model.ClientAddress.MobileNo;
+                                    updateAddress.CityID = model.ClientAddress.CityID;
+                                    updateAddress.ProvinceID = model.ClientAddress.ProvinceID;
+
+                                    updateAddress.UpdatedBy = CurrentUser.Details.ID;
+                                    updateAddress.UpdatedDate = DateTime.UtcNow;
+
+
+                                    db.SaveChanges();
+                                    dbTransaction.Commit();
+
+                                    Status = "Success";
+                                    Message = "Address updated Successfully!";
 
                                 }
                                 CurrentSubmit = "Address";
