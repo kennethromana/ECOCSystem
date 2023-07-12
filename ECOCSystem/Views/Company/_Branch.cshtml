@@ -86,6 +86,7 @@
     $(document).ready(function () {
 
         $('#addBranch').on('click', function () {
+            clearModelBranch()
             $('#branchOption').empty();
             $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
             <button type="button" id="submit_addBranch" class="btn btn-success">Save </button>  `)
