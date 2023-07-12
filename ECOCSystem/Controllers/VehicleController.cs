@@ -223,6 +223,26 @@ namespace ECOCSystem.Controllers
 
                             }
                             break;
+                        case "UPDATEMAKE":
+                            {
+
+
+                                var updateMake = db.VehicleMake.Where(o => o.VehicleMakeID == MakeID).FirstOrDefault();
+                                updateMake.VehicleMakeName = model.MakeInfo.VehicleMake;
+
+                                updateMake.UpdatedBy = CurrentUser.Details.ID;
+                                updateMake.UpdatedDate = DateTime.UtcNow;
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                Status = "Success";
+                                Message = "Vehicle Make updated Successfully!";
+
+                                CurrentSubmit = "Make";
+
+                            }
+                            break;
                         case "ADDADDRESS":
                             {
                                 if (model.MakeID == 0)
