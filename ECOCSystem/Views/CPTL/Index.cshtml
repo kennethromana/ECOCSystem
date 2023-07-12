@@ -668,12 +668,16 @@ svg:hover .tooltip {
         });
         $('#submit_Summary').on('click', function () {
             getcheckedVehicle();
-
             getcheckedAddress();
         });
 
 
         $('#submit_Application').on('click', function () {
+            if($('#SelectedRegistrationTypeID').val() == '')
+            {
+                toastr.info("Select Registration Type.")
+            }
+            else
             submitForm("CTPLAPPLICATION");
         });
 
