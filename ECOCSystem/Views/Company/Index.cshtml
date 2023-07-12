@@ -262,6 +262,8 @@
     function EditBranch(BranchInfo) {
 
 
+
+        $("#modal-companyInfo .overlay").removeClass("d-none");
         $('#SelectedBranchID').val(BranchInfo[0]);
         $('#CompanyBranch_Name').val(BranchInfo[1]);
         $('#CompanyBranch_Address').val(BranchInfo[2]);
@@ -272,9 +274,22 @@
         $('#CompanyBranch_FaxNumber').val(BranchInfo[7]);
         $('#CompanyBranch_TIN').val(BranchInfo[8]);
 
-        //for (let i = 0; i < BranchInfo.length; i++) {
-        //    console.log(BranchInfo[i]);
-        //}
+        $('#branchOption').empty();
+        $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
+            <button type="button" id="submit_editBranch" class="btn btn-success">Update </button>  `)
+
+        $("#modal-companyInfo .overlay").removeClass("d-none");
+
+        $('#submit_editBranch').on('click', function () {
+
+
+            if ($('#SelectedBranchID').val() == 0)
+                toastr.info('No selected Branch');
+            else
+                submitForm("EDITBRANCH");
+
+
+        });
 
     };
 

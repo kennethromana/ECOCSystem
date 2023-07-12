@@ -40,6 +40,7 @@ namespace ECOCSystem.Controllers
             var Message = "";
             var currentForm = "";
             int CompanyID = model.SelectedCompanyID;
+            int BranchID = model.SelectedBranchID;
 
 
 
@@ -143,6 +144,32 @@ namespace ECOCSystem.Controllers
                                 currentForm = "Branch";
                                 Status = "Success";
                                 Message = "New Branch was created successfully!";
+
+
+                            }
+                            break;
+                        case "EDITBRANCH":
+                            {
+                                var updateBranch = db.CompanyBranch.Where(o => o.ID == BranchID).FirstOrDefault();
+
+                                updateBranch.Name = model.CompanyBranch.Name;
+                                updateBranch.Address = model.CompanyBranch.Address;
+                                updateBranch.EmailAddress = model.CompanyBranch.EmailAddress;
+                                updateBranch.BusinessPhone = model.CompanyBranch.BusinessPhone;
+                                updateBranch.MobilePhone = model.CompanyBranch.MobilePhone;
+                                updateBranch.FaxNumber = model.CompanyBranch.FaxNumber;
+                                updateBranch.AccreditationNumber = model.CompanyBranch.AccreditationNumber;
+                                updateBranch.TIN = model.CompanyBranch.TIN;
+
+                                updateBranch.UpdatedBy = CurrentUser.Details.ID;
+                                updateBranch.UpdatedDate = DateTime.Now;
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
+                                currentForm = "Branch";
+                                Status = "Success";
+                                Message = "Branch was updated successfully!";
 
 
                             }
