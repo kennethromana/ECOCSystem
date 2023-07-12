@@ -87,7 +87,7 @@ namespace ECOCSystem.Controllers
                                 NewClient.TitleID = model.Client.TitleID;
                                 NewClient.Active = true;
                                 NewClient.CreatedBy = CurrentUser.Details.ID;
-                                NewClient.CreatedDate = DateTime.Now;
+                                NewClient.CreatedDate = DateTime.UtcNow;
 
 
                                 db.Client.Add(NewClient);
@@ -102,9 +102,50 @@ namespace ECOCSystem.Controllers
                             break;
                         case "EDITCLIENT":
                             {
-                                var clientModel = model.Client;
+                                var updateClient = db.Client.Where(o => o.ID == ClientID).FirstOrDefault();
+
+
+                                int TitletType = (from a in db.Title.Where(o => o.ID == model.Client.TitleID)
+                                                  from b in db.TitleType.Where(o => o.ID == a.TitleTypeID).DefaultIfEmpty()
+                                                  where a.Active == true
+                                                  select new
+                                                  {
+                                                      b.ID
+                                                  }).FirstOrDefault().ID;
+
+                                if (TitletType == Individual)
+                                {
+                                    updateClient.FirstName = model.Client.FirstName.Trim();
+                                    updateClient.LastName = model.Client.LastName.Trim();
+                                    updateClient.MiddleName = model.Client.MiddleName == null ? "" : model.Client.MiddleName.Trim();
+
+                                }
+                                else if (TitletType == Corporate)
+                                {
+                                    updateClient.CorpName = model.Client.CorpName.Trim();
+                                }
+                                else if (TitletType == CorporateWithAssignee)
+                                {
+                                    updateClient.CorpName = model.Client.CorpName.Trim();
+                                    updateClient.FirstName = model.Client.FirstName.Trim();
+                                    updateClient.LastName = model.Client.LastName.Trim();
+                                    updateClient.MiddleName = model.Client.MiddleName == null ? "" : model.Client.MiddleName.Trim();
+                                }
+
+                                updateClient.EmailAddress = model.Client.EmailAddress;
+                                updateClient.BusinessPhone = model.Client.BusinessPhone;
+                                updateClient.MobileNo = model.Client.MobileNo;
+                                updateClient.TitleID = model.Client.TitleID;
+
+                                updateClient.UpdatedBy = CurrentUser.Details.ID;
+                                updateClient.UpdatedDate = DateTime.UtcNow;
+
+
+                                db.SaveChanges();
+                                dbTransaction.Commit();
+
                                 Status = "Success";
-                                Message = "Client Updated Successfully!";
+                                Message = "client Updated Successfully!";
                                 CurrentSubmit = "Client";
 
                             }
@@ -139,7 +180,7 @@ namespace ECOCSystem.Controllers
 
                                     newAddress.Active = true;
                                     newAddress.CreatedBy = CurrentUser.Details.ID;
-                                    newAddress.CreatedDate = DateTime.Now;
+                                    newAddress.CreatedDate = DateTime.UtcNow;
 
 
                                     db.ClientAddress.Add(newAddress);
@@ -190,10 +231,10 @@ namespace ECOCSystem.Controllers
                                     newVehicle.ClientID = model.ClientID;
                                     newVehicle.Active = true;
                                     newVehicle.CreatedBy = CurrentUser.Details.ID;
-                                    newVehicle.CreatedDate = DateTime.Now;
+                                    newVehicle.CreatedDate = DateTime.UtcNow;
 
 
-                                   
+
                                     db.VehicleInfo.Add(newVehicle);
                                     db.SaveChanges();
                                     var updateClient = db.Client.Where(o => o.ID == ClientID).FirstOrDefault();
