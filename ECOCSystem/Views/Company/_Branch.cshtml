@@ -66,11 +66,6 @@
                 @Html.ValidationMessageFor(o => o.AccreditationNumber)
             </div>
             <div class="form-group col-lg-4">
-                @Html.LabelFor(o => o.FaxNumber)
-                <div class="input-group">@Html.TextBoxFor(o => o.FaxNumber, new { @class = "form-control input-style", placeholder = "Fax Number" })</div>
-                @Html.ValidationMessageFor(o => o.FaxNumber)
-            </div>
-            <div class="form-group col-lg-4">
                 @Html.LabelFor(o => o.TIN)
                 <div class="input-group">@Html.TextBoxFor(o => o.TIN, new { @class = "form-control input-style", placeholder = "TIN" })</div>
                 @Html.ValidationMessageFor(o => o.TIN)

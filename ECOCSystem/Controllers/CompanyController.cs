@@ -63,7 +63,6 @@ namespace ECOCSystem.Controllers
                                 newCompany.EmailAddress = model.CompanyInfo.EmailAddress;
                                 newCompany.BusinessPhone = model.CompanyInfo.BusinessPhone;
                                 newCompany.MobilePhone = model.CompanyInfo.MobilePhone;
-                                newCompany.FaxNumber = model.CompanyInfo.FaxNumber;
                                 newCompany.TIN = model.CompanyInfo.TIN;
 
                                 newCompany.Active = true;
@@ -104,7 +103,6 @@ namespace ECOCSystem.Controllers
                                 updateCompany.EmailAddress = model.CompanyInfo.EmailAddress;
                                 updateCompany.BusinessPhone = model.CompanyInfo.BusinessPhone;
                                 updateCompany.MobilePhone = model.CompanyInfo.MobilePhone;
-                                updateCompany.FaxNumber = model.CompanyInfo.FaxNumber;
                                 updateCompany.TIN = model.CompanyInfo.TIN;
 
                                 updateCompany.UpdatedBy = CurrentUser.Details.ID;
@@ -129,7 +127,6 @@ namespace ECOCSystem.Controllers
                                 newBranch.EmailAddress = model.CompanyBranch.EmailAddress;
                                 newBranch.BusinessPhone = model.CompanyBranch.BusinessPhone;
                                 newBranch.MobilePhone = model.CompanyBranch.MobilePhone;
-                                newBranch.FaxNumber = model.CompanyBranch.FaxNumber;
                                 newBranch.AccreditationNumber = model.CompanyBranch.AccreditationNumber;
                                 newBranch.TIN = model.CompanyBranch.TIN;
 
@@ -157,7 +154,6 @@ namespace ECOCSystem.Controllers
                                 updateBranch.EmailAddress = model.CompanyBranch.EmailAddress;
                                 updateBranch.BusinessPhone = model.CompanyBranch.BusinessPhone;
                                 updateBranch.MobilePhone = model.CompanyBranch.MobilePhone;
-                                updateBranch.FaxNumber = model.CompanyBranch.FaxNumber;
                                 updateBranch.AccreditationNumber = model.CompanyBranch.AccreditationNumber;
                                 updateBranch.TIN = model.CompanyBranch.TIN;
 

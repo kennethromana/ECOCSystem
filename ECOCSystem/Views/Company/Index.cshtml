@@ -42,7 +42,6 @@
                                         <th>Email</th>
                                         <th>Business Phone</th>
                                         <th>Mobile Phone</th>
-                                        <th>Fax No.</th>
                                         <th>TIN</th>
                                     </tr>
                                 </thead>
@@ -232,7 +231,6 @@
         $('#CompanyBranch_BusinessPhone').val('');
         $('#CompanyBranch_MobilePhone').val('');
         $('#CompanyBranch_AccreditationNumber').val('');
-        $('#CompanyBranch_FaxNumber').val('');
         $('#CompanyBranch_TIN').val('');
     }
     function clearModelUser() {
@@ -271,8 +269,7 @@
         $('#CompanyBranch_BusinessPhone').val(BranchInfo[4]);
         $('#CompanyBranch_MobilePhone').val(BranchInfo[5]);
         $('#CompanyBranch_AccreditationNumber').val(BranchInfo[6]);
-        $('#CompanyBranch_FaxNumber').val(BranchInfo[7]);
-        $('#CompanyBranch_TIN').val(BranchInfo[8]);
+        $('#CompanyBranch_TIN').val(BranchInfo[7]);
 
         $('#branchOption').empty();
         $('#branchOption').append(`<button type="button" onclick="closeModalBranch()" class="btn btn-default">Cancel</button>
@@ -316,7 +313,6 @@
                     $('#CompanyInfo_EmailAddress').val(response.EmailAddress)
                     $('#CompanyInfo_BusinessPhone').val(response.BusinessPhone)
                     $('#CompanyInfo_MobilePhone').val(response.MobilePhone)
-                    $('#CompanyInfo_FaxNumber').val(response.FaxNumber)
                     $('#CompanyInfo_TIN').val(response.TIN)
                 },
                 error: function (xhr, status, error) {
@@ -390,7 +386,7 @@
                     render: function (data, type, row) {
                         return `<center>
                                   <div class="">
-                                         <span BranchID = "`+ data.ID + `" type="button" data-toggle="modal" data-target="#modal-company-branch"" onclick="EditBranch([` + data.ID + `,'` + data.Name + `','` + data.Address + `','` + data.EmailAddress + `','` + data.BusinessPhone + `','` + data.MobilePhone + `','` + data.AccreditationNumber + `','` + data.FaxNumber + `','` + data.TIN + `'])">
+                                         <span BranchID = "`+ data.ID + `" type="button" data-toggle="modal" data-target="#modal-company-branch"" onclick="EditBranch([` + data.ID + `,'` + data.Name + `','` + data.Address + `','` + data.EmailAddress + `','` + data.BusinessPhone + `','` + data.MobilePhone + `','` + data.AccreditationNumber + `','` + data.TIN + `'])">
                                             <i class="fa fa-pencil-alt fa-lg text-primary" style="padding: 0px"></i>
                                         </span>
                                     </div>
@@ -404,7 +400,6 @@
                 { "className": "EmailAddress", "data": "EmailAddress", "name": "EmailAddress", "autoWidth": true },
                 { "className": "BusinessPhone", "data": "BusinessPhone", "name": "BusinessPhone", "autoWidth": true },
                 { "className": "MobilePhone", "data": "MobilePhone", "name": "MobilePhone", "autoWidth": true },
-                { "className": "FaxNumber", "data": "FaxNumber", "name": "FaxNumber", "autoWidth": true },
                 { "className": "TIN", "data": "TIN", "name": "TIN", "autoWidth": true },
 
             ]
@@ -550,7 +545,6 @@
                 { "className": "EmailAddress", "data": "EmailAddress", "name": "EmailAddress", "autoWidth": true },
                 { "className": "BusinessPhone", "data": "BusinessPhone", "name": "BusinessPhone", "autoWidth": true },
                 { "className": "MobilePhone", "data": "MobilePhone", "name": "MobilePhone", "autoWidth": true },
-                { "className": "FaxNumber", "data": "FaxNumber", "name": "FaxNumber", "autoWidth": true },
                 { "className": "TIN", "data": "TIN", "name": "TIN", "autoWidth": true },
 
 
