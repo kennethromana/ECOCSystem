@@ -64,39 +64,28 @@ namespace ECOCSystem.Controllers
         {
             using (var db = new ECOCEntities())
             {
-                //int skip = page > 1 ? Convert.ToInt32(start) + 5 : 0;
-                //int recordsTotal = 0;
-                //bool more = true;
+
                 int Individual = 1;
                 int Corporate = 2;
                 int CorporateWithAssignee = 3;
 
+                int curCompany = (int)CurrentUser.Details.CompanyID;
+                int curBranch = (int)CurrentUser.Details.CompanyBranchID;
+
                 var itemList = (from a in db.Client
                                 from b in db.Title.Where(o => o.ID == a.TitleID).DefaultIfEmpty()
                                 from c in db.TitleType.Where(o => o.ID == b.TitleTypeID).DefaultIfEmpty()
-                                where a.Active == true
+                                where a.Active == true &&
+                                a.CompanyID == curCompany &&
+                                a.BranchID == curBranch
                                 select new
                                 {
                                     id = a.ID,
-                                    text = c.ID == Individual ? a.FirstName+" "+a.LastName+" "+a.MiddleName
-                                          :c.ID == Corporate ? a.CorpName
-                                          :c.ID == CorporateWithAssignee ? a.FirstName + " " + a.LastName + " " + a.MiddleName +" - " +a.CorpName
+                                    text = c.ID == Individual ? b.TitleAbbreviation+" "+ a.FirstName+" "+a.LastName+" "+a.MiddleName + " - " + c.Name
+                                          : c.ID == Corporate ? a.CorpName + " - " + c.Name
+                                          : c.ID == CorporateWithAssignee ? a.FirstName + " " + a.LastName + " " + a.MiddleName +" - " +a.CorpName +" - "+c.Name
                                           : "-"
                                 }).ToList();
-
-
-                //var itemList = (from a in db.Customer
-                //                join b in db.Title on a.TitleID equals b.TitleID into temp
-                //                where
-                //                a.Active == true &&
-                //                a.DealerID == CurrentUser.Details.ReferenceID
-                //                from temptbl in temp.DefaultIfEmpty()
-                //                select new
-                //                {
-                //                    id = a.CustomerID,
-                //                    text = temptbl.TitleTypeID == 1 ? a.LastName + ", " + a.FirstName + " " + a.MiddleName : a.CorpName,
-                //                    a.CreatedDate
-                //                }).OrderByDescending(o => o.CreatedDate).ToList();
 
                 //Search itemList
                 if (!string.IsNullOrWhiteSpace(search))

@@ -573,7 +573,7 @@ svg:hover .tooltip {
                 data: addAntiForgeryToken(formData),
                 beforeSend: function () {
                     toastr.clear();
-
+                    $('#loadingScreen').show();
                 },
                 success: function (response) {
                     switch (response.Status) {
