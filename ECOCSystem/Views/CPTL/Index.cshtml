@@ -213,7 +213,7 @@ svg:hover .tooltip {
                                     <div class="card-body">
                                         <div class="form-group col-sm-11">
                                             <div class="input-group">
-                                                @Html.DropDownListFor(m => m.SelectedRegistrationTypeID, new SelectList(Model.RegistrationTypes, "ID", "RegistrationTypeInfo"), "Select Registration Type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetRegistrationTypes", "GetData") })
+                                                @Html.DropDownListFor(m => m.SelectedRegistrationTypeID, new SelectList(Model.RegistrationTypes, "ID", "RegistrationTypeInfo"), "Click to select registration type", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetRegistrationTypes", "GetData") })
                                             </div>
                                             @Html.ValidationMessageFor(m => m.SelectedRegistrationTypeID, "", new { @class = "" })
                                         </div>
@@ -225,7 +225,6 @@ svg:hover .tooltip {
                                 <div class="col-12 col-sm-12 card">
                                     @*<h6 class="card-title card-header"><b>Client Address list</b></h6>*@
                                     <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        <label>Select Client</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new client</span>
                                             <span type="button" id="addClient" class="newclient" data-toggle="modal" data-target="#modal-client">
@@ -233,6 +232,7 @@ svg:hover .tooltip {
                                                 +
                                             </span>
                                         </div>
+                                        <label>Add Client</label>
                                     </div>
                                     <div class="card-body">
                                         <div id="select-client" class="dataTables_wrapper dt-bootstrap4">
@@ -240,7 +240,7 @@ svg:hover .tooltip {
                                                 <div class="col-sm-12" style="display:flex;align-items:center;">
                                                     <div class="form-group col-sm-11">
                                                         <div class="input-group">
-                                                            @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.Clients, "ClientID", "ClientInfo"), "Select Client", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClients", "GetData") })
+                                                            @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.Clients, "ClientID", "ClientInfo"), "Click to select client", new { @class = "form-control select2 select2Ajax", select2Ajax_url = Url.Action("GetClients", "GetData") })
                                                         </div>
                                                         @Html.ValidationMessageFor(m => m.ClientID, "", new { @class = "" })
                                                     </div>
@@ -261,18 +261,19 @@ svg:hover .tooltip {
                             <section class="row pb-4">
                                 <div class="col-12 col-sm-12 card">
                                     <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        <label>Address List</label>
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new address</span>
                                             <span type="button" id="addAddress" class="newaddress" data-toggle="modal" data-target="#modal-client-address">
                                                 +
                                             </span>
                                         </div>
+                                        <label>Add Address</label>
                                     </div>
                                     <div class="card-body">
                                         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                             <div class="row">
                                                 <div class="col-sm-12">
+                                                    <p>Please select at least one address of the list.</p>
                                                     <table id="tbl_Address" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
                                                         <thead>
                                                             <tr>
@@ -289,17 +290,17 @@ svg:hover .tooltip {
                                                         </thead>
                                                     </table>
                                                     @*<table id="example2" class="table table-head-fixed table-hover dataTable dtr-inline " style="cursor:pointer" aria-describedby="example2_info" t>
-                                        <thead>
-                                            <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Select</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Street Name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Barangay</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">City</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                    </table>*@
+            <thead>
+                <tr>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Select</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Street Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Barangay</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">City</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Address Type</th>
+                </tr>
+            </thead>
+            <tbody>
+        </table>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -309,18 +310,20 @@ svg:hover .tooltip {
                             <section class="row pb-4">
                                 <div class="col-12 col-sm-12 card">
                                     <div class="cptl-title-header card-header " style="display: flex; align-items: center;">
-                                        <label>Vehicle List</label>
+
                                         <div class="uiverse ">
                                             <span class="tooltip">Add new vehicle</span>
                                             <span type="button" id="addVehicle" class="newvehicle" data-toggle="modal" data-target="#modal-client-vehicle">
                                                 +
                                             </span>
                                         </div>
+                                        <label>Add Vehicle</label>
                                     </div>
                                     <div class="card-body">
                                         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                             <div class="row">
                                                 <div class="col-sm-12">
+                                                    <p>Please select at least one vehicle of the list.</p>
                                                     <table id="tbl_Vehicle" class="table table-head-fixed table-hover dataTable dtr-inline table-hover dt-responsive nowrap" style="width:100%; min-width: 90em">
                                                         <thead>
                                                             <tr>
@@ -381,7 +384,7 @@ svg:hover .tooltip {
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Application Summary</h4>
+                                            <h4 class="modal-title">Review Summary Application</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true"><i class="fa" fa></i>×</span>
                                             </button>
