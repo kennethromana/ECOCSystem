@@ -307,11 +307,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\DATABRIDGELOGO.png" />
-    <Content Include="Content\Images\HONDALOGO.png" />
-    <Content Include="Content\Images\ISUZULOGO.png" />
-    <Content Include="Content\Images\TOYOTALOGO.png" />
-    <Content Include="Content\Images\VESPALOGO.png" />
+    <Content Include="Content\Images\DATABRIDGELOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\HONDALOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\ISUZULOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\TOYOTALOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\VESPALOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FrontEnd\Additional\bootstrap-toggle\css\bootstrap4-toggle.css" />
@@ -2294,10 +2304,14 @@
     <Content Include="FrontEnd\plugins\uplot\uPlot.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\3.jpg" />
+    <Content Include="Images\3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\arrow_8.jpg" />
     <Content Include="Images\BG-9.jpg" />
-    <Content Include="Images\DataBridgeLogo.png" />
+    <Content Include="Images\DataBridgeLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\ImageBack1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2719,7 +2733,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\RDLC\CoCReport.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <PropertyGroup>
